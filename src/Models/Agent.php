@@ -62,4 +62,54 @@ class Agent extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    public function sub_district()
+    {
+        return $this->belongsTo(SubDistrict::class);
+    }
+
+    public function village()
+    {
+        return $this->belongsTo(Village::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
+    public function phone_numbers()
+    {
+        return $this->hasMany(AgentPhoneNumber::class);
+    }
+
+    public function cash_withdrawals()
+    {
+        return $this->hasMany(AgentCashWithdrawal::class);
+    }
+
+    public function money_histories()
+    {
+        return $this->hasMany(AgentMoneyHistory::class);
+    }
+
+    public function customer_products()
+    {
+        return $this->hasMany(CustomerProduct::class);
+    }
 }
