@@ -32,6 +32,7 @@ class Agent extends Model
         'npwp',
         'user_id',
         'branch_id',
+        'token_device',
 
         'created_at',
         'updated_at',
@@ -58,6 +59,7 @@ class Agent extends Model
         'npwp' => 'string',
         'user_id' => 'integer',
         'branch_id' => 'integer',
+        'token_device' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
