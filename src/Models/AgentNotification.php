@@ -4,17 +4,17 @@ namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model
+class AgentNotification extends Model
 {
-    protected $table = 'notification';
+    protected $table = 'agent_notification';
 
     protected $fillable = [
         // 'id',
         'title',
         'message',
         'date',
+        'ar_invoice_id',
         'agent_id',
-        'customer_id',
         'level',
         'read_at',
 
@@ -28,23 +28,13 @@ class Notification extends Model
         'id' => 'integer',
         'title' => 'string',
         'message' => 'string',
-        'date' => 'date:Y-m-d',
+        'date' => 'datetime',
+        'ar_invoice_id' => 'integer',
         'agent_id' => 'integer',
-        'customer_id' => 'integer',
         'level' => 'string',
         'read_at' => 'datetime',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
-
-    public function agent()
-    {
-        return $this->belongsTo(Agent::class);
-    }   
-
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
-    }   
 }
