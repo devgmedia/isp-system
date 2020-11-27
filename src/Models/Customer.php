@@ -59,6 +59,7 @@ class Customer extends Model
         'alias_name',
         'identity_card_file',
         'house_photo',
+        'device_token',
     ];
 
     protected $hidden = [];
@@ -110,6 +111,7 @@ class Customer extends Model
         'alias_name' => 'string',
         'identity_card_file' => 'string',
         'house_photo' => 'string',
+        'device_token' => 'string',
     ];
 
     public function province()
@@ -210,5 +212,10 @@ class Customer extends Model
     public function invoice_customers()
     {
         return $this->hasMany(ArInvoiceCustomer::class);
+    }
+
+    public function agent()
+    {
+        return $this->belongsToMany(Agent::class, CustomerProduct::class)->withPivot('id');
     }
 }
