@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BloodType extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'blood_type';
 
     protected $fillable = [

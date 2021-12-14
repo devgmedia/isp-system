@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchaseRequestShippingAddress extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'purchase_request_shipping_address';
 
     protected $fillable = [

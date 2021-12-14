@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class InstallationTaskingAssignee extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'installation_tasking_assignee';
 
     protected $fillable = [

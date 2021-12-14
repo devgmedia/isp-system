@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ArInvoiceDetail extends Model
 {
+    protected $connection = 'isp_system';
     use SoftDeletes;
 
     protected $table = 'ar_invoice_detail';

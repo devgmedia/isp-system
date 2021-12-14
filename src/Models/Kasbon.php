@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kasbon extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'kasbon';
 
     protected $fillable = [

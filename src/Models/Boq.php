@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Boq extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'boq';
 
     protected $fillable = [

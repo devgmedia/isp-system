@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchaseOrderItemCategory extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'purchase_order_item_category';
 
     protected $fillable = [

@@ -9,6 +9,7 @@ use App\Models\Item;
 
 class BtsItem extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'bts_item';
 
     protected $fillable = [

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PreSurveyReportingCoverageBoqItem extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'pre_survey_reporting_coverage_boq_item';
 
     protected $fillable = [

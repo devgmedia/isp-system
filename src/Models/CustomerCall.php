@@ -11,6 +11,7 @@ use App\Models\Customer;
 
 class CustomerCall extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'customer_call';
 
     protected $fillable = [

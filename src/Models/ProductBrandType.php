@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductBrandType extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'product_brand_type';
 
     protected $fillable = [

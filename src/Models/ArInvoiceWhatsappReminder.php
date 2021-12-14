@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArInvoiceWhatsappReminder extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'ar_invoice_whatsapp_reminder';
 
     protected $fillable = [

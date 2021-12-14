@@ -14,6 +14,7 @@ use App\Models\Department as DepartmentModel;
 
 class PurchaseRequest extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'purchase_request';
 
     protected $fillable = [

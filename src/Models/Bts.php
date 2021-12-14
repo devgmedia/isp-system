@@ -11,6 +11,7 @@ use App\Models\BtsInterface;
 
 class Bts extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'bts';
 
     protected $fillable = [

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AccountingEquation extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'accounting_equation';
 
     protected $attributes = [];

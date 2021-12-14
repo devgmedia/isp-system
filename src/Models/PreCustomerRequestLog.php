@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PreCustomerRequestLog extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'pre_customer_request_log';
 
     protected $fillable = [

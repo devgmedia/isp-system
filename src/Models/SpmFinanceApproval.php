@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SpmFinanceApproval extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'spm_finance_approval';
 
     protected $fillable = [

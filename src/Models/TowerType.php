@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TowerType extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'tower_type';
 
     protected $fillable = [

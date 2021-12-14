@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchaseOrderTermOfPayment extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'purchase_order_term_of_payment';
 
     protected $fillable = [

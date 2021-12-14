@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SupplierBankAccount extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'supplier_bank_account';
 
     protected $fillable = [

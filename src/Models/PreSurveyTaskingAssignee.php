@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PreSurveyTaskingAssignee extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'pre_survey_tasking_assignee';
 
     protected $fillable = [

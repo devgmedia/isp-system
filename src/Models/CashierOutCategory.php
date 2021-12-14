@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CashierOutCategory extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'cashier_out_category';
 
     protected $fillable = [

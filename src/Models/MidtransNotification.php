@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MidtransNotification extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'midtrans_notification';
 
     protected $fillable = [

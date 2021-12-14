@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TaxIn extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'tax_in';
 
     protected $attributes = [

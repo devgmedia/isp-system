@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BranchPreCustomerRequestCcEmail extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'branch_pre_customer_request_cc_email';
 
     protected $fillable = [

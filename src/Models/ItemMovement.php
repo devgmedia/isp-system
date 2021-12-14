@@ -7,6 +7,7 @@ use App\Models\ItemMovementList;
 
 class ItemMovement extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'item_movement';
 
     protected $fillable = [

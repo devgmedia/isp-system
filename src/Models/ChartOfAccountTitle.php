@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ChartOfAccountTitle extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'chart_of_account_title';
 
     protected $attributes = [];

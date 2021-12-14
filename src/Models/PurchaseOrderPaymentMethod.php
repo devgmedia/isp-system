@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchaseOrderPaymentMethod extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'purchase_order_payment_method';
 
     protected $fillable = [

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class InternetMediaVendor extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'internet_media_vendor';
 
     protected $fillable = [

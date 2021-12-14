@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SurveyReporting extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'survey_reporting';
 
     protected $fillable = [

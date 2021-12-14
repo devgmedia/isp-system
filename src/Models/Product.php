@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $connection = 'isp_system';
     use EagerLoadPivotTrait;
 
     protected $table = 'product';

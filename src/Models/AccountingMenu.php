@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AccountingMenu extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'accounting_menu';
 
     protected $fillable = [

@@ -8,6 +8,7 @@ use App\Models\ProductAdditional;
 
 class ProductAdditionalTag extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'product_additional_tag';
 
     protected $fillable = [

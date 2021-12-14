@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductDiscount extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'product_discount';
 
     protected $fillable = [

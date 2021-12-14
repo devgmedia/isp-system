@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomerCategory extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'customer_category';
 
     protected $fillable = [

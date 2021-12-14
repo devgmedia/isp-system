@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Onu extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'onu';
 
     protected $fillable = [

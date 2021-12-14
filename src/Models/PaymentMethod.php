@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentMethod extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'payment_method';
 
     protected $fillable = [

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class InstallationRequest extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'installation_request';
 
     protected $fillable = [

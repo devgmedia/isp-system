@@ -7,6 +7,7 @@ use App\User;
 
 class Agent extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'agent';
 
     protected $attributes = [

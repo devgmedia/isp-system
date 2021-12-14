@@ -9,6 +9,7 @@ use App\Models\Employee;
 
 class EmployeePhoneNumber extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'employee_phone_number';
 
     protected $fillable = [

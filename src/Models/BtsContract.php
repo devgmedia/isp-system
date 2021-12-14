@@ -8,6 +8,7 @@ use App\Models\Bts;
 
 class BtsContract extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'bts_contract';
 
     protected $fillable = [

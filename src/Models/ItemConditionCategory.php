@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemConditionCategory extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'item_condition_category';
 
     protected $fillable = [

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SpmDirectorApproval extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'spm_director_approval';
 
     protected $fillable = [

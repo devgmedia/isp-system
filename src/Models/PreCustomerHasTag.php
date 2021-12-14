@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PreCustomerHasTag extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'pre_customer_has_tag';
 
     protected $fillable = [

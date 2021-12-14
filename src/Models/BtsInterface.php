@@ -10,6 +10,7 @@ use App\Models\BandwidthType;
 
 class BtsInterface extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'bts_interface';
 
     protected $fillable = [

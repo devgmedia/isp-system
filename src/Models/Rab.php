@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rab extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'rab';
 
     protected $fillable = [

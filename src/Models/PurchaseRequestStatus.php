@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class PurchaseRequestStatus extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'purchase_request_status';
 
     protected $fillable = [

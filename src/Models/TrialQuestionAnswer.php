@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TrialQuestionAnswer extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'trial_reporting';
 
     protected $fillable = [

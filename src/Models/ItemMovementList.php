@@ -7,6 +7,7 @@ use App\User as UserModel;
 
 class ItemMovementList extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'item_movement_list';
 
     protected $fillable = [

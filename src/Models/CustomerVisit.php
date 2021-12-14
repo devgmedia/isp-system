@@ -11,6 +11,7 @@ use App\Models\Employee;
 
 class CustomerVisit extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'customer_visit';
 
     protected $fillable = [

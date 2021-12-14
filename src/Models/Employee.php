@@ -7,6 +7,7 @@ use App\User;
 
 class Employee extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'employee';
 
     protected $fillable = [

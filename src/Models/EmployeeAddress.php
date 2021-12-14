@@ -9,6 +9,7 @@ use App\Models\EmployeeAddressTag;
 
 class EmployeeAddress extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'employee_address';
 
     protected $fillable = [

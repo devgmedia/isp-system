@@ -8,6 +8,7 @@ use App\Models\Branch;
 
 class SubDepartment extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'sub_department';
 
     protected $fillable = [

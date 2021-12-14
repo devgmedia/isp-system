@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemPacksUnit extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'item_packs_unit';
 
     protected $fillable = [

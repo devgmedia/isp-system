@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Journal extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'journal';
 
     protected $attributes = [

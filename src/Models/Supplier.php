@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supplier extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'supplier';
 
     protected $fillable = [

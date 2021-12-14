@@ -7,6 +7,7 @@ use App\User;
 
 class Customer extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'customer';
 
     protected $attributes = [

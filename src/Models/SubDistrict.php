@@ -9,6 +9,7 @@ use App\Models\Village;
 
 class SubDistrict extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'sub_district';
 
     protected $fillable = [

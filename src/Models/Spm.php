@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Spm extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'spm';
 
     protected $fillable = [

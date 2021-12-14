@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class JournalCode extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'journal_code';
 
     protected $fillable = [

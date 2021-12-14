@@ -10,6 +10,7 @@ use App\Models\PurchaseOrderItem as PurchaseOrderItemModel;
 
 class PurchaseOrder extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'purchase_order';
 
     protected $fillable = [

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AgentBankAccount extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'agent_bank_account';
 
     protected $fillable = [

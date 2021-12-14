@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SurveyTaskingAssignee extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'survey_tasking_assignee';
 
     protected $fillable = [

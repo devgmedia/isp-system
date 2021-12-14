@@ -10,6 +10,7 @@ use App\Traits\Signature;
 
 class ArInvoiceV2 extends Model
 {
+    protected $connection = 'isp_system';
     use SoftDeletes, Uuid, Signature;
 
     protected $table = 'ar_invoice_v2';

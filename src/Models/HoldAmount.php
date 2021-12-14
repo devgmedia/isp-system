@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HoldAmount extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'hold_amount';
 
     protected $fillable = [

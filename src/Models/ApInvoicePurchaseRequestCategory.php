@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ApInvoicePurchaseRequestCategory extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'ap_invoice_purchase_request_category';
 
     protected $fillable = [

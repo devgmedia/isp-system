@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FakturMasukan extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'faktur_masukan';
 
     protected $fillable = [

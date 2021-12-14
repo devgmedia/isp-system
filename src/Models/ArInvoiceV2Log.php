@@ -7,6 +7,7 @@ use App\Traits\LogCausedDatetime;
 
 class ArInvoiceV2Log extends Model
 {
+    protected $connection = 'isp_system';
     use LogCausedDatetime;
 
     protected $table = 'ar_invoice_log_v2';

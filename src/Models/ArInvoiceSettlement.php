@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArInvoiceSettlement extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'ar_invoice_settlement';
 
     protected $fillable = [

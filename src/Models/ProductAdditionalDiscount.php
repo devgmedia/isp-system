@@ -9,6 +9,7 @@ use App\Models\Discount;
 
 class ProductAdditionalDiscount extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'product_additional_discount';
 
     protected $fillable = [

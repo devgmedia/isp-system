@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArInvoiceSchemeCustomerProductAdditional extends Model
 {
+    protected $connection = 'isp_system';
     protected $table = 'ar_invoice_scheme_customer_product_additional';
 
     protected $fillable = [
