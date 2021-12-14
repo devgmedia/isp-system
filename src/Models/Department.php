@@ -1,6 +1,6 @@
 <?php
 
-namespace  GMedia\IspSystem\Models;
+namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,10 +12,15 @@ class Department extends Model
         // 'id',
         'name',
         'division_id',
+
         'branch_id',
+        'regional_id',
+        'company_id',
 
         'created_at',
         'updated_at',
+
+        'pr_approval_email',
     ];
 
     protected $hidden = [];
@@ -24,10 +29,15 @@ class Department extends Model
         'id' => 'integer',
         'name' => 'string',
         'division_id' => 'integer',
+        
         'branch_id' => 'integer',
+        'regional_id' => 'integer',
+        'company_id' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+
+        'pr_approval_email' => 'string',
     ];
 
     public function division()
@@ -38,5 +48,15 @@ class Department extends Model
     public function branch()
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    public function regional()
+    {
+        return $this->belongsTo(Regional::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Regional::class);
     }
 }

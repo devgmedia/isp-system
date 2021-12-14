@@ -4,8 +4,8 @@ namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use GMedia\IspSystem\Models\Employee;
-use GMedia\IspSystem\Models\EmployeeAddressTag;
+use App\Models\Employee;
+use App\Models\EmployeeAddressTag;
 
 class EmployeeAddress extends Model
 {

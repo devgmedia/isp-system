@@ -4,6 +4,9 @@ namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\ProductAdditional;
+use App\Models\Discount;
+
 class ProductAdditionalDiscount extends Model
 {
     protected $table = 'product_additional_discount';

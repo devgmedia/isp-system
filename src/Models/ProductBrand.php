@@ -15,7 +15,8 @@ class ProductBrand extends Model
         'created_at',
         'updated_at',
 
-        'billing_email',
+        'type_id',
+        'uuid',
     ];
 
     protected $hidden = [];
@@ -27,11 +28,22 @@ class ProductBrand extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 
-        'billing_email' => 'string',
+        'type_id' => 'integer',
+        'uuid' => 'string',
     ];
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucfirst($value);
+    }
 
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(ProductBrandType::class);
     }
 }

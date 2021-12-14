@@ -4,9 +4,6 @@ namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use GMedia\IspSystem\Models\Bank;
-use GMedia\IspSystem\Models\Employee;
-
 class EmployeeBankAccount extends Model
 {
     protected $table = 'employee_bank_account';

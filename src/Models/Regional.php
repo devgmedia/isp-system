@@ -4,8 +4,6 @@ namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use GMedia\IspSystem\Models\Company;
-
 class Regional extends Model
 {
     protected $table = 'regional';
@@ -24,6 +22,21 @@ class Regional extends Model
         'phone_number',
         'fax',
         'email',
+
+        'spm_finance_is_active',
+        'spm_finance_pic',
+        'spm_finance_pic_email',
+
+        'spm_general_manager_is_active',
+        'spm_general_manager_pic',
+        'spm_general_manager_pic_email',
+
+        'spm_director_is_active',
+        'spm_director_pic',
+        'spm_director_pic_email',
+
+        'supplier_verification_pic',
+        'supplier_verification_pic_email',
     ];
 
     protected $hidden = [];
@@ -42,6 +55,21 @@ class Regional extends Model
         'phone_number' => 'string',
         'fax' => 'string',
         'email' => 'string',
+
+        'spm_finance_is_active' => 'boolean',
+        'spm_finance_pic' => 'string',
+        'spm_finance_pic_email' => 'string',
+
+        'spm_general_manager_is_active' => 'boolean',
+        'spm_general_manager_pic' => 'string',
+        'spm_general_manager_pic_email' => 'string',
+
+        'spm_director_is_active' => 'boolean',
+        'spm_director_pic' => 'string',
+        'spm_director_pic_email' => 'string',
+
+        'supplier_verification_pic' => 'string',
+        'supplier_verification_pic_email' => 'string',
     ];
 
     public function company()
@@ -52,5 +80,10 @@ class Regional extends Model
     public function branches()
     {
         return $this->hasMany(Branch::class);
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
     }
 }

@@ -36,8 +36,8 @@ class ArInvoiceDiscount extends Model
         'discount_id' => 'integer',
 
         'discount_name' => 'string',
-        'discount_effective_date' => 'date',
-        'discount_expired_date' => 'date',
+        'discount_effective_date' => 'date:Y-m-d',
+        'discount_expired_date' => 'date:Y-m-d',
         'discount_maximum_use' => 'integer',
         'discount_maximum_use_per_product' => 'integer',
         'discount_maximum_use_per_product_additional' => 'integer',

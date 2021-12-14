@@ -1,18 +1,21 @@
 <?php
 
-namespace  GMedia\IspSystem\Models;
+namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use  GMedia\IspSystem\Models\PreCustomer;
 
 class PreCustomerPhoneNumber extends Model
 {
     protected $table = 'pre_customer_phone_number';
 
     protected $fillable = [
-        'id',
+        // 'id',
         'number',
         'pre_customer_id',
+        'whatsapp',
+        'telegram',
+        'home',
+        'office',
 
         'created_at',
         'updated_at',
@@ -24,6 +27,10 @@ class PreCustomerPhoneNumber extends Model
         'id' => 'integer',
         'number' => 'string',
         'pre_customer_id' => 'integer',
+        'whatsapp' => 'boolean',
+        'telegram' => 'boolean',
+        'home' => 'boolean',
+        'office' => 'boolean',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

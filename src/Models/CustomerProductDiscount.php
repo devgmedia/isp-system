@@ -9,9 +9,7 @@ class CustomerProductDiscount extends Pivot
     public $incrementing = true;
     protected $table = 'customer_product_discount';
 
-    protected $attributes = [
-        'corrected' => false,
-    ];
+    protected $attributes = [];
 
     protected $fillable = [
         // 'id',
@@ -24,8 +22,6 @@ class CustomerProductDiscount extends Pivot
 
         'created_at',
         'updated_at',
-
-        'corrected',
     ];
 
     protected $hidden = [];
@@ -41,8 +37,6 @@ class CustomerProductDiscount extends Pivot
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-
-        'corrected' => 'boolean',
     ];
 
     public function customer_product()

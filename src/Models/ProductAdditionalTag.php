@@ -4,6 +4,8 @@ namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\ProductAdditional;
+
 class ProductAdditionalTag extends Model
 {
     protected $table = 'product_additional_tag';

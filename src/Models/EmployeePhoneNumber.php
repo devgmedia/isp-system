@@ -4,8 +4,8 @@ namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use GMedia\IspSystem\Models\EmployeePhoneNumberType;
-use GMedia\IspSystem\Models\Employee;
+use App\Models\EmployeePhoneNumberType;
+use App\Models\Employee;
 
 class EmployeePhoneNumber extends Model
 {

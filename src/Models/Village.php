@@ -1,10 +1,10 @@
 <?php
 
-namespace  GMedia\IspSystem\Models;
+namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use  GMedia\IspSystem\Models\SubDistrict;
+use App\Models\SubDistrict;
 
 class Village extends Model
 {
@@ -33,5 +33,20 @@ class Village extends Model
     public function sub_district()
     {
         return $this->belongsTo(SubDistrict::class);
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
+
+    public function agents()
+    {
+        return $this->hasMany(Agent::class);
     }
 }

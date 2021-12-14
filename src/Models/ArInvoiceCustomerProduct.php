@@ -11,8 +11,8 @@ class ArInvoiceCustomerProduct extends Model
     protected $attributes = [
         'price' => 0,
         'discount' => 0,
-        'ppn' => 0,
-        'dpp' => 0,
+        'tax' => 0,
+        'tax_base' => 0,
         'total' => 0,
     ];
 
@@ -28,7 +28,7 @@ class ArInvoiceCustomerProduct extends Model
 
         'customer_product_name',
         'customer_product_price',
-        'customer_product_price_include_vat',
+        'customer_product_price_include_tax',
         'customer_product_payment_scheme_id',
         'customer_product_payment_scheme_name',
         'customer_product_bandwidth',
@@ -37,8 +37,8 @@ class ArInvoiceCustomerProduct extends Model
 
         'price',
         'discount',
-        'ppn',
-        'dpp',
+        'tax',
+        'tax_base',
         'total',
 
         'billing_start_date',
@@ -62,7 +62,7 @@ class ArInvoiceCustomerProduct extends Model
 
         'customer_product_name' => 'string',
         'customer_product_price' => 'double',
-        'customer_product_price_include_vat' => 'boolean',
+        'customer_product_price_include_tax' => 'boolean',
         'customer_product_payment_scheme_id' => 'integer',
         'customer_product_payment_scheme_name' => 'string',
         'customer_product_bandwidth' => 'integer',
@@ -71,7 +71,7 @@ class ArInvoiceCustomerProduct extends Model
 
         'price' => 'double',
         'discount' => 'double',
-        'ppn' => 'double',
+        'tax' => 'double',
         'total' => 'double',
 
         'billing_start_date' => 'date:Y-m-d',

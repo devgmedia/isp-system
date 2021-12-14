@@ -30,4 +30,19 @@ class Province extends Model
     {
         return $this->hasMany(District::class);
     }
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class);
+    }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
+
+    public function agents()
+    {
+        return $this->hasMany(Agent::class);
+    }
 }

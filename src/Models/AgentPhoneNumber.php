@@ -9,7 +9,7 @@ class AgentPhoneNumber extends Model
     protected $table = 'agent_phone_number';
 
     protected $fillable = [
-        'id',
+        // 'id',
         'number',
         'agent_id',
 

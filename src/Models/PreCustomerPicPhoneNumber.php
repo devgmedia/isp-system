@@ -1,6 +1,6 @@
 <?php
 
-namespace  GMedia\IspSystem\Models;
+namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +9,7 @@ class PreCustomerPicPhoneNumber extends Model
     protected $table = 'pre_customer_pic_phone_number';
 
     protected $fillable = [
-        'id',
+        // 'id',
         'number',
         'pre_customer_pic_id',
         'pre_customer_id',

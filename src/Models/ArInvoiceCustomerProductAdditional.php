@@ -11,8 +11,8 @@ class ArInvoiceCustomerProductAdditional extends Model
     protected $attributes = [
         'price' => 0,
         'discount' => 0,
-        'ppn' => 0,
-        'dpp' => 0,
+        'tax' => 0,
+        'tax_base' => 0,
         'total' => 0,
     ];
 
@@ -22,7 +22,7 @@ class ArInvoiceCustomerProductAdditional extends Model
         'customer_product_additional_id',
         'customer_product_additional_name',
         'customer_product_additional_price',
-        'customer_product_additional_price_include_vat',
+        'customer_product_additional_price_include_tax',
         'customer_product_additional_payment_scheme_id',
         'customer_product_additional_payment_scheme_name',
         'customer_product_additional_bandwidth',
@@ -37,8 +37,8 @@ class ArInvoiceCustomerProductAdditional extends Model
 
         'price',
         'discount',
-        'ppn',
-        'dpp',
+        'tax',
+        'tax_base',
         'total',
 
         'customer_product_additional_bandwidth_type_id',
@@ -57,7 +57,7 @@ class ArInvoiceCustomerProductAdditional extends Model
         'customer_product_additional_id' => 'integer',
         'customer_product_additional_name' => 'string',
         'customer_product_additional_price' => 'integer',
-        'customer_product_additional_price_include_vat' => 'boolean',
+        'customer_product_additional_price_include_tax' => 'boolean',
         'customer_product_additional_payment_scheme_id' => 'integer',
         'customer_product_additional_payment_scheme_name' => 'string',
         'customer_product_additional_bandwidth' => 'integer',
@@ -72,8 +72,8 @@ class ArInvoiceCustomerProductAdditional extends Model
 
         'price' => 'double',
         'discount' => 'double',
-        'ppn' => 'double',
-        'dpp' => 'double',
+        'tax' => 'double',
+        'tax_base' => 'double',
         'total' => 'double',
 
         'customer_product_additional_bandwidth_type_id' => 'integer',

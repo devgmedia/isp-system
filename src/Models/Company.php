@@ -4,8 +4,6 @@ namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use GMedia\IspSystem\Models\Regional;
-
 class Company extends Model
 {
     protected $table = 'company';
@@ -17,6 +15,8 @@ class Company extends Model
 
         'created_at',
         'updated_at',
+
+        'alpha_3_code',
     ];
 
     protected $hidden = [];
@@ -28,6 +28,8 @@ class Company extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+
+        'alpha_3_code' => 'string',
     ];
 
     public function regionals()

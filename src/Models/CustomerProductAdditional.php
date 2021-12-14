@@ -11,13 +11,13 @@ class CustomerProductAdditional extends Pivot
 
     protected $attributes = [
         'first_month_not_billed' => false,
-        'corrected' => false,
+
+        'ignore_tax' => false,
     ];
 
     protected $fillable = [
         // 'id',
         'sid',
-        'sid_mapping',
         'registration_date',
         'customer_product_id',
         'product_additional_id',
@@ -37,7 +37,6 @@ class CustomerProductAdditional extends Pivot
 
         'dependency',
         
-        'corrected',
         'first_month_not_billed',
         
         'adjusted_price',
@@ -45,6 +44,8 @@ class CustomerProductAdditional extends Pivot
         
         'adjusted_quantity',
         'quantity',
+
+        'ignore_tax',
     ];
 
     protected $hidden = [];
@@ -52,7 +53,6 @@ class CustomerProductAdditional extends Pivot
     protected $casts = [
         'id' => 'integer',
         'sid' => 'string',
-        'sid_mapping' => 'string',
         'registration_date' => 'date:Y-m-d',
         'customer_product_id' => 'integer',
         'product_additional_id' => 'integer',
@@ -72,7 +72,6 @@ class CustomerProductAdditional extends Pivot
 
         'dependency' => 'integer',
         
-        'corrected' => 'boolean',
         'first_month_not_billed' => 'boolean',
 
         'adjusted_price' => 'boolean',
@@ -80,6 +79,8 @@ class CustomerProductAdditional extends Pivot
 
         'adjusted_quantity' => 'boolean',
         'quantity' => 'integer',
+
+        'ignore_tax' => 'boolean',
     ];
 
     public function customer_product()
@@ -94,12 +95,12 @@ class CustomerProductAdditional extends Pivot
 
     public function media()
     {
-        return $this->belongsTo(Media::class);
+        return $this->belongsTo(InternetMedia::class);
     }
 
     public function media_vendor()
     {
-        return $this->belongsTo(MediaVendor::class);
+        return $this->belongsTo(InternetMediaVendor::class);
     }
 
     public function dependency()

@@ -8,6 +8,12 @@ class ArInvoiceScheme extends Model
 {
     protected $table = 'ar_invoice_scheme';
 
+    protected $attributes = [
+        'ignore_tax' => false,
+        'ignore_prorated' => false,
+        'postpaid' => false,
+    ];
+
     protected $fillable = [
         // 'id',
         'payer',
@@ -17,6 +23,9 @@ class ArInvoiceScheme extends Model
         'updated_at',
 
         'name',
+        'ignore_tax',
+        'ignore_prorated',
+        'postpaid',
     ];
 
     protected $hidden = [];
@@ -30,6 +39,9 @@ class ArInvoiceScheme extends Model
         'updated_at' => 'datetime',
 
         'name' => 'string',
+        'ignore_tax' => 'boolean',
+        'ignore_prorated' => 'boolean',
+        'postpaid' => 'boolean',
     ];
 
     public function payer_ref()

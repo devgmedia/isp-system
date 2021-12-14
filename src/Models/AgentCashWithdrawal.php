@@ -9,7 +9,7 @@ class AgentCashWithdrawal extends Model
     protected $table = 'agent_cash_withdrawal';
 
     protected $fillable = [
-        'id',
+        // 'id',
         'agent_id',
         'date',
         'money',

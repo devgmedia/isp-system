@@ -76,12 +76,12 @@ class ArInvoiceCustomer extends Model
 
     public function customer_district()
     {
-        return $this->belongsTo(Disctrict::class);
+        return $this->belongsTo(District::class);
     }
 
     public function customer_sub_district()
     {
-        return $this->belongsTo(SubDisctrict::class);
+        return $this->belongsTo(SubDistrict::class);
     }
 
     public function customer_village()

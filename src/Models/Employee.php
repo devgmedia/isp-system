@@ -3,23 +3,7 @@
 namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-use GMedia\IspSystem\Models\SubDepartment;
-use GMedia\IspSystem\Models\Department;
-use GMedia\IspSystem\Models\Division;
-use GMedia\IspSystem\Models\Branch;
-use GMedia\IspSystem\Models\Regional;
-use GMedia\IspSystem\Models\Company;
-use GMedia\IspSystem\Models\Position;
-use GMedia\IspSystem\Models\Education;
-use GMedia\IspSystem\Models\Religion;
-use GMedia\IspSystem\Models\Gender;
-use GMedia\IspSystem\Models\BloodType;
-use GMedia\IspSystem\Models\MaritalStatus;
-use GMedia\IspSystem\Models\EmployeeAddress;
-use GMedia\IspSystem\Models\EmployeeBankAccount;
-use GMedia\IspSystem\Models\EmployeePhoneNumber;
-use App\Models\User;
+use App\User;
 
 class Employee extends Model
 {
@@ -27,20 +11,21 @@ class Employee extends Model
 
     protected $fillable = [
         // 'id',
-
+        
         'uuid',
         'name',
         'number',
         'photo',
         'official_photo',
-        'active',
+
         'sub_department_id',
         'department_id',
         'division_id',
-        'finance_id',
+
         'branch_id',
         'regional_id',
         'company_id',
+
         'position_id',
         'last_education',
         'religion_id',
@@ -53,10 +38,13 @@ class Employee extends Model
         'hired_date',
         'fired_date',
         'npwp',
+        
         'user_id',
 
         'created_at',
         'updated_at',
+        
+        'preferred_brand',
     ];
 
     protected $hidden = [];
@@ -69,14 +57,15 @@ class Employee extends Model
         'number' => 'string',
         'photo' => 'string',
         'official_photo' => 'string',
-        'active' => 'boolean',
+
         'sub_department_id' => 'integer',
         'department_id' => 'integer',
-        'finance_id' => 'integer',
         'division_id' => 'integer',
+
         'branch_id' => 'integer',
         'regional_id' => 'integer',
         'company_id' => 'integer',
+
         'position_id' => 'integer',
         'last_education' => 'string',
         'religion_id' => 'integer',
@@ -89,10 +78,13 @@ class Employee extends Model
         'hired_date' => 'date:Y-m-d',
         'fired_date' => 'date:Y-m-d',
         'npwp' => 'string',
+
         'user_id' => 'integer',
         
         'created_at' => 'datetime',
-        'updated_at' => 'datetime',
+        'updated_at' => 'datetime',     
+        
+        'preferred_brand' => 'integer',   
     ];
 
     public function sub_department()
@@ -173,5 +165,10 @@ class Employee extends Model
     public function phone_numbers()
     {
         return $this->hasMany(EmployeePhoneNumber::class);
+    }
+
+    public function preferred_brand_ref()
+    {
+        return $this->belongsTo(ProductBrand::class);
     }
 }

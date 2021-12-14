@@ -9,12 +9,19 @@ class CustomerPhoneNumber extends Model
     protected $table = 'customer_phone_number';
 
     protected $fillable = [
-        'id',
+        // 'id',
         'number',
         'customer_id',
 
         'created_at',
         'updated_at',
+
+        'whatsapp',
+        'telegram',
+
+        'home',
+        'office',
+        'personal',
     ];
 
     protected $hidden = [];
@@ -26,6 +33,13 @@ class CustomerPhoneNumber extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+
+        'whatsapp' => 'boolean',
+        'telegram' => 'boolean',
+        
+        'home' => 'boolean',
+        'office' => 'boolean',
+        'personal' => 'boolean',
     ];
 
     public function customer()

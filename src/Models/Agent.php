@@ -3,6 +3,7 @@
 namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Agent extends Model
 {
@@ -32,10 +33,14 @@ class Agent extends Model
         'npwp',
         'user_id',
         'branch_id',
-        'token_device',
+
+        'device_token',
 
         'created_at',
         'updated_at',
+
+        'whatsapp_start_conversation_sent_at',
+        'whatsapp_fee_confirmation_sent_at',
     ];
 
     protected $hidden = [];
@@ -59,10 +64,14 @@ class Agent extends Model
         'npwp' => 'string',
         'user_id' => 'integer',
         'branch_id' => 'integer',
-        'token_device' => 'string',
+
+        'device_token' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+
+        'whatsapp_start_conversation_sent_at' => 'datetime',
+        'whatsapp_fee_confirmation_sent_at' => 'datetime',
     ];
 
     public function province()
@@ -103,6 +112,11 @@ class Agent extends Model
     public function cash_withdrawals()
     {
         return $this->hasMany(AgentCashWithdrawal::class);
+    }
+
+    public function bank_accounts()
+    {
+        return $this->hasMany(AgentBankAccount::class);
     }
 
     public function money_histories()

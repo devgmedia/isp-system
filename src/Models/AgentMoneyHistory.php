@@ -9,7 +9,7 @@ class AgentMoneyHistory extends Model
     protected $table = 'agent_money_history';
 
     protected $fillable = [
-        'id',
+        // 'id',
         'agent_id',
         'date',
         'name',

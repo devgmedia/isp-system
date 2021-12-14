@@ -10,8 +10,8 @@ class ArInvoice extends Model
 
     protected $attributes = [
         'discount' => 0,
-        'dpp' => 0,
-        'ppn' => 0,
+        'tax_base' => 0,
+        'tax' => 0,
         'total' => 0,
         'paid' => false,
 
@@ -21,20 +21,25 @@ class ArInvoice extends Model
 
         'previous_price' => 0,
         'previous_discount' => 0,
-        'previous_ppn' => 0,
-        'previous_dpp' => 0,
+        'previous_tax' => 0,
+        'previous_tax_base' => 0,
         'previous_total' => 0,
         'previous_paid' => false,
-
-        'paid_at' => null,
-        'email_sent_at' => null,
-        'payment_date' => null,
-
-        'billing_date' => null,
 
         'remaining_payment' => 0,
         'previous_remaining_payment' => 0,
         'paid_total' => 0,
+
+        'reminder_email_sent' => false,
+
+        'whatsapp_sent' => false,
+        'reminder_whatsapp_sent' => false,
+
+        'created_by_cron' => false,
+        'ignore_tax' => false,
+        'ignore_prorated' => false,
+
+        'postpaid' => false,
     ];
 
     protected $fillable = [
@@ -44,8 +49,8 @@ class ArInvoice extends Model
         'date',
         'due_date',
         'discount',
-        'dpp',
-        'ppn',
+        'tax_base',
+        'tax',
         'total',
         'paid',
         'payer',
@@ -65,6 +70,7 @@ class ArInvoice extends Model
         'updated_at',
 
         'branch_id',
+
         'price',
         'proof_of_payment',
 
@@ -91,8 +97,8 @@ class ArInvoice extends Model
         'previous',
         'previous_price',
         'previous_discount',
-        'previous_ppn',
-        'previous_dpp',
+        'previous_tax',
+        'previous_tax_base',
         'previous_total',
         'previous_paid',
 
@@ -102,13 +108,60 @@ class ArInvoice extends Model
         'email_sent_at',
         'payment_date',
 
+        'previous_date',
+
         'billing_date',
 
         'paid_via_midtrans',
 
+        'uuid',
+
         'remaining_payment',
+
         'previous_remaining_payment',
         'paid_total',
+
+        'received_by_agent',
+        'received_by_agent_at',
+        'reminder_email_sent',
+        'reminder_email_sent_at',
+
+        'billing_bank_id',
+        'billing_bank_name',
+        'billing_bank_account_number',
+        'billing_bank_account_on_behalf_of',
+        'billing_receiver',
+        'billing_receiver_name',
+
+        'available_via_midtrans',
+
+        'whatsapp_sent',
+        'whatsapp_sent_at',
+        'reminder_whatsapp_sent',
+        'reminder_whatsapp_sent_at',
+        
+        'created_by_cron',
+        'ignore_tax',
+        'ignore_prorated',
+
+        'receipt_email_sent',
+        'receipt_email_sent_at',
+        'receipt_whatsapp_sent',
+        'receipt_whatsapp_sent_at',
+
+        'postpaid',
+
+        'chart_of_account_title_id',
+        
+        'product_id',
+        'agent_id',
+        'billing_end_date',
+
+        'product_name',
+        'agent_name',
+
+        'sid',
+        'memo',
     ];
 
     protected $hidden = [];
@@ -120,8 +173,8 @@ class ArInvoice extends Model
         'date' => 'date:Y-m-d',
         'due_date' => 'date:Y-m-d',
         'discount' => 'double',
-        'dpp' => 'double',
-        'ppn' => 'double',
+        'tax_base' => 'double',
+        'tax' => 'double',
         'total' => 'double',
         'paid' => 'boolean',
         'payer' => 'integer',
@@ -168,8 +221,8 @@ class ArInvoice extends Model
         'previous' => 'integer',
         'previous_price' => 'double',
         'previous_discount' => 'double',
-        'previous_ppn' => 'double',
-        'previous_dpp' => 'double',
+        'previous_tax' => 'double',
+        'previous_tax_base' => 'double',
         'previous_total' => 'double',
         'previous_paid' => 'boolean',
 
@@ -177,15 +230,62 @@ class ArInvoice extends Model
 
         'paid_at' => 'datetime',
         'email_sent_at' => 'datetime',
-        'payment_date' => 'date',
+        'payment_date' => 'date:Y-m-d',
+        
+        'previous_date' => 'date:Y-m-d',
 
-        'billing_date' => 'date',
+        'billing_date' => 'date:Y-m-d',
 
         'paid_via_midtrans' => 'boolean',
 
+        'uuid' => 'string',
+
         'remaining_payment' => 'double',
+
         'previous_remaining_payment' => 'double',
         'paid_total' => 'double',
+
+        'received_by_agent' => 'boolean',
+        'received_by_agent_at' => 'datetime',
+        'reminder_email_sent' => 'boolean',
+        'reminder_email_sent_at' => 'datetime',
+
+        'billing_bank_id' => 'integer',
+        'billing_bank_name' => 'string',
+        'billing_bank_account_number' => 'string',
+        'billing_bank_account_on_behalf_of' => 'string',
+        'billing_receiver' => 'string',
+        'billing_receiver_name' => 'string',
+
+        'available_via_midtrans' => 'boolean',
+
+        'whatsapp_sent' => 'boolean',
+        'whatsapp_sent_at' => 'datetime',
+        'reminder_whatsapp_sent' => 'boolean',
+        'reminder_whatsapp_sent_at' => 'datetime',
+
+        'created_by_cron' => 'boolean',
+        'ignore_tax' => 'boolean',
+        'ignore_prorated' => 'boolean',
+
+        'receipt_email_sent' => 'boolean',
+        'receipt_email_sent_at' => 'datetime',
+        'receipt_whatsapp_sent' => 'boolean',
+        'receipt_whatsapp_sent_at' => 'datetime',
+
+        'postpaid' => 'boolean',
+
+        'chart_of_account_title_id' => 'integer',
+        
+        'product_id' => 'integer',
+        'agent_id' => 'integer',
+        'billing_end_date' => 'date:Y-m-d',
+
+        'product_name' => 'string',
+        'agent_name' => 'string',
+
+        'sid' => 'string',
+        'memo' => 'boolean',
     ];
 
     public function scheme()
@@ -241,5 +341,75 @@ class ArInvoice extends Model
     public function invoice_customers()
     {
         return $this->hasMany(ArInvoiceCustomer::class);
+    }
+
+    public function billing_bank()
+    {
+        return $this->belongsTo(Bank::class, 'billing_bank_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function agent()
+    {
+        return $this->belongsTo(Agent::class);
+    }
+
+    public function chart_of_account_title()
+    {
+        return $this->belongsTo(ChartOfAccountTitle::class);
+    }
+
+    public function settlements()
+    {
+        return $this->hasMany(ArInvoiceSettlement::class);
+    }
+
+    public function midtrans()
+    {
+        return $this->hasMany(ArInvoiceMidtrans::class);
+    }
+
+    public function whatsapps()
+    {
+        return $this->hasMany(ArInvoiceWhatsapp::class);
+    }
+
+    public function whatsapp_receipts()
+    {
+        return $this->hasMany(ArInvoiceWhatsappReceipt::class);
+    }
+
+    public function whatsapp_reminders()
+    {
+        return $this->hasMany(ArInvoiceWhatsappReminder::class);
+    }
+
+    public function logs()
+    {
+        return $this->hasMany(ArInvoiceLog::class);
+    }
+
+    public function journal()
+    {
+        return $this->hasOne(Journal::class);
+    }
+
+    public function journal_ar_invoices()
+    {
+        return $this->hasMany(JournalArInvoice::class);
+    }
+
+    public function journal_items()
+    {
+        return $this->belongsToMany(JournalItem::class, JournalArInvoice::class)->withPivot('id');
+    }
+
+    public function journals()
+    {
+        return $this->belongsToMany(Journal::class, JournalArInvoice::class)->withPivot('id');
     }
 }

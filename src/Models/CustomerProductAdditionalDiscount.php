@@ -19,8 +19,6 @@ class CustomerProductAdditionalDiscount extends Model
 
         'created_at',
         'updated_at',
-
-        'corrected',
     ];
 
     protected $hidden = [];
@@ -36,7 +34,5 @@ class CustomerProductAdditionalDiscount extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-
-        'corrected' => 'boolean',
     ];
 }

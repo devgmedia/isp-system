@@ -1,6 +1,6 @@
 <?php
 
-namespace  GMedia\IspSystem\Models;
+namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,13 +10,7 @@ class PreCustomerRequestNeed extends Model
 
     protected $fillable = [
         // 'id',
-        'date',
-        'time',
-        'title',
-        'pre_customer_request_id',
-        'pre_customer_request_data',
-        'caused_by',
-        
+        'name',
         'created_at',
         'updated_at',
     ];
@@ -25,24 +19,14 @@ class PreCustomerRequestNeed extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'date' => 'date:Y-m-d',
-        'time' => 'time:H:i:s',
-        'title' => 'string',
-        'pre_customer_request_id' => 'integer',
-        'pre_customer_request_data' => 'string',
-        'caused_by' => 'integer',
-        
+        'name' => 'string',
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
 
-    public function pre_customer_request()
+    public function pre_customer_requests()
     {
-        return $this->belongsTo(PreCustomerRequest::class);
-    }
-
-    public function caused_by()
-    {
-        return $this->belongsTo(Employee::class);
+        return $this->hasMany(PreCustomerRequest::class, 'need_id');
     }
 }

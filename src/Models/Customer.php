@@ -3,6 +3,7 @@
 namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Customer extends Model
 {
@@ -17,15 +18,17 @@ class Customer extends Model
         'cid',
         'name',
         'registration_date',
+
         'province_id',
         'district_id',
         'sub_district_id',
         'village_id',
+
         'money',
+
         'address',
         'latitude',
         'longitude',
-        'email',
         'npwp',
 
         'previous_isp_id',
@@ -33,10 +36,6 @@ class Customer extends Model
         'previous_isp_bandwidth',
         'previous_isp_feature',
         'previous_isp_bandwidth_unit_id',
-        
-        'approved_by_marketing_manager',
-        'approved_by_marketing_manager_id',
-        'approved_by_marketing_manager_date',
         
         'branch_id',
 
@@ -47,19 +46,25 @@ class Customer extends Model
         
         'previous_isp_bandwidth_type_id',
 
-        'referrer',
-        'referrer_used_for_discount',        
-
         'identity_card',
-
         'postal_code',
         'fax',
 
         'uuid',
+
         'alias_name',
         'identity_card_file',
         'house_photo',
+
         'device_token',
+
+        'is_isp',
+
+        'brand_id',
+        'category_id',
+        'memo',
+
+        'contact_person',
     ];
 
     protected $hidden = [];
@@ -69,26 +74,26 @@ class Customer extends Model
         'cid' => 'string',
         'name' => 'string',
         'registration_date' => 'date:Y-m-d',
+
         'province_id' => 'integer',
         'district_id' => 'integer',
         'sub_district_id' => 'integer',
         'village_id' => 'integer',
+
         'money' => 'integer',
+
         'address' => 'string',
         'latitude' => 'double',
         'longitude' => 'double',
-        'email' => 'string',
         'npwp' => 'string',
+
+        'email' => 'string',
 
         'previous_isp_id' => 'integer',
         'previous_isp_price' => 'integer',
         'previous_isp_bandwidth' => 'integer',
         'previous_isp_feature' => 'string',
         'previous_isp_bandwidth_unit_id' => 'integer',
-        
-        'approved_by_marketing_manager' => 'boolean',
-        'approved_by_marketing_manager_id' => 'integer',
-        'approved_by_marketing_manager_date' => 'date:Y-m-d',
         
         'branch_id' => 'integer',
         
@@ -99,19 +104,25 @@ class Customer extends Model
 
         'previous_isp_bandwidth_type_id' => 'integer',
 
-        'referrer' => 'integer',
-        'referrer_used_for_discount' => 'boolean',
-
         'identity_card' => 'string',
-
         'postal_code' => 'string',
         'fax' => 'string',
 
         'uuid' => 'string',
+        
         'alias_name' => 'string',
         'identity_card_file' => 'string',
         'house_photo' => 'string',
+
         'device_token' => 'string',
+
+        'is_isp' => 'boolean',
+
+        'brand_id' => 'integer',
+        'category_id' => 'integer',
+        'memo' => 'integer',
+
+        'contact_person' => 'string',
     ];
 
     public function province()
@@ -144,11 +155,6 @@ class Customer extends Model
         return $this->belongsTo(BandwidthUnit::class);
     }
 
-    public function approved_by_marketing_manager()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function branch()
     {
         return $this->belongsTo(Branch::class);
@@ -164,14 +170,9 @@ class Customer extends Model
         return $this->belongsTo(BandwidthType::class);
     }
 
-    public function referrer()
+    public function emails()
     {
-        return $this->belongsTo(Customer::class, 'referrer');
-    }
-
-    public function alternative_emails()
-    {
-        return $this->hasMany(CustomerAlternativeEmail::class);
+        return $this->hasMany(CustomerEmail::class);
     }
 
     public function phone_numbers()
@@ -187,11 +188,6 @@ class Customer extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, CustomerProduct::class)->withPivot('id');
-    }
-
-    public function refers()
-    {
-        return $this->hasMany(Customer::class, 'referrer');
     }
 
     public function invoice_scheme_pays()
@@ -214,8 +210,23 @@ class Customer extends Model
         return $this->hasMany(ArInvoiceCustomer::class);
     }
 
-    public function agent()
+    public function logs()
     {
-        return $this->belongsToMany(Agent::class, CustomerProduct::class)->withPivot('id');
+        return $this->hasMany(CustomerLog::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(ProductBrand::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(CustomerCategory::class);
+    }
+
+    public function memo()
+    {
+        return $this->belongsTo(Branch::class);
     }
 }

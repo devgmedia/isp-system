@@ -1,18 +1,17 @@
 <?php
 
-namespace  GMedia\IspSystem\Models;
+namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use  GMedia\IspSystem\Models\PreCustomer;
 
-class PreCustomerAlternativeEmail extends Model
+class CustomerEmail extends Model
 {
-    protected $table = 'pre_customer_alternative_email';
+    protected $table = 'customer_email';
 
     protected $fillable = [
-        'id',
+        // 'id',
         'name',
-        'pre_customer_id',
+        'customer_id',
 
         'created_at',
         'updated_at',
@@ -23,14 +22,14 @@ class PreCustomerAlternativeEmail extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'pre_customer_id' => 'integer',
+        'customer_id' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
 
-    public function pre_customer()
+    public function customer()
     {
-        return $this->belongsTo(PreCustomer::class);
+        return $this->belongsTo(Customer::class);
     }
 }

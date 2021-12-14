@@ -10,12 +10,12 @@ class CustomerNotification extends Model
 
     protected $fillable = [
         // 'id',
+
         'title',
         'message',
         'date',
         'ar_invoice_id',
         'customer_id',
-        'level',
         'read_at',
 
         'created_at',
@@ -26,12 +26,12 @@ class CustomerNotification extends Model
 
     protected $casts = [
         'id' => 'integer',
+        
         'title' => 'string',
         'message' => 'string',
         'date' => 'datetime',
         'ar_invoice_id' => 'integer',
         'customer_id' => 'integer',
-        'level' => 'string',
         'read_at' => 'datetime',
 
         'created_at' => 'datetime',

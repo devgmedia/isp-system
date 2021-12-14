@@ -1,23 +1,8 @@
 <?php
 
-namespace  GMedia\IspSystem\Models;
+namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-use  GMedia\IspSystem\Models\Province;
-use  GMedia\IspSystem\Models\District;
-use  GMedia\IspSystem\Models\SubDistrict;
-use  GMedia\IspSystem\Models\Village;
-use  GMedia\IspSystem\Models\Isp;
-use  GMedia\IspSystem\Models\BandwidthUnit;
-use  GMedia\IspSystem\Models\Branch;
-use  GMedia\IspSystem\Models\BandwidthType;
-use  GMedia\IspSystem\Models\PreCustomerAlternativeEmail;
-use  GMedia\IspSystem\Models\PreCustomerPhoneNumber;
-use  GMedia\IspSystem\Models\ArInvoiceSchemeCustomer;
-use  GMedia\IspSystem\Models\ArInvoice;
-use  GMedia\IspSystem\Models\ArInvoiceCustomer;
-use  GMedia\IspSystem\Models\User;
 
 class PreCustomer extends Model
 {
@@ -33,7 +18,6 @@ class PreCustomer extends Model
         'address',
         'latitude',
         'longitude',
-        'email',
         'npwp',
 
         'previous_isp_id',
@@ -42,18 +26,21 @@ class PreCustomer extends Model
         'previous_isp_feature',
         'previous_isp_bandwidth_unit_id',
         'previous_isp_bandwidth_type_id',
-        
-        'branch_id',
 
+        'branch_id',
+        'identity_card',
+        'fax',
+        'uuid',
         'created_at',
         'updated_at',
-        
-        'identity_card',
 
-        'postal_code',
-        'fax',
+        'alias_name',
+        'add_to_existing_customer',
+        'add_to_existing_customer_id',
+        'identity_card_file',
+        'house_photo',
+        'customer_category_id',
 
-        'uuid',
     ];
 
     protected $hidden = [];
@@ -68,7 +55,6 @@ class PreCustomer extends Model
         'address' => 'string',
         'latitude' => 'double',
         'longitude' => 'double',
-        'email' => 'string',
         'npwp' => 'string',
 
         'previous_isp_id' => 'integer',
@@ -77,18 +63,22 @@ class PreCustomer extends Model
         'previous_isp_feature' => 'string',
         'previous_isp_bandwidth_unit_id' => 'integer',
         'previous_isp_bandwidth_type_id' => 'integer',
-        
+
         'branch_id' => 'integer',
-        
+        'identity_card' => 'string',
+        'postal_code' => 'string',
+        'fax' => 'string',
+        'uuid' => 'string',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 
-        'identity_card' => 'string',
+        'alias_name' => 'string',
+        'add_to_existing_customer' => 'boolean',
+        'add_to_existing_customer_id' => 'integer',
+        'identity_card_file' => 'string',
+        'house_photo' => 'string',
+        'customer_category_id' => 'integer',
 
-        'postal_code' => 'string',
-        'fax' => 'string',
-
-        'uuid' => 'string',
     ];
 
     public function province()
@@ -121,19 +111,19 @@ class PreCustomer extends Model
         return $this->belongsTo(BandwidthUnit::class);
     }
 
-    public function branch()
-    {
-        return $this->belongsTo(Branch::class);
-    }
-
     public function previous_isp_bandwidth_type()
     {
         return $this->belongsTo(BandwidthType::class);
     }
 
-    public function alternative_emails()
+    public function branch()
     {
-        return $this->hasMany(PreCustomerAlternativeEmail::class);
+        return $this->belongsTo(Branch::class);
+    }
+
+    public function emails()
+    {
+        return $this->hasMany(PreCustomerEmail::class);
     }
 
     public function phone_numbers()
@@ -146,23 +136,38 @@ class PreCustomer extends Model
         return $this->hasMany(PreCustomerProduct::class);
     }
 
-    public function products()
+    public function logs()
     {
-        return $this->belongsToMany(Product::class, CustomerProduct::class)->withPivot('id');
+        return $this->hasMany(PreCustomerLog::class);
     }
 
-    public function invoice_scheme_customers()
+    public function pre_customer_prospective()
     {
-        return $this->hasMany(ArInvoiceSchemeCustomer::class);
+        return $this->belongsTo(PreCustomerProspective::class, 'id', 'pre_customer_id');
     }
 
-    public function invoice_customers()
+    public function pre_survey_request()
     {
-        return $this->hasMany(ArInvoiceCustomer::class);
+        return $this->belongsTo(PreSurveyRequest::class, 'id', 'pre_customer_id');
     }
 
-    public function invoice_pays()
+    public function pre_survey_reporting()
     {
-        return $this->hasMany(ArInvoice::class, 'payer');
+        return $this->belongsTo(PreSurveyReporting::class, 'id', 'pre_customer_id');
+    }
+
+    public function survey_request()
+    {
+        return $this->belongsTo(SurveyRequest::class, 'id', 'pre_customer_id');
+    }
+
+    public function survey_reporting()
+    {
+        return $this->belongsTo(SurveyReporting::class, 'id', 'pre_customer_id');
+    }
+
+    public function installation_request()
+    {
+        return $this->belongsTo(InstallationRequest::class, 'id', 'pre_customer_id');
     }
 }

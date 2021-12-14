@@ -1,6 +1,6 @@
 <?php
 
-namespace  GMedia\IspSystem\Models;
+namespace GMedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,6 @@ class PreCustomerRequestKnowFrom extends Model
     protected $fillable = [
         // 'id',
         'name',
-
         'created_at',
         'updated_at',
     ];
@@ -19,16 +18,15 @@ class PreCustomerRequestKnowFrom extends Model
     protected $hidden = [];
 
     protected $casts = [
-
         'id' => 'integer',
         'name' => 'string',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
 
-    public function pre_customer_request()
+    public function pre_customer_requests()
     {
-        return $this->hasMany(PreCustomerRequest::class,'know_from_id');
+        return $this->hasMany(PreCustomerRequest::class, 'know_from_id');
     }
 }
