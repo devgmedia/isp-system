@@ -1,7 +1,7 @@
 {
     "name": "devgmedia/isp-system",
     "description": "Internet Service Provider System",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "homepage": "https://github.com/devgmedia/isp-system",
     "license": "GPL-2.0-only",
     "authors": [
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "GMedia\\IspSystem\\": "src"
+            "Gmedia\\IspSystem\\": "src"
         }        
     },
     "require": {

@@ -1,6 +1,6 @@
 <?php
 
-namespace GMedia\IspSystem\Models;
+namespace Gmedia\IspSystem\Models;
 
 use AjCastro\EagerLoadPivotRelations\EagerLoadPivotTrait;
 use Illuminate\Database\Eloquent\Model;

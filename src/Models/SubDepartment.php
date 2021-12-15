@@ -1,6 +1,6 @@
 <?php
 
-namespace GMedia\IspSystem\Models;
+namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Department;
