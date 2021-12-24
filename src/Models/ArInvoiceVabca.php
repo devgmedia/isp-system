@@ -64,4 +64,9 @@ class ArInvoiceVabca extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function invoice()
+    {
+        return $this->belongsTo(ArInvoice::class, 'ar_invoice_id');
+    }
 }

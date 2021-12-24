@@ -374,6 +374,11 @@ class ArInvoice extends Model
         return $this->hasMany(ArInvoiceMidtrans::class);
     }
 
+    public function vabcas()
+    {
+        return $this->hasMany(ArInvoiceVabca::class);
+    }
+
     public function whatsapps()
     {
         return $this->hasMany(ArInvoiceWhatsapp::class);
