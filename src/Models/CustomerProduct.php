@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class CustomerProduct extends Pivot
 {
     public $incrementing = true;
+    protected $connection = 'isp_system';
     protected $table = 'customer_product';
 
     protected $attributes = [
@@ -24,15 +25,16 @@ class CustomerProduct extends Pivot
         'ignore_prorated' => false,
         'postpaid' => false,
 
-        'msd' => false,
+        'tax' => true,
     ];
 
     protected $fillable = [
         // 'id',
         'sid',
-        'registration_date',
+
         'customer_id',
         'product_id',
+
         'media_id',
         'media_vendor_id',
 
@@ -50,13 +52,7 @@ class CustomerProduct extends Pivot
         'service_date',
         'billing_date',
 
-        'site_province_id',
-        'site_district_id',
-        'site_sub_district_id',
-        'site_village_id',
         'site_address',
-        'site_latitude',
-        'site_logitude',
 
         'agent_id',
         'sales',
@@ -92,15 +88,13 @@ class CustomerProduct extends Pivot
         'site_name',
         'site_email',
         'site_phone_number',
-        'site_postal_code',
+        'site_postal_code', // deprecated
 
         'pre_customer_id',
         'postpaid',
 
         'adjusted_bandwidth',
         'special_bandwidth',
-        
-        'msd', // deprecated
 
         'whatsapp_request_issue_sent_at',
         'whatsapp_device_off_confirmation_request_sent_at',
@@ -112,8 +106,39 @@ class CustomerProduct extends Pivot
 
         'referrer',
         'referrer_used_for_discount',
+        
+        'tax',
+        'ar_invoice_item_category_id',
+        'product_name',
+        'product_price',
+        'product_price_usd',
+        'product_price_sgd',
 
-        'marketing', // deprecated 
+        'enterprise_billing_date',
+        'billing_time',
+        'billing_cycle',
+        'active',
+        'qrcode',
+
+        'ar_invoice_faktur_id',
+
+        'receiver_name',
+        'receiver_address',
+        'receiver_phone_number',
+        'receiver_email',
+        
+        'uuid',
+
+        'receiver_attention',
+        'site_pic',
+
+        'hybrid',
+        'installation_invoice_whatsapp_at',
+        'installation_invoice_email_at',
+        'installation_invoice_due_date',
+        'installation_invoice_paid_at',
+        'installation_date',
+        'installation_schedule_date',
     ];
 
     protected $hidden = [];
@@ -121,9 +146,10 @@ class CustomerProduct extends Pivot
     protected $casts = [
         'id' => 'integer',
         'sid' => 'string',
-        'registration_date' => 'date:Y-m-d',
+
         'customer_id' => 'integer',
         'product_id' => 'integer',
+        
         'media_id' => 'integer',
         'media_vendor_id' => 'integer',
 
@@ -141,13 +167,7 @@ class CustomerProduct extends Pivot
         'service_date' => 'date:Y-m-d',
         'billing_date' => 'date:Y-m-d',
 
-        'site_province_id' => 'integer',
-        'site_district_id' => 'integer',
-        'site_sub_district_id' => 'integer',
-        'site_village_id' => 'integer',
         'site_address' => 'string',
-        'site_latitude' => 'double',
-        'site_logitude' => 'double',
 
         'agent_id' => 'integer',
         'sales' => 'integer',
@@ -191,8 +211,6 @@ class CustomerProduct extends Pivot
         'adjusted_bandwidth' => 'boolean',
         'special_bandwidth' => 'integer',
 
-        'msd' => 'boolean',
-
         'whatsapp_request_issue_sent_at' => 'datetime',
         'whatsapp_device_off_confirmation_request_sent_at' => 'datetime',
 
@@ -203,9 +221,39 @@ class CustomerProduct extends Pivot
 
         'referrer' => 'integer',
         'referrer_used_for_discount' => 'boolean',
+        
+        'tax' => 'boolean',
+        'ar_invoice_item_category_id' => 'integer',
+        'product_name' => 'string',
+        'product_price' => 'integer',
+        'product_price_usd' => 'integer',
+        'product_price_sgd' => 'integer',
 
-        'marketing' => 'integer',
-        'customer_relation' => 'integer',
+        'enterprise_billing_date' => 'date:Y-m-d',
+        'billing_time' => 'integer',
+        'billing_cycle' => 'integer',
+        'active' => 'boolean',
+        'qrcode' => 'boolean',
+
+        'ar_invoice_faktur_id' => 'integer',
+
+        'receiver_name' => 'string',
+        'receiver_address' => 'string',
+        'receiver_phone_number' => 'string',
+        'receiver_email' => 'string',
+
+        'uuid' => 'string',
+
+        'receiver_attention' => 'string',
+        'site_pic' => 'string',
+
+        'hybrid' => 'boolean',
+        'installation_invoice_whatsapp_at' => 'datetime',
+        'installation_invoice_email_at' => 'datetime',
+        'installation_invoice_due_date' => 'date:Y-m-d',
+        'installation_invoice_paid_at' => 'datetime',
+        'installation_date' => 'date:Y-m-d',
+        'installation_schedule_date' => 'date:Y-m-d',
     ];
 
     public function customer()
@@ -298,6 +346,11 @@ class CustomerProduct extends Pivot
         return $this->belongsTo(Agent::class);
     }
 
+    public function sales_ref()
+    {
+        return $this->belongsTo(Employee::class, 'sales');
+    }
+
     public function pre_customer()
     {
         return $this->belongsTo(PreCustomer::class);
@@ -313,8 +366,23 @@ class CustomerProduct extends Pivot
         return $this->belongsTo(Customer::class, 'referrer');
     }
 
-    public function marketing_ref()
+    public function ar_invoice_item_category()
     {
-        return $this->belongsTo(Employee::class, 'marketing');
+        return $this->belongsTo(ArInvoiceItemCategory::class);
+    }
+
+    public function ar_invoice_faktur()
+    {
+        return $this->belongsTo(ArInvoiceFaktur::class);
+    }
+
+    public function customer_product_payments()
+    {
+        return $this->hasMany(CustomerProductPayment::class, 'customer_product_id');
+    }
+
+    public function payments()
+    {
+        return $this->belongsToMany(CashBank::class, CustomerProductPayment::class, 'customer_product_id', 'cash_bank_id')->withPivot('id');
     }
 }

@@ -81,7 +81,7 @@ class Rab extends Model
 
     public function pre_customer()
     {
-        return $this->belongsTo(PreCustomer::class);
+        return $this->belongsTo(PreCustomer::class, 'pre_customer_id', 'id');
     }
 
     public function survey_reporting()

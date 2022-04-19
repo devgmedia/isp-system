@@ -31,8 +31,8 @@ class CashierIn extends Model
 
         'chart_of_account_title_id',
 
-        'memo_settlement_id',
         'memo',
+        'memo_to',
     ];
 
     protected $hidden = [];
@@ -59,8 +59,8 @@ class CashierIn extends Model
 
         'chart_of_account_title_id' => 'integer',
 
-        'memo_settlement_id' => 'integer',
         'memo' => 'boolean',
+        'memo_to' => 'integer',
     ];
 
     public function setNameAttribute($value)
@@ -93,9 +93,9 @@ class CashierIn extends Model
         return $this->belongsTo(ChartOfAccountTitle::class);
     }
 
-    public function memo_settlement()
+    public function memo_to_ref()
     {
-        return $this->belongsTo(ArInvoiceSettlement::class);
+        return $this->belongsTo(Branch::class, 'memo_to');
     }
 
     public function journal()

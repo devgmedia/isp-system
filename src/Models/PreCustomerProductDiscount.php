@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class PreCustomerProductDiscount extends Pivot
 {
     public $incrementing = true;
+    protected $connection = 'isp_system';
     protected $table = 'pre_customer_product_discount';
 
     protected $attributes = [];

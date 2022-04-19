@@ -38,8 +38,7 @@ class PurchaseRequest extends Model
         'director_approved_name',
         'director_approved_date',
         'total',
-        'branch_id',
-        'sub_department_id',
+        'branch_id', 
         'created_at',
         'updated_at',
         
@@ -55,8 +54,7 @@ class PurchaseRequest extends Model
         'offer_document',
         'diskon',
         'ppn',
-
-        'department_id',
+ 
         'division_id',
         'created_name',
         'approval_token',
@@ -65,6 +63,11 @@ class PurchaseRequest extends Model
         'finance_approval_request_date',
         'director_approval_request_date',
         'uuid',
+
+        'accounting_division_category_id',
+        'journal_project_id',
+
+        'dpp',
     ];
 
     protected $hidden = [];

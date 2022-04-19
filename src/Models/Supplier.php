@@ -29,6 +29,11 @@ class Supplier extends Model
         'request_verification_at',
 
         'npwp',
+
+        'warehouse_property',
+        'phone_number',
+        'pic',
+        'pic_phone_number',
     ];
 
     protected $hidden = [];
@@ -53,6 +58,8 @@ class Supplier extends Model
         'request_verification_at' => 'datetime',
 
         'npwp' => 'string',
+
+        'warehouse_property' => 'boolean', 
     ];
 
     public function setNameAttribute($value)

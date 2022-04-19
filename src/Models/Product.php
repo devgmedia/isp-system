@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $connection = 'isp_system';
     use EagerLoadPivotTrait;
 
+    protected $connection = 'isp_system';
     protected $table = 'product';
 
     protected $fillable = [
@@ -36,6 +36,11 @@ class Product extends Model
 
         'uuid',        
         'ar_invoice_item_category_id',
+
+        'hide',
+
+        'radius_username_suffix',
+        'radius_password_prefix',
     ];
 
     protected $hidden = [];
@@ -63,6 +68,11 @@ class Product extends Model
 
         'uuid' => 'string',        
         'ar_invoice_item_category_id' => 'integer',
+
+        'hide' => 'boolean',
+        
+        'radius_username_suffix' => 'string',
+        'radius_password_prefix' => 'string',
     ];
 
     public function payment_scheme()

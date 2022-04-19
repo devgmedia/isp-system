@@ -14,6 +14,8 @@ class Company extends Model
         'name',
         'code',
 
+        'npwp',
+
         'created_at',
         'updated_at',
 
@@ -26,6 +28,8 @@ class Company extends Model
         'id' => 'integer',
         'name' => 'string',
         'code' => 'string',
+
+        'npwp' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

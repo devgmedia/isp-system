@@ -12,6 +12,7 @@ class InstallationRequest extends Model
     protected $fillable = [
         // 'id',
         'uuid',
+        'note',
         'survey_reporting_id',
         'pre_customer_id',
         'request_by',
@@ -28,6 +29,7 @@ class InstallationRequest extends Model
     protected $casts = [
         'id' => 'integer',
         'uuid' => 'string',
+        'note' => 'string',
         'survey_reporting_id' => 'integer',
         'pre_customer_id' => 'integer',
         'request_by' => 'integer',

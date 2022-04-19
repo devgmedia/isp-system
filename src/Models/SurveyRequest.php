@@ -12,6 +12,7 @@ class SurveyRequest extends Model
     protected $fillable = [
         // 'id',
         'pre_survey_reporting_id',
+        'note',
         'pre_customer_id',
         'request_by',
         'request_date',
@@ -27,6 +28,7 @@ class SurveyRequest extends Model
     protected $casts = [
         'id' => 'integer',
         'pre_survey_reporting_id' => 'integer',
+        'note' => 'text',
         'pre_customer_id' => 'integer',
         'request_by' => 'integer',
         'request_date' => 'date',

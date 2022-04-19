@@ -22,15 +22,6 @@ class RabUnit extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'purchasing_price' => 'integer',
-        'marketing_price' => 'integer',
-        'margin_price' => 'integer',
-        'rab_id' => 'integer',
-        'brand_id' => 'integer',
-        'brand_product_id' => 'integer',
-        'supplier_id' => 'integer',
-        'sales_lent' => 'boolean',
-        'sales_buy' => 'boolean',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

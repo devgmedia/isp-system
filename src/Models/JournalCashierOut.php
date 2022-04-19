@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class JournalCashierOut extends Pivot
 {
     public $incrementing = true;
+    protected $connection = 'isp_system';
     protected $table = 'journal_cashier_out';
 
     protected $fillable = [

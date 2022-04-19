@@ -13,6 +13,7 @@ class ItemBrandProduct extends Model
         // 'id',
         'name',
         'brand_id',
+        'uuid',
 
         'created_at',
         'updated_at',

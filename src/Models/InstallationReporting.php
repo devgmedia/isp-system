@@ -35,4 +35,9 @@ class InstallationReporting extends Model
         'content' => 'string',
         'owncloud_link' => 'string',
     ];
+
+    public function coverages()
+    {
+        return $this->hasMany(InstallationReportingCoverage::class);
+    }
 }

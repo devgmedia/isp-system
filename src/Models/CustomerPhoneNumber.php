@@ -23,6 +23,8 @@ class CustomerPhoneNumber extends Model
         'home',
         'office',
         'personal',
+
+        'name',
     ];
 
     protected $hidden = [];
@@ -41,6 +43,8 @@ class CustomerPhoneNumber extends Model
         'home' => 'boolean',
         'office' => 'boolean',
         'personal' => 'boolean',
+
+        'name' => 'string',
     ];
 
     public function customer()

@@ -38,4 +38,9 @@ class InstallationTasking extends Model
         return $this->hasMany(InstallationTaskingAssignee::class);
     }
 
+    public function installation_request()
+    {
+        return $this->belongsTo(InstallationRequest::class);
+    }
+
 }

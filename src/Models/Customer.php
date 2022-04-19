@@ -66,6 +66,17 @@ class Customer extends Model
         'memo',
 
         'contact_person',
+
+        'service',
+        'billing',
+        'subsidy',
+        'active',
+        'tax',
+
+        'json_products',
+        'json_agents',
+
+        'invoice_increment',
     ];
 
     protected $hidden = [];
@@ -87,8 +98,6 @@ class Customer extends Model
         'latitude' => 'double',
         'longitude' => 'double',
         'npwp' => 'string',
-
-        'email' => 'string',
 
         'previous_isp_id' => 'integer',
         'previous_isp_price' => 'integer',
@@ -124,6 +133,17 @@ class Customer extends Model
         'memo' => 'integer',
 
         'contact_person' => 'string',
+        
+        'service' => 'boolean',
+        'billing' => 'boolean',
+        'subsidy' => 'boolean',
+        'active' => 'boolean',
+        'tax' => 'boolean',
+
+        'json_products' => 'string',
+        'json_agents' => 'string',
+
+        'invoice_increment' => 'integer',
     ];
 
     public function province()
@@ -226,8 +246,8 @@ class Customer extends Model
         return $this->belongsTo(CustomerCategory::class);
     }
 
-    public function memo()
+    public function memo_ref()
     {
-        return $this->belongsTo(Branch::class);
+        return $this->belongsTo(Branch::class, 'memo');
     }
 }

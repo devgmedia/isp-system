@@ -4,16 +4,16 @@ namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FakturMasukan extends Model
+class PaymentMethodGuide extends Model
 {
     protected $connection = 'isp_system';
-    protected $table = 'faktur_masukan';
+    protected $table = 'payment_method_guide';
 
     protected $fillable = [
         // 'id',
+        'payment_method_type_id',
         'number',
-        'branch_id',
-
+        'description',
         'created_at',
         'updated_at',
     ];
@@ -22,8 +22,10 @@ class FakturMasukan extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'number' => 'string',
-        'branch_id' => 'integer',
+
+        'payment_method_type_id' => 'integer',
+        'number' => 'integer',
+        'description' => 'text',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

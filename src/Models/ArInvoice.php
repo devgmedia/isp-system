@@ -41,6 +41,35 @@ class ArInvoice extends Model
         'ignore_prorated' => false,
 
         'postpaid' => false,
+
+        'midtrans_payment_cost' => 0,
+
+        'tax_base_bandwidth' => 0,
+        'tax_base_colocation' => 0,
+        'tax_base_installation' => 0,
+        'tax_base_device' => 0,
+        'tax_base_other' => 0,
+        'tax_base_application' => 0,
+
+        'tax_base_usd' => 0,
+        'tax_base_sgd' => 0,
+
+        'tax_usd' => 0,
+        'tax_sgd' => 0,
+
+        'total_usd' => 0,
+        'total_sgd' => 0,
+
+        'discount_usd' => 0,
+        'discount_sgd' => 0,
+        
+        'settlement_invoice' => 0,
+        'settlement_admin' => 0,
+        'settlement_down_payment' => 0,
+        'settlement_marketing_fee' => 0,
+        'settlement_pph_pasal_22' => 0,
+        'settlement_pph_pasal_23' => 0,
+        'settlement_ppn' => 0,
     ];
 
     protected $fillable = [
@@ -163,6 +192,68 @@ class ArInvoice extends Model
 
         'sid',
         'memo',
+
+        'midtrans_payment_type',
+        'midtrans_payment_cost',
+
+        'faktur_id',
+        'qrcode',
+
+        'tax_base_bandwidth',
+        'tax_base_colocation',
+        'tax_base_installation',
+        'tax_base_device',
+        'tax_base_other',
+        'tax_base_application',
+        
+        'period_start_date',
+        'period_end_date',
+        
+        'tax_base_usd',
+        'tax_base_sgd',
+        
+        'tax_usd',
+        'tax_sgd',
+        
+        'total_usd',
+        'total_sgd',
+
+        'payer_category_id',
+        'memo_to',
+
+        'is_tax',
+        'is_edited',
+        'is_printed',
+
+        'brand_type_name',
+
+        'enterprise_billing_date',
+        'billing_time',
+        
+        'discount_usd',
+        'discount_sgd',
+
+        'billing_npwp_number',
+        'billing_npwp_on_behalf_of',
+        'billing_phone_number',
+        'billing_email',
+
+        'billing_approver',
+        'billing_preparer',
+
+        'receiver_attention',
+        
+        'service',
+
+        'settlement_invoice',
+        'settlement_admin',
+        'settlement_down_payment',
+        'settlement_marketing_fee',
+        'settlement_pph_pasal_22',
+        'settlement_pph_pasal_23',
+        'settlement_ppn',
+
+        'sales',
     ];
 
     protected $hidden = [];
@@ -287,6 +378,68 @@ class ArInvoice extends Model
 
         'sid' => 'string',
         'memo' => 'boolean',
+
+        'midtrans_payment_type' => 'string',
+        'midtrans_payment_cost' => 'double',
+
+        'faktur_id' => 'integer',
+        'qrcode' => 'boolean',
+
+        'tax_base_bandwidth' => 'double',
+        'tax_base_colocation' => 'double',
+        'tax_base_installation' => 'double',
+        'tax_base_device' => 'double',
+        'tax_base_other' => 'double',
+        'tax_base_application' => 'double',
+
+        'period_start_date' => 'date:Y-m-d',
+        'period_end_date' => 'date:Y-m-d',
+        
+        'tax_base_usd' => 'double',
+        'tax_base_sgd' => 'double',
+        
+        'tax_usd' => 'double',
+        'tax_sgd' => 'double',
+        
+        'total_usd' => 'double',
+        'total_sgd' => 'double',   
+
+        'payer_category_id' => 'integer',
+        'memo_to' => 'integer',
+
+        'is_tax' => 'boolean',
+        'is_edited' => 'boolean',
+        'is_printed' => 'boolean',     
+
+        'brand_type_name' => 'string',
+
+        'enterprise_billing_date' => 'integer',
+        'billing_time' => 'integer',
+
+        'discount_usd' => 'double',
+        'discount_sgd' => 'double',
+
+        'billing_npwp_number' => 'string',
+        'billing_npwp_on_behalf_of' => 'string',
+        'billing_phone_number' => 'string',
+        'billing_email' => 'string',
+
+        'billing_approver' => 'string',
+        'billing_preparer' => 'string',
+
+        'receiver_attention' => 'string',
+        
+        'service' => 'integer',
+
+        'settlement_invoice' => 'double',
+        'settlement_admin' => 'double',
+        'settlement_down_payment' => 'double',
+        'settlement_marketing_fee' => 'double',
+        'settlement_pph_pasal_22' => 'double',
+        'settlement_pph_pasal_23' => 'double',
+        'settlement_ppn' => 'double',
+
+        'sales' => 'integer',
     ];
 
     public function scheme()
@@ -344,6 +497,11 @@ class ArInvoice extends Model
         return $this->hasMany(ArInvoiceCustomer::class);
     }
 
+    public function invoice_billings()
+    {
+        return $this->hasMany(ArInvoiceBilling::class);
+    }
+
     public function billing_bank()
     {
         return $this->belongsTo(Bank::class, 'billing_bank_id');
@@ -357,6 +515,31 @@ class ArInvoice extends Model
     public function agent()
     {
         return $this->belongsTo(Agent::class);
+    }
+
+    public function faktur()
+    {
+        return $this->belongsTo(ArInvoiceFaktur::class);
+    }
+
+    public function payer_category()
+    {
+        return $this->belongsTo(CustomerCategory::class);
+    }
+
+    public function memo_to_ref()
+    {
+        return $this->belongsTo(Branch::class, 'memo_to');
+    }
+
+    public function service_ref()
+    {
+        return $this->belongsTo(CustomerProduct::class, 'service');
+    }
+
+    public function sales_ref()
+    {
+        return $this->belongsTo(Employee::class, 'sales');
     }
 
     public function chart_of_account_title()

@@ -57,6 +57,8 @@ class ApInvoice extends Model
         'journal_project_id',
 
         'memo_ar_invoice_id',
+
+        'faktur_file',
     ];
 
     protected $hidden = [];
@@ -105,6 +107,8 @@ class ApInvoice extends Model
         'journal_project_id' => 'integer',
 
         'memo_ar_invoice_id' => 'integer',
+        
+        'faktur_file' => 'string',
     ];
 
     public function setNameAttribute($value)

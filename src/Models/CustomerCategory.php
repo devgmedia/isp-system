@@ -10,7 +10,8 @@ class CustomerCategory extends Model
     protected $table = 'customer_category';
 
     protected $fillable = [
-
+        // 'id',
+        'uuid',
         'name', 
         
         'created_at',
@@ -20,7 +21,8 @@ class CustomerCategory extends Model
     protected $hidden = [];
 
     protected $casts = [
- 
+        'id' => 'integer', 
+        'uuid' => 'string', 
         'name' => 'string', 
 
         'created_at' => 'datetime',

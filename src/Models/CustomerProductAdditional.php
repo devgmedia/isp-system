@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class CustomerProductAdditional extends Pivot
 {
     public $incrementing = true;
+    protected $connection = 'isp_system';
     protected $table = 'customer_product_additional';
 
     protected $attributes = [
@@ -19,8 +20,10 @@ class CustomerProductAdditional extends Pivot
         // 'id',
         'sid',
         'registration_date',
+
         'customer_product_id',
         'product_additional_id',
+
         'media_id',
         'media_vendor_id',
 
@@ -46,6 +49,14 @@ class CustomerProductAdditional extends Pivot
         'quantity',
 
         'ignore_tax',
+
+        'ar_invoice_item_category_id',
+        'additional_name',
+        'additional_price',
+        'additional_price_usd',
+        'additional_price_sgd',
+
+        'uuid',
     ];
 
     protected $hidden = [];
@@ -54,8 +65,10 @@ class CustomerProductAdditional extends Pivot
         'id' => 'integer',
         'sid' => 'string',
         'registration_date' => 'date:Y-m-d',
+
         'customer_product_id' => 'integer',
         'product_additional_id' => 'integer',
+        
         'media_id' => 'integer',
         'media_vendor_id' => 'integer',
 
@@ -81,6 +94,14 @@ class CustomerProductAdditional extends Pivot
         'quantity' => 'integer',
 
         'ignore_tax' => 'boolean',
+
+        'ar_invoice_item_category_id' => 'integer',
+        'additional_name' => 'string',
+        'additional_price' => 'integer',
+        'additional_price_usd' => 'integer',
+        'additional_price_sgd' => 'integer',
+        
+        'uuid' => 'string',
     ];
 
     public function customer_product()
@@ -121,5 +142,10 @@ class CustomerProductAdditional extends Pivot
     public function invoice_additionals()
     {
         return $this->hasMany(ArInvoiceCustomerProductAdditional::class, 'customer_product_additional_id');
+    }
+
+    public function ar_invoice_item_category()
+    {
+        return $this->belongsTo(ArInvoiceItemCategory::class);
     }
 }

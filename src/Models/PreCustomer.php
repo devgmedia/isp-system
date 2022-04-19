@@ -171,4 +171,9 @@ class PreCustomer extends Model
     {
         return $this->belongsTo(InstallationRequest::class, 'id', 'pre_customer_id');
     }
+
+    public function installation_reporting()
+    {
+        return $this->belongsTo(InstallationReporting::class, 'id', 'pre_customer_id');
+    }
 }

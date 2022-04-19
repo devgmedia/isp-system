@@ -36,6 +36,11 @@ class TaxOut extends Model
         'bukti_potong',
 
         'masa',
+
+        'customer_id',
+        'date',
+        'invoice_date',
+        'customer_name',
     ];
 
     protected $hidden = [];
@@ -60,11 +65,16 @@ class TaxOut extends Model
         'bukti_potong' => 'string',
 
         'masa' => 'integer',
+
+        'customer_id' => 'integer',
+        'date' => 'date:Y-m-d',
+        'invoice_date' => 'date:Y-m-d',
+        'customer_name' => 'string',
     ];
 
     public function ar_invoice()
     {
-        return $this->belongsTo(ArInvoiceV2::class);
+        return $this->belongsTo(ArInvoice::class);
     }
 
     public function branch()
@@ -80,5 +90,10 @@ class TaxOut extends Model
     public function submit_by_ref()
     {
         return $this->belongsTo(Employee::class, 'submit_by');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
     }
 }

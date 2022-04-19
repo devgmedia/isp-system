@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class PreCustomerProduct extends Pivot
 {
     public $incrementing = true;
+    protected $connection = 'isp_system';
     protected $table = 'pre_customer_product';
 
     protected $fillable = [
@@ -25,11 +26,11 @@ class PreCustomerProduct extends Pivot
         'site_address',
         'site_postal_code',
         'site_latitude',
-        'site_longitude', 
+        'site_longitude',
 
         'adjusted_price',
         'special_price',
-        
+
         'adjusted_bandwidth',
         'special_bandwidth',
 
@@ -46,15 +47,16 @@ class PreCustomerProduct extends Pivot
         'billing_address',
         'billing_postal_code',
         'billing_latitude',
-        'billing_longitude', 
+        'billing_longitude',
 
         'agent_id',
-        'sales',  
+        'sales',
+        'pic',
 
         'join_billing_id',
 
         'created_at',
-        'updated_at', 
+        'updated_at',
 
         'elevasi',
     ];
@@ -77,7 +79,7 @@ class PreCustomerProduct extends Pivot
         'site_address' => 'string',
         'site_postal_code' => 'string',
         'site_latitude' => 'double',
-        'site_longitude' => 'double', 
+        'site_longitude' => 'double',
 
         'adjusted_price' => 'boolean',
         'special_price' => 'integer',
@@ -97,17 +99,17 @@ class PreCustomerProduct extends Pivot
         'billing_village_id' => 'integer',
         'billing_address' => 'string',
         'billing_postal_code' => 'string',
-        'billing_latitude' => 'double', 
-        'billing_longitude' => 'double', 
-        
+        'billing_latitude' => 'double',
+        'billing_longitude' => 'double',
+
         'agent_id' => 'integer',
         'sales' => 'integer',
-        
+
         'join_billing_id' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'elevasi' => 'string',
     ];
 
@@ -169,5 +171,10 @@ class PreCustomerProduct extends Pivot
     public function pre_customer_product_billing_emails()
     {
         return $this->hasMany(PreCustomerProductBillingEmail::class, 'pre_customer_product_id');
+    }
+
+    public function sales_request()
+    {
+        return $this->belongsTo(Employee::class, 'sales');
     }
 }

@@ -12,9 +12,9 @@ class CustomerProductAdditionalDiscount extends Model
     protected $fillable = [
         // 'id',
 
-        'registration_date',
         'customer_product_additional_id',
         'product_additional_discount_id',
+
         'start_date',
         'end_date',
 
@@ -25,11 +25,11 @@ class CustomerProductAdditionalDiscount extends Model
     protected $hidden = [];
 
     protected $casts = [
-        'id' => 'integer',
-    
-        'registration_date' => 'date:Y-m-d',
+        'id' => 'integer',    
+
         'customer_product_additional_id' => 'integer',
         'product_additional_discount_id' => 'integer',
+        
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',
 

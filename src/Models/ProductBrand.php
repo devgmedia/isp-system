@@ -18,6 +18,8 @@ class ProductBrand extends Model
 
         'type_id',
         'uuid',
+
+        'customer_account_default_password',
     ];
 
     protected $hidden = [];
@@ -31,6 +33,8 @@ class ProductBrand extends Model
 
         'type_id' => 'integer',
         'uuid' => 'string',
+        
+        'customer_account_default_password' => 'string',
     ];
 
     public function setNameAttribute($value)

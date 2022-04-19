@@ -38,6 +38,11 @@ class TaxIn extends Model
 
         'masa',
         'pph_pasal_26',
+
+        'supplier_id',
+        'date',
+        'invoice_date',
+        'supplier_name',
     ];
 
     protected $hidden = [];
@@ -63,6 +68,11 @@ class TaxIn extends Model
 
         'masa' => 'integer',
         'pph_pasal_26' => 'double',
+        
+        'supplier_id' => 'integer',
+        'date' => 'date:Y-m-d',
+        'invoice_date' => 'date:Y-m-d',
+        'supplier_name' => 'string',
     ];
 
     public function ap_invoice()
@@ -83,5 +93,10 @@ class TaxIn extends Model
     public function submit_by_ref()
     {
         return $this->belongsTo(Employee::class, 'submit_by');
+    }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
     }
 }

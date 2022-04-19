@@ -7,15 +7,15 @@ use App\User as UserModel;
 use App\Models\Supplier as SupplierModel;
 use App\Models\Branch as BranchModel;
 use App\Models\PurchaseOrderItem as PurchaseOrderItemModel;
+use App\Models\PurchaseOrderItemBoq as PurchaseOrderItemBoqModel;
+use App\Models\PurchaseOrderItemRab as PurchaseOrderItemRabModel;
 
 class PurchaseOrder extends Model
 {
     protected $connection = 'isp_system';
     protected $table = 'purchase_order';
 
-    protected $fillable = [
-        // 'id',
-        // 'name',
+    protected $fillable = [ 
         'number',
         'date',
         'about',
@@ -28,8 +28,7 @@ class PurchaseOrder extends Model
         'director_approved_by',
         'director_approved_name',
         'director_approved_date',
-        'total',
-        // 'source_id',
+        'total', 
         'branch_id',
         'created_at',
         'updated_at',
@@ -52,47 +51,15 @@ class PurchaseOrder extends Model
         'term_of_payment_description',
         'offer_document',
         'purchase_request_id',
-        'uuid',
+        'uuid', 
+        'accounting_division_category_id',
+        'journal_project_id', 
+        'dp',
+        'pelunasan',
     ];
 
     protected $hidden = [];
-
-    // protected $casts = [
-    //     'id' => 'integer',
-    //     'name'  => 'string',
-    //     'number'    => 'string',
-    //     'date' => 'date',
-    //     'about' => 'string',
-    //     'created_by' => 'integer',
-    //     'created_name' => 'string',
-    //     'created_date' => 'date',
-    //     'finance_approved_by' => 'integer',
-    //     'finance_approved_name' => 'string',
-    //     'finance_approved_date' => 'date',
-    //     'director_approved_by' => 'integer',
-    //     'director_approved_name' => 'string',
-    //     'director_approved_date' => 'date',
-    //     'total' => 'double',
-    //     'branch_id' => 'integer',
-    //     'created_at' => 'datetime',
-    //     'updated_at' => 'datetime',
-    //     'supplier_id' => 'integer',
-    //     'approval_token' => 'string',
-    //     'sub_department_id' => 'integer',
-    //     'department_id' => 'integer',
-    //     'division_id' => 'integer',
-    //     'finance_approval_request_date' => 'date',
-    //     'director_approval_request_date' => 'date',
-    //     'term_of_payment_date'=> 'date',
-    //     'shipping_estimates'=> 'date',
-    //     'currency_id'=> 'integer',
-    //     'payment_method_id'=> 'integer',
-    //     'shipping_address_id'=> 'integer',
-    //     'term_of_payment_id'=> 'integer',
-    //     'term_of_delivery_id'=> 'integer',
-    //     'term_of_payment_description'=> 'string',
-    // ];
-    
+  
     public function branch()
     {
         return $this->belongsTo(BranchModel::class);
@@ -122,6 +89,15 @@ class PurchaseOrder extends Model
     {
         return $this->hasMany(PurchaseOrderItemModel::class);
     }
-    
+
+    public function purchase_order_item_boq()
+    {
+        return $this->hasMany(PurchaseOrderItemBoqModel::class);
+    } 
+
+    public function purchase_order_item_rab()
+    {
+        return $this->hasMany(PurchaseOrderItemRabModel::class);
+    } 
 
 }

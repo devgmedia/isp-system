@@ -19,8 +19,7 @@ class RabItem extends Model
         'brand_id',
         'brand_product_id',
         'supplier_id',
-        'sales_lent',
-        'sales_buy',
+        'status',
         'quantity',
 
         'created_at',
@@ -39,8 +38,7 @@ class RabItem extends Model
         'brand_id' => 'integer',
         'brand_product_id' => 'integer',
         'supplier_id' => 'integer',
-        'sales_lent' => 'boolean',
-        'sales_buy' => 'boolean',
+        'status' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

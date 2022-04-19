@@ -11,7 +11,6 @@ class CustomerProductIsolation extends Model
 
     protected $fillable = [
         // 'id',
-        'registration_date',
         'customer_product_id',
 
         'start_date',
@@ -25,7 +24,6 @@ class CustomerProductIsolation extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'registration_date' => 'date:Y-m-d',
         'customer_product_id' => 'integer',
 
         'start_date' => 'date:Y-m-d',        

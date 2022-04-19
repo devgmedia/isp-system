@@ -18,6 +18,12 @@ class ArInvoiceCustomerProductDiscount extends Model
         'updated_at',
 
         'customer_product_discount_name',
+
+        'total',
+        'total_usd',
+        'total_sgd',
+
+        'discount_name',
     ];
 
     protected $hidden = [];
@@ -31,11 +37,17 @@ class ArInvoiceCustomerProductDiscount extends Model
         'updated_at' => 'datetime',
         
         'customer_product_discount_name' => 'string',
+
+        'total' => 'double',
+        'total_usd' => 'double',
+        'total_sgd' => 'double',
+
+        'discount_name' => 'string',
     ];
 
     public function invoice_customer_product()
     {
-        return $this->belongsTo(ArInvoiceCustomerProduct::class, 'ar_invoice_customer_product');
+        return $this->belongsTo(ArInvoiceCustomerProduct::class, 'ar_invoice_customer_product_id');
     }
 
     public function customer_product_discount()

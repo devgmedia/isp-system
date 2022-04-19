@@ -12,12 +12,14 @@ class PreSurveyRequest extends Model
     protected $fillable = [
         // 'id',
         'uuid',
+        'note',
         'pre_customer_prospective_id',
         'pre_customer_id',
         'request_by',
         'request_date',
         'request_name',
         'branch_id',
+        'number',
 
         'created_at',
         'updated_at',
@@ -28,12 +30,14 @@ class PreSurveyRequest extends Model
     protected $casts = [
         'id' => 'integer',
         'uuid' => 'string',
+        'note' => 'string',
         'pre_customer_prospective_id' => 'integer',
         'pre_customer_id' => 'integer',
         'request_by' => 'integer',
         'request_date' => 'date',
         'request_name' => 'string',
         'branch_id' => 'integer',
+        'number' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

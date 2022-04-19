@@ -42,6 +42,8 @@ class Agent extends Model
 
         'whatsapp_start_conversation_sent_at',
         'whatsapp_fee_confirmation_sent_at',
+
+        'bank_account_book',
     ];
 
     protected $hidden = [];
@@ -73,6 +75,8 @@ class Agent extends Model
 
         'whatsapp_start_conversation_sent_at' => 'datetime',
         'whatsapp_fee_confirmation_sent_at' => 'datetime',
+
+        'bank_account_book' => 'string',
     ];
 
     public function province()

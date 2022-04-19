@@ -55,6 +55,8 @@ class ItemMovementList extends Model
 
         'created_at',
         'updated_at',
+
+        'item_class_id',
     ];
 
     protected $hidden = [];

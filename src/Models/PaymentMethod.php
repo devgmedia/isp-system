@@ -12,6 +12,11 @@ class PaymentMethod extends Model
     protected $fillable = [
         // 'id',
         'name',
+        'payment_method_category_id',
+        'description',
+        'icon',
+        'slug',
+        'active',
 
         'created_at',
         'updated_at',
@@ -21,7 +26,13 @@ class PaymentMethod extends Model
 
     protected $casts = [
         'id' => 'integer',
+
         'name' => 'string',
+        'payment_method_category_id' => 'integer',
+        'description' => 'text',
+        'icon' => 'text',
+        'slug' => 'string',
+        'active' => 'boolean',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

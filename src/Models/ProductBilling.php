@@ -14,13 +14,20 @@ class ProductBilling extends Model
         'product_id',
 
         'email',
+
         'bank_id',
         'bank_account_number',
         'bank_account_on_behalf_of',
+
         'receiver',
 
         'created_at',
         'updated_at',
+        
+        'cash_bank_id',
+        'name',
+        'address',
+        'phone_number',
     ];
 
     protected $hidden = [];
@@ -30,13 +37,20 @@ class ProductBilling extends Model
         'product_id' => 'integer',
 
         'email' => 'string',
+
         'bank_id' => 'integer',
         'bank_account_number' => 'string',
         'bank_account_on_behalf_of' => 'string',
+
         'receiver' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        
+        'cash_bank_id' => 'integer',
+        'name' => 'string',
+        'address' => 'string',
+        'phone_number' => 'string',
     ];
 
     public function product()

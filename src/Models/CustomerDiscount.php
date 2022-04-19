@@ -10,11 +10,11 @@ class CustomerDiscount extends Model
     protected $table = 'customer_discount';
 
     protected $fillable = [
-        // 'id',
-        
-        'registration_date',
+        // 'id',        
+
         'customer_id',
         'discount_id',
+
         'start_date',
         'end_date',
 
@@ -40,11 +40,11 @@ class CustomerDiscount extends Model
     protected $hidden = [];
 
     protected $casts = [
-        'id' => 'integer',
-        
-        'registration_date' => 'date:Y-m-d',
+        'id' => 'integer',        
+
         'customer_id' => 'integer',
         'discount_id' => 'integer',
+        
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',
 

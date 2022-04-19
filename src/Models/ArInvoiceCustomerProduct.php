@@ -15,6 +15,8 @@ class ArInvoiceCustomerProduct extends Model
         'tax' => 0,
         'tax_base' => 0,
         'total' => 0,
+        'total_usd' => 0,
+        'total_sgd' => 0,
     ];
 
     protected $fillable = [
@@ -49,6 +51,14 @@ class ArInvoiceCustomerProduct extends Model
         'customer_product_bandwidth_type_name',
 
         'billing_date',
+
+        'ar_invoice_item_category_id',
+
+        'total_usd',
+        'total_sgd',
+
+        'product_id',
+        'product_name',
     ];
 
     protected $hidden = [];
@@ -82,6 +92,14 @@ class ArInvoiceCustomerProduct extends Model
         'customer_product_bandwidth_type_name' => 'string',
         
         'billing_date' => 'date:Y-m-d',
+        
+        'ar_invoice_item_category_id' => 'integer',
+
+        'total_usd' => 'double',
+        'total_sgd' => 'double',
+
+        'product_id' => 'integer',
+        'product_name' => 'string',
     ];
 
     public function invoice_customer()
@@ -112,6 +130,16 @@ class ArInvoiceCustomerProduct extends Model
     public function customer_product_bandwidth_type()
     {
         return $this->belongsTo(BandwidthType::class);
+    }
+
+    public function item_category()
+    {
+        return $this->belongsTo(ArInvoiceItemCategory::class, 'ar_invoice_item_category_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 
     public function invoice_customer_product_additionals()
