@@ -16,6 +16,7 @@ class SubDistrict extends Model
         // 'id',
         'name',
         'district_id',
+        'uuid',
 
         'created_at',
         'updated_at',

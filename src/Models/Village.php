@@ -15,6 +15,7 @@ class Village extends Model
         // 'id',
         'name',
         'sub_district_id',
+        'uuid',
 
         'created_at',
         'updated_at',

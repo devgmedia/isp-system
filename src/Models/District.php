@@ -16,6 +16,7 @@ class District extends Model
         // 'id',
         'name',
         'province_id',
+        'uuid',
 
         'created_at',
         'updated_at',
