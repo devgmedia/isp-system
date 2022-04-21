@@ -23,6 +23,7 @@ class InternetMediaVendor extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
+        'uuid' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

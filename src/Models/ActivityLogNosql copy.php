@@ -47,7 +47,7 @@ class ActivityLogNosql extends Model implements ActivityContract
 
         'causer_id' => 'integer',
         'causer_name' => 'string',
-        
+
         'properties' => 'collection',
 
         'created_at' => 'datetime',

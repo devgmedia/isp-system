@@ -77,6 +77,11 @@ class Customer extends Model
         'json_agents',
 
         'invoice_increment',
+
+        'public_facility',
+        'price_include_tax',
+
+        'json_product_tags',
     ];
 
     protected $hidden = [];
@@ -144,6 +149,11 @@ class Customer extends Model
         'json_agents' => 'string',
 
         'invoice_increment' => 'integer',
+
+        'public_facility' => 'boolean',
+        'price_include_tax' => 'boolean',
+
+        'json_product_tags' => 'string',
     ];
 
     public function province()

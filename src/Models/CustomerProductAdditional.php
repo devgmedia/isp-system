@@ -11,15 +11,12 @@ class CustomerProductAdditional extends Pivot
     protected $table = 'customer_product_additional';
 
     protected $attributes = [
-        'first_month_not_billed' => false,
-
         'ignore_tax' => false,
     ];
 
     protected $fillable = [
         // 'id',
         'sid',
-        'registration_date',
 
         'customer_product_id',
         'product_additional_id',
@@ -37,10 +34,6 @@ class CustomerProductAdditional extends Pivot
 
         'service_date',
         'billing_date',
-
-        'dependency',
-        
-        'first_month_not_billed',
         
         'adjusted_price',
         'special_price',
@@ -64,7 +57,6 @@ class CustomerProductAdditional extends Pivot
     protected $casts = [
         'id' => 'integer',
         'sid' => 'string',
-        'registration_date' => 'date:Y-m-d',
 
         'customer_product_id' => 'integer',
         'product_additional_id' => 'integer',
@@ -82,10 +74,6 @@ class CustomerProductAdditional extends Pivot
 
         'service_date' => 'date:Y-m-d',
         'billing_date' => 'date:Y-m-d',
-
-        'dependency' => 'integer',
-        
-        'first_month_not_billed' => 'boolean',
 
         'adjusted_price' => 'boolean',
         'special_price' => 'integer',
@@ -122,16 +110,6 @@ class CustomerProductAdditional extends Pivot
     public function media_vendor()
     {
         return $this->belongsTo(InternetMediaVendor::class);
-    }
-
-    public function dependency()
-    {
-        return $this->belongsTo(CustomerProductAdditional::class, 'dependency');
-    }
-
-    public function required_by()
-    {
-        return $this->hasMany(CustomerProductAdditional::class, 'dependency');
     }
 
     public function invoice_scheme_additional()

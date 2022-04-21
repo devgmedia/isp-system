@@ -28,6 +28,7 @@ class District extends Model
         'id' => 'integer',
         'name' => 'string',
         'province_id' => 'integer',
+        'uuid' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
