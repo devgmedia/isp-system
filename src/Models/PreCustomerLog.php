@@ -14,17 +14,13 @@ class PreCustomerLog extends Model
 
         'date',
         'time',
+        'title',
         'pre_customer_id',
         'pre_customer_data',
         'caused_by',
 
         'created_at',
         'updated_at',
-
-        'user_message',
-        'retail_status',
-        
-        'title',
     ];
 
     protected $hidden = [];
@@ -32,19 +28,15 @@ class PreCustomerLog extends Model
     protected $casts = [
         'id' => 'integer',
 
-        'date' => 'date:Y-m-d',
-        'time' => 'time:H:i:s',
-        'pre_customer_id' => 'integer',
-        'pre_customer_data' => 'string',
-        'caused_by' => 'integer',
-        
+        // 'date' => 'date:Y-m-d',
+        // 'time' => 'time:H:i:s',
+        // 'title' => 'string',
+        // 'pre_customer_id' => 'integer',
+        // 'pre_customer_data' => 'string',
+        // 'caused_by' => 'integer',
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
-        'user_message' => 'string',
-        'retail_status' => 'string',
-        
-        'title' => 'string',
     ];
 
     public function pre_customer()

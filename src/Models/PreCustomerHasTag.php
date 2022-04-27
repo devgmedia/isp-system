@@ -4,15 +4,15 @@ namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Isp extends Model
+class PreCustomerHasTag extends Model
 {
     protected $connection = 'isp_system';
-    protected $table = 'isp';
+    protected $table = 'pre_customer_has_tag';
 
     protected $fillable = [
         // 'id',
-        'name',
-        'uuid',
+        'pre_customer_id',
+        'tag_id',
 
         'created_at',
         'updated_at',
@@ -22,7 +22,8 @@ class Isp extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
+        'pre_customer_id' => 'integer',
+        'tag_id' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

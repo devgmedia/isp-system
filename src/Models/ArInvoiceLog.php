@@ -39,9 +39,9 @@ class ArInvoiceLog extends Model
         'updated_at' => 'datetime',
     ];
 
-    public function invoice()
+    public function customer()
     {
-        return $this->belongsTo(ArInvoice::class, 'ar_invoice_id');
+        return $this->belongsTo(Customer::class);
     }
 
     public function caused_by_ref()

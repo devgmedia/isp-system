@@ -27,7 +27,6 @@ class Village extends Model
         'id' => 'integer',
         'name' => 'string',
         'sub_district_id' => 'integer',
-        'uuid' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

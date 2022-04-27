@@ -28,7 +28,6 @@ class SubDistrict extends Model
         'id' => 'integer',
         'name' => 'string',
         'district_id' => 'integer',
-        'uuid' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

@@ -41,17 +41,6 @@ class Product extends Model
 
         'radius_username_suffix',
         'radius_password_prefix',
-
-        'disable_service_start_date',
-        'disable_billing_start_date',
-
-        'enable_ignore_tax',
-        'enable_ignore_prorated',
-        'enable_postpaid',
-        'enable_hybrid',
-        'enable_public_facility',
-
-        'billing_time',
     ];
 
     protected $hidden = [];
@@ -84,17 +73,6 @@ class Product extends Model
         
         'radius_username_suffix' => 'string',
         'radius_password_prefix' => 'string',
-
-        'disable_service_start_date' => 'boolean',
-        'disable_billing_start_date' => 'boolean',
-
-        'enable_ignore_tax' => 'boolean',
-        'enable_ignore_prorated' => 'boolean',
-        'enable_postpaid' => 'boolean',
-        'enable_hybrid' => 'boolean',
-        'enable_public_facility' => 'boolean',
-
-        'billing_time' => 'integer',
     ];
 
     public function payment_scheme()

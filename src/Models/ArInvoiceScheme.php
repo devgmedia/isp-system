@@ -14,6 +14,7 @@ class ArInvoiceScheme extends Model
 
         'ignore_tax' => false,
         'ignore_prorated' => false,
+
         'postpaid' => false,
         'hybrid' => false,
     ];

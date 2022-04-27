@@ -2,21 +2,21 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\Model;
 
-class PreCustomerProductDiscount extends Pivot
+class PreCustomerProductSitePhoneNumber extends Model
 {
-    public $incrementing = true;
     protected $connection = 'isp_system';
-    protected $table = 'pre_customer_product_discount';
-
-    protected $attributes = [];
+    protected $table = 'pre_customer_product_site_phone_number';  
 
     protected $fillable = [
         // 'id',
- 
+        'number',
         'pre_customer_product_id',
-        'product_discount_id', 
+        'whatsapp',
+        'telegram',
+        'home',
+        'office',
 
         'created_at',
         'updated_at',
@@ -26,9 +26,12 @@ class PreCustomerProductDiscount extends Pivot
 
     protected $casts = [
         'id' => 'integer',
-         
+        'number' => 'string',
         'pre_customer_product_id' => 'integer',
-        'product_discount_id' => 'integer', 
+        'whatsapp' => 'boolean',
+        'telegram' => 'boolean',
+        'home' => 'boolean',
+        'office' => 'boolean',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
@@ -38,9 +41,4 @@ class PreCustomerProductDiscount extends Pivot
     {
         return $this->belongsTo(PreCustomerProduct::class);
     }
- 
-    public function product_discount()
-    {
-        return $this->belongsTo(ProductDiscount::class);
-    } 
 }

@@ -32,7 +32,6 @@ class CashBank extends Model
         'bank_branch',
 
         'erp1_id',
-        'is_virtual_account',
     ];
 
     protected $hidden = [];
@@ -60,7 +59,6 @@ class CashBank extends Model
         'bank_branch' => 'string',
         
         'erp1_id' => 'integer',
-        'is_virtual_account' => 'boolean',
     ];
 
     public function setNameAttribute($value)

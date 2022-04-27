@@ -23,7 +23,6 @@ class Province extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'name' => 'uuid',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

@@ -33,8 +33,6 @@ class ProductAdditional extends Model
 
         'uuid',        
         'ar_invoice_item_category_id',
-
-        'disable_service_date',
     ];
 
     protected $hidden = [];
@@ -63,8 +61,6 @@ class ProductAdditional extends Model
 
         'uuid' => 'string',        
         'ar_invoice_item_category_id' => 'integer',
-
-        'disable_service_date' => 'boolean',
     ];
 
     public function payment_scheme()

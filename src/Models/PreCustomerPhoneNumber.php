@@ -13,7 +13,6 @@ class PreCustomerPhoneNumber extends Model
         // 'id',
         'number',
         'pre_customer_id',
-        
         'whatsapp',
         'telegram',
         'home',
@@ -21,8 +20,6 @@ class PreCustomerPhoneNumber extends Model
 
         'created_at',
         'updated_at',
-
-        'name',
     ];
 
     protected $hidden = [];
@@ -31,7 +28,6 @@ class PreCustomerPhoneNumber extends Model
         'id' => 'integer',
         'number' => 'string',
         'pre_customer_id' => 'integer',
-
         'whatsapp' => 'boolean',
         'telegram' => 'boolean',
         'home' => 'boolean',
@@ -39,8 +35,6 @@ class PreCustomerPhoneNumber extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-
-        'name' => 'string',
     ];
 
     public function pre_customer()
