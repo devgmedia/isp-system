@@ -44,6 +44,8 @@ class PreCustomer extends Model
         'house_photo',
         'customer_category_id',
 
+        'installation_address',
+
     ];
 
     protected $hidden = [];
@@ -81,6 +83,8 @@ class PreCustomer extends Model
         'identity_card_file' => 'string',
         'house_photo' => 'string',
         'customer_category_id' => 'integer',
+        
+        'installation_address' => 'string',
 
     ];
 

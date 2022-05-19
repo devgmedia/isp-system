@@ -1,7 +1,7 @@
 {
     "name": "devgmedia/isp-system",
     "description": "Internet Service Provider System",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "homepage": "https://github.com/devgmedia/isp-system",
     "license": "GPL-2.0-only",
     "authors": [
@@ -9,6 +9,12 @@
             "name": "Arief Novianto",
             "email": "arief.novianto@gmedia.co.id",
             "homepage": "https://github.com/oppytut",
+            "role": "Developer"
+        },
+        {
+            "name": "Hendrix Tri Hatmaja",
+            "email": "hendrix@varx.id",
+            "homepage": "https://gitlab.com/hendrixxxx",
             "role": "Developer"
         }
     ],
