@@ -31,6 +31,7 @@ class PreCustomer extends Model
         'branch_id',
         'brand_id',
         'identity_card',
+        'postal_code',
         'fax',
         'uuid',
         'created_at',

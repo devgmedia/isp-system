@@ -14,10 +14,12 @@ class PreCustomerLog extends Model
 
         'date',
         'time',
-        'title',
         'pre_customer_id',
         'pre_customer_data',
         'caused_by',
+        'user_message',
+        'retail_status',
+        'title',
 
         'created_at',
         'updated_at',
