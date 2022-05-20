@@ -46,6 +46,8 @@ class PreCustomer extends Model
 
         'installation_address',
 
+        'retail_status',
+
     ];
 
     protected $hidden = [];
@@ -85,6 +87,8 @@ class PreCustomer extends Model
         'customer_category_id' => 'integer',
         
         'installation_address' => 'string',
+        
+        'retail_status' => 'string',
 
     ];
 
