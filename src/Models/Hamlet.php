@@ -3,16 +3,21 @@
 namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
+ 
+use App\Models\Village;
 
-class PreCustomerProductSiteEmail extends Model
+class Hamlet extends Model
 {
     protected $connection = 'isp_system';
-    protected $table = 'pre_customer_product_site_email';
+    protected $table = 'hamlet';
 
     protected $fillable = [
         // 'id',
         'name',
-        'pre_customer_product_id',
+        'province_id',
+        'district_id',
+        'sub_district_id', 
+        'village_id',
 
         'created_at',
         'updated_at',
@@ -23,14 +28,17 @@ class PreCustomerProductSiteEmail extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        'pre_customer_product_id' => 'integer',
+        'province_id' => 'integer',
+        'district_id' => 'integer',
+        'sub_district_id' => 'integer',
+        'village_id' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
 
-    public function pre_customer_product()
+    public function village()
     {
-        return $this->belongsTo(PreCustomerProduct::class);
-    }
+        return $this->belongsTo(Village::class);
+    } 
 }

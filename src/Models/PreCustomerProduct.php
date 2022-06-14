@@ -7,111 +7,76 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class PreCustomerProduct extends Pivot
 {
     public $incrementing = true;
+    
     protected $connection = 'isp_system';
     protected $table = 'pre_customer_product';
 
     protected $fillable = [
         // 'id',
+
         'pre_customer_id',
         'product_id',
+
         'media_id',
         'media_vendor_id',
-
-        'custom_site_information',
-        'site_name',
-        'site_province_id',
-        'site_district_id',
-        'site_sub_district_id',
-        'site_village_id',
-        'site_address',
-        'site_postal_code',
-        'site_latitude',
-        'site_longitude',
-
-        'adjusted_price',
-        'special_price',
-
-        'adjusted_bandwidth',
-        'special_bandwidth',
-
-        'ignore_tax',
-        'ignore_prorated',
-        'postpaid',
-
-        'custom_billing_information',
-        'billing_name',
-        'billing_province_id',
-        'billing_district_id',
-        'billing_sub_district_id',
-        'billing_village_id',
-        'billing_address',
-        'billing_postal_code',
-        'billing_latitude',
-        'billing_longitude',
-
-        'agent_id',
-        'sales',
-        'pic',
-
-        'join_billing_id',
 
         'created_at',
         'updated_at',
 
-        'elevasi',
+        'agent_id',
+        'sales',
+
+        'public_facility',
+        
+        'tax',
+        'product_name',
+        'product_price',
+        'product_price_usd',
+        'product_price_sgd',
+
+        'retail_coverage',
+        'retail_validation',
+        'retail_status',
+
+        'radius_username',
+        'radius_password',
+        
+        'sid',
     ];
 
     protected $hidden = [];
 
     protected $casts = [
         'id' => 'integer',
+
         'pre_customer_id' => 'integer',
         'product_id' => 'integer',
+
         'media_id' => 'integer',
         'media_vendor_id' => 'integer',
-
-        'custom_site_information' => 'boolean',
-        'site_name' => 'string',
-        'site_province_id' => 'integer',
-        'site_district_id' => 'integer',
-        'site_sub_district_id' => 'integer',
-        'site_village_id' => 'integer',
-        'site_address' => 'string',
-        'site_postal_code' => 'string',
-        'site_latitude' => 'double',
-        'site_longitude' => 'double',
-
-        'adjusted_price' => 'boolean',
-        'special_price' => 'integer',
-
-        'adjusted_bandwidth' => 'boolean',
-        'special_bandwidth' => 'integer',
-
-        'ignore_tax' => 'boolean',
-        'ignore_prorated' => 'boolean',
-        'postpaid' => 'boolean',
-
-        'custom_billing_information' => 'boolean',
-        'billing_name' => 'string',
-        'billing_province_id' => 'integer',
-        'billing_district_id' => 'integer',
-        'billing_sub_district_id' => 'integer',
-        'billing_village_id' => 'integer',
-        'billing_address' => 'string',
-        'billing_postal_code' => 'string',
-        'billing_latitude' => 'double',
-        'billing_longitude' => 'double',
-        'retail_status' => 'string',
-
-        'agent_id' => 'integer',
-        'sales' => 'integer',
-
-        'join_billing_id' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 
-        'elevasi' => 'string',
+        'agent_id' => 'integer',
+        'sales' => 'integer',
+        
+        'public_facility' => 'boolean',
+        
+        'tax' => 'boolean',
+        'product_name' => 'string',
+        'product_price' => 'integer',
+        'product_price_usd' => 'integer',
+        'product_price_sgd' => 'integer',
+
+        'retail_coverage' => 'boolean',
+        'retail_validation' => 'boolean',
+        'retail_status' => 'string',
+
+        'radius_username' => 'string',
+        'radius_password' => 'string',
+        
+        'sid' => 'string',
     ];
 
     public function pre_customer()
@@ -154,27 +119,12 @@ class PreCustomerProduct extends Pivot
         return $this->belongsToMany(ProductDiscount::class, PreCustomerProductDiscount::class, 'pre_customer_product_id', 'product_discount_id')->withPivot('id');
     }
 
-    public function pre_customer_product_site_phone_numbers()
+    public function agent()
     {
-        return $this->hasMany(PreCustomerProductSitePhoneNumber::class, 'pre_customer_product_id');
+        return $this->belongsTo(Agent::class);
     }
 
-    public function pre_customer_product_site_emails()
-    {
-        return $this->hasMany(PreCustomerProductSiteEmail::class, 'pre_customer_product_id');
-    }
-
-    public function pre_customer_product_billing_phone_numbers()
-    {
-        return $this->hasMany(PreCustomerProductBillingPhoneNumber::class, 'pre_customer_product_id');
-    }
-
-    public function pre_customer_product_billing_emails()
-    {
-        return $this->hasMany(PreCustomerProductBillingEmail::class, 'pre_customer_product_id');
-    }
-
-    public function sales_request()
+    public function sales_ref()
     {
         return $this->belongsTo(Employee::class, 'sales');
     }

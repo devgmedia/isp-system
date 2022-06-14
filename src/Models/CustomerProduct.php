@@ -11,8 +11,7 @@ class CustomerProduct extends Pivot
     protected $table = 'customer_product';
 
     protected $attributes = [
-        'first_month_not_billed' => false,
-
+        // retail internet service
         'auto_sent_invoice_via_email' => false,
         'auto_sent_invoice_via_whatsapp' => false,
 
@@ -24,7 +23,9 @@ class CustomerProduct extends Pivot
         'ignore_tax' => false,
         'ignore_prorated' => false,
         'postpaid' => false,
+        'hybrid' => false,
 
+        // enterprise internet service
         'tax' => true,
     ];
 
@@ -45,9 +46,6 @@ class CustomerProduct extends Pivot
         'service_start_date',
         'billing_start_date',
         'billing_end_date',
-
-        'dependency', // deprecated
-        'first_month_not_billed', // deprecated
 
         'service_date',
         'billing_date',
@@ -88,9 +86,7 @@ class CustomerProduct extends Pivot
         'site_name',
         'site_email',
         'site_phone_number',
-        'site_postal_code', // deprecated
 
-        'pre_customer_id',
         'postpaid',
 
         'adjusted_bandwidth',
@@ -139,6 +135,26 @@ class CustomerProduct extends Pivot
         'installation_invoice_paid_at',
         'installation_date',
         'installation_schedule_date',
+
+        'payment_is_active',
+        'public_facility',
+
+        'json_product_tags',
+        'subsidy',
+
+        'pre_customer_product_id',
+
+        'isolation',
+        'isolation_reference',
+        'isolation_whatsapp_at',
+        'isolation_whatsapp_by',
+        'isolation_invoice',
+
+        'billing_request_date',
+        
+        'installation_message',
+        'installation_schedule_message',
+        'installation_report_by',
     ];
 
     protected $hidden = [];
@@ -160,9 +176,6 @@ class CustomerProduct extends Pivot
         'service_start_date' => 'date:Y-m-d',
         'billing_start_date' => 'date:Y-m-d',
         'billing_end_date' => 'date:Y-m-d',
-
-        'dependency' => 'integer',
-        'first_month_not_billed' => 'boolean',
 
         'service_date' => 'date:Y-m-d',
         'billing_date' => 'date:Y-m-d',
@@ -203,9 +216,7 @@ class CustomerProduct extends Pivot
         'site_name' => 'string',
         'site_email' => 'string',
         'site_phone_number' => 'string',
-        'site_postal_code' => 'string',
 
-        'pre_customer_id' => 'integer',
         'postpaid' => 'boolean',
 
         'adjusted_bandwidth' => 'boolean',
@@ -254,6 +265,26 @@ class CustomerProduct extends Pivot
         'installation_invoice_paid_at' => 'datetime',
         'installation_date' => 'date:Y-m-d',
         'installation_schedule_date' => 'date:Y-m-d',
+
+        'payment_is_active' => 'boolean',
+        'public_facility' => 'boolean',
+
+        'json_product_tags' => 'string',
+        'subsidy' => 'boolean',
+
+        'pre_customer_product_id' => 'integer',
+
+        'isolation' => 'boolean',
+        'isolation_reference' => 'string',
+        'isolation_whatsapp_at' => 'datetime',
+        'isolation_whatsapp_by' => 'integer',
+        'isolation_invoice' => 'integer',
+
+        'billing_request_date' => 'date:Y-m-d',
+        
+        'installation_message' => 'string',
+        'installation_schedule_message' => 'string',
+        'installation_report_by' => 'integer',
     ];
 
     public function customer()
@@ -274,16 +305,6 @@ class CustomerProduct extends Pivot
     public function media_vendor()
     {
         return $this->belongsTo(InternetMediaVendor::class);
-    }
-
-    public function dependency()
-    {
-        return $this->belongsTo(CustomerProduct::class, 'dependency');
-    }
-
-    public function required_by()
-    {
-        return $this->hasMany(CustomerProduct::class, 'dependency');
     }
 
     public function customer_product_additionals()
@@ -351,11 +372,6 @@ class CustomerProduct extends Pivot
         return $this->belongsTo(Employee::class, 'sales');
     }
 
-    public function pre_customer()
-    {
-        return $this->belongsTo(PreCustomer::class);
-    }
-
     public function logs()
     {
         return $this->hasMany(CustomerProductLog::class, 'customer_product_id');
@@ -384,5 +400,35 @@ class CustomerProduct extends Pivot
     public function payments()
     {
         return $this->belongsToMany(CashBank::class, CustomerProductPayment::class, 'customer_product_id', 'cash_bank_id')->withPivot('id');
+    }
+
+    public function pre_customer_product()
+    {
+        return $this->belongsTo(PreCustomerProduct::class);
+    }
+
+    public function isolation_whatsapp_by_ref()
+    {
+        return $this->belongsTo(Employee::class, 'isolation_whatsapp_by');
+    }
+
+    public function isolation_invoice_ref()
+    {
+        return $this->belongsTo(ArInvoice::class, 'isolation_invoice');
+    }
+
+    public function installation_report_by_ref()
+    {
+        return $this->belongsTo(Employee::class, 'installation_report_by');
+    }
+
+    public function customer_product_installation_photos()
+    {
+        return $this->hasMany(CustomerProductInstallationPhoto::class);
+    }
+
+    public function customer_product_installation_assignees()
+    {
+        return $this->hasMany(CustomerProductInstallationAssignee::class, 'customer_product_id');
     }
 }

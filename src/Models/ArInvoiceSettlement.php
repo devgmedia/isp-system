@@ -54,6 +54,8 @@ class ArInvoiceSettlement extends Model
         'receiver_city',
 
         'via_virtual_account',
+
+        'spm_id',
     ];
 
     protected $hidden = [];
@@ -103,6 +105,8 @@ class ArInvoiceSettlement extends Model
         'receiver_city' => 'string',
 
         'via_virtual_account' => 'boolean',
+
+        'spm_id' => 'integer',
     ];
 
     public function ar_invoice_settlement_invoices()
@@ -153,5 +157,10 @@ class ArInvoiceSettlement extends Model
     public function customer_category()
     {
         return $this->belongsTo(CustomerCategory::class);
+    }
+
+    public function spm()
+    {
+        return $this->belongsTo(Spm::class);
     }
 }

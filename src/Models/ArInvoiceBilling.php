@@ -23,6 +23,7 @@ class ArInvoiceBilling extends Model
         'updated_at',
 
         'customer_product_payment_id',
+        'is_virtual_account',
     ];
 
     protected $hidden = [];
@@ -41,6 +42,7 @@ class ArInvoiceBilling extends Model
         'updated_at' => 'datetime',
 
         'customer_product_payment_id' => 'integer',
+        'is_virtual_account' => 'boolean',
     ];
 
     public function invoice()
@@ -51,5 +53,10 @@ class ArInvoiceBilling extends Model
     public function cash_bank()
     {
         return $this->belongsTo(CashBank::class);
+    }
+
+    public function customer_product_payment()
+    {
+        return $this->belongsTo(CustomerProductPayment::class);
     }
 }

@@ -20,6 +20,8 @@ class ProductBrand extends Model
         'uuid',
 
         'customer_account_default_password',
+        'agent_account_default_password',
+        'pre_customer_account_default_password',
     ];
 
     protected $hidden = [];
@@ -35,6 +37,8 @@ class ProductBrand extends Model
         'uuid' => 'string',
         
         'customer_account_default_password' => 'string',
+        'agent_account_default_password' => 'string',
+        'pre_customer_account_default_password' => 'string',
     ];
 
     public function setNameAttribute($value)
@@ -44,7 +48,7 @@ class ProductBrand extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'brand_id');
     }
 
     public function type()

@@ -13,7 +13,7 @@ class ItemOpname extends Model
         // 'id',
         'available',
         'total',
-        'item_type_id',
+        'item_id',
 
         'created_at',
         'updated_at',
@@ -25,7 +25,7 @@ class ItemOpname extends Model
         'id' => 'integer',
         'available' => 'integer',
         'total' => 'integer',
-        'item_type_id' => 'integer',
+        'item_id' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
@@ -33,6 +33,6 @@ class ItemOpname extends Model
  
     public function item_types()
     {
-        return $this->hasMany(ItemType::class, 'item_type_id');
+        return $this->hasMany(Item::class, 'item_id');
     }
 }

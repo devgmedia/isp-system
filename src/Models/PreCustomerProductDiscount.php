@@ -20,6 +20,11 @@ class PreCustomerProductDiscount extends Pivot
 
         'created_at',
         'updated_at',
+        
+        'discount_name',
+        'discount_price',
+        'discount_price_usd',
+        'discount_price_sgd',
     ];
 
     protected $hidden = [];
@@ -32,6 +37,11 @@ class PreCustomerProductDiscount extends Pivot
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        
+        'discount_name' => 'string',
+        'discount_price' => 'integer',
+        'discount_price_usd' => 'integer',
+        'discount_price_sgd' => 'integer',
     ];
 
     public function pre_customer_product()

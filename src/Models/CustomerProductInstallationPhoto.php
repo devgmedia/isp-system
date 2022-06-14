@@ -4,14 +4,15 @@ namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PreCustomerTag extends Model
+class CustomerProductInstallationPhoto extends Model
 {
     protected $connection = 'isp_system';
-    protected $table = 'pre_customer_tag';
+    protected $table = 'customer_product_installation_photo';
 
     protected $fillable = [
         // 'id',
-        'name',
+        'customer_product_id',
+        'filename',
 
         'created_at',
         'updated_at',
@@ -21,9 +22,15 @@ class PreCustomerTag extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
+        'customer_product_id' => 'integer',
+        'filename' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function customer_product()
+    {
+        return $this->belongsTo(CustomerProduct::class);
+    }
 }

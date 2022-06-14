@@ -29,6 +29,9 @@ class ArInvoiceWhatsapp extends Model
         'updated_at',
 
         'response_log_status',
+
+        'message_id',
+        'message_status',
     ];
 
     protected $hidden = [];
@@ -53,5 +56,13 @@ class ArInvoiceWhatsapp extends Model
         'updated_at' => 'datetime',
 
         'response_log_status' => 'string',
+
+        'message_id' => 'string',
+        'message_status' => 'string',
     ];
+
+    public function invoice()
+    {
+        return $this->belongsTo(ArInvoice::class, 'ar_invoice_id');
+    }
 }

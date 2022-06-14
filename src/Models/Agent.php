@@ -44,6 +44,9 @@ class Agent extends Model
         'whatsapp_fee_confirmation_sent_at',
 
         'bank_account_book',
+        'brand_id',
+
+        'active',
     ];
 
     protected $hidden = [];
@@ -77,6 +80,9 @@ class Agent extends Model
         'whatsapp_fee_confirmation_sent_at' => 'datetime',
 
         'bank_account_book' => 'string',
+        'brand_id' => 'integer',
+
+        'active' => 'boolean',
     ];
 
     public function province()
@@ -107,6 +113,11 @@ class Agent extends Model
     public function branch()
     {
         return $this->belongsTo(Branch::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(ProductBrand::class);
     }
 
     public function phone_numbers()

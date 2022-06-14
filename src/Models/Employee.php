@@ -46,7 +46,10 @@ class Employee extends Model
         'updated_at',
         
         'preferred_brand',
+
         'retail_sales',
+        'enterprise_sales',
+        'retail_technical',
     ];
 
     protected $hidden = [];
@@ -87,7 +90,10 @@ class Employee extends Model
         'updated_at' => 'datetime',     
         
         'preferred_brand' => 'integer',   
+        
         'retail_sales' => 'boolean',
+        'enterprise_sales' => 'boolean',
+        'retail_technical' => 'boolean',
     ];
 
     public function sub_department()

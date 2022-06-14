@@ -17,6 +17,18 @@ class AgentCashWithdrawal extends Model
 
         'created_at',
         'updated_at',
+
+        'proof_of_transaction',
+
+        'agent_name',
+        'agent_alias_name',
+
+        'branch_id',
+        'uuid',
+        'brand_id',
+
+        'whatsapp_sent_at',
+        'whatsapp_sent_by',
     ];
 
     protected $hidden = [];
@@ -29,10 +41,27 @@ class AgentCashWithdrawal extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+
+        'proof_of_transaction' => 'string',
+        
+        'agent_name' => 'string',
+        'agent_alias_name' => 'string',
+        
+        'branch_id' => 'integer',
+        'uuid' => 'string',
+        'brand_id' => 'integer',
+
+        'whatsapp_sent_at' => 'datetime',
+        'whatsapp_sent_by' => 'integer',
     ];
 
     public function agent()
     {
         return $this->belongsTo(Agent::class);
+    }
+    
+    public function whatsapp_sent_by_ref()
+    {
+        return $this->belongsTo(Employee::class, 'whatsapp_sent_by');
     }
 }

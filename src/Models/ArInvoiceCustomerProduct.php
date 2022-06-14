@@ -82,6 +82,7 @@ class ArInvoiceCustomerProduct extends Model
 
         'price' => 'double',
         'discount' => 'double',
+        'tax_base' => 'double',
         'tax' => 'double',
         'total' => 'double',
 

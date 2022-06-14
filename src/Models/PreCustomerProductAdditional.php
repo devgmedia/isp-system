@@ -12,37 +12,44 @@ class PreCustomerProductAdditional extends Pivot
 
     protected $fillable = [
         // 'id',
+
         'pre_customer_product_id',
         'product_additional_id',
+
         'media_id',
         'media_vendor_id',
 
         'created_at',
         'updated_at',
         
-        'adjusted_price',
-        'special_price',
-        
-        'adjusted_quantity',
-        'quantity',
+        'sid',
+
+        'additional_name',
+        'additional_price',
+        'additional_price_usd',
+        'additional_price_sgd',
     ];
 
     protected $hidden = [];
 
     protected $casts = [
         'id' => 'integer',
+
         'pre_customer_product_id' => 'integer',
         'product_additional_id' => 'integer',
+        
         'media_id' => 'integer',
         'media_vendor_id' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        
+        'sid' => 'string',
 
-        'adjusted_price' => 'boolean',
-        'special_price' => 'integer',
-        'adjusted_quantity' => 'boolean',
-        'quantity' => 'integer',
+        'additional_name' => 'string',
+        'additional_price' => 'integer',
+        'additional_price_usd' => 'integer',
+        'additional_price_sgd' => 'integer',
     ];
 
     public function pre_customer_product()

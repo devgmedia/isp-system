@@ -16,50 +16,44 @@ class Item extends Model
         'brand_id',
         'brand_product_id',
         'name',
+        'packs_quantity',
+        'packs_unit_id',
         'mac_address',
         'purchase_price',
         'date_of_purchase',
-        'warranty_end_date',
-        'expiration_date',
         'invoice_item_id',
         'invoice_number',
         'serial_number',
-        'purchase_barcodes',
         'supplier_id',
         'branch_id',
-        
-        'packs_unit_id',
-        'packs_quantity',
-
         'created_at',
-        'updated_at',
-
+        'updated_at',        
         'uuid',
- 
+        'warranty_end_date', 
+
+        'expiration_date',
+        'purchase_barcodes', 
+        'from_ownership_bts_id',
         'from_ownership_branch_id',
         'from_ownership_regional_id',
         'from_ownership_company_id',
         'from_ownership_customer_id',
-        'from_ownership_employee_id',
- 
+        'from_ownership_employee_id',  
+        'from_location_bts_id',
         'from_location_branch_id',
         'from_location_regional_id',
         'from_location_company_id',
         'from_location_customer_id',
-        'from_location_employee_id', 
-
+        'from_location_employee_id',  
         'item_class_id',
         'purchase_request_number',
         'purchase_order_number',
         'item_type_id',
-        'note',
-
+        'note', 
         'long_warranty',
-        'long_expiration',
-
+        'long_expiration', 
         'item_condition_id',
-        'item_condition_category_id',
-
+        'item_condition_category_id', 
     ];
 
     protected $hidden = [];
@@ -117,6 +111,11 @@ class Item extends Model
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
+    }
+
+    public function bts()
+    {
+        return $this->belongsTo(Bts::class);
     }
 
     public function branch()

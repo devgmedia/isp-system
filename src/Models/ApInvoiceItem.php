@@ -32,6 +32,10 @@ class ApInvoiceItem extends Model
         'total',
         'total_without_pph',
         'paid_taxes',
+
+        'ar_invoice_customer_product_id',
+        'ar_invoice_customer_product_additional_id',
+        'ar_invoice_customer_product_discount_id',
     ];
 
     protected $hidden = [];
@@ -59,6 +63,10 @@ class ApInvoiceItem extends Model
         'total' => 'double',
         'total_without_pph' => 'double',
         'paid_taxes' => 'double',
+
+        'ar_invoice_customer_product_id' => 'integer',
+        'ar_invoice_customer_product_additional_id' => 'integer',
+        'ar_invoice_customer_product_discount_id' => 'integer',
     ];
 
     public function setNameAttribute($value)
@@ -79,5 +87,20 @@ class ApInvoiceItem extends Model
     public function pr_category()
     {
         return $this->belongsTo(ApInvoiceItemPrCategory::class);
+    }
+
+    public function ar_invoice_customer_product()
+    {
+        return $this->belongsTo(ArInvoiceCustomerProduct::class);
+    }
+
+    public function ar_invoice_customer_product_additional()
+    {
+        return $this->belongsTo(ArInvoiceCustomerProductAdditional::class);
+    }
+
+    public function ar_invoice_customer_product_discount()
+    {
+        return $this->belongsTo(ArInvoiceCustomerProductDiscount::class);
     }
 }

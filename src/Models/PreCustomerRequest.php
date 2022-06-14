@@ -2,6 +2,7 @@
 
 namespace Gmedia\IspSystem\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class PreCustomerRequest extends Model
@@ -29,13 +30,19 @@ class PreCustomerRequest extends Model
         'submit_at',
         'sent_to_sales_at',
         'followed_up_by',
-        'followed_up_at',
+        'followed_up_at',        
         'branch_id',
+
         'created_at',
         'updated_at',
 
         'latitude',
         'longitude',
+
+        'sent_to_sales_by',
+        'brand_id',
+
+        'message_id',
     ];
 
     protected $hidden = [];
@@ -69,6 +76,11 @@ class PreCustomerRequest extends Model
 
         'latitude' => 'double',
         'longitude' => 'double',
+        
+        'sent_to_sales_by' => 'integer',
+        'brand_id' => 'integer',
+
+        'message_id' => 'string',
     ];
 
     public function province()
@@ -103,7 +115,7 @@ class PreCustomerRequest extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function submit_by_ref()
@@ -121,8 +133,18 @@ class PreCustomerRequest extends Model
         return $this->belongsTo(Branch::class);
     }
 
+    public function brand()
+    {
+        return $this->belongsTo(ProductBrand::class);
+    }
+
     public function logs()
     {
         return $this->hasMany(PreCustomerRequestLog::class);
+    }
+
+    public function sent_to_sales_by_ref()
+    {
+        return $this->belongsTo(Employee::class, 'sent_to_sales_by');
     }
 }

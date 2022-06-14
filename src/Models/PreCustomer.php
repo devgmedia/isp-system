@@ -11,11 +11,14 @@ class PreCustomer extends Model
 
     protected $fillable = [
         // 'id',
+        'uuid',
         'name',
+
         'province_id',
         'district_id',
         'sub_district_id',
         'village_id',
+
         'address',
         'latitude',
         'longitude',
@@ -29,29 +32,49 @@ class PreCustomer extends Model
         'previous_isp_bandwidth_type_id',
 
         'branch_id',
-        'brand_id',
+
         'identity_card',
         'postal_code',
         'fax',
-        'uuid',
+
         'created_at',
         'updated_at',
 
         'alias_name',
+
         'add_to_existing_customer',
         'add_to_existing_customer_id',
         'identity_card_file',
         'house_photo',
         'customer_category_id',
 
-        'installation_address',
+        'cid',
+        'user_id',
 
+        'device_token',
+
+        'is_isp',
+        'brand_id',
+        'contact_person',
+
+        'json_products',
+        'json_agents',
+
+        'public_facility',
+
+        'price_include_tax',
+        'json_product_tags',
+
+        'installation_address',
+        'signature_covered',
+        'signature_installation',
     ];
 
     protected $hidden = [];
 
     protected $casts = [
         'id' => 'integer',
+        'uuid' => 'string',
         'name' => 'string',
         'province_id' => 'integer',
         'district_id' => 'integer',
@@ -70,22 +93,42 @@ class PreCustomer extends Model
         'previous_isp_bandwidth_type_id' => 'integer',
 
         'branch_id' => 'integer',
+
         'identity_card' => 'string',
         'postal_code' => 'string',
         'fax' => 'string',
-        'uuid' => 'string',
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 
         'alias_name' => 'string',
+
         'add_to_existing_customer' => 'boolean',
         'add_to_existing_customer_id' => 'integer',
         'identity_card_file' => 'string',
         'house_photo' => 'string',
         'customer_category_id' => 'integer',
-        
-        'installation_address' => 'string',
 
+        'cid' => 'string',
+        'user_id' => 'integer',
+
+        'device_token' => 'string',
+
+        'is_isp' => 'boolean',
+        'brand_id' => 'integer',
+        'contact_person' => 'string',
+
+        'json_products' => 'string',
+        'json_agents' => 'string',
+
+        'public_facility' => 'boolean',
+
+        'price_include_tax' => 'boolean',
+        'json_product_tags' => 'string',
+
+        'installation_address' => 'string',
+        'signature_covered' => 'string',
+        'signature_installation' => 'string',
     ];
 
     public function province()
@@ -128,6 +171,11 @@ class PreCustomer extends Model
         return $this->belongsTo(Branch::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function emails()
     {
         return $this->hasMany(PreCustomerEmail::class);
@@ -143,9 +191,24 @@ class PreCustomer extends Model
         return $this->hasMany(PreCustomerProduct::class);
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, PreCustomerProduct::class)->withPivot('id');
+    }
+
     public function logs()
     {
         return $this->hasMany(PreCustomerLog::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(ProductBrand::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(CustomerCategory::class);
     }
 
     public function pre_customer_prospective()

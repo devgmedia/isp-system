@@ -37,10 +37,11 @@ class ArInvoice extends Model
         'reminder_whatsapp_sent' => false,
 
         'created_by_cron' => false,
+
         'ignore_tax' => false,
         'ignore_prorated' => false,
-
         'postpaid' => false,
+        'hybrid' => false,
 
         'midtrans_payment_cost' => 0,
 
@@ -226,9 +227,6 @@ class ArInvoice extends Model
         'is_printed',
 
         'brand_type_name',
-
-        'enterprise_billing_date',
-        'billing_time',
         
         'discount_usd',
         'discount_sgd',
@@ -254,6 +252,16 @@ class ArInvoice extends Model
         'settlement_ppn',
 
         'sales',
+
+        'hybrid',
+        'public_facility',
+        'price_include_tax',
+        'json_product_tags',
+        'subsidy',
+
+        'reminder_whatsapp_count',
+
+        'tax_rate',
     ];
 
     protected $hidden = [];
@@ -413,9 +421,6 @@ class ArInvoice extends Model
 
         'brand_type_name' => 'string',
 
-        'enterprise_billing_date' => 'integer',
-        'billing_time' => 'integer',
-
         'discount_usd' => 'double',
         'discount_sgd' => 'double',
 
@@ -440,6 +445,16 @@ class ArInvoice extends Model
         'settlement_ppn' => 'double',
 
         'sales' => 'integer',
+
+        'hybrid' => 'boolean',
+        'public_facility' => 'boolean',
+        'price_include_tax' => 'boolean',
+        'json_product_tags' => 'string',
+        'subsidy' => 'boolean',
+
+        'reminder_whatsapp_count' => 'integer',
+
+        'tax_rate' => 'integer',
     ];
 
     public function scheme()
