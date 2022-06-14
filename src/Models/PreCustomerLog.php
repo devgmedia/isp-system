@@ -33,7 +33,7 @@ class PreCustomerLog extends Model
         'id' => 'integer',
 
         'date' => 'date:Y-m-d',
-        'time' => 'time:H:i:s',
+        'time' => 'datetime:H:i:s',
         'pre_customer_id' => 'integer',
         'pre_customer_data' => 'string',
         'caused_by' => 'integer',
