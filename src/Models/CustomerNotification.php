@@ -30,7 +30,7 @@ class CustomerNotification extends Model
         
         'title' => 'string',
         'message' => 'string',
-        'date' => 'datetime',
+        'date' => 'date:Y-m-d',
         'ar_invoice_id' => 'integer',
         'customer_id' => 'integer',
         'read_at' => 'datetime',

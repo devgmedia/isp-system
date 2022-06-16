@@ -29,7 +29,7 @@ class PreCustomerRequestLog extends Model
         'id' => 'integer',
 
         'date' => 'date:Y-m-d',
-        'time' => 'time:H:i:s',
+        'time' => 'datetime:H:i:s',
         'title' => 'string',
         'pre_customer_request_id' => 'integer',
         'pre_customer_request_data' => 'string',

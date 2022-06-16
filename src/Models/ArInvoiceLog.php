@@ -29,7 +29,7 @@ class ArInvoiceLog extends Model
         'id' => 'integer',
 
         'date' => 'date:Y-m-d',
-        'time' => 'time:H:i:s',
+        'time' => 'datetime:H:i:s',
         'title' => 'string',
         'ar_invoice_id' => 'integer',
         'ar_invoice_data' => 'string',

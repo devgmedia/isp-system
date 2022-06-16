@@ -37,7 +37,7 @@ class Warehouse extends Model
     protected $casts = [
         'id' => 'integer',
 
-        'date' => 'date',
+        'date' => 'date:Y-m-d',
         'time' => 'time',
  
         'category_id' => 'integer',

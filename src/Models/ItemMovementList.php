@@ -64,8 +64,8 @@ class ItemMovementList extends Model
     protected $casts = [
         'id' => 'integer',
 
-        'date' => 'integer',
-        'time' => 'integer',
+        'date' => 'date:Y-m-d',
+        'time' => 'datetime:H:i:s',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

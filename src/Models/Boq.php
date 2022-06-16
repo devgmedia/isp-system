@@ -64,7 +64,7 @@ class Boq extends Model
     protected $casts = [
         'id' => 'integer',
         'number' => 'string',
-        'date' => 'date',
+        'date' => 'date:Y-m-d',
         'survey_reporting_coverage_id' => 'integer',
         'approval_token' => 'string',
         'sales_name' => 'string',
