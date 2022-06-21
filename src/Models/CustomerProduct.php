@@ -102,7 +102,7 @@ class CustomerProduct extends Pivot
 
         'referrer',
         'referrer_used_for_discount',
-        
+
         'tax',
         'ar_invoice_item_category_id',
         'product_name',
@@ -122,7 +122,7 @@ class CustomerProduct extends Pivot
         'receiver_address',
         'receiver_phone_number',
         'receiver_email',
-        
+
         'uuid',
 
         'receiver_attention',
@@ -151,10 +151,11 @@ class CustomerProduct extends Pivot
         'isolation_invoice',
 
         'billing_request_date',
-        
+
         'installation_message',
         'installation_schedule_message',
         'installation_report_by',
+        'installation_report_status',
     ];
 
     protected $hidden = [];
@@ -165,7 +166,7 @@ class CustomerProduct extends Pivot
 
         'customer_id' => 'integer',
         'product_id' => 'integer',
-        
+
         'media_id' => 'integer',
         'media_vendor_id' => 'integer',
 
@@ -232,7 +233,7 @@ class CustomerProduct extends Pivot
 
         'referrer' => 'integer',
         'referrer_used_for_discount' => 'boolean',
-        
+
         'tax' => 'boolean',
         'ar_invoice_item_category_id' => 'integer',
         'product_name' => 'string',
@@ -281,10 +282,11 @@ class CustomerProduct extends Pivot
         'isolation_invoice' => 'integer',
 
         'billing_request_date' => 'date:Y-m-d',
-        
+
         'installation_message' => 'string',
         'installation_schedule_message' => 'string',
         'installation_report_by' => 'integer',
+        'installation_report_status' => 'string',
     ];
 
     public function customer()
