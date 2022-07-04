@@ -16,6 +16,7 @@ class CustomerProductInstallationItem extends Model
         'customer_product_id',
         'item_id',
         'item_status',
+        'photo_restore',
 
         'created_at',
         'updated_at',
@@ -30,6 +31,7 @@ class CustomerProductInstallationItem extends Model
         'customer_product_id'=> 'integer',
         'item_id'=> 'integer',
         'item_status'=> 'string',
+        'photo_restore'=> 'string',
     ];
 
     function item()
