@@ -433,4 +433,9 @@ class CustomerProduct extends Pivot
     {
         return $this->hasMany(CustomerProductInstallationAssignee::class, 'customer_product_id');
     }
+
+    public function customer_product_installation_item()
+    {
+        return $this->hasMany(CustomerProductInstallationItem::class, 'customer_product_id');
+    }
 }
