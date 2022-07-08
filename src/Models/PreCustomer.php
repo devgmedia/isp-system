@@ -68,6 +68,10 @@ class PreCustomer extends Model
         'installation_address',
         'signature_covered',
         'signature_installation',
+
+        'verification_attempt',
+        'verification_contact',
+        'verification_contact_sent',
     ];
 
     protected $hidden = [];
@@ -129,6 +133,10 @@ class PreCustomer extends Model
         'installation_address' => 'string',
         'signature_covered' => 'string',
         'signature_installation' => 'string',
+
+        'verification_attempt' => 'integer',
+        'verification_contact' => 'boolean',
+        'verification_contact_sent' => 'boolean',
     ];
 
     public function province()

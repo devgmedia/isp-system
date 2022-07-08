@@ -4,23 +4,16 @@ namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PreCustomerPhoneNumber extends Model
+class PreCustomerVerificationContactLog extends Model
 {
     protected $connection = 'isp_system';
-    protected $table = 'pre_customer_phone_number';
-
+    protected $table = 'pre_customer_verification_contact_log';
+    
     protected $fillable = [
         // 'id',
-        'number',
+        'uuid',
         'pre_customer_id',
-        
-        'whatsapp',
-        'telegram',
-        'home',
-        'office',
-
-        'verified',
-        'verified_at',
+        'number',
 
         'created_at',
         'updated_at',
@@ -30,19 +23,13 @@ class PreCustomerPhoneNumber extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'number' => 'string',
+
+        'uuid' => 'string',
         'pre_customer_id' => 'integer',
-
-        'whatsapp' => 'boolean',
-        'telegram' => 'boolean',
-        'home' => 'boolean',
-        'office' => 'boolean',
-
+        'number' => 'string',
+        
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-
-        'verified' => 'boolean',
-        'verified_at' => 'datetime',
     ];
 
     public function pre_customer()
