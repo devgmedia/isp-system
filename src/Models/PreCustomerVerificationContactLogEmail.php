@@ -28,14 +28,12 @@ class PreCustomerVerificationContactLogEmail extends Model
         'id' => 'integer',
 
         'uuid' => 'string',
+        
         'pre_customer_verification_contact_log_id' => 'integer',
         'pre_customer_email_id' => 'integer',
 
         'sent' => 'boolean',
         'sent_at' => 'datetime',
-
-        'pre_customer_id' => 'integer',
-        'number' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
