@@ -18,6 +18,8 @@ class AgentBankAccount extends Model
         
         'created_at',
         'updated_at',
+
+        'note',
     ];
 
     protected $hidden = [];
@@ -31,6 +33,8 @@ class AgentBankAccount extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        
+        'note' => 'string',
     ];
 
     public function bank()

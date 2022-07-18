@@ -29,12 +29,12 @@ class Product extends Model
         'bandwidth_type_id',
 
         'brand_id',
-        
+
         'available_via_midtrans',
         'price_can_be_adjusted',
         'bandwidth_can_be_adjusted',
 
-        'uuid',        
+        'uuid',
         'ar_invoice_item_category_id',
 
         'hide',
@@ -70,18 +70,18 @@ class Product extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'brand_id' => 'integer',
-        
+
         'available_via_midtrans' => 'boolean',
         'price_can_be_adjusted' => 'boolean',
         'bandwidth_can_be_adjusted' => 'boolean',
 
-        'uuid' => 'string',        
+        'uuid' => 'string',
         'ar_invoice_item_category_id' => 'integer',
 
         'hide' => 'boolean',
-        
+
         'radius_username_suffix' => 'string',
         'radius_password_prefix' => 'string',
 

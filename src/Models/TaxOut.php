@@ -41,6 +41,8 @@ class TaxOut extends Model
         'date',
         'invoice_date',
         'customer_name',
+
+        'number',
     ];
 
     protected $hidden = [];
@@ -70,6 +72,8 @@ class TaxOut extends Model
         'date' => 'date:Y-m-d',
         'invoice_date' => 'date:Y-m-d',
         'customer_name' => 'string',
+
+        'number' => 'string',
     ];
 
     public function ar_invoice()

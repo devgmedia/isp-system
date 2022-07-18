@@ -25,6 +25,13 @@ class CustomerPhoneNumber extends Model
         'personal',
 
         'name',
+
+        'uuid',
+
+        'whatsapp_verified',
+        'whatsapp_verified_at',
+
+        'whatsapp_verification_sent_at',
     ];
 
     protected $hidden = [];
@@ -45,6 +52,13 @@ class CustomerPhoneNumber extends Model
         'personal' => 'boolean',
 
         'name' => 'string',
+
+        'uuid' => 'string',
+
+        'whatsapp_verified' => 'boolean',
+        'whatsapp_verified_at' => 'datetime',
+        
+        'whatsapp_verification_sent_at' => 'datetime',
     ];
 
     public function customer()

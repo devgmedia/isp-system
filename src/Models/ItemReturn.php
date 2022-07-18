@@ -4,23 +4,33 @@ namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ItemType extends Model
+class ItemReturn extends Model
 {
     protected $connection = 'isp_system';
-    protected $table = 'item_type';
+    protected $table = 'item_return';
 
     protected $fillable = [
         // 'id',
 
         'name',
+        'number_spm',
+        'date_of_purchase',
+        'date_of_return',
+        'purchase_price',
         'brand_id',
-        'brand_product_id', 
-        'discontinue_date', 
-        'discontinue_name', 
-        'discontinue_by', 
-        'uuid',
+        'brand_product_id',   
+        'item_type_id',
+        'item_id',
+        'supplier_id',
+        'item_return_category_id',
+        'return_price',
+        'note',
         'created_at',
         'updated_at', 
+        'created_by',
+        'created_name',
+        'spm_id',
+        'number_invoice',
     ];
 
     protected $hidden = [];
@@ -44,15 +54,10 @@ class ItemType extends Model
     public function brand_product()
     {
         return $this->belongsTo(ItemBrandProduct::class);
+    }   
+
+    public function item_return_category()
+    {
+        return $this->belongsTo(ItemReturnCategory::class);
     }  
-
-    public function quality_control()
-    {
-        return $this->hasMany(ItemTypeQualityControl::class);
-    }
-
-    public function check_quality_control()
-    {
-        return $this->hasMany(ItemTypeCheckQualityControl::class);
-    } 
 }

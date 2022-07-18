@@ -8,7 +8,7 @@ class PreCustomerVerificationContactLog extends Model
 {
     protected $connection = 'isp_system';
     protected $table = 'pre_customer_verification_contact_log';
-    
+
     protected $fillable = [
         // 'id',
         'uuid',
@@ -27,13 +27,13 @@ class PreCustomerVerificationContactLog extends Model
         'uuid' => 'string',
         'pre_customer_id' => 'integer',
         'number' => 'string',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
 
     public function pre_customer()
     {
-        return $this->belongsTo(PreCustomer::class);
+        return $this->belongsTo(PreCustomer::class, 'pre_customer_id');
     }
 }

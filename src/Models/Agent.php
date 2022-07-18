@@ -45,8 +45,8 @@ class Agent extends Model
 
         'bank_account_book',
         'brand_id',
-
         'active',
+        'area_id',
     ];
 
     protected $hidden = [];
@@ -81,8 +81,8 @@ class Agent extends Model
 
         'bank_account_book' => 'string',
         'brand_id' => 'integer',
-
         'active' => 'boolean',
+        'area_id' => 'integer',
     ];
 
     public function province()
@@ -118,6 +118,11 @@ class Agent extends Model
     public function brand()
     {
         return $this->belongsTo(ProductBrand::class);
+    }
+
+    public function area()
+    {
+        return $this->belongsTo(AgentArea::class);
     }
 
     public function phone_numbers()

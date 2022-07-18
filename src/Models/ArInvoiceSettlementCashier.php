@@ -14,8 +14,9 @@ class ArInvoiceSettlementCashier extends Pivot
 
     protected $fillable = [
         // 'id',
-
         'ar_invoice_settlement_id',
+
+        'cash_bank_id',
         'cashier_in_id',
 
         'created_at',
@@ -25,9 +26,10 @@ class ArInvoiceSettlementCashier extends Pivot
     protected $hidden = [];
 
     protected $casts = [
-        'id' => 'integer',
-        
+        'id' => 'integer',        
         'ar_invoice_settlement_id' => 'integer',
+
+        'cash_bank_id' => 'integer',
         'cashier_in_id' => 'integer',
 
         'created_at' => 'datetime',
@@ -37,6 +39,11 @@ class ArInvoiceSettlementCashier extends Pivot
     public function ar_invoice_settlement()
     {
         return $this->belongsTo(ArInvoiceSettlement::class);
+    }
+
+    public function cash_bank()
+    {
+        return $this->belongsTo(CashBank::class);
     }
 
     public function cashier_in()

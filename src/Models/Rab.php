@@ -43,7 +43,7 @@ class Rab extends Model
     protected $casts = [
         'id' => 'integer',
         'number' => 'string',
-        'date' => 'date:Y-m-d',
+        'date' => 'date',
         'survey_reporting_coverage_id' => 'integer',
         'approval_token' => 'string',
         'sales_name' => 'string',

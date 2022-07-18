@@ -76,7 +76,7 @@ class PurchaseRequest extends Model
         'id' => 'integer',
         'name'  => 'string',
         'number'    => 'string',
-        'date' => 'date:Y-m-d',
+        'date' => 'date',
         'about' => 'string',
         'created_by' => 'integer',
         'created_date' => 'date',

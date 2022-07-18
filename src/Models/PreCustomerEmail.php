@@ -28,7 +28,7 @@ class PreCustomerEmail extends Model
         'name' => 'string',
         'pre_customer_id' => 'integer',
 
-        'verified' => 'boolean',
+        'verified' => 'integer',
         'verified_at' => 'datetime',
 
         'created_at' => 'datetime',

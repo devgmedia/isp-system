@@ -29,7 +29,7 @@ class CustomerLog extends Model
         'id' => 'integer',
 
         'date' => 'date:Y-m-d',
-        'time' => 'datetime:H:i:s',
+        'time' => 'time:H:i:s',
         'title' => 'string',
         'customer_id' => 'integer',
         'customer_data' => 'string',

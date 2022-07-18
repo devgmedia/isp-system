@@ -14,6 +14,7 @@ class PreCustomerVerificationContactLogEmail extends Model
         'uuid',
         'pre_customer_verification_contact_log_id',
         'pre_customer_email_id',
+        'number',
 
         'sent',
         'sent_at',
@@ -28,9 +29,9 @@ class PreCustomerVerificationContactLogEmail extends Model
         'id' => 'integer',
 
         'uuid' => 'string',
-        
         'pre_customer_verification_contact_log_id' => 'integer',
         'pre_customer_email_id' => 'integer',
+        'number' => 'string',
 
         'sent' => 'boolean',
         'sent_at' => 'datetime',
@@ -41,11 +42,11 @@ class PreCustomerVerificationContactLogEmail extends Model
 
     public function pre_customer_verification_contact_log()
     {
-        return $this->belongsTo(PreCustomerVerificationContactLog::class);
+        return $this->belongsTo(PreCustomerVerificationContactLog::class, 'pre_customer_verification_contact_log_id');
     }
 
     public function pre_customer_email()
     {
-        return $this->belongsTo(PreCustomerEmail::class);
+        return $this->belongsTo(PreCustomerEmail::class, 'pre_customer_email_id');
     }
 }

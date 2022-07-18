@@ -19,11 +19,10 @@ class PreCustomerPhoneNumber extends Model
         'home',
         'office',
 
-        'verified',
-        'verified_at',
-
         'created_at',
         'updated_at',
+
+        'name',
     ];
 
     protected $hidden = [];
@@ -41,8 +40,7 @@ class PreCustomerPhoneNumber extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 
-        'verified' => 'boolean',
-        'verified_at' => 'datetime',
+        'name' => 'string',
     ];
 
     public function pre_customer()

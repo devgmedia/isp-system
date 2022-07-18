@@ -31,7 +31,8 @@ class ApInvoiceItem extends Model
         'pph_pasal_4_ayat_2',
         'total',
         'total_without_pph',
-        'paid_taxes',
+
+        'pph_pasal_26',
 
         'ar_invoice_customer_product_id',
         'ar_invoice_customer_product_additional_id',
@@ -62,7 +63,8 @@ class ApInvoiceItem extends Model
         'pph_pasal_4_ayat_2' => 'double',
         'total' => 'double',
         'total_without_pph' => 'double',
-        'paid_taxes' => 'double',
+
+        'pph_pasal_26' => 'double',
 
         'ar_invoice_customer_product_id' => 'integer',
         'ar_invoice_customer_product_additional_id' => 'integer',

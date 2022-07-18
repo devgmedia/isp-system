@@ -14,6 +14,7 @@ class TaxIn extends Model
         'pph_pasal_23' => 0,
         'pph_pasal_4_ayat_2' => 0,
         'ppn' => 0,
+        'pph_pasal_25' => 0,
         'pph_pasal_26' => 0,
     ];
 
@@ -43,6 +44,10 @@ class TaxIn extends Model
         'date',
         'invoice_date',
         'supplier_name',
+        
+        'pph_pasal_25',
+
+        'number',
     ];
 
     protected $hidden = [];
@@ -73,6 +78,10 @@ class TaxIn extends Model
         'date' => 'date:Y-m-d',
         'invoice_date' => 'date:Y-m-d',
         'supplier_name' => 'string',
+        
+        'pph_pasal_25' => 'double',
+
+        'number' => 'string',
     ];
 
     public function ap_invoice()

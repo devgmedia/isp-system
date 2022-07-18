@@ -24,6 +24,9 @@ class CashierOutCategory extends Model
 
         'accounting_menu_id',
         'accounting_division_category_id',
+
+        'code',
+        'uuid',
     ];
 
     protected $hidden = [];
@@ -43,6 +46,9 @@ class CashierOutCategory extends Model
 
         'accounting_division_category_id' => 'integer',
         'accounting_menu_id' => 'integer',
+
+        'code' => 'string',
+        'uuid' => 'string',
     ];
 
     public function chart_of_account_title()

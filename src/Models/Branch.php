@@ -32,13 +32,6 @@ class Branch extends Model
 
         'pre_customer_request_sales_email',
 
-        'billing_phone_number',
-        'billing_email',
-        'billing_preparer',
-        'billing_approver',
-        'billing_address',
-        'billing_city',
-
         'pr_purchasing_approval_email',
         'pr_purchasing_approval_name',
 
@@ -60,6 +53,17 @@ class Branch extends Model
         'po_director_approval_email',
         'po_director_approval_name',
 
+        'billing_phone_number',
+        'billing_email',
+        'billing_preparer',
+        'billing_approver',
+        'billing_address',
+        'billing_city',
+
+        'agent_fee_pic',
+        'agent_fee_division',
+        'agent_fee_finance',
+        'agent_fee_director',
     ];
 
     protected $hidden = [];
@@ -87,13 +91,6 @@ class Branch extends Model
 
         'pre_customer_request_sales_email' => 'string',
 
-        'billing_phone_number' => 'string',
-        'billing_email' => 'string',
-        'billing_preparer' => 'string',
-        'billing_approver' => 'string',
-        'billing_address' => 'string',
-        'billing_city' => 'string',
-
         'pr_purchasing_approval_email' => 'string',
         'pr_purchasing_approval_name' => 'string',
 
@@ -114,6 +111,18 @@ class Branch extends Model
         
         'po_director_approval_email' => 'string',
         'po_director_approval_name' => 'string',
+
+        'billing_phone_number' => 'string',
+        'billing_email' => 'string',
+        'billing_preparer' => 'string',
+        'billing_approver' => 'string',
+        'billing_address' => 'string',
+        'billing_city' => 'string',
+
+        'agent_fee_pic' => 'string',
+        'agent_fee_division' => 'string',
+        'agent_fee_finance' => 'string',
+        'agent_fee_director' => 'string',
     ];
 
     public function regional()

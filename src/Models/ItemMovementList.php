@@ -27,25 +27,28 @@ class ItemMovementList extends Model
  
         'to_movement_category_id',
 
-
+        'from_ownership_bts_id',
         'from_ownership_branch_id',
         'from_ownership_regional_id',
         'from_ownership_company_id',
         'from_ownership_customer_id',
         'from_ownership_employee_id',
 
+        'to_ownership_bts_id',
         'to_ownership_branch_id',
         'to_ownership_regional_id',
         'to_ownership_company_id',
         'to_ownership_customer_id',
         'to_ownership_employee_id',
 
+        'from_location_bts_id',
         'from_location_branch_id',
         'from_location_regional_id',
         'from_location_company_id',
         'from_location_customer_id',
         'from_location_employee_id',
 
+        'to_location_bts_id',
         'to_location_branch_id',
         'to_location_regional_id',
         'to_location_company_id',
@@ -56,7 +59,11 @@ class ItemMovementList extends Model
         'created_at',
         'updated_at',
 
-        'item_class_id',
+        'to_item_class_id',
+        'to_pic',
+
+        'from_item_class_id',
+        'from_pic',
     ];
 
     protected $hidden = [];
@@ -64,8 +71,8 @@ class ItemMovementList extends Model
     protected $casts = [
         'id' => 'integer',
 
-        'date' => 'date:Y-m-d',
-        'time' => 'datetime:H:i:s',
+        'date' => 'integer',
+        'time' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

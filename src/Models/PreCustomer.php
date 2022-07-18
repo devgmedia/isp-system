@@ -134,9 +134,9 @@ class PreCustomer extends Model
         'signature_covered' => 'string',
         'signature_installation' => 'string',
 
-        'verification_attempt' => 'integer',
-        'verification_contact' => 'boolean',
-        'verification_contact_sent' => 'boolean',
+        'verification_attempt'=> 'integer',
+        'verification_contact'=> 'integer',
+        'verification_contact_sent'=> 'integer',
     ];
 
     public function province()

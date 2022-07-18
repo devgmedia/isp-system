@@ -16,6 +16,13 @@ class CustomerEmail extends Model
 
         'created_at',
         'updated_at',
+
+        'uuid',
+
+        'verified',
+        'verified_at',
+
+        'verification_email_sent_at',
     ];
 
     protected $hidden = [];
@@ -27,6 +34,13 @@ class CustomerEmail extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+
+        'uuid' => 'string',
+
+        'verified' => 'boolean',
+        'verified_at' => 'datetime',
+        
+        'verification_email_sent_at' => 'datetime',
     ];
 
     public function customer()

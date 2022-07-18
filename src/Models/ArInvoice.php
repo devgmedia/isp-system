@@ -262,6 +262,12 @@ class ArInvoice extends Model
         'reminder_whatsapp_count',
 
         'tax_rate',
+        'tax_rounding',
+
+        'paid_submit_at',
+
+        'regional_id',
+        'company_id',
     ];
 
     protected $hidden = [];
@@ -455,6 +461,14 @@ class ArInvoice extends Model
         'reminder_whatsapp_count' => 'integer',
 
         'tax_rate' => 'integer',
+        'tax_rounding' => 'string',
+
+        'reminder_email_count' => 'integer',
+
+        'paid_submit_at' => 'datetime',
+
+        'regional_id' => 'integer',
+        'company_id' => 'integer',
     ];
 
     public function scheme()
@@ -562,9 +576,9 @@ class ArInvoice extends Model
         return $this->belongsTo(ChartOfAccountTitle::class);
     }
 
-    public function settlements()
+    public function ar_invoice_settlement_invoices()
     {
-        return $this->hasMany(ArInvoiceSettlement::class);
+        return $this->hasMany(ArInvoiceSettlementInvoice::class, 'ar_invoice_id');
     }
 
     public function midtrans()
@@ -590,6 +604,16 @@ class ArInvoice extends Model
     public function whatsapp_reminders()
     {
         return $this->hasMany(ArInvoiceWhatsappReminder::class);
+    }
+
+    public function email_reminders()
+    {
+        return $this->hasMany(ArInvoiceEmailReminder::class);
+    }
+
+    public function confirms()
+    {
+        return $this->hasMany(ArInvoiceConfirm::class);
     }
 
     public function logs()

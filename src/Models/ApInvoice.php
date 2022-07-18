@@ -51,7 +51,8 @@ class ApInvoice extends Model
         'memo',
         'price',
         'total_without_pph',
-        'paid_taxes',
+
+        'pph_pasal_26',
 
         'accounting_division_category_id',
         'journal_project_id',
@@ -101,7 +102,8 @@ class ApInvoice extends Model
         'memo' => 'boolean',
         'price' => 'double',
         'total_without_pph' => 'double',
-        'paid_taxes' => 'double',
+        
+        'pph_pasal_26' => 'double',
 
         'accounting_division_category_id' => 'integer',
         'journal_project_id' => 'integer',

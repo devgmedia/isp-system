@@ -4,20 +4,16 @@ namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ArInvoiceLog extends Model
+class ArInvoiceEmailReminder extends Model
 {
     protected $connection = 'isp_system';
-    protected $table = 'ar_invoice_log';
+    protected $table = 'ar_invoice_email_reminder';
 
     protected $fillable = [
         // 'id',
-
-        'date',
-        'time',
-        'title',
         'ar_invoice_id',
-        'ar_invoice_data',
-        'caused_by',
+        
+        'sent_by',
 
         'created_at',
         'updated_at',
@@ -27,13 +23,9 @@ class ArInvoiceLog extends Model
 
     protected $casts = [
         'id' => 'integer',
-
-        'date' => 'date:Y-m-d',
-        'time' => 'time:H:i:s',
-        'title' => 'string',
         'ar_invoice_id' => 'integer',
-        'ar_invoice_data' => 'string',
-        'caused_by' => 'integer',
+
+        'sent_by' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
@@ -44,8 +36,8 @@ class ArInvoiceLog extends Model
         return $this->belongsTo(ArInvoice::class, 'ar_invoice_id');
     }
 
-    public function caused_by_ref()
+    public function sent_by_ref()
     {
-        return $this->belongsTo(Employee::class, 'caused_by');
+        return $this->belongsTo(Employee::class, 'sent_by');
     }
 }

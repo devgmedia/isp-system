@@ -60,7 +60,7 @@ class Onu extends Model
 
         'vlan_id' => 'integer',
 
-        'date' => 'date:Y-m-d',
+        'date' => 'date',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

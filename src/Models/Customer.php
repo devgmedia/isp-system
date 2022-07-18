@@ -82,6 +82,8 @@ class Customer extends Model
         'price_include_tax',
 
         'json_product_tags',
+        'installation_address',
+        'json_phone_numbers',
     ];
 
     protected $hidden = [];
@@ -154,6 +156,8 @@ class Customer extends Model
         'price_include_tax' => 'boolean',
 
         'json_product_tags' => 'string',
+        'installation_address' => 'string',
+        'json_phone_numbers' => 'string',
     ];
 
     public function province()
