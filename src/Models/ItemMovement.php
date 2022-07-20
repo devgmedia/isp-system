@@ -33,7 +33,7 @@ class ItemMovement extends Model
         'id' => 'integer',
 
         'date' => 'date',
-        'time' => 'time',
+        'time' => 'datetime',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

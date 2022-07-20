@@ -23,7 +23,7 @@ class PreCustomerLog extends Model
 
         'user_message',
         'retail_status',
-        
+
         'title',
     ];
 
@@ -33,17 +33,17 @@ class PreCustomerLog extends Model
         'id' => 'integer',
 
         'date' => 'date:Y-m-d',
-        'time' => 'time:H:i:s',
+        'time' => 'datetime:H:i:s',
         'pre_customer_id' => 'integer',
         'pre_customer_data' => 'string',
         'caused_by' => 'integer',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'user_message' => 'string',
         'retail_status' => 'string',
-        
+
         'title' => 'string',
     ];
 
