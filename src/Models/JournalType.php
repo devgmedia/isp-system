@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JournalType extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'journal_type';
 
     protected $fillable = [
@@ -22,7 +23,7 @@ class JournalType extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

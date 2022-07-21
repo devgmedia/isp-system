@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Olt extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'olt';
 
     protected $fillable = [

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AgentCashWithdrawal extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'agent_cash_withdrawal';
 
     protected $fillable = [
@@ -43,10 +44,10 @@ class AgentCashWithdrawal extends Model
         'updated_at' => 'datetime',
 
         'proof_of_transaction' => 'string',
-        
+
         'agent_name' => 'string',
         'agent_alias_name' => 'string',
-        
+
         'branch_id' => 'integer',
         'uuid' => 'string',
         'brand_id' => 'integer',
@@ -59,7 +60,7 @@ class AgentCashWithdrawal extends Model
     {
         return $this->belongsTo(Agent::class);
     }
-    
+
     public function whatsapp_sent_by_ref()
     {
         return $this->belongsTo(Employee::class, 'whatsapp_sent_by');

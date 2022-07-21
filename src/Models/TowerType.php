@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class TowerType extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'tower_type';
 
     protected $fillable = [
         // 'id',
-        'name', 
-        
+        'name',
+
         'created_at',
         'updated_at',
     ];
@@ -21,10 +22,9 @@ class TowerType extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string', 
+        'name' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-    ]; 
-    
+    ];
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TimeUnit extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'time_unit';
 
     protected $fillable = [

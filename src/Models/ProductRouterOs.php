@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ProductRouterOs extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'product_router_os';
 
     protected $fillable = [
         // 'id',
         'name',
-        
+
         'created_at',
         'updated_at',
     ];

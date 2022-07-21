@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OdcOdcMini extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'odc_odc_mini';
 
     protected $fillable = [

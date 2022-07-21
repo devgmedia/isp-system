@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceWhatsapp extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'service_whatsapp';
 
     protected $fillable = [
@@ -30,7 +31,7 @@ class ServiceWhatsapp extends Model
         'id' => 'integer',
         'uuid' => 'string',
         'customer_product_id' => 'integer',
-        
+
         'template_name' => 'string',
         'name' => 'string',
 

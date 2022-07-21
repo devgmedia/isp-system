@@ -3,16 +3,18 @@
 namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
 // use App\Models\PurchaseOrderItem as PurchaseOrderItemModel;
 
 class PurchaseOrderItemSource extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'purchase_order_item_source';
 
     protected $fillable = [
         // 'id',
-        'name', 
+        'name',
         'created_at',
         'updated_at',
     ];
@@ -26,7 +28,6 @@ class PurchaseOrderItemSource extends Model
         'updated_at' => 'datetime',
     ];
 
-
     public function purchase_request()
     {
         return $this->belongsTo('App\Models\PurchaseRequest');
@@ -36,5 +37,4 @@ class PurchaseOrderItemSource extends Model
     // {
     //     return $this->belongsTo(PurchaseOrderItemModel::class);
     // }
-
 }

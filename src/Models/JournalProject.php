@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JournalProject extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'journal_project';
 
     protected $fillable = [
@@ -35,12 +36,12 @@ class JournalProject extends Model
         'default_on_pra_gl_ar' => 'boolean',
     ];
 
-    function branch()
+    public function branch()
     {
         return $this->belongsTo(Branch::class);
     }
 
-    function chart_of_account_title()
+    public function chart_of_account_title()
     {
         return $this->belongsTo(ChartOfAccountTitle::class);
     }

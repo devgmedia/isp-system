@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceCustomerProduct extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_customer_product';
 
     protected $attributes = [
@@ -91,9 +92,9 @@ class ArInvoiceCustomerProduct extends Model
 
         'customer_product_bandwidth_type_id' => 'integer',
         'customer_product_bandwidth_type_name' => 'string',
-        
+
         'billing_date' => 'date:Y-m-d',
-        
+
         'ar_invoice_item_category_id' => 'integer',
 
         'total_usd' => 'double',

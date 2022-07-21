@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerProductInstallationAssignee extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_product_installation_assignee';
 
     protected $fillable = [

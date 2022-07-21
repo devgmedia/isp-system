@@ -2,13 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 use App\Models\Hamlet;
+use Illuminate\Database\Eloquent\Model;
 
 class Neighbourhood extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'neighbourhood';
 
     protected $fillable = [
@@ -42,5 +42,5 @@ class Neighbourhood extends Model
     public function hamlet()
     {
         return $this->belongsTo(Hamlet::class);
-    } 
+    }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceSchemeCustomerProduct extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_scheme_customer_product';
 
     protected $fillable = [
@@ -45,5 +46,5 @@ class ArInvoiceSchemeCustomerProduct extends Model
     public function invoice_customer_products()
     {
         return $this->hasMany(ArInvoiceCustomerProduct::class);
-    }    
+    }
 }

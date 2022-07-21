@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ActivityLog extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'activity_log';
 
     protected $fillable = [
@@ -40,7 +41,7 @@ class ActivityLog extends Model
 
         'causer_id' => 'integer',
         'causer_name' => 'string',
-        
+
         'properties' => 'collection',
 
         'created_at' => 'datetime',

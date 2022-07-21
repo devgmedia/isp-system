@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerProductAdditionalDiscount extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_product_additional_discount';
 
     protected $fillable = [
@@ -25,11 +26,11 @@ class CustomerProductAdditionalDiscount extends Model
     protected $hidden = [];
 
     protected $casts = [
-        'id' => 'integer',    
+        'id' => 'integer',
 
         'customer_product_additional_id' => 'integer',
         'product_additional_discount_id' => 'integer',
-        
+
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',
 

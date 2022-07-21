@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceMidtrans extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_midtrans';
 
     protected $fillable = [
@@ -17,7 +18,7 @@ class ArInvoiceMidtrans extends Model
         'payment_type',
         'transaction_status',
         'fraud_status',
-        
+
         'platform',
         'ar_invoice_data',
     ];

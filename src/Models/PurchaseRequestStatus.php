@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PurchaseRequestStatus extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'purchase_request_status';
 
     protected $fillable = [
@@ -24,7 +25,7 @@ class PurchaseRequestStatus extends Model
         'id' => 'integer',
         'name' => 'string',
         'description' => 'string',
-        'step'	=> 'integer',
+        'step' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

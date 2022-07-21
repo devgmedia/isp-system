@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ChartOfAccount extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'chart_of_account';
 
     protected $attributes = [];
@@ -17,7 +18,7 @@ class ChartOfAccount extends Model
         'name',
         'equation',
         'parent',
-        
+
         'created_at',
         'updated_at',
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PreSurveyReporting extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pre_survey_reporting';
 
     protected $fillable = [

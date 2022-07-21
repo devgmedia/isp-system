@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceTransaction extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_transaction';
 
     protected $fillable = [
@@ -37,7 +38,7 @@ class ArInvoiceTransaction extends Model
 
         'name' => 'string',
         'alias_name' => 'string',
-        
+
         'branch_id' => 'integer',
         'chart_of_account_title_id' => 'integer',
 

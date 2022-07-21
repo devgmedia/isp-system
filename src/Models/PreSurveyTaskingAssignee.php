@@ -2,30 +2,31 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model; 
+use Illuminate\Database\Eloquent\Model;
 
 class PreSurveyTaskingAssignee extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pre_survey_tasking_assignee';
 
     protected $fillable = [
         // 'id',
         'uuid',
-        'pre_survey_tasking_id', 
+        'pre_survey_tasking_id',
         'assignor',
         'assignee',
         'created_at',
-        'updated_at', 
+        'updated_at',
     ];
 
     protected $hidden = [];
 
     protected $casts = [
         'id' => 'integer',
-        'pre_survey_tasking_id'  => 'integer', 
-        'assignor'  => 'integer', 
-        'assignee'  => 'integer', 
+        'pre_survey_tasking_id' => 'integer',
+        'assignor' => 'integer',
+        'assignee' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CashierIn extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'cashier_in';
 
     protected $fillable = [
@@ -23,7 +24,7 @@ class CashierIn extends Model
         'updated_at',
 
         'cash_bank_id',
-        
+
         'petty_cash_top_up',
         'petty_cash_loan',
 
@@ -51,7 +52,7 @@ class CashierIn extends Model
         'updated_at' => 'datetime',
 
         'cash_bank_id' => 'integer',
-        
+
         'petty_cash_top_up' => 'boolean',
         'petty_cash_loan' => 'boolean',
 

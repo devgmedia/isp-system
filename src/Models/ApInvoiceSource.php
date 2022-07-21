@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ApInvoiceSource extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ap_invoice_source';
 
     protected $fillable = [

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PreCustomer extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pre_customer';
 
     protected $fillable = [
@@ -134,9 +135,9 @@ class PreCustomer extends Model
         'signature_covered' => 'string',
         'signature_installation' => 'string',
 
-        'verification_attempt'=> 'integer',
-        'verification_contact'=> 'integer',
-        'verification_contact_sent'=> 'integer',
+        'verification_attempt' => 'integer',
+        'verification_contact' => 'integer',
+        'verification_contact_sent' => 'integer',
     ];
 
     public function province()

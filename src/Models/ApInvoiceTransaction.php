@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ApInvoiceTransaction extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ap_invoice_transaction';
 
     protected $fillable = [
         // 'id',
 
-        'name',        
+        'name',
         'branch_id',
         'chart_of_account_title_id',
 

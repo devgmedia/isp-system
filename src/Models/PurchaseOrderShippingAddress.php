@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PurchaseOrderShippingAddress extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'purchase_order_shipping_address';
 
     protected $fillable = [

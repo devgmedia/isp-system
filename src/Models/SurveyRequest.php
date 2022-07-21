@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SurveyRequest extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'survey_request';
 
     protected $fillable = [

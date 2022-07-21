@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class PreSurveyReportingCoverage extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pre_survey_reporting_coverage';
 
     protected $fillable = [
-        // 'id', 
+        // 'id',
         'pre_survey_reporting_id',
         'media_id',
         'media_vendor_id',
@@ -22,7 +23,7 @@ class PreSurveyReportingCoverage extends Model
         'tower_hight',
         'tower_hight_unit',
         'work_duration',
-        'work_duration_unit',  
+        'work_duration_unit',
         'created_at',
         'updated_at',
 
@@ -40,9 +41,9 @@ class PreSurveyReportingCoverage extends Model
     protected $hidden = [];
 
     protected $casts = [
-        'id' => 'integer', 
+        'id' => 'integer',
         'media_id' => 'interger',
-        'media_vendor_id'  => 'integer', 
+        'media_vendor_id' => 'integer',
         'olt_id' => 'integer',
         'odp_id' => 'integer',
         'odp_distance' => 'integer',
@@ -51,19 +52,19 @@ class PreSurveyReportingCoverage extends Model
         'tower_hight' => 'integer',
         'tower_hight_unit' => 'integer',
         'work_duration' => 'integer',
-        'work_duration_unit' => 'integer', 
+        'work_duration_unit' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 
-        'bts_id' => 'integer', 
+        'bts_id' => 'integer',
         'bts_distance' => 'integer',
-        'tower_type_id' => 'integer', 
+        'tower_type_id' => 'integer',
 
         'note' => 'string',
         'cable_type' => 'string',
 
-        'pole_7_meters' => 'integer', 
-        'pole_9_meters' => 'integer', 
+        'pole_7_meters' => 'integer',
+        'pole_9_meters' => 'integer',
     ];
 
     // public function coverages()

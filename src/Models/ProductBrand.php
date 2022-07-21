@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ProductBrand extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'product_brand';
 
     protected $fillable = [
         // 'id',
         'name',
-        
+
         'created_at',
         'updated_at',
 
@@ -35,7 +36,7 @@ class ProductBrand extends Model
 
         'type_id' => 'integer',
         'uuid' => 'string',
-        
+
         'customer_account_default_password' => 'string',
         'agent_account_default_password' => 'string',
         'pre_customer_account_default_password' => 'string',

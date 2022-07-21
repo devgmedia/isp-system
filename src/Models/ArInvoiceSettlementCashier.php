@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class ArInvoiceSettlementCashier extends Pivot
 {
     public $incrementing = true;
+
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_settlement_cashier';
 
     protected $attributes = [];
@@ -26,7 +28,7 @@ class ArInvoiceSettlementCashier extends Pivot
     protected $hidden = [];
 
     protected $casts = [
-        'id' => 'integer',        
+        'id' => 'integer',
         'ar_invoice_settlement_id' => 'integer',
 
         'cash_bank_id' => 'integer',

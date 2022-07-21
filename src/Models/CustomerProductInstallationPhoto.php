@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerProductInstallationPhoto extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_product_installation_photo';
 
     protected $fillable = [

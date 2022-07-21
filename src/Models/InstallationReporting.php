@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class InstallationReporting extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'installation_reporting';
 
     protected $fillable = [

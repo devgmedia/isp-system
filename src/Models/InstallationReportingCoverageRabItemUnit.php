@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class InstallationReportingCoverageRabItemUnit extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'installation_reporting_coverage_rab_item_unit';
 
     protected $fillable = [

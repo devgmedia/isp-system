@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class CustomerProductAdditional extends Pivot
 {
     public $incrementing = true;
+
     protected $connection = 'isp_system';
+
     protected $table = 'customer_product_additional';
 
     protected $attributes = [
@@ -34,10 +36,10 @@ class CustomerProductAdditional extends Pivot
 
         'service_date',
         'billing_date',
-        
+
         'adjusted_price',
         'special_price',
-        
+
         'adjusted_quantity',
         'quantity',
 
@@ -60,7 +62,7 @@ class CustomerProductAdditional extends Pivot
 
         'customer_product_id' => 'integer',
         'product_additional_id' => 'integer',
-        
+
         'media_id' => 'integer',
         'media_vendor_id' => 'integer',
 
@@ -88,7 +90,7 @@ class CustomerProductAdditional extends Pivot
         'additional_price' => 'integer',
         'additional_price_usd' => 'integer',
         'additional_price_sgd' => 'integer',
-        
+
         'uuid' => 'string',
     ];
 

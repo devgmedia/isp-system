@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Division extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'division';
 
     protected $fillable = [

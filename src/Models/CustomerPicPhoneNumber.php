@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerPicPhoneNumber extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_pic_phone_number';
 
     protected $fillable = [

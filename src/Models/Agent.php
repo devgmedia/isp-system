@@ -2,12 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Agent extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'agent';
 
     protected $attributes = [

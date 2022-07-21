@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DistanceUnit extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'distance_unit';
 
     protected $fillable = [

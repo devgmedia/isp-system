@@ -2,12 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\User as UserModel;
+use Illuminate\Database\Eloquent\Model;
 
 class ItemMovementList extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'item_movement_list';
 
     protected $fillable = [
@@ -17,14 +18,13 @@ class ItemMovementList extends Model
         'item_id',
         'brand_id',
         'brand_product_id',
- 
+
         'from_condition_category_id',
- 
+
         'to_condition_category_id',
 
-
         'from_movement_category_id',
- 
+
         'to_movement_category_id',
 
         'from_ownership_bts_id',
@@ -54,7 +54,6 @@ class ItemMovementList extends Model
         'to_location_company_id',
         'to_location_customer_id',
         'to_location_employee_id',
-
 
         'created_at',
         'updated_at',
@@ -88,4 +87,3 @@ class ItemMovementList extends Model
         return $this->belongsTo(UserModel::class, 'created_by');
     }
 }
-

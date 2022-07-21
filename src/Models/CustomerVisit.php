@@ -2,16 +2,16 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-// models
 use App\Models\Branch;
+// models
 use App\Models\Customer;
 use App\Models\Employee;
+use Illuminate\Database\Eloquent\Model;
 
 class CustomerVisit extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_visit';
 
     protected $fillable = [
@@ -39,7 +39,7 @@ class CustomerVisit extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
-    
+
     public function branch()
     {
         return $this->belongsTo(Branch::class);

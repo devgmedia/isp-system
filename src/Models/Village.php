@@ -2,13 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 use App\Models\SubDistrict;
+use Illuminate\Database\Eloquent\Model;
 
 class Village extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'village';
 
     protected $fillable = [

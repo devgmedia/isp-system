@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Odc extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'odc';
 
     protected $fillable = [

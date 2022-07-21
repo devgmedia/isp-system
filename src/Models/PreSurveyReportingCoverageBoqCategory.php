@@ -7,21 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class PreSurveyReportingCoverageBoqCategory extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pre_survey_reporting_coverage_boq_category';
 
     protected $fillable = [
         // 'id',
-        'name',  
+        'name',
         'created_at',
-        'updated_at', 
+        'updated_at',
     ];
 
     protected $hidden = [];
 
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',  
+        'name' => 'string',
         'created_at' => 'datetime',
-        'updated_at' => 'datetime', 
+        'updated_at' => 'datetime',
     ];
 }

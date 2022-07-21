@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerProductIsolation extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_product_isolation';
 
     protected $fillable = [
@@ -26,8 +27,8 @@ class CustomerProductIsolation extends Model
         'id' => 'integer',
         'customer_product_id' => 'integer',
 
-        'start_date' => 'date:Y-m-d',        
-        'end_date' => 'date:Y-m-d',        
+        'start_date' => 'date:Y-m-d',
+        'end_date' => 'date:Y-m-d',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SpmBranchManagerApproval extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'spm_branch_manager_approval';
 
     protected $fillable = [

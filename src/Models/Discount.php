@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Discount extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'discount';
 
     protected $fillable = [
@@ -22,7 +23,7 @@ class Discount extends Model
         'maximum_use_per_invoice',
         'scheme_id',
         'type_id',
-        
+
         'created_at',
         'updated_at',
     ];
@@ -31,7 +32,7 @@ class Discount extends Model
 
     protected $casts = [
         'id' => 'integer',
-        
+
         'name' => 'string',
         'effective_date' => 'date:Y-m-d',
         'expired_date' => 'date:Y-m-d',

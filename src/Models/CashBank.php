@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CashBank extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'cash_bank';
 
     protected $fillable = [
@@ -20,7 +21,7 @@ class CashBank extends Model
         'chart_of_account_card_id',
         'created_at',
         'updated_at',
-        
+
         'is_cash',
         'is_petty_cash',
 
@@ -49,17 +50,17 @@ class CashBank extends Model
         'chart_of_account_card_id' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'is_cash' => 'boolean',
         'is_petty_cash' => 'boolean',
 
         'daily_cash_bank_report' => 'boolean',
-        
+
         'chart_of_account_title_id' => 'integer',
 
         'bank_id' => 'integer',
         'bank_branch' => 'string',
-        
+
         'erp1_id' => 'integer',
         'is_virtual_account' => 'boolean',
         'code' => 'string',

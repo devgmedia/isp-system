@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JournalCode extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'journal_code';
 
     protected $fillable = [
@@ -30,24 +31,24 @@ class JournalCode extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'branch_id' => 'integer',
         'chart_of_account_title_id' => 'integer',
 
         'type_id' => 'integer',
     ];
 
-    function type()
+    public function type()
     {
         return $this->belongsTo(JournalType::class);
     }
 
-    function branch()
+    public function branch()
     {
         return $this->belongsTo(Branch::class);
     }
 
-    function chart_of_account_title()
+    public function chart_of_account_title()
     {
         return $this->belongsTo(ChartOfAccountTitle::class);
     }

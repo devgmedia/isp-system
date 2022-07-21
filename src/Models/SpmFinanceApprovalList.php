@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class SpmFinanceApprovalList extends Pivot
 {
     public $incrementing = true;
+
     protected $connection = 'isp_system';
+
     protected $table = 'spm_finance_approval_list';
 
     protected $fillable = [

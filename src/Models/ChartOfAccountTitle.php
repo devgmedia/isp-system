@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ChartOfAccountTitle extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'chart_of_account_title';
 
     protected $attributes = [];
@@ -15,7 +16,7 @@ class ChartOfAccountTitle extends Model
         // 'id',
         'name',
         'branch_id',
-        
+
         'created_at',
         'updated_at',
 
@@ -47,7 +48,7 @@ class ChartOfAccountTitle extends Model
         return $this->belongsTo(Branch::class);
     }
 
-    function chart_of_accounts()
+    public function chart_of_accounts()
     {
         return $this->hasMany(ChartOfAccount::class);
     }

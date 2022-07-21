@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class CustomerProductDiscount extends Pivot
 {
     public $incrementing = true;
+
     protected $connection = 'isp_system';
+
     protected $table = 'customer_product_discount';
 
     protected $attributes = [];
@@ -23,7 +25,7 @@ class CustomerProductDiscount extends Pivot
 
         'created_at',
         'updated_at',
-        
+
         'discount_name',
         'discount_price',
         'discount_price_usd',
@@ -34,16 +36,16 @@ class CustomerProductDiscount extends Pivot
 
     protected $casts = [
         'id' => 'integer',
-        
+
         'customer_product_id' => 'integer',
         'product_discount_id' => 'integer',
-        
+
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'discount_name' => 'string',
         'discount_price' => 'integer',
         'discount_price_usd' => 'integer',

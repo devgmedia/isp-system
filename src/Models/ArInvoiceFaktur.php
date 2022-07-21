@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceFaktur extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_faktur';
 
     protected $fillable = [
@@ -22,7 +23,7 @@ class ArInvoiceFaktur extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'uuid' => 'string', 
+        'uuid' => 'string',
         'name' => 'string',
 
         'created_at' => 'datetime',

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'item';
 
     protected $fillable = [
@@ -57,7 +58,7 @@ class Item extends Model
 
         'pic',
         'auction',
-        'auction_price'
+        'auction_price',
     ];
 
     protected $hidden = [];

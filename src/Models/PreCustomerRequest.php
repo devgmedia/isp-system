@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class PreCustomerRequest extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pre_customer_request';
 
     protected $fillable = [
@@ -30,7 +31,7 @@ class PreCustomerRequest extends Model
         'submit_at',
         'sent_to_sales_at',
         'followed_up_by',
-        'followed_up_at',        
+        'followed_up_at',
         'branch_id',
 
         'created_at',
@@ -76,7 +77,7 @@ class PreCustomerRequest extends Model
 
         'latitude' => 'double',
         'longitude' => 'double',
-        
+
         'sent_to_sales_by' => 'integer',
         'brand_id' => 'integer',
 

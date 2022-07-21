@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class InstallationReportingCoverageBoqCategory extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'installation_reporting_coverage_boq_category';
 
     protected $fillable = [

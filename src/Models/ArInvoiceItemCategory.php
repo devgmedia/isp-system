@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceItemCategory extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_item_category';
 
     protected $fillable = [

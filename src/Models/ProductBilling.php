@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductBilling extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'product_billing';
 
     protected $fillable = [
@@ -23,7 +24,7 @@ class ProductBilling extends Model
 
         'created_at',
         'updated_at',
-        
+
         'cash_bank_id',
         'name',
         'address',
@@ -46,7 +47,7 @@ class ProductBilling extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'cash_bank_id' => 'integer',
         'name' => 'string',
         'address' => 'string',

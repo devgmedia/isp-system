@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class InstallationReportingCoverage extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'installation_reporting_coverage';
 
     protected $fillable = [
@@ -43,7 +44,7 @@ class InstallationReportingCoverage extends Model
         // 'id' => 'integer',
         'installation_reporting_id' => 'interger',
         'media_id' => 'interger',
-        'media_vendor_id'  => 'integer',
+        'media_vendor_id' => 'integer',
         'olt_id' => 'integer',
         'odp_id' => 'integer',
         'odp_distance' => 'integer',

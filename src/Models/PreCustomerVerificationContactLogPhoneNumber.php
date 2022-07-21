@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PreCustomerVerificationContactLogPhoneNumber extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pre_customer_verification_contact_log_phone_number';
 
     protected $fillable = [

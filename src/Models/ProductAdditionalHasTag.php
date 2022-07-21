@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductAdditionalHasTag extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'product_additional_has_tag';
 
     protected $fillable = [

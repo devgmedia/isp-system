@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Spm extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'spm';
 
     protected $fillable = [
@@ -141,7 +142,7 @@ class Spm extends Model
         'general_manager_approval_note' => 'string',
 
         'journal_project_id' => 'integer',
-        
+
         'remaining_payment' => 'double',
         'date' => 'date:Y-m-d',
         'memo' => 'boolean',
@@ -165,7 +166,7 @@ class Spm extends Model
     public function cash_bank()
     {
         return $this->belongsTo(CashBank::class);
-    } 
+    }
 
     public function receiver()
     {

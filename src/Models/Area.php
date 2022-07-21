@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Area extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'area';
 
     protected $fillable = [

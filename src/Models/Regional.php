@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Regional extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'regional';
 
     protected $fillable = [

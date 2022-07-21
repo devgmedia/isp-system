@@ -10,6 +10,7 @@ class Product extends Model
     use EagerLoadPivotTrait;
 
     protected $connection = 'isp_system';
+
     protected $table = 'product';
 
     protected $fillable = [

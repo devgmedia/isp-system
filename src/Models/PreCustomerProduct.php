@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class PreCustomerProduct extends Pivot
 {
     public $incrementing = true;
-    
+
     protected $connection = 'isp_system';
+
     protected $table = 'pre_customer_product';
 
     protected $fillable = [
@@ -27,7 +28,7 @@ class PreCustomerProduct extends Pivot
         'sales',
 
         'public_facility',
-        
+
         'tax',
         'product_name',
         'product_price',
@@ -40,7 +41,7 @@ class PreCustomerProduct extends Pivot
 
         'radius_username',
         'radius_password',
-        
+
         'sid',
     ];
 
@@ -60,9 +61,9 @@ class PreCustomerProduct extends Pivot
 
         'agent_id' => 'integer',
         'sales' => 'integer',
-        
+
         'public_facility' => 'boolean',
-        
+
         'tax' => 'boolean',
         'product_name' => 'string',
         'product_price' => 'integer',
@@ -75,7 +76,7 @@ class PreCustomerProduct extends Pivot
 
         'radius_username' => 'string',
         'radius_password' => 'string',
-        
+
         'sid' => 'string',
     ];
 

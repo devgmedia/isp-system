@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ItemOpname extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'item_opname';
 
     protected $fillable = [
@@ -30,7 +31,7 @@ class ItemOpname extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
- 
+
     public function item_types()
     {
         return $this->hasMany(Item::class, 'item_id');

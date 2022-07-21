@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class ItemCondition extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'item_condition';
 
     protected $fillable = [
         // 'id',
- 
+
         'name',
 
         'created_at',

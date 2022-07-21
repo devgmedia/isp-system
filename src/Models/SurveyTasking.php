@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SurveyTasking extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'survey_tasking';
 
     protected $fillable = [
@@ -23,9 +24,9 @@ class SurveyTasking extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'survey_request_id'  => 'integer',
-        'pre_customer_id'  => 'integer',
-        'branch_id'  => 'integer',
+        'survey_request_id' => 'integer',
+        'pre_customer_id' => 'integer',
+        'branch_id' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
@@ -39,5 +40,4 @@ class SurveyTasking extends Model
     {
         return $this->hasOne(PreCustomer::class);
     }
-
 }

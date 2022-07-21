@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SpmPaymentMethod extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'spm_payment_method';
 
     protected $fillable = [

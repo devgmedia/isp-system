@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceVabca extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_vabca';
 
     protected $fillable = [
@@ -22,7 +23,7 @@ class ArInvoiceVabca extends Model
 
         'paid_amount',
         'total_amount',
-        
+
         'transaction_date',
 
         'flag_advice',
@@ -41,7 +42,7 @@ class ArInvoiceVabca extends Model
     protected $casts = [
         'id' => 'integer',
         'ar_invoice_id' => 'string',
-        
+
         'company_code' => 'string',
         'customer_number' => 'string',
         'request_id' => 'string',
@@ -51,7 +52,7 @@ class ArInvoiceVabca extends Model
 
         'paid_amount' => 'double',
         'total_amount' => 'double',
-        
+
         'transaction_date' => 'datetime',
 
         'flag_advice' => 'string',

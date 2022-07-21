@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerDiscount extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_discount';
 
     protected $fillable = [
-        // 'id',        
+        // 'id',
 
         'customer_id',
         'discount_id',
@@ -40,11 +41,11 @@ class CustomerDiscount extends Model
     protected $hidden = [];
 
     protected $casts = [
-        'id' => 'integer',        
+        'id' => 'integer',
 
         'customer_id' => 'integer',
         'discount_id' => 'integer',
-        
+
         'start_date' => 'date:Y-m-d',
         'end_date' => 'date:Y-m-d',
 

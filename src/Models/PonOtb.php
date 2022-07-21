@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PonOtb extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pon_otb';
 
     protected $fillable = [

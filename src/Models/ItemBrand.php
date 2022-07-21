@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ItemBrand extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'item_brand';
 
     protected $fillable = [

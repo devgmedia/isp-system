@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class JournalArInvoice extends Pivot
 {
     public $incrementing = true;
+
     protected $connection = 'isp_system';
+
     protected $table = 'journal_ar_invoice';
 
     protected $fillable = [
@@ -25,22 +27,22 @@ class JournalArInvoice extends Pivot
         'id' => 'integer',
         'journal_id' => 'integer',
         'ar_invoice_id' => 'integer',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
 
-    function journal()
+    public function journal()
     {
         return $this->belongsTo(Journal::class);
     }
 
-    function ar_invoice()
+    public function ar_invoice()
     {
         return $this->belongsTo(ArInvoice::class);
     }
 
-    function journal_item()
+    public function journal_item()
     {
         return $this->hasOne(JournalItem::class, 'journal_ar_invoice_id');
     }

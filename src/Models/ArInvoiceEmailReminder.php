@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceEmailReminder extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_email_reminder';
 
     protected $fillable = [
         // 'id',
         'ar_invoice_id',
-        
+
         'sent_by',
 
         'created_at',

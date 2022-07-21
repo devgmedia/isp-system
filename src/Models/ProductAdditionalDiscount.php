@@ -2,14 +2,14 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-use App\Models\ProductAdditional;
 use App\Models\Discount;
+use App\Models\ProductAdditional;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductAdditionalDiscount extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'product_additional_discount';
 
     protected $fillable = [

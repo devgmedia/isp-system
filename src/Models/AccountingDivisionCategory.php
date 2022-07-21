@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AccountingDivisionCategory extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'accounting_division_category';
 
     protected $fillable = [
@@ -32,7 +33,7 @@ class AccountingDivisionCategory extends Model
         'name' => 'string',
         'branch_id' => 'integer',
         'chart_of_account_title_id' => 'integer',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 
@@ -41,12 +42,12 @@ class AccountingDivisionCategory extends Model
         'uuid',
     ];
 
-    function branch()
+    public function branch()
     {
         return $this->belongsTo(Branch::class);
     }
 
-    function chart_of_account_title()
+    public function chart_of_account_title()
     {
         return $this->belongsTo(ChartOfAccountTitle::class);
     }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Branch extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'branch';
 
     protected $fillable = [
@@ -37,19 +38,19 @@ class Branch extends Model
 
         'pr_finance_approval_email',
         'pr_finance_approval_name',
-        
+
         'pr_general_manager_approval_email',
         'pr_genaral_manager_approval_name',
-        
+
         'pr_director_approval_email',
         'pr_director_approval_name',
-        
+
         'po_finance_approval_email',
         'po_finance_approval_name',
-        
+
         'po_general_manager_approval_email',
         'po_general_manager_approval_name',
-        
+
         'po_director_approval_email',
         'po_director_approval_name',
 
@@ -72,7 +73,7 @@ class Branch extends Model
         'id' => 'integer',
         'name' => 'string',
         'code' => 'string',
-        
+
         'latitude' => 'double',
         'longitude' => 'double',
         'timezone' => 'datetime',
@@ -96,19 +97,19 @@ class Branch extends Model
 
         'pr_finance_approval_email' => 'string',
         'pr_finance_approval_name' => 'string',
-        
+
         'pr_general_manager_approval_email' => 'string',
         'pr_genaral_manager_approval_name' => 'string',
-        
+
         'pr_director_approval_email' => 'string',
         'pr_director_approval_name' => 'string',
-        
+
         'po_finance_approval_email' => 'string',
         'po_finance_approval_name' => 'string',
-        
+
         'po_general_manager_approval_email' => 'string',
         'po_general_manager_approval_name' => 'string',
-        
+
         'po_director_approval_email' => 'string',
         'po_director_approval_name' => 'string',
 

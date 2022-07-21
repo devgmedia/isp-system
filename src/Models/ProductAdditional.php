@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductAdditional extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'product_additional';
 
     protected $fillable = [
@@ -31,7 +32,7 @@ class ProductAdditional extends Model
         'price_can_be_adjusted',
         'quantity_can_be_adjusted',
 
-        'uuid',        
+        'uuid',
         'ar_invoice_item_category_id',
 
         'disable_service_date',
@@ -55,13 +56,13 @@ class ProductAdditional extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'bandwidth_type_id' => 'integer',
 
         'price_can_be_adjusted' => 'boolean',
         'quantity_can_be_adjusted' => 'boolean',
 
-        'uuid' => 'string',        
+        'uuid' => 'string',
         'ar_invoice_item_category_id' => 'integer',
 
         'disable_service_date' => 'boolean',

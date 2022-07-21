@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Supplier extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'supplier';
 
     protected $fillable = [
@@ -16,7 +17,7 @@ class Supplier extends Model
 
         'created_by',
         'verified_by',
-        
+
         'branch_id',
 
         'created_at',
@@ -59,7 +60,7 @@ class Supplier extends Model
 
         'npwp' => 'string',
 
-        'warehouse_property' => 'boolean', 
+        'warehouse_property' => 'boolean',
     ];
 
     public function setNameAttribute($value)

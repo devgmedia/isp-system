@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerPhoneNumber extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_phone_number';
 
     protected $fillable = [
@@ -46,7 +47,7 @@ class CustomerPhoneNumber extends Model
 
         'whatsapp' => 'boolean',
         'telegram' => 'boolean',
-        
+
         'home' => 'boolean',
         'office' => 'boolean',
         'personal' => 'boolean',
@@ -57,7 +58,7 @@ class CustomerPhoneNumber extends Model
 
         'whatsapp_verified' => 'boolean',
         'whatsapp_verified_at' => 'datetime',
-        
+
         'whatsapp_verification_sent_at' => 'datetime',
     ];
 

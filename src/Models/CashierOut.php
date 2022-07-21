@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CashierOut extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'cashier_out';
 
     protected $fillable = [
@@ -64,7 +65,7 @@ class CashierOut extends Model
         'accounting_division_category_id' => 'integer',
 
         'chart_of_account_title_id' => 'integer',
-        
+
         'memo_spm_id' => 'integer',
         'memo' => 'boolean',
     ];

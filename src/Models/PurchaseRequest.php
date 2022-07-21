@@ -2,19 +2,19 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-use App\User as UserModel;
 use App\Models\Branch as BranchModel;
-use App\Models\Supplier as SupplierModel;
+use App\Models\Department as DepartmentModel;
+use App\Models\Division as DivisionModel;
 use App\Models\PurchaseRequestItem as PurchaseRequestItemModel;
 use App\Models\SubDepartment as SubDepartmentModel;
-use App\Models\Division as DivisionModel;
-use App\Models\Department as DepartmentModel;
+use App\Models\Supplier as SupplierModel;
+use App\User as UserModel;
+use Illuminate\Database\Eloquent\Model;
 
 class PurchaseRequest extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'purchase_request';
 
     protected $fillable = [
@@ -38,12 +38,12 @@ class PurchaseRequest extends Model
         'director_approved_name',
         'director_approved_date',
         'total',
-        'branch_id', 
+        'branch_id',
         'created_at',
         'updated_at',
-        
+
         'supplier_id',
-        'currency_id', 
+        'currency_id',
         'payment_method_id',
         'shipping_address_id',
         'shipping_estimates',
@@ -54,7 +54,7 @@ class PurchaseRequest extends Model
         'offer_document',
         'diskon',
         'ppn',
- 
+
         'division_id',
         'created_name',
         'approval_token',
@@ -74,8 +74,8 @@ class PurchaseRequest extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'name'  => 'string',
-        'number'    => 'string',
+        'name' => 'string',
+        'number' => 'string',
         'date' => 'date',
         'about' => 'string',
         'created_by' => 'integer',

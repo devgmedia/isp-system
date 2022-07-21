@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class EmployeeBankAccount extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'employee_bank_account';
 
     protected $fillable = [
@@ -15,7 +16,7 @@ class EmployeeBankAccount extends Model
         'number',
         'on_behalf_of',
         'employee_id',
-        
+
         'created_at',
         'updated_at',
     ];

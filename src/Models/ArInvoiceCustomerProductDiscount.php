@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceCustomerProductDiscount extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_customer_product_discount';
 
     protected $fillable = [
         // 'id',
         'ar_invoice_customer_product_id',
         'customer_product_discount_id',
-        
+
         'created_at',
         'updated_at',
 
@@ -32,10 +33,10 @@ class ArInvoiceCustomerProductDiscount extends Model
         'id' => 'integer',
         'ar_invoice_customer_product_id' => 'integer',
         'customer_product_discount_id' => 'integer',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'customer_product_discount_name' => 'string',
 
         'total' => 'double',

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TrialTaskingAssignee extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'trial_tasking_assignee';
 
     protected $fillable = [
@@ -23,9 +24,9 @@ class TrialTaskingAssignee extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'trial_tasking_id'  => 'integer',
-        'assignor'  => 'integer',
-        'assignee'  => 'integer',
+        'trial_tasking_id' => 'integer',
+        'assignor' => 'integer',
+        'assignee' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 

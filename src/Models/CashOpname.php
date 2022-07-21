@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CashOpname extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'cash_opname';
 
     protected $fillable = [

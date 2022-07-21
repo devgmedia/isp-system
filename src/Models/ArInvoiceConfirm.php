@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceConfirm extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_confirm';
 
     protected $fillable = [
         // 'id',
         'ar_invoice_id',
-        
+
         'message',
         'submit_by',
 

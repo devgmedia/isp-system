@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'permissions';
 
     protected $fillable = [

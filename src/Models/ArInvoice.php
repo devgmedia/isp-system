@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoice extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice';
 
     protected $attributes = [
@@ -63,7 +64,7 @@ class ArInvoice extends Model
 
         'discount_usd' => 0,
         'discount_sgd' => 0,
-        
+
         'settlement_invoice' => 0,
         'settlement_admin' => 0,
         'settlement_down_payment' => 0,
@@ -96,7 +97,7 @@ class ArInvoice extends Model
         'payer_village_id',
         'payer_village_name',
         'payer_address',
-        
+
         'created_at',
         'updated_at',
 
@@ -170,7 +171,7 @@ class ArInvoice extends Model
         'whatsapp_sent_at',
         'reminder_whatsapp_sent',
         'reminder_whatsapp_sent_at',
-        
+
         'created_by_cron',
         'ignore_tax',
         'ignore_prorated',
@@ -183,7 +184,7 @@ class ArInvoice extends Model
         'postpaid',
 
         'chart_of_account_title_id',
-        
+
         'product_id',
         'agent_id',
         'billing_end_date',
@@ -206,16 +207,16 @@ class ArInvoice extends Model
         'tax_base_device',
         'tax_base_other',
         'tax_base_application',
-        
+
         'period_start_date',
         'period_end_date',
-        
+
         'tax_base_usd',
         'tax_base_sgd',
-        
+
         'tax_usd',
         'tax_sgd',
-        
+
         'total_usd',
         'total_sgd',
 
@@ -227,7 +228,7 @@ class ArInvoice extends Model
         'is_printed',
 
         'brand_type_name',
-        
+
         'discount_usd',
         'discount_sgd',
 
@@ -240,7 +241,7 @@ class ArInvoice extends Model
         'billing_preparer',
 
         'receiver_attention',
-        
+
         'service',
 
         'settlement_invoice',
@@ -337,7 +338,7 @@ class ArInvoice extends Model
         'paid_at' => 'datetime',
         'email_sent_at' => 'datetime',
         'payment_date' => 'date:Y-m-d',
-        
+
         'previous_date' => 'date:Y-m-d',
 
         'billing_date' => 'date:Y-m-d',
@@ -382,7 +383,7 @@ class ArInvoice extends Model
         'postpaid' => 'boolean',
 
         'chart_of_account_title_id' => 'integer',
-        
+
         'product_id' => 'integer',
         'agent_id' => 'integer',
         'billing_end_date' => 'date:Y-m-d',
@@ -408,22 +409,22 @@ class ArInvoice extends Model
 
         'period_start_date' => 'date:Y-m-d',
         'period_end_date' => 'date:Y-m-d',
-        
+
         'tax_base_usd' => 'double',
         'tax_base_sgd' => 'double',
-        
+
         'tax_usd' => 'double',
         'tax_sgd' => 'double',
-        
+
         'total_usd' => 'double',
-        'total_sgd' => 'double',   
+        'total_sgd' => 'double',
 
         'payer_category_id' => 'integer',
         'memo_to' => 'integer',
 
         'is_tax' => 'boolean',
         'is_edited' => 'boolean',
-        'is_printed' => 'boolean',     
+        'is_printed' => 'boolean',
 
         'brand_type_name' => 'string',
 
@@ -439,7 +440,7 @@ class ArInvoice extends Model
         'billing_preparer' => 'string',
 
         'receiver_attention' => 'string',
-        
+
         'service' => 'integer',
 
         'settlement_invoice' => 'double',

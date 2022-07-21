@@ -2,20 +2,21 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\User as UserModel;
-use App\Models\Supplier as SupplierModel;
 use App\Models\Branch as BranchModel;
 use App\Models\PurchaseOrderItem as PurchaseOrderItemModel;
 use App\Models\PurchaseOrderItemBoq as PurchaseOrderItemBoqModel;
 use App\Models\PurchaseOrderItemRab as PurchaseOrderItemRabModel;
+use App\Models\Supplier as SupplierModel;
+use App\User as UserModel;
+use Illuminate\Database\Eloquent\Model;
 
 class PurchaseOrder extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'purchase_order';
 
-    protected $fillable = [ 
+    protected $fillable = [
         'number',
         'date',
         'about',
@@ -28,7 +29,7 @@ class PurchaseOrder extends Model
         'director_approved_by',
         'director_approved_name',
         'director_approved_date',
-        'total', 
+        'total',
         'branch_id',
         'created_at',
         'updated_at',
@@ -41,7 +42,7 @@ class PurchaseOrder extends Model
         'director_approval_request_date',
         'term_of_payment_date',
         'shipping_estimates',
-        'currency_id', 
+        'currency_id',
         'diskon',
         'ppn',
         'payment_method_id',
@@ -51,15 +52,15 @@ class PurchaseOrder extends Model
         'term_of_payment_description',
         'offer_document',
         'purchase_request_id',
-        'uuid', 
+        'uuid',
         'accounting_division_category_id',
-        'journal_project_id', 
+        'journal_project_id',
         'dp',
         'pelunasan',
     ];
 
     protected $hidden = [];
-  
+
     public function branch()
     {
         return $this->belongsTo(BranchModel::class);
@@ -93,11 +94,10 @@ class PurchaseOrder extends Model
     public function purchase_order_item_boq()
     {
         return $this->hasMany(PurchaseOrderItemBoqModel::class);
-    } 
+    }
 
     public function purchase_order_item_rab()
     {
         return $this->hasMany(PurchaseOrderItemRabModel::class);
-    } 
-
+    }
 }

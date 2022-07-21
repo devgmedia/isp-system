@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Journal extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'journal';
 
     protected $attributes = [
@@ -24,7 +25,7 @@ class Journal extends Model
 
         'created_at',
         'updated_at',
-        
+
         'branch_id',
         'posted',
         'posted_at',
@@ -74,7 +75,7 @@ class Journal extends Model
         'submit_at' => 'datetime',
         'submit_by' => 'integer',
         'accounting_division_category_id' => 'integer',
-        
+
         'ar_invoice_id' => 'integer',
         'ap_invoice_id' => 'integer',
         'cashier_in_id' => 'integer',
@@ -85,72 +86,72 @@ class Journal extends Model
         'default_on_pra_gl_ar' => 'boolean',
     ];
 
-    function type()
+    public function type()
     {
         return $this->belongsTo(JournalType::class);
     }
 
-    function branch()
+    public function branch()
     {
         return $this->belongsTo(Branch::class);
     }
 
-    function code()
+    public function code()
     {
         return $this->belongsTo(JournalCode::class);
     }
 
-    function menu()
+    public function menu()
     {
         return $this->belongsTo(AccountingMenu::class);
     }
 
-    function project()
+    public function project()
     {
         return $this->belongsTo(JournalProject::class);
     }
 
-    function accounting_division_category()
+    public function accounting_division_category()
     {
         return $this->belongsTo(AccountingDivisionCategory::class);
     }
 
-    function items()
+    public function items()
     {
         return $this->hasMany(JournalItem::class);
     }
 
-    function posted_by_ref()
+    public function posted_by_ref()
     {
         return $this->belongsTo(Employee::class, 'posted_by');
     }
 
-    function submit_by_ref()
+    public function submit_by_ref()
     {
         return $this->belongsTo(Employee::class, 'submit_by');
     }
 
-    function ar_invoice()
+    public function ar_invoice()
     {
         return $this->belongsTo(ArInvoice::class);
     }
 
-    function ap_invoice()
+    public function ap_invoice()
     {
         return $this->belongsTo(ApInvoice::class);
     }
 
-    function cashier_in()
+    public function cashier_in()
     {
         return $this->belongsTo(CashierIn::class);
     }
 
-    function cashier_out()
+    public function cashier_out()
     {
         return $this->belongsTo(CashierOut::class);
     }
 
-    function journal_ar_invoices()
+    public function journal_ar_invoices()
     {
         return $this->hasMany(JournalArInvoice::class);
     }
@@ -160,7 +161,7 @@ class Journal extends Model
         return $this->belongsToMany(ArInvoice::class, JournalArInvoice::class)->withPivot('id');
     }
 
-    function journal_ap_invoices()
+    public function journal_ap_invoices()
     {
         return $this->hasMany(JournalApInvoice::class);
     }
@@ -170,7 +171,7 @@ class Journal extends Model
         return $this->belongsToMany(ApInvoice::class, JournalApInvoice::class)->withPivot('id');
     }
 
-    function journal_cashier_ins()
+    public function journal_cashier_ins()
     {
         return $this->hasMany(JournalCashierIn::class);
     }
@@ -180,7 +181,7 @@ class Journal extends Model
         return $this->belongsToMany(CashierIn::class, JournalCashierIn::class)->withPivot('id');
     }
 
-    function journal_cashier_outs()
+    public function journal_cashier_outs()
     {
         return $this->hasMany(JournalCashierOut::class);
     }
@@ -190,7 +191,7 @@ class Journal extends Model
         return $this->belongsToMany(CashierOut::class, JournalCashierOut::class)->withPivot('id');
     }
 
-    function chart_of_account_title()
+    public function chart_of_account_title()
     {
         return $this->belongsTo(ChartOfAccountTitle::class);
     }

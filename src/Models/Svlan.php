@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Svlan extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'svlan';
 
     protected $fillable = [

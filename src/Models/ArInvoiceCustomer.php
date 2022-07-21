@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceCustomer extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_customer';
 
     protected $fillable = [
@@ -16,7 +17,7 @@ class ArInvoiceCustomer extends Model
 
         'created_at',
         'updated_at',
-        
+
         'ar_invoice_scheme_customer_id',
         'customer_cid',
         'customer_name',
@@ -41,7 +42,7 @@ class ArInvoiceCustomer extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 
-        'ar_invoice_scheme_customer_id' =>  'integer',
+        'ar_invoice_scheme_customer_id' => 'integer',
         'customer_cid' => 'string',
         'customer_name' => 'string',
         'customer_province_id' => 'integer',

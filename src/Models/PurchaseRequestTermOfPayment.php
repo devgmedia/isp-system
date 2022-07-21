@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PurchaseRequestTermOfPayment extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'purchase_request_term_of_payment';
 
     protected $fillable = [

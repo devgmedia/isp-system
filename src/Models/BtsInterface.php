@@ -2,15 +2,14 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
-use App\Models\BandwidthUnit;
 use App\Models\BandwidthType;
+use App\Models\BandwidthUnit;
+use Illuminate\Database\Eloquent\Model;
 
 class BtsInterface extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'bts_interface';
 
     protected $fillable = [
@@ -18,7 +17,7 @@ class BtsInterface extends Model
         'bandwidth',
         'bandwidth_unit_id',
         'bandwidth_type_id',
-        
+
     ];
 
     protected $casts = [

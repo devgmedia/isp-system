@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceProduct extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'service_product';
 
     protected $fillable = [

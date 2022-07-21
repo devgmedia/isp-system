@@ -30,5 +30,8 @@
         "illuminate/support": "^6.0||^7.0||^8.0",
         "illuminate/database": "^6.0||^7.0||^8.0",
         "ajcastro/eager-load-pivot-relations": "^0.2.2"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0"
     }
 }

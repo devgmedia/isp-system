@@ -2,14 +2,14 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-use App\Models\EmployeePhoneNumberType;
 use App\Models\Employee;
+use App\Models\EmployeePhoneNumberType;
+use Illuminate\Database\Eloquent\Model;
 
 class EmployeePhoneNumber extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'employee_phone_number';
 
     protected $fillable = [
@@ -29,7 +29,7 @@ class EmployeePhoneNumber extends Model
         'number' => 'string',
         'type_id' => 'integer',
         'employee_id' => 'integer',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

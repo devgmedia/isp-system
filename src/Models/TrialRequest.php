@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TrialRequest extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'trial_request';
 
     protected $fillable = [

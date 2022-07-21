@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SupplierPicPhoneNumber extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'supplier_pic_phone_number';
 
     protected $fillable = [
@@ -23,7 +24,7 @@ class SupplierPicPhoneNumber extends Model
     protected $casts = [
         'id' => 'integer',
         'number' => 'string',
-        'supplier_pic_id'   => 'integer',
+        'supplier_pic_id' => 'integer',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

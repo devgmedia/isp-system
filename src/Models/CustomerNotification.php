@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerNotification extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_notification';
 
     protected $fillable = [
@@ -27,7 +28,7 @@ class CustomerNotification extends Model
 
     protected $casts = [
         'id' => 'integer',
-        
+
         'title' => 'string',
         'message' => 'string',
         'date' => 'datetime',

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SurveyTaskingAssignee extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'survey_tasking_assignee';
 
     protected $fillable = [
@@ -23,9 +24,9 @@ class SurveyTaskingAssignee extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'survey_tasking_id'  => 'integer',
-        'assignor'  => 'integer',
-        'assignee'  => 'integer',
+        'survey_tasking_id' => 'integer',
+        'assignor' => 'integer',
+        'assignee' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 

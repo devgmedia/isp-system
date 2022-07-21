@@ -2,13 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
- 
 use App\Models\Village;
+use Illuminate\Database\Eloquent\Model;
 
 class Hamlet extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'hamlet';
 
     protected $fillable = [
@@ -16,7 +16,7 @@ class Hamlet extends Model
         'name',
         'province_id',
         'district_id',
-        'sub_district_id', 
+        'sub_district_id',
         'village_id',
 
         'created_at',
@@ -40,5 +40,5 @@ class Hamlet extends Model
     public function village()
     {
         return $this->belongsTo(Village::class);
-    } 
+    }
 }

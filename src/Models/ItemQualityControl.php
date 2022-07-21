@@ -7,16 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class ItemQualityControl extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'item_quality_control';
 
     protected $fillable = [
         // 'id',
- 
+
         'name',
-        'status', 
+        'status',
         'item_id',
         'created_at',
-        'updated_at', 
+        'updated_at',
     ];
 
     protected $hidden = [];
@@ -24,10 +25,10 @@ class ItemQualityControl extends Model
     protected $casts = [
         // 'id' => 'integer',
 
-        'name' => 'string', 
-        'status' => 'boolean', 
+        'name' => 'string',
+        'status' => 'boolean',
         'item_id' => 'integer',
         'created_at' => 'datetime',
-        'updated_at' => 'datetime', 
-    ]; 
+        'updated_at' => 'datetime',
+    ];
 }

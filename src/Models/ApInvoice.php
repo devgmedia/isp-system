@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ApInvoice extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ap_invoice';
 
     protected $attributes = [
@@ -34,7 +35,7 @@ class ApInvoice extends Model
 
         'created_at',
         'updated_at',
-        
+
         'uuid',
         'purchase_request_number',
         'pph_pasal_21',
@@ -102,14 +103,14 @@ class ApInvoice extends Model
         'memo' => 'boolean',
         'price' => 'double',
         'total_without_pph' => 'double',
-        
+
         'pph_pasal_26' => 'double',
 
         'accounting_division_category_id' => 'integer',
         'journal_project_id' => 'integer',
 
         'memo_ar_invoice_id' => 'integer',
-        
+
         'faktur_file' => 'string',
     ];
 

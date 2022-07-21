@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class SurveyReporting extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'survey_reporting';
 
     protected $fillable = [
         // 'id',
-        'uuid', 
+        'uuid',
         'survey_tasking_id',
         'pre_customer_id',
         'created_at',
@@ -25,10 +26,10 @@ class SurveyReporting extends Model
     protected $hidden = [];
 
     protected $casts = [
-        'id' => 'integer', 
+        'id' => 'integer',
         'survey_tasking_id' => 'interger',
-        'pre_customer_id' => 'integer', 
-        'branch_id' => 'integer', 
+        'pre_customer_id' => 'integer',
+        'branch_id' => 'integer',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 

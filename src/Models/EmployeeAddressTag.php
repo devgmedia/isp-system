@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class EmployeeAddressTag extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'employee_address_tag';
 
     protected $fillable = [

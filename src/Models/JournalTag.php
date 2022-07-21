@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JournalTag extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'journal_tag';
 
     protected $fillable = [
@@ -28,17 +29,17 @@ class JournalTag extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'branch_id' => 'integer',
         'chart_of_account_title_id' => 'integer',
     ];
 
-    function branch()
+    public function branch()
     {
         return $this->belongsTo(Branch::class);
     }
 
-    function chart_of_account_title()
+    public function chart_of_account_title()
     {
         return $this->belongsTo(ChartOfAccountTitle::class);
     }

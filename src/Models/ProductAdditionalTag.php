@@ -2,13 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 use App\Models\ProductAdditional;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductAdditionalTag extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'product_additional_tag';
 
     protected $fillable = [

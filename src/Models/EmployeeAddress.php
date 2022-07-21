@@ -2,14 +2,14 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 use App\Models\Employee;
 use App\Models\EmployeeAddressTag;
+use Illuminate\Database\Eloquent\Model;
 
 class EmployeeAddress extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'employee_address';
 
     protected $fillable = [
@@ -27,7 +27,7 @@ class EmployeeAddress extends Model
         'id' => 'integer',
         'name' => 'string',
         'employee_id' => 'integer',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

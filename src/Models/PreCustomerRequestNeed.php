@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PreCustomerRequestNeed extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pre_customer_request_need';
 
     protected $fillable = [

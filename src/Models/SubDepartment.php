@@ -2,13 +2,14 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Department;
 use App\Models\Branch;
+use App\Models\Department;
+use Illuminate\Database\Eloquent\Model;
 
 class SubDepartment extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'sub_department';
 
     protected $fillable = [
@@ -30,7 +31,7 @@ class SubDepartment extends Model
         'id' => 'integer',
         'name' => 'string',
         'department_id' => 'integer',
-        
+
         'branch_id' => 'integer',
         'regional_id' => 'integer',
         'company_id' => 'integer',

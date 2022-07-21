@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MidtransNotification extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'midtrans_notification';
 
     protected $fillable = [
@@ -25,7 +26,7 @@ class MidtransNotification extends Model
 
     protected $casts = [
         'id' => 'integer',
-        
+
         'order_id' => 'string',
         'transaction_status' => 'string',
         'payment_type' => 'string',

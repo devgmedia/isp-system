@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AgentArea extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'agent_area';
 
     protected $fillable = [
@@ -20,7 +21,7 @@ class AgentArea extends Model
 
         'postal_code',
         'branch_id',
-        
+
         'created_at',
         'updated_at',
 
@@ -38,9 +39,9 @@ class AgentArea extends Model
         'sub_district_id' => 'integer',
         'village_id' => 'integer',
 
-        'postal_code' => 'string',        
+        'postal_code' => 'string',
         'branch_id' => 'integer',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 

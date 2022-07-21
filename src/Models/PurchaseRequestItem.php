@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class PurchaseRequestItem extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'purchase_request_item';
 
     protected $fillable = [
         // 'id',
         'purchase_request_id',
         'item_brand_id',
-        'item_brand_product_id', 
+        'item_brand_product_id',
         'price',
         'quantity',
         'total',
@@ -24,13 +25,13 @@ class PurchaseRequestItem extends Model
         'item_name',
         'item_brand_name',
         'item_brand_product_name',
-        'unit_id', 
+        'unit_id',
         'source_id',
         'number',
         'customer_name',
         'customer_id',
         'category_id',
-        
+
         'item_type_id',
         'pcs_quantity',
         'pcs_unit_id',

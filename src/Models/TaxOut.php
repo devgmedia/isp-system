@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TaxOut extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'tax_out';
 
     protected $attributes = [
@@ -52,7 +53,7 @@ class TaxOut extends Model
         'uuid' => 'string',
 
         'ar_invoice_id' => 'integer',
-        
+
         'branch_id' => 'integer',
         'chart_of_account_title_id' => 'integer',
 

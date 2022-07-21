@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentMethodCategory extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'payment_method_category';
 
     protected $fillable = [

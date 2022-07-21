@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JournalItem extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'journal_item';
 
     protected $attributes = [
@@ -46,7 +47,7 @@ class JournalItem extends Model
         'updated_at' => 'datetime',
         'name' => 'string',
         'chart_of_account_card_id' => 'integer',
-        
+
         'locked_by_journal' => 'boolean',
         'locked_by_journal_relation' => 'boolean',
 
@@ -56,37 +57,37 @@ class JournalItem extends Model
         'journal_cashier_out_id' => 'integer',
     ];
 
-    function journal()
+    public function journal()
     {
         return $this->belongsTo(Journal::class);
-    } 
+    }
 
-    function chart_of_account()
+    public function chart_of_account()
     {
         return $this->belongsTo(ChartOfAccount::class);
     }
 
-    function chart_of_account_card()
+    public function chart_of_account_card()
     {
         return $this->belongsTo(ChartOfAccountCard::class);
     }
 
-    function journal_ar_invoice()
+    public function journal_ar_invoice()
     {
         return $this->belongsTo(JournalArInvoice::class);
     }
 
-    function journal_ap_invoice()
+    public function journal_ap_invoice()
     {
         return $this->belongsTo(JournalApInvoice::class);
     }
 
-    function journal_cashier_in()
+    public function journal_cashier_in()
     {
         return $this->belongsTo(JournalCashierIn::class);
     }
 
-    function journal_cashier_out()
+    public function journal_cashier_out()
     {
         return $this->belongsTo(JournalCashierOut::class);
     }

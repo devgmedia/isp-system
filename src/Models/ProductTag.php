@@ -2,18 +2,19 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductTag extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'product_tag';
 
     protected $fillable = [
         // 'id',
         'name',
-        
+
         'created_at',
         'updated_at',
     ];

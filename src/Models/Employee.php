@@ -2,17 +2,18 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'employee';
 
     protected $fillable = [
         // 'id',
-        
+
         'uuid',
         'name',
         'number',
@@ -39,12 +40,12 @@ class Employee extends Model
         'hired_date',
         'fired_date',
         'npwp',
-        
+
         'user_id',
 
         'created_at',
         'updated_at',
-        
+
         'preferred_brand',
 
         'retail_sales',
@@ -85,12 +86,12 @@ class Employee extends Model
         'npwp' => 'string',
 
         'user_id' => 'integer',
-        
+
         'created_at' => 'datetime',
-        'updated_at' => 'datetime',     
-        
-        'preferred_brand' => 'integer',   
-        
+        'updated_at' => 'datetime',
+
+        'preferred_brand' => 'integer',
+
         'retail_sales' => 'boolean',
         'enterprise_sales' => 'boolean',
         'retail_technical' => 'boolean',

@@ -2,12 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\Models\ItemMovementList;
+use Illuminate\Database\Eloquent\Model;
 
 class ItemMovement extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'item_movement';
 
     protected $fillable = [
@@ -41,7 +42,7 @@ class ItemMovement extends Model
 
     public function movement_list()
     {
-        return $this->hasMany(ItemMovementList::class,'movement_id');
+        return $this->hasMany(ItemMovementList::class, 'movement_id');
     }
 
     // public function item()

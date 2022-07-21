@@ -2,16 +2,16 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 use App\Models\Branch;
 use App\Models\BtsContract;
-use App\Models\BtsItem;
 use App\Models\BtsInterface;
+use App\Models\BtsItem;
+use Illuminate\Database\Eloquent\Model;
 
 class Bts extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'bts';
 
     protected $fillable = [
@@ -65,5 +65,4 @@ class Bts extends Model
     {
         return $this->hasMany(BtsInterface::class);
     }
-
 }

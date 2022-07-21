@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class PurchaseOrderItemCategory extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'purchase_order_item_category';
 
     protected $fillable = [
         // 'id',
-        'name', 
+        'name',
         'created_at',
         'updated_at',
     ];
@@ -24,7 +25,7 @@ class PurchaseOrderItemCategory extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
-    
+
     public function purchase_order()
     {
         return $this->belongsTo('App\Models\PurchaseOrder');

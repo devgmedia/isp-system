@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class InstallationTasking extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'installation_tasking';
 
     protected $fillable = [
@@ -42,5 +43,4 @@ class InstallationTasking extends Model
     {
         return $this->belongsTo(InstallationRequest::class);
     }
-
 }

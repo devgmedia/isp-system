@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceCustomerProductAdditional extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_customer_product_additional';
 
     protected $attributes = [
@@ -48,7 +49,7 @@ class ArInvoiceCustomerProductAdditional extends Model
         'ar_invoice_customer_id',
 
         'billing_date',
-        
+
         'ar_invoice_item_category_id',
 
         'total_usd',
@@ -91,7 +92,7 @@ class ArInvoiceCustomerProductAdditional extends Model
         'ar_invoice_customer_id' => 'integer',
 
         'billing_date' => 'date:Y-m-d',
-        
+
         'ar_invoice_item_category_id' => 'integer',
 
         'total_usd' => 'double',

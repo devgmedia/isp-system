@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'company';
 
     protected $fillable = [

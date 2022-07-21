@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class SupplierPic extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'supplier_pic';
 
     protected $fillable = [
         // 'id',
         'name',
         'supplier_id',
-        
+
         'created_at',
         'updated_at',
     ];

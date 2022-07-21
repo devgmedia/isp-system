@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AgentBankAccount extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'agent_bank_account';
 
     protected $fillable = [
@@ -15,7 +16,7 @@ class AgentBankAccount extends Model
         'number',
         'on_behalf_of',
         'agent_id',
-        
+
         'created_at',
         'updated_at',
 
@@ -33,7 +34,7 @@ class AgentBankAccount extends Model
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-        
+
         'note' => 'string',
     ];
 

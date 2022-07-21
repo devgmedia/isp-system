@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class EmployeePhoneNumberType extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'employee_phone_number_type';
 
     protected $fillable = [

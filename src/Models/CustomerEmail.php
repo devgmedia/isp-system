@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerEmail extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_email';
 
     protected $fillable = [
@@ -39,7 +40,7 @@ class CustomerEmail extends Model
 
         'verified' => 'boolean',
         'verified_at' => 'datetime',
-        
+
         'verification_email_sent_at' => 'datetime',
     ];
 

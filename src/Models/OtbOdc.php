@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OtbOdc extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'otb_odc';
 
     protected $fillable = [

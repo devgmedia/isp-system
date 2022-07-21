@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductRouter extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'product_router';
 
     protected $fillable = [

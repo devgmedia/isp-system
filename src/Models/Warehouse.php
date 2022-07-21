@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Warehouse extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'warehouse';
 
     protected $fillable = [
@@ -39,7 +40,7 @@ class Warehouse extends Model
 
         'date' => 'date',
         'time' => 'time',
- 
+
         'category_id' => 'integer',
         'district_id' => 'integer',
         'sub_district_id' => 'integer',
@@ -52,7 +53,7 @@ class Warehouse extends Model
         'company_id' => 'integer',
         'customer_id' => 'integer',
         'employee_id' => 'integer',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];

@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class PreCustomerPhoneNumber extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'pre_customer_phone_number';
 
     protected $fillable = [
         // 'id',
         'number',
         'pre_customer_id',
-        
+
         'whatsapp',
         'telegram',
         'home',

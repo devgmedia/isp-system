@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceSettlement extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_settlement';
 
     protected $fillable = [
@@ -20,7 +21,7 @@ class ArInvoiceSettlement extends Model
 
         'chart_of_account_title_id',
 
-        'date',        
+        'date',
         'memo',
         'memo_confirm',
 
@@ -63,7 +64,7 @@ class ArInvoiceSettlement extends Model
     protected $casts = [
         'id' => 'integer',
         'uuid' => 'string',
-        
+
         'branch_id' => 'integer',
 
         'created_at' => 'datetime',

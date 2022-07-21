@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BandwidthType extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'bandwidth_type';
 
     protected $fillable = [

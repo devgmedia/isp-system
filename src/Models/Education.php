@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Education extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'education';
 
     protected $fillable = [

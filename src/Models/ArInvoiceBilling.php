@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class ArInvoiceBilling extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'ar_invoice_billing';
 
     protected $fillable = [
         // 'id',
         'ar_invoice_id',
         'cash_bank_id',
-        
+
         'bank_name',
         'bank_branch',
         'on_behalf_of',

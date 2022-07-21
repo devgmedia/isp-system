@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerProductInstallationItem extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_product_installation_item';
 
     protected $fillable = [
@@ -28,20 +29,20 @@ class CustomerProductInstallationItem extends Model
     protected $casts = [
         'id' => 'integer',
 
-        'uuid'=> 'string',
-        'customer_product_id'=> 'integer',
-        'item_id'=> 'integer',
-        'item_status'=> 'string',
-        'photo_restore'=> 'string',
-        'message'=> 'string',
+        'uuid' => 'string',
+        'customer_product_id' => 'integer',
+        'item_id' => 'integer',
+        'item_status' => 'string',
+        'photo_restore' => 'string',
+        'message' => 'string',
     ];
 
-    function item()
+    public function item()
     {
         return $this->belongsTo(Item::class);
     }
 
-    function customer_product()
+    public function customer_product()
     {
         return $this->belongsTo(CustomerProduct::class);
     }

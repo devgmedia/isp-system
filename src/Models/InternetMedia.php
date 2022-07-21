@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class InternetMedia extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'internet_media';
 
     protected $fillable = [

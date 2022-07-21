@@ -2,12 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use App\User;
+use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer';
 
     protected $attributes = [
@@ -37,14 +38,14 @@ class Customer extends Model
         'previous_isp_bandwidth',
         'previous_isp_feature',
         'previous_isp_bandwidth_unit_id',
-        
+
         'branch_id',
 
         'created_at',
         'updated_at',
 
         'user_id',
-        
+
         'previous_isp_bandwidth_type_id',
 
         'identity_card',
@@ -111,9 +112,9 @@ class Customer extends Model
         'previous_isp_bandwidth' => 'integer',
         'previous_isp_feature' => 'string',
         'previous_isp_bandwidth_unit_id' => 'integer',
-        
+
         'branch_id' => 'integer',
-        
+
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
 
@@ -126,7 +127,7 @@ class Customer extends Model
         'fax' => 'string',
 
         'uuid' => 'string',
-        
+
         'alias_name' => 'string',
         'identity_card_file' => 'string',
         'house_photo' => 'string',
@@ -140,7 +141,7 @@ class Customer extends Model
         'memo' => 'integer',
 
         'contact_person' => 'string',
-        
+
         'service' => 'boolean',
         'billing' => 'boolean',
         'subsidy' => 'boolean',

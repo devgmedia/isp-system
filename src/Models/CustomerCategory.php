@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class CustomerCategory extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'customer_category';
 
     protected $fillable = [
         // 'id',
         'uuid',
-        'name', 
-        
+        'name',
+
         'created_at',
         'updated_at',
     ];
@@ -21,11 +22,11 @@ class CustomerCategory extends Model
     protected $hidden = [];
 
     protected $casts = [
-        'id' => 'integer', 
-        'uuid' => 'string', 
-        'name' => 'string', 
+        'id' => 'integer',
+        'uuid' => 'string',
+        'name' => 'string',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
-    ];    
+    ];
 }

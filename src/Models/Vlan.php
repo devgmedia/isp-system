@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Vlan extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'vlan';
 
     protected $fillable = [

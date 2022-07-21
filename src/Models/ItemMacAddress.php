@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ItemMacAddress extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'item_mac_address';
 
     protected $fillable = [

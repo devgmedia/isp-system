@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TaxIn extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'tax_in';
 
     protected $attributes = [
@@ -44,7 +45,7 @@ class TaxIn extends Model
         'date',
         'invoice_date',
         'supplier_name',
-        
+
         'pph_pasal_25',
 
         'number',
@@ -57,7 +58,7 @@ class TaxIn extends Model
         'uuid' => 'string',
 
         'ap_invoice_id' => 'integer',
-        
+
         'branch_id' => 'integer',
         'chart_of_account_title_id' => 'integer',
 
@@ -73,12 +74,12 @@ class TaxIn extends Model
 
         'masa' => 'integer',
         'pph_pasal_26' => 'double',
-        
+
         'supplier_id' => 'integer',
         'date' => 'date:Y-m-d',
         'invoice_date' => 'date:Y-m-d',
         'supplier_name' => 'string',
-        
+
         'pph_pasal_25' => 'double',
 
         'number' => 'string',

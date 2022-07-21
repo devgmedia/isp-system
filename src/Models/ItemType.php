@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ItemType extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'item_type';
 
     protected $fillable = [
@@ -14,13 +15,13 @@ class ItemType extends Model
 
         'name',
         'brand_id',
-        'brand_product_id', 
-        'discontinue_date', 
-        'discontinue_name', 
-        'discontinue_by', 
+        'brand_product_id',
+        'discontinue_date',
+        'discontinue_name',
+        'discontinue_by',
         'uuid',
         'created_at',
-        'updated_at', 
+        'updated_at',
     ];
 
     protected $hidden = [];
@@ -30,10 +31,10 @@ class ItemType extends Model
 
         'name' => 'string',
         'brand_id' => 'integer',
-        'brand_product_id' => 'integer', 
+        'brand_product_id' => 'integer',
         'uuid' => 'string',
         'created_at' => 'datetime',
-        'updated_at' => 'datetime', 
+        'updated_at' => 'datetime',
     ];
 
     public function brand()
@@ -44,7 +45,7 @@ class ItemType extends Model
     public function brand_product()
     {
         return $this->belongsTo(ItemBrandProduct::class);
-    }  
+    }
 
     public function quality_control()
     {
@@ -54,5 +55,5 @@ class ItemType extends Model
     public function check_quality_control()
     {
         return $this->hasMany(ItemTypeCheckQualityControl::class);
-    } 
+    }
 }
