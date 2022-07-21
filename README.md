@@ -10,7 +10,6 @@ Install this package
   composer require devgmedia/isp-system
 ```
     
-    
 ## 🚀 About Me
 It contains a list of the model databases extracted from ERPv2. So this will change frequently.
 
@@ -20,8 +19,8 @@ It contains a list of the model databases extracted from ERPv2. So this will cha
 
 ## Already used in
 
-- [Fiberstream Agent](https://play.google.com/store/apps/details?id=com.gmedia.fiberstream_customer_mobile)
-- [Fiberstream Pelanggan](https://play.google.com/store/apps/details?id=com.gmedia.fiberstream_agent)
+- [Retail Agent](https://play.google.com/store/apps/details?id=com.gmedia.fiberstream_customer_mobile)
+- [Retail Pelanggan](https://play.google.com/store/apps/details?id=com.gmedia.fiberstream_agent)
 - [Sales (Comming Soon) . . .]()
 
 
@@ -29,4 +28,4 @@ It contains a list of the model databases extracted from ERPv2. So this will cha
 ## Authors
 
 - [@hendrix](https://gitlab.com/hendrixxxx)
-- [@arief](https://github.com/oppytut)
+- [@ariefnovianto](https://github.com/oppytut)
