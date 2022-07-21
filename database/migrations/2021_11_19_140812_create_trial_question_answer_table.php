@@ -11,6 +11,8 @@ class CreateTrialQuestionAnswerTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('trial_question_answer', function (Blueprint $table) {

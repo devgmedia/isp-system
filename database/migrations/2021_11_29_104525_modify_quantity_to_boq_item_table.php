@@ -11,6 +11,8 @@ class ModifyQuantityToBoqItemTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('boq_item', function (Blueprint $table) {

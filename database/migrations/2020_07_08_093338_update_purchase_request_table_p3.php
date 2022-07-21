@@ -11,6 +11,8 @@ class UpdatePurchaseRequestTableP3 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         // create relation to purchase_request_status table and add field name to purchase_request table

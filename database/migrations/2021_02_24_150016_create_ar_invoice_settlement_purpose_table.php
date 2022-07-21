@@ -11,6 +11,8 @@ class CreateArInvoiceSettlementPurposeTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('ar_invoice_settlement_purpose', function (Blueprint $table) {

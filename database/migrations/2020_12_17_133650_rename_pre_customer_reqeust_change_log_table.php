@@ -10,6 +10,8 @@ class RenamePreCustomerReqeustChangeLogTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::rename('pre_customer_request_change_log', 'pre_customer_request_log');

@@ -11,6 +11,8 @@ class CreateCompanyTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('company', function (Blueprint $table) {

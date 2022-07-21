@@ -11,6 +11,8 @@ class ModifyItemTableP12 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('item', function (Blueprint $table) {

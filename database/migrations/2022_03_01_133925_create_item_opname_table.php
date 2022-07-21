@@ -11,6 +11,8 @@ class CreateItemOpnameTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('item_opname', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class ModifyUuidToBoqTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('boq', function (Blueprint $table) {

@@ -9,6 +9,8 @@ class CreateActivityLogTable extends Migration
     /**
      * Run the migrations.
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::connection(config('activitylog.database_connection'))->create(config('activitylog.table_name'), function (Blueprint $table) {

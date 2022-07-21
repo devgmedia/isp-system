@@ -11,6 +11,8 @@ class CreateHoldAmountTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('hold_amount', function (Blueprint $table) {

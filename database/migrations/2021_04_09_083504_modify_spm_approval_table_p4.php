@@ -11,6 +11,8 @@ class ModifySpmApprovalTableP4 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('spm_approval', function (Blueprint $table) {

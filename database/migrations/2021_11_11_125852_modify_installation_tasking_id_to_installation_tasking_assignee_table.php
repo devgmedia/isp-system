@@ -11,6 +11,8 @@ class ModifyInstallationTaskingIdToInstallationTaskingAssigneeTable extends Migr
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('installation_tasking_assignee', function (Blueprint $table) {

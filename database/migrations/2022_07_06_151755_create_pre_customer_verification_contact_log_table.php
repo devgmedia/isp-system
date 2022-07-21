@@ -11,6 +11,8 @@ class CreatePreCustomerVerificationContactLogTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('pre_customer_verification_contact_log', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class CreateKasbonTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('kasbon', function (Blueprint $table) {

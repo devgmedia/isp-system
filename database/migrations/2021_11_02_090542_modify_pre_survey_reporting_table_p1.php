@@ -11,6 +11,8 @@ class ModifyPreSurveyReportingTableP1 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('pre_survey_reporting', function (Blueprint $table) {

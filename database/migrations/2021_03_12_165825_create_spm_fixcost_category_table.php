@@ -11,6 +11,8 @@ class CreateSpmFixcostCategoryTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('spm_fixcost_category', function (Blueprint $table) {

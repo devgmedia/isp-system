@@ -11,6 +11,8 @@ class CreateSubDepartmentTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('sub_department', function (Blueprint $table) {

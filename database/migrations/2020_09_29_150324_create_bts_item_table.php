@@ -11,6 +11,8 @@ class CreateBtsItemTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('bts_item', function (Blueprint $table) {

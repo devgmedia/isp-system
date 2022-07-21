@@ -11,6 +11,8 @@ class ModifyServiceTableP1 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('service', function (Blueprint $table) {

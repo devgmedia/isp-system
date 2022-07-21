@@ -11,6 +11,8 @@ class CreateInstallationTaskingAssigneeTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('installation_tasking_assignee', function (Blueprint $table) {

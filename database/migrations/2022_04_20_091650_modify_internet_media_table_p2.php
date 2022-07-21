@@ -11,6 +11,8 @@ class ModifyInternetMediaTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('internet_media', function (Blueprint $table) {

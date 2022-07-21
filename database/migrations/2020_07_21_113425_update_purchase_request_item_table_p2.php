@@ -11,6 +11,8 @@ class UpdatePurchaseRequestItemTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         // add supplier_id purchase_request_item

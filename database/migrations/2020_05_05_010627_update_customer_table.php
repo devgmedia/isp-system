@@ -11,6 +11,8 @@ class UpdateCustomerTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('customer', function (Blueprint $table) {

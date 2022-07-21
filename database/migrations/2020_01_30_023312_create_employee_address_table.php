@@ -11,6 +11,8 @@ class CreateEmployeeAddressTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('employee_address', function (Blueprint $table) {

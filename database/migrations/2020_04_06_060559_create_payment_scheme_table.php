@@ -11,6 +11,8 @@ class CreatePaymentSchemeTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('payment_scheme', function (Blueprint $table) {

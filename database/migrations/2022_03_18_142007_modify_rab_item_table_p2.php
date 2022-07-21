@@ -11,6 +11,8 @@ class ModifyRabItemTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('rab_item', function (Blueprint $table) {

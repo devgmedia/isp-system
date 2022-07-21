@@ -11,6 +11,8 @@ class CreateCustomerAlternativeEmailTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('customer_alternative_email', function (Blueprint $table) {

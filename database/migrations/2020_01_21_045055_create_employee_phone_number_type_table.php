@@ -11,6 +11,8 @@ class CreateEmployeePhoneNumberTypeTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('employee_phone_number_type', function (Blueprint $table) {

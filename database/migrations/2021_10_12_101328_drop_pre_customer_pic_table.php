@@ -10,6 +10,8 @@ class DropPreCustomerPicTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::dropIfExists('pre_customer_pic_phone_number');

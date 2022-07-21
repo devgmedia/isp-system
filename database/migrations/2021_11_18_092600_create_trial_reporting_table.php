@@ -11,6 +11,8 @@ class CreateTrialReportingTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('trial_reporting', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class ModifyPaymentMethodGuideTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('payment_method_guide', function (Blueprint $table) {

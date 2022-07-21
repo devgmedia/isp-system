@@ -11,6 +11,8 @@ class UpdatePurchaseRequestTableP6 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('purchase_request', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class CreateChartOfAccountCardTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('chart_of_account_card', function (Blueprint $table) {

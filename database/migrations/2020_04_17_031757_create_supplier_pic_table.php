@@ -11,6 +11,8 @@ class CreateSupplierPicTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('supplier_pic', function (Blueprint $table) {

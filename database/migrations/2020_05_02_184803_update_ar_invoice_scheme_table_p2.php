@@ -11,6 +11,8 @@ class UpdateArInvoiceSchemeTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('ar_invoice_scheme', function (Blueprint $table) {

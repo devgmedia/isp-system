@@ -11,6 +11,8 @@ class CreatePurchaseRequestStatusTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('purchase_request_status', function (Blueprint $table) {

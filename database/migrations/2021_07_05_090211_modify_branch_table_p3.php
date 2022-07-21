@@ -11,6 +11,8 @@ class ModifyBranchTableP3 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('branch', function (Blueprint $table) {

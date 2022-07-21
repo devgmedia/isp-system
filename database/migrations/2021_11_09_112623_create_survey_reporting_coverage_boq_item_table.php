@@ -11,6 +11,8 @@ class CreateSurveyReportingCoverageBoqItemTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('survey_reporting_coverage_boq_item', function (Blueprint $table) {

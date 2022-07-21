@@ -11,6 +11,8 @@ class ModifyProductHasTagTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('product_has_tag', function (Blueprint $table) {

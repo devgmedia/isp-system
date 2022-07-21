@@ -11,6 +11,8 @@ class CreatePermissionsTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         $tableNames = config('permission.table_names');

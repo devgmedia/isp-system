@@ -11,6 +11,8 @@ class CreateDiscountTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('discount', function (Blueprint $table) {

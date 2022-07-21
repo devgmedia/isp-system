@@ -11,6 +11,8 @@ class CreatePonTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('pon', function (Blueprint $table) {

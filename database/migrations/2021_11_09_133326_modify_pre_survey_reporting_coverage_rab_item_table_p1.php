@@ -11,6 +11,8 @@ class ModifyPreSurveyReportingCoverageRabItemTableP1 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('pre_survey_reporting_coverage_rab_item', function (Blueprint $table) {

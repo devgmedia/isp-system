@@ -11,6 +11,8 @@ class CreateTrialTaskingTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('trial_tasking', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class CreateArInvoicePaymentListTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('ar_invoice_payment_list', function (Blueprint $table) {

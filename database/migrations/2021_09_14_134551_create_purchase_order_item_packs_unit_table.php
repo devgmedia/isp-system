@@ -11,6 +11,8 @@ class CreatePurchaseOrderItemPacksUnitTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('purchase_order_item_packs_unit', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class CreatePreCustomerRequestKnowFromTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('pre_customer_request_know_from', function (Blueprint $table) {

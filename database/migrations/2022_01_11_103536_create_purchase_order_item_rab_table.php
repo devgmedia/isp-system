@@ -11,6 +11,8 @@ class CreatePurchaseOrderItemRabTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('purchase_order_item_rab', function (Blueprint $table) {

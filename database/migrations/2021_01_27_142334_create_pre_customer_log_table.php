@@ -11,6 +11,8 @@ class CreatePreCustomerLogTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('pre_customer_log', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class CreateItemQualityControlTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('item_quality_control', function (Blueprint $table) {

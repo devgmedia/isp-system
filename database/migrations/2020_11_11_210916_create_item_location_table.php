@@ -11,6 +11,8 @@ class CreateItemLocationTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('item_location', function (Blueprint $table) {

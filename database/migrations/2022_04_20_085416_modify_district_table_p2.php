@@ -11,6 +11,8 @@ class ModifyDistrictTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('district', function (Blueprint $table) {

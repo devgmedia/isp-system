@@ -11,6 +11,8 @@ class CreateNeighbourhoodTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('neighbourhood', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class ModifyCashierOutCategoryTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('cashier_out_category', function (Blueprint $table) {

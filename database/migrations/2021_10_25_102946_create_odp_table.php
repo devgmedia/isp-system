@@ -11,6 +11,8 @@ class CreateOdpTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('odp', function (Blueprint $table) {

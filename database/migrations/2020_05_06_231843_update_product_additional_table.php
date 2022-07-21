@@ -11,6 +11,8 @@ class UpdateProductAdditionalTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('product_additional', function (Blueprint $table) {

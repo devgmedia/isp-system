@@ -11,6 +11,8 @@ class CreateSpmDivisionCategoryTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('spm_division_category', function (Blueprint $table) {

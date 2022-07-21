@@ -11,6 +11,8 @@ class ModifyPonTableP1 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('pon', function (Blueprint $table) {

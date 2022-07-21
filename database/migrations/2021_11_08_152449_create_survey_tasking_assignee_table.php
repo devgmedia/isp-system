@@ -11,6 +11,8 @@ class CreateSurveyTaskingAssigneeTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('survey_tasking_assignee', function (Blueprint $table) {

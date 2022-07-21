@@ -11,6 +11,8 @@ class CreateMidtransNotificationTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('midtrans_notification', function (Blueprint $table) {

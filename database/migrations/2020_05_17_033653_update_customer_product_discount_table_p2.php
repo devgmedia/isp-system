@@ -11,6 +11,8 @@ class UpdateCustomerProductDiscountTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('customer_product_discount', function (Blueprint $table) {

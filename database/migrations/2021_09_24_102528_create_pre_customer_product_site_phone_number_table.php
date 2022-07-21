@@ -11,6 +11,8 @@ class CreatePreCustomerProductSitePhoneNumberTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('pre_customer_product_site_phone_number', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class CreateCustomerHasTagTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('customer_has_tag', function (Blueprint $table) {

@@ -10,6 +10,8 @@ class DropCustomerBillingPicPhoneNumberTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::dropIfExists('customer_billing_pic_phone_number');

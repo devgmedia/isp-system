@@ -11,6 +11,8 @@ class CreateArInvoiceWhatsappReceiptTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('ar_invoice_whatsapp_receipt', function (Blueprint $table) {

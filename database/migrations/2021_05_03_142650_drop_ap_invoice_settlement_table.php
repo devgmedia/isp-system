@@ -11,6 +11,8 @@ class DropApInvoiceSettlementTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::dropIfExists('ap_invoice_settlement');

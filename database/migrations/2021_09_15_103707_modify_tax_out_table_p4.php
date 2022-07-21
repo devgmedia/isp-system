@@ -11,6 +11,8 @@ class ModifyTaxOutTableP4 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('tax_out', function (Blueprint $table) {

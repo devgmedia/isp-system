@@ -11,6 +11,8 @@ class ModifyOdcMiniTableP1 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('odc_mini', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class CreateArInvoiceV2AccountNumberTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('ar_invoice_v2_account_number', function (Blueprint $table) {

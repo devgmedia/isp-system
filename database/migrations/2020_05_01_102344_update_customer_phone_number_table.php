@@ -11,6 +11,8 @@ class UpdateCustomerPhoneNumberTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('customer_phone_number', function (Blueprint $table) {

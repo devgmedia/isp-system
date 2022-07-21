@@ -11,6 +11,8 @@ class CreateBankTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('bank', function (Blueprint $table) {

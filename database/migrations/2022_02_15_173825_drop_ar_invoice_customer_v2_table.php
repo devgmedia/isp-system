@@ -10,6 +10,8 @@ class DropArInvoiceCustomerV2Table extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::dropIfExists('ar_invoice_customer_v2');

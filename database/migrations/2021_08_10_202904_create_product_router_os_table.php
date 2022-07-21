@@ -11,6 +11,8 @@ class CreateProductRouterOsTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('product_router_os', function (Blueprint $table) {

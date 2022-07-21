@@ -11,6 +11,8 @@ class CreateBranchPreCustomerRequestCcEmailTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('branch_pre_customer_request_cc_email', function (Blueprint $table) {

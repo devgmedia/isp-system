@@ -11,6 +11,8 @@ class ItemReturn extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('item_return', function (Blueprint $table) {

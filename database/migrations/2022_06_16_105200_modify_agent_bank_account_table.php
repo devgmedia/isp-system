@@ -11,6 +11,8 @@ class ModifyAgentBankAccountTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('agent_bank_account', function (Blueprint $table) {

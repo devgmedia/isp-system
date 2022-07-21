@@ -11,6 +11,8 @@ class CreateAccountingEquationTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('accounting_equation', function (Blueprint $table) {

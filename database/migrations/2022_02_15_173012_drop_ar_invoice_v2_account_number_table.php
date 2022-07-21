@@ -10,6 +10,8 @@ class DropArInvoiceV2AccountNumberTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::dropIfExists('ar_invoice_v2_account_number');

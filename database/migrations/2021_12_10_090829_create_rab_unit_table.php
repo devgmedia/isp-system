@@ -11,6 +11,8 @@ class CreateRabUnitTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('rab_unit', function (Blueprint $table) {

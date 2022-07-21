@@ -11,6 +11,8 @@ class CreatePurchaseRequestCurrencyTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('purchase_request_currency', function (Blueprint $table) {

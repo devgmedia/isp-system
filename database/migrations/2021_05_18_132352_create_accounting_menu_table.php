@@ -11,6 +11,8 @@ class CreateAccountingMenuTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('accounting_menu', function (Blueprint $table) {

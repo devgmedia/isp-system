@@ -11,6 +11,8 @@ class CreateArInvoiceLogV2Table extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('ar_invoice_log_v2', function (Blueprint $table) {

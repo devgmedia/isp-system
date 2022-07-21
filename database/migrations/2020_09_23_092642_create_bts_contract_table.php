@@ -11,6 +11,8 @@ class CreateBtsContractTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('bts_contract', function (Blueprint $table) {

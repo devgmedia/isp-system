@@ -11,6 +11,8 @@ class ModifyApInvoiceItemPrCategoryTableP3 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('ap_invoice_item_pr_category', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class ModifySpmBranchManagerApprovalTableP4 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('spm_branch_manager_approval_list', function (Blueprint $table) {

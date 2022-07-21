@@ -11,6 +11,8 @@ class DropArInvoiceReceiptTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::dropIfExists('ar_invoice_receipt_customer_product_additional');

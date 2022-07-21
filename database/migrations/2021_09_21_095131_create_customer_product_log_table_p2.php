@@ -11,6 +11,8 @@ class CreateCustomerProductLogTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('customer_product_log', function (Blueprint $table) {

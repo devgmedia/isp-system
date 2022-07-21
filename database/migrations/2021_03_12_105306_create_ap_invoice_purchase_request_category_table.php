@@ -11,6 +11,8 @@ class CreateApInvoicePurchaseRequestCategoryTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('ap_invoice_purchase_request_category', function (Blueprint $table) {

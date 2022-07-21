@@ -11,6 +11,8 @@ class CreateFakturMasukanTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('faktur_masukan', function (Blueprint $table) {

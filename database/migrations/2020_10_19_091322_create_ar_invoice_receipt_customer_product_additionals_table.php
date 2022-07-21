@@ -11,6 +11,8 @@ class CreateArInvoiceReceiptCustomerProductAdditionalsTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('ar_invoice_receipt_customer_product_additional', function (Blueprint $table) {

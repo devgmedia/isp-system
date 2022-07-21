@@ -11,6 +11,8 @@ class CreateRabItemTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('rab_item', function (Blueprint $table) {

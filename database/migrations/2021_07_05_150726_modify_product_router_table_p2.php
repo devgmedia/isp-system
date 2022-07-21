@@ -11,6 +11,8 @@ class ModifyProductRouterTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('product_router', function (Blueprint $table) {

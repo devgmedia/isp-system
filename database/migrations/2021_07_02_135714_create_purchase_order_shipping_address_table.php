@@ -11,6 +11,8 @@ class CreatePurchaseOrderShippingAddressTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('purchase_order_shipping_address', function (Blueprint $table) {

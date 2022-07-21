@@ -11,6 +11,8 @@ class UpdateArInvoiceCustomerProductAdditionalDiscountTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('ar_invoice_customer_product_additional_discount', function (Blueprint $table) {

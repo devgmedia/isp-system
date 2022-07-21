@@ -11,6 +11,8 @@ class RenameApInvoiceItemCategoryTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::rename('ap_invoice_item_category', 'ap_invoice_item_po_category');

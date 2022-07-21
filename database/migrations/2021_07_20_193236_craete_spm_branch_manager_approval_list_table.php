@@ -11,6 +11,8 @@ class CraeteSpmBranchManagerApprovalListTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('spm_branch_manager_approval_list', function (Blueprint $table) {

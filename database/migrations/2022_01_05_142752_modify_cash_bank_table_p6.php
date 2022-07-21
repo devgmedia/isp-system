@@ -11,6 +11,8 @@ class ModifyCashBankTableP6 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('cash_bank', function (Blueprint $table) {

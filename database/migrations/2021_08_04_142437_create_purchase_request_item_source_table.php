@@ -11,6 +11,8 @@ class CreatePurchaseRequestItemSourceTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('purchase_request_item_source', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class ItemReturnCategory extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('item_return_category', function (Blueprint $table) {

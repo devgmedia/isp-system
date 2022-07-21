@@ -11,6 +11,8 @@ class ModifyTaxInTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('tax_in', function (Blueprint $table) {

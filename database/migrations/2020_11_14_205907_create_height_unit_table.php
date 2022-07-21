@@ -11,6 +11,8 @@ class CreateHeightUnitTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('height_unit', function (Blueprint $table) {

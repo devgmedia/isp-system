@@ -11,6 +11,8 @@ class CreatePreCustomerProductDiscountTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('pre_customer_product_discount', function (Blueprint $table) {

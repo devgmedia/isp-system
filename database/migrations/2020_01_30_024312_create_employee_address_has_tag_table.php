@@ -11,6 +11,8 @@ class CreateEmployeeAddressHasTagTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('employee_address_has_tag', function (Blueprint $table) {

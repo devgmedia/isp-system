@@ -11,6 +11,8 @@ class ModifyPreCustomerAlternativeEmailTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('pre_customer_alternative_email', function (Blueprint $table) {

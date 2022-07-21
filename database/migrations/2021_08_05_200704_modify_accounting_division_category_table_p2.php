@@ -11,6 +11,8 @@ class ModifyAccountingDivisionCategoryTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('accounting_division_category', function (Blueprint $table) {

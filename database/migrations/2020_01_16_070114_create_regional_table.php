@@ -11,6 +11,8 @@ class CreateRegionalTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('regional', function (Blueprint $table) {

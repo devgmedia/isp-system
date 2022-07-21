@@ -11,6 +11,8 @@ class CreateItemConditionCategoryTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('item_condition_category', function (Blueprint $table) {

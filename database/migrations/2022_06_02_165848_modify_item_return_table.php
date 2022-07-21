@@ -11,6 +11,8 @@ class ModifyItemReturnTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('item_return', function (Blueprint $table) {

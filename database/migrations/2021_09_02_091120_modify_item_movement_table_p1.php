@@ -11,6 +11,8 @@ class ModifyItemMovementTableP1 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('item_movement', function (Blueprint $table) {

@@ -11,6 +11,8 @@ class CreatePurchaseOrderTermOfDeliveryTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('purchase_order_term_of_delivery', function (Blueprint $table) {

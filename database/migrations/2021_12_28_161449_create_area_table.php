@@ -11,6 +11,8 @@ class CreateAreaTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('area', function (Blueprint $table) {

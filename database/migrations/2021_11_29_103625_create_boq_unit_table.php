@@ -11,6 +11,8 @@ class CreateBoqUnitTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('boq_unit', function (Blueprint $table) {

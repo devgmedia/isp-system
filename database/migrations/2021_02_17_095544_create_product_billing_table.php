@@ -11,6 +11,8 @@ class CreateProductBillingTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('product_billing', function (Blueprint $table) {

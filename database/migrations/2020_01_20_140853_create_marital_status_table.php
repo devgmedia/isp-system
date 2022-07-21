@@ -11,6 +11,8 @@ class CreateMaritalStatusTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('marital_status', function (Blueprint $table) {

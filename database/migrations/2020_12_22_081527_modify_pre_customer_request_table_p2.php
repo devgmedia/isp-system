@@ -11,6 +11,8 @@ class ModifyPreCustomerRequestTableP2 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('pre_customer_request', function (Blueprint $table) {

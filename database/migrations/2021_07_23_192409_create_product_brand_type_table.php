@@ -11,6 +11,8 @@ class CreateProductBrandTypeTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('product_brand_type', function (Blueprint $table) {

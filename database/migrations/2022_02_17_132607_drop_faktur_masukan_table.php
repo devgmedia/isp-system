@@ -10,6 +10,8 @@ class DropFakturMasukanTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::dropIfExists('faktur_masukan');

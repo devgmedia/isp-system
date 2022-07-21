@@ -11,6 +11,8 @@ class ModifyArInvoiceMidtransTableP5 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('ar_invoice_midtrans', function (Blueprint $table) {

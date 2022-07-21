@@ -10,6 +10,8 @@ class DropBankAccountTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::dropIfExists('bank_account');

@@ -11,6 +11,8 @@ class CreateArInvoiceSchemeCustomerTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('ar_invoice_scheme_customer', function (Blueprint $table) {

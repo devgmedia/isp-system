@@ -11,6 +11,8 @@ class ModifyCustomerPicPhoneNumberTableP3 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('customer_pic_phone_number', function (Blueprint $table) {

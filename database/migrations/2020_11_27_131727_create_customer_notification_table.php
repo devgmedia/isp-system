@@ -11,6 +11,8 @@ class CreateCustomerNotificationTable extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::create('customer_notification', function (Blueprint $table) {

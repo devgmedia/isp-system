@@ -11,6 +11,8 @@ class ModifyPreSurveyTaskingP2Table extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('pre_survey_tasking', function (Blueprint $table) {

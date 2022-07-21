@@ -11,6 +11,8 @@ class ModifySurveyRequestTableP1 extends Migration
      *
      * @return void
      */
+    protected $connection = 'isp-system';
+
     public function up()
     {
         Schema::table('survey_request', function (Blueprint $table) {
