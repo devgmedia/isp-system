@@ -13,11 +13,11 @@ class ModifyItemTableP18 extends Migration
      */
     public function up()
     {
-        Schema::table('item', function (Blueprint $table) { 
-            $table->renameColumn('from_ownership_bts_id','ownership_bts_id'); 
+        Schema::table('item', function (Blueprint $table) {
+            $table->renameColumn('from_ownership_bts_id', 'ownership_bts_id');
 
-            $table->renameColumn('from_location_bts_id','location_bts_id');  
-        }); 
+            $table->renameColumn('from_location_bts_id', 'location_bts_id');
+        });
     }
 
     /**

@@ -25,13 +25,13 @@ class ModifySupplierTableP2 extends Migration
             $table->dropForeign('supplier_created_by_foreign');
             $table->dropForeign('supplier_verified_by_foreign');
         });
-        
+
         Schema::table('supplier', function (Blueprint $table) {
             $table->foreign('created_by')->references('id')->on('employee')->onDelete('set null');
             $table->foreign('verified_by')->references('id')->on('employee')->onDelete('set null');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *
@@ -51,7 +51,7 @@ class ModifySupplierTableP2 extends Migration
             $table->dropForeign('supplier_created_by_foreign');
             $table->dropForeign('supplier_verified_by_foreign');
         });
-        
+
         Schema::table('supplier', function (Blueprint $table) {
             $table->foreign('created_by')->references('id')->on('user')->onDelete('set null');
             $table->foreign('verified_by')->references('id')->on('user')->onDelete('set null');

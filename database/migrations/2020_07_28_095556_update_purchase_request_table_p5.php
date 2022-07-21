@@ -51,7 +51,6 @@ class UpdatePurchaseRequestTableP5 extends Migration
             $table->foreign('department_approved_by')->references('id')->on('user')->onDelete('set null');
             $table->foreign('purchasing_approved_by')->references('id')->on('user')->onDelete('set null');
         });
-
     }
 
     /**
@@ -88,7 +87,7 @@ class UpdatePurchaseRequestTableP5 extends Migration
 
             // drop column
             $table->dropColumn([
-                'department_approved_by', 
+                'department_approved_by',
                 'department_approved_name',
                 'department_approved_date',
                 'purchasing_approved_by',

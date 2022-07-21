@@ -16,7 +16,7 @@ class CreateItemBrandProductTable extends Migration
         Schema::create('item_brand_product', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('brand_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('brand_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->unique(['name', 'brand_id']);

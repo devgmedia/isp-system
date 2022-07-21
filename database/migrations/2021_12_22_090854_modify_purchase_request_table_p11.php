@@ -12,12 +12,11 @@ class ModifyPurchaseRequestTableP11 extends Migration
      * @return void
      */
     public function up()
-    { 
+    {
         Schema::table('purchase_request', function (Blueprint $table) {
-            
-            $table->double('dpp')->nullable()->default(NULL); 
+            $table->double('dpp')->nullable()->default(null);
 
-            $table->dropColumn('department_approval_request_date'); 
+            $table->dropColumn('department_approval_request_date');
         });
     }
 

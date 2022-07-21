@@ -14,7 +14,7 @@ class ModifyItemConditionTableP2 extends Migration
     public function up()
     {
         Schema::table('item_condition', function (Blueprint $table) {
-            $table->string('name')->nullable()->default(NULL)->after('id');
+            $table->string('name')->nullable()->default(null)->after('id');
         });
     }
 

@@ -16,10 +16,10 @@ class CreateBtsContractTable extends Migration
         Schema::create('bts_contract', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->date('end_date')->nullable()->default(NULL);
-            $table->string('document')->nullable()->defauilt(NULL);
+            $table->date('end_date')->nullable()->default(null);
+            $table->string('document')->nullable()->defauilt(null);
 
-            $table->unsignedBigInteger('bts_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('bts_id')->nullable()->default(null);
             $table->foreign('bts_id')->references('id')->on('bts')->onDelete('set null');
             $table->timestamps();
         });
@@ -32,10 +32,8 @@ class CreateBtsContractTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bts_contract', function (Blueprint $table){
-
+        Schema::dropIfExists('bts_contract', function (Blueprint $table) {
             $table->foreign('bts_id')->references('id')->on('bts')->onDelete('set null');
         });
-        
     }
 }

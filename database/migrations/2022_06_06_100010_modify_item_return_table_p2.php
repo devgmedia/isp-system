@@ -12,13 +12,13 @@ class ModifyItemReturnTableP2 extends Migration
      * @return void
      */
     public function up()
-    { 
-        Schema::table('item_return', function (Blueprint $table) {  
+    {
+        Schema::table('item_return', function (Blueprint $table) {
             $table->dropColumn('date_of_purchase')->nullable()->default(null);
             $table->dropColumn('date_of_return')->nullable()->default(null);
-        }); 
+        });
 
-        Schema::table('item_return', function (Blueprint $table) {  
+        Schema::table('item_return', function (Blueprint $table) {
             $table->date('date_of_purchase')->nullable()->default(null);
             $table->date('date_of_return')->nullable()->default(null);
         });

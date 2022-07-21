@@ -14,7 +14,7 @@ class ModifyDepartmentTable extends Migration
     public function up()
     {
         Schema::table('department', function (Blueprint $table) {
-            $table->string('pr_approval_email')->nullable()->default(NULL);
+            $table->string('pr_approval_email')->nullable()->default(null);
         });
     }
 
@@ -26,7 +26,7 @@ class ModifyDepartmentTable extends Migration
     public function down()
     {
         Schema::table('department', function (Blueprint $table) {
-            $table->dropColumn('pr_approval_email'); 
+            $table->dropColumn('pr_approval_email');
         });
     }
 }

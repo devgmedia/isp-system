@@ -22,7 +22,6 @@ class CreateOltTable extends Migration
             $table->timestamps();
 
             $table->foreign('item_id')->references('id')->on('item')->onDelete('set null');
-
         });
     }
 

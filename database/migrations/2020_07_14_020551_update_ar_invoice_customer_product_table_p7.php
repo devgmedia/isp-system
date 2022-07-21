@@ -29,7 +29,7 @@ class UpdateArInvoiceCustomerProductTableP7 extends Migration
     public function down()
     {
         Schema::table('ar_invoice_customer_product', function (Blueprint $table) {
-            $table->float('price_after_discount', 15, 2)->nullable()->default(null);           
+            $table->float('price_after_discount', 15, 2)->nullable()->default(null);
             $table->float('price_with_ppn', 15, 2)->nullable()->default(null);
         });
     }

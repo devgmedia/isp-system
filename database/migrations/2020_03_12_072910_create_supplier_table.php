@@ -17,11 +17,11 @@ class CreateSupplierTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('address');
-            $table->unsignedBigInteger('created')->nullable()->default(NULL);
-            $table->date('created_date')->nullable()->default(NULL);
-            $table->unsignedBigInteger('director_of_operations')->nullable()->default(NULL);
-            $table->date('director_of_operations_verified_date')->nullable()->default(NULL);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('created')->nullable()->default(null);
+            $table->date('created_date')->nullable()->default(null);
+            $table->unsignedBigInteger('director_of_operations')->nullable()->default(null);
+            $table->date('director_of_operations_verified_date')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->unique(['name', 'branch_id']);

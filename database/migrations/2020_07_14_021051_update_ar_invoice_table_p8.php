@@ -31,9 +31,9 @@ class UpdateArInvoiceTableP8 extends Migration
     public function down()
     {
         Schema::table('ar_invoice', function (Blueprint $table) {
-            $table->float('price_after_discount', 15, 2)->nullable()->default(null);              
+            $table->float('price_after_discount', 15, 2)->nullable()->default(null);
             $table->float('price_with_ppn', 15, 2)->nullable()->default(null);
-            $table->float('previous_price_after_discount', 15, 2)->nullable()->default(null);              
+            $table->float('previous_price_after_discount', 15, 2)->nullable()->default(null);
             $table->float('previous_price_with_ppn', 15, 2)->nullable()->default(null);
         });
     }

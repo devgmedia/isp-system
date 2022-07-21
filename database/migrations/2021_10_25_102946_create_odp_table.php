@@ -22,7 +22,6 @@ class CreateOdpTable extends Migration
             $table->timestamps();
 
             $table->foreign('olt_id')->references('id')->on('olt')->onDelete('set null');
-
         });
     }
 

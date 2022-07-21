@@ -13,9 +13,9 @@ class ModifyPurchaseOrderItemTableP5 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_order_item', function (Blueprint $table) {   
+        Schema::table('purchase_order_item', function (Blueprint $table) {
             $table->unsignedBigInteger('category_id')->nullable()->default(null);
- 
+
             $table->foreign('category_id')->references('id')->on('purchase_order_item_category')->onDelete('set null');
         });
     }
@@ -28,11 +28,11 @@ class ModifyPurchaseOrderItemTableP5 extends Migration
     public function down()
     {
         Schema::table('purchase_order_item', function (Blueprint $table) {
-            $table->dropForeign('purchase_order_item_category_id_foreign'); 
+            $table->dropForeign('purchase_order_item_category_id_foreign');
         });
 
-        Schema::table('purchase_request_item', function (Blueprint $table) { 
-            $table->dropColumn('category');  
+        Schema::table('purchase_request_item', function (Blueprint $table) {
+            $table->dropColumn('category');
         });
     }
 }

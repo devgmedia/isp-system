@@ -26,7 +26,7 @@ class ModifyArInvoiceSettlementTableP3 extends Migration
 
             $table->boolean('memo')->nullable()->default(null);
             $table->boolean('memo_confirm')->nullable()->default(null);
-            
+
             $table->float('invoice', 15, 2)->nullable()->default(0);
             $table->float('admin', 15, 2)->nullable()->default(0);
             $table->float('down_payment', 15, 2)->nullable()->default(0);
@@ -35,7 +35,7 @@ class ModifyArInvoiceSettlementTableP3 extends Migration
             $table->float('pph_pasal_23', 15, 2)->nullable()->default(0);
             $table->float('ppn', 15, 2)->nullable()->default(0);
 
-            $table->float('total', 15, 2)->nullable()->default(0);            
+            $table->float('total', 15, 2)->nullable()->default(0);
         });
     }
 

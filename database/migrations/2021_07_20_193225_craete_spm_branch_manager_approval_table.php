@@ -16,7 +16,7 @@ class CraeteSpmBranchManagerApprovalTable extends Migration
         Schema::create('spm_branch_manager_approval', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->unique();
-            
+
             $table->unsignedBigInteger('request_by')->nullable()->default(null);
             $table->foreign('request_by')->references('id')->on('employee')->onDelete('set null');
             $table->datetime('request_at')->nullable()->default(null);

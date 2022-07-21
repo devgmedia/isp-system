@@ -19,16 +19,16 @@ class CreateAgentAreaTable extends Migration
 
             $table->unsignedBigInteger('province_id')->nullable()->default(null);
             $table->foreign('province_id')->references('id')->on('province')->onDelete('set null');
-            
+
             $table->unsignedBigInteger('district_id')->nullable()->default(null);
             $table->foreign('district_id')->references('id')->on('district')->onDelete('set null');
-            
+
             $table->unsignedBigInteger('sub_district_id')->nullable()->default(null);
             $table->foreign('sub_district_id')->references('id')->on('sub_district')->onDelete('set null');
-            
+
             $table->unsignedBigInteger('village_id')->nullable()->default(null);
             $table->foreign('village_id')->references('id')->on('village')->onDelete('set null');
-            
+
             $table->string('postal_code')->nullable()->default(null);
 
             $table->unsignedBigInteger('branch_id')->nullable()->default(null);

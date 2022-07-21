@@ -13,9 +13,9 @@ class ModifyDivisionTable extends Migration
      */
     public function up()
     {
-        Schema::table('division', function (Blueprint $table) { 
-            $table->string('pr_approval_email')->nullable()->default(NULL);
-            $table->string('pr_approval_2nd_email')->nullable()->default(NULL);
+        Schema::table('division', function (Blueprint $table) {
+            $table->string('pr_approval_email')->nullable()->default(null);
+            $table->string('pr_approval_2nd_email')->nullable()->default(null);
         });
     }
 

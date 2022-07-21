@@ -14,9 +14,9 @@ class ModifyPurchaseRequestTableP8 extends Migration
     public function up()
     {
         Schema::table('purchase_request', function (Blueprint $table) {
-            $table->unsignedBigInteger('accounting_division_category_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('journal_project_id')->nullable()->default(NULL); 
-            
+            $table->unsignedBigInteger('accounting_division_category_id')->nullable()->default(null);
+            $table->unsignedBigInteger('journal_project_id')->nullable()->default(null);
+
             $table->foreign('accounting_division_category_id')->references('id')->on('accounting_division_category')->onDelete('set null');
             $table->foreign('journal_project_id')->references('id')->on('journal_project')->onDelete('set null');
         });

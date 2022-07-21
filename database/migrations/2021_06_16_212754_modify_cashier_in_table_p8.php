@@ -26,6 +26,5 @@ class ModifyCashierInTableP8 extends Migration
      */
     public function down()
     {
-        
     }
 }

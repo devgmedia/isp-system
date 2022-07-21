@@ -15,8 +15,8 @@ class CreateCustomerHasTagTable extends Migration
     {
         Schema::create('customer_has_tag', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('customer_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('tag_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('customer_id')->nullable()->default(null);
+            $table->unsignedBigInteger('tag_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('set null');

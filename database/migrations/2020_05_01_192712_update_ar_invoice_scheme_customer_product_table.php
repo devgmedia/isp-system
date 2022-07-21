@@ -19,10 +19,10 @@ class UpdateArInvoiceSchemeCustomerProductTable extends Migration
         });
 
         Schema::table('ar_invoice_scheme_customer_product', function (Blueprint $table) {
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable(FALSE)->change();
-            $table->unsignedBigInteger('customer_product_id')->nullable(FALSE)->change();       
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable(false)->change();
+            $table->unsignedBigInteger('customer_product_id')->nullable(false)->change();
 
-            $table->unique('customer_product_id');     
+            $table->unique('customer_product_id');
         });
 
         Schema::table('ar_invoice_scheme_customer_product', function (Blueprint $table) {
@@ -51,10 +51,10 @@ class UpdateArInvoiceSchemeCustomerProductTable extends Migration
         });
 
         Schema::table('ar_invoice_scheme_customer_product', function (Blueprint $table) {
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable()->default(NULL)->change();
-            $table->unsignedBigInteger('customer_product_id')->nullable()->default(NULL)->change();       
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable()->default(null)->change();
+            $table->unsignedBigInteger('customer_product_id')->nullable()->default(null)->change();
 
-            $table->dropUnique('ar_invoice_scheme_customer_product_customer_product_id_unique');     
+            $table->dropUnique('ar_invoice_scheme_customer_product_customer_product_id_unique');
         });
 
         Schema::table('ar_invoice_scheme_customer_product', function (Blueprint $table) {

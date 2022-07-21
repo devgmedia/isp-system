@@ -16,7 +16,7 @@ class CreateFakturMasukanTable extends Migration
         Schema::create('faktur_masukan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('number')->unique();
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('branch_id')->references('id')->on('branch')->onDelete('set null');

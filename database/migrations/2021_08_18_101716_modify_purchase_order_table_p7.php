@@ -13,10 +13,9 @@ class ModifyPurchaseOrderTableP7 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_order', function (Blueprint $table) { 
-            $table->string('finance_notes')->nullable()->default(NULL);
-            $table->string('director_notes')->nullable()->default(NULL);
- 
+        Schema::table('purchase_order', function (Blueprint $table) {
+            $table->string('finance_notes')->nullable()->default(null);
+            $table->string('director_notes')->nullable()->default(null);
         });
     }
 
@@ -28,7 +27,7 @@ class ModifyPurchaseOrderTableP7 extends Migration
     public function down()
     {
         Schema::table('purchase_order', function (Blueprint $table) {
-            $table->dropColumn([ 
+            $table->dropColumn([
                 'finance_notes',
                 'director_notes',
             ]);

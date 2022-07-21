@@ -14,15 +14,15 @@ class ModifyItemOpnameTable extends Migration
     public function up()
     {
         Schema::table('item_opname', function (Blueprint $table) {
-            $table->dropForeign('item_opname_item_type_id_foreign'); 
+            $table->dropForeign('item_opname_item_type_id_foreign');
         });
 
         Schema::table('item_opname', function (Blueprint $table) {
-            $table->dropColumn('item_type_id'); 
+            $table->dropColumn('item_type_id');
         });
- 
-        Schema::table('item_opname', function (Blueprint $table) { 
-            $table->unsignedBigInteger('item_id')->nullable()->default(null); 
+
+        Schema::table('item_opname', function (Blueprint $table) {
+            $table->unsignedBigInteger('item_id')->nullable()->default(null);
             $table->foreign('item_id')->references('id')->on('item')->onDelete('set null');
         });
     }

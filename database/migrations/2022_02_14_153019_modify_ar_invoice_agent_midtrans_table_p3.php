@@ -14,7 +14,6 @@ class ModifyArInvoiceAgentMidtransTableP3 extends Migration
     public function up()
     {
         Schema::table('ar_invoice_agent_midtrans', function (Blueprint $table) {
-
             $table->text('midtrans_data')->nullable()->default(null)->change();
         });
     }

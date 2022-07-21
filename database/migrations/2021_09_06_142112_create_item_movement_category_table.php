@@ -15,7 +15,7 @@ class CreateItemMovementCategoryTable extends Migration
     {
         Schema::create('item_movement_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique(); 
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }

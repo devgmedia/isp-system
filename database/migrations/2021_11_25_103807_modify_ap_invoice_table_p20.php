@@ -13,7 +13,7 @@ class ModifyApInvoiceTableP20 extends Migration
      */
     public function up()
     {
-        Schema::table('ap_invoice', function (Blueprint $table) {  
+        Schema::table('ap_invoice', function (Blueprint $table) {
             $table->unsignedBigInteger('memo_ar_invoice_id')->nullable()->default(null);
             $table->foreign('memo_ar_invoice_id')->references('id')->on('ar_invoice')->onDelete('set null');
         });

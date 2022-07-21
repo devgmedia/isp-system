@@ -16,7 +16,7 @@ class UpdateCustomerTableP4 extends Migration
         Schema::table('customer', function (Blueprint $table) {
             $table->dropColumn('referrar_used_for_discount');
             $table->boolean('referrer_used_for_discount')->nullable()->default(null);
-        }); 
+        });
     }
 
     /**
@@ -29,6 +29,6 @@ class UpdateCustomerTableP4 extends Migration
         Schema::table('customer', function (Blueprint $table) {
             $table->boolean('referrar_used_for_discount')->nullable()->default(null);
             $table->dropColumn('referrer_used_for_discount');
-        }); 
+        });
     }
 }

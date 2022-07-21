@@ -26,6 +26,5 @@ class ModifyTaxInTableP5 extends Migration
      */
     public function down()
     {
-
     }
 }

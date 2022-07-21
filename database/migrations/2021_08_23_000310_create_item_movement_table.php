@@ -17,12 +17,12 @@ class CreateItemMovementTable extends Migration
             $table->bigIncrements('id');
             $table->date('date')->nullable()->default(null);
             $table->time('time')->nullable()->default(null);
-            $table->unsignedBigInteger('created_by')->nullable()->default(NULL);
-            $table->string('created_name')->nullable()->default(NULL);
-            $table->date('created_date')->nullable()->default(NULL);;
-            $table->unsignedBigInteger('warehouse_approved_by')->nullable()->default(NULL);
-            $table->string('warehouse_approved_name')->nullable()->default(NULL);
-            $table->date('warehouse_approved_date')->nullable()->default(NULL);
+            $table->unsignedBigInteger('created_by')->nullable()->default(null);
+            $table->string('created_name')->nullable()->default(null);
+            $table->date('created_date')->nullable()->default(null);
+            $table->unsignedBigInteger('warehouse_approved_by')->nullable()->default(null);
+            $table->string('warehouse_approved_name')->nullable()->default(null);
+            $table->date('warehouse_approved_date')->nullable()->default(null);
             $table->timestamps();
         });
     }

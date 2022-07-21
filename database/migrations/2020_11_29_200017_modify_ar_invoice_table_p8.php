@@ -16,7 +16,6 @@ class ModifyArInvoiceTableP8 extends Migration
         Schema::table('ar_invoice', function (Blueprint $table) {
             $table->boolean('whatsapp_sent')->nullable()->default(false);
             $table->datetime('whatsapp_sent_at')->nullable()->default(null);
-
         });
     }
 

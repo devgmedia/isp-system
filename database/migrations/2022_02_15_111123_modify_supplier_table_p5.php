@@ -13,7 +13,7 @@ class ModifySupplierTableP5 extends Migration
      */
     public function up()
     {
-        Schema::table('supplier', function (Blueprint $table) {     
+        Schema::table('supplier', function (Blueprint $table) {
             $table->boolean('warehouse_property')->nullable()->default(false);
         });
     }

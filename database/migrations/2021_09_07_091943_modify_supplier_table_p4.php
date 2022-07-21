@@ -13,7 +13,7 @@ class ModifySupplierTableP4 extends Migration
      */
     public function up()
     {
-        Schema::table('supplier', function (Blueprint $table) {            
+        Schema::table('supplier', function (Blueprint $table) {
             $table->string('npwp')->nullable()->default(null);
         });
     }

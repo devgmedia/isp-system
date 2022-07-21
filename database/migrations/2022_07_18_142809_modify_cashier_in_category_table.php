@@ -26,6 +26,5 @@ class ModifyCashierInCategoryTable extends Migration
      */
     public function down()
     {
-        
     }
 }

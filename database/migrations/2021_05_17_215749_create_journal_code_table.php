@@ -18,8 +18,7 @@ class CreateJournalCodeTable extends Migration
             $table->string('name');
             $table->timestamps();
 
-            $table->unique('name');            
-
+            $table->unique('name');
         });
     }
 

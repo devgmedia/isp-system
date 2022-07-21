@@ -19,7 +19,7 @@ class ModifyPerCustomerProductAdditionalTableP2 extends Migration
             $table->string('additional_name')->nullable()->default(null);
             $table->unsignedInteger('additional_price')->nullable()->default(0);
             $table->unsignedInteger('additional_price_usd')->nullable()->default(0);
-            $table->unsignedInteger('additional_price_sgd')->nullable()->default(0);            
+            $table->unsignedInteger('additional_price_sgd')->nullable()->default(0);
         });
     }
 

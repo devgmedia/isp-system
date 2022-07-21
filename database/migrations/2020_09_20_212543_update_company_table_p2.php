@@ -26,7 +26,7 @@ class UpdateCompanyTableP2 extends Migration
             if (Schema::hasColumn('company', 'alpha_3_code')) {
                 $table->string('alpha_3_code')->nullabe()->default(null)->change();
             } else {
-                $table->string('alpha_3_code')->nullabe()->default(null);   
+                $table->string('alpha_3_code')->nullabe()->default(null);
             }
         });
 

@@ -13,7 +13,7 @@ class ModifyRegionalTableP3 extends Migration
      */
     public function up()
     {
-        Schema::table('regional', function (Blueprint $table) {            
+        Schema::table('regional', function (Blueprint $table) {
             $table->string('supplier_verification_pic')->nullable()->default(null);
             $table->string('supplier_verification_pic_email')->nullable()->default(null);
         });

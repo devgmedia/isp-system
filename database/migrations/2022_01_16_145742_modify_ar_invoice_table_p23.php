@@ -14,8 +14,8 @@ class ModifyArInvoiceTableP23 extends Migration
     public function up()
     {
         Schema::table('ar_invoice', function (Blueprint $table) {
-            $table->unsignedBigInteger('faktur_id')->nullable()->default(null);             
-            $table->foreign('faktur_id')->references('id')->on('ar_invoice_faktur')->onDelete('set null'); 
+            $table->unsignedBigInteger('faktur_id')->nullable()->default(null);
+            $table->foreign('faktur_id')->references('id')->on('ar_invoice_faktur')->onDelete('set null');
 
             $table->boolean('qrcode')->nullable()->default(null);
 
@@ -31,12 +31,12 @@ class ModifyArInvoiceTableP23 extends Migration
 
             $table->float('tax_base_usd', 15, 2)->nullable()->default(0);
             $table->float('tax_base_sgd', 15, 2)->nullable()->default(0);
-            
+
             $table->float('tax_usd', 15, 2)->nullable()->default(0);
             $table->float('tax_sgd', 15, 2)->nullable()->default(0);
-            
+
             $table->float('total_usd', 15, 2)->nullable()->default(0);
-            $table->float('total_sgd', 15, 2)->nullable()->default(0);            
+            $table->float('total_sgd', 15, 2)->nullable()->default(0);
         });
     }
 

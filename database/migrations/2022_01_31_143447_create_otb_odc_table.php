@@ -15,8 +15,8 @@ class CreateOtbOdcTable extends Migration
     {
         Schema::create('otb_odc', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('odc_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('otb_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('odc_id')->nullable()->default(null);
+            $table->unsignedBigInteger('otb_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('odc_id')->references('id')->on('odc')->onDelete('set null');

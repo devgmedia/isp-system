@@ -16,8 +16,8 @@ class CreateEmployeePhoneNumberTable extends Migration
         Schema::create('employee_phone_number', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('number')->unique();
-            $table->unsignedBigInteger('type_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('employee_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('type_id')->nullable()->default(null);
+            $table->unsignedBigInteger('employee_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('type_id')->references('id')->on('employee_phone_number_type')->onDelete('set null');

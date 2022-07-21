@@ -18,14 +18,14 @@ class UpdateArInvoiceSchemeCustomerProductTableP2 extends Migration
             $table->dropForeign('ar_invoice_scheme_customer_product_customer_product_id_foreign');
         });
 
-        Schema::table('ar_invoice_scheme_customer_product', function (Blueprint $table) {   
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable()->default(null)->change();         
+        Schema::table('ar_invoice_scheme_customer_product', function (Blueprint $table) {
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable()->default(null)->change();
             $table->foreign(
                 'ar_invoice_scheme_customer_id',
                 'ar_invoice_scheme_customer_product_ar_inv_sch_cus_id_foreign',
             )->references('id')->on('ar_invoice_scheme_customer')->onDelete('set null');
-            
-            $table->unsignedBigInteger('customer_product_id')->nullable()->default(null)->change();    
+
+            $table->unsignedBigInteger('customer_product_id')->nullable()->default(null)->change();
             $table->foreign('customer_product_id')->references('id')->on('customer_product')->onDelete('set null');
         });
     }
@@ -42,14 +42,14 @@ class UpdateArInvoiceSchemeCustomerProductTableP2 extends Migration
             $table->dropForeign('ar_invoice_scheme_customer_product_customer_product_id_foreign');
         });
 
-        Schema::table('ar_invoice_scheme_customer_product', function (Blueprint $table) {      
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable(false)->change();       
+        Schema::table('ar_invoice_scheme_customer_product', function (Blueprint $table) {
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable(false)->change();
             $table->foreign(
-                'ar_invoice_scheme_customer_id',                
+                'ar_invoice_scheme_customer_id',
                 'ar_invoice_scheme_customer_product_ar_inv_sch_cus_id_foreign',
             )->references('id')->on('ar_invoice_scheme_customer')->onDelete('cascade');
 
-            $table->unsignedBigInteger('customer_product_id')->nullable(false)->change();     
+            $table->unsignedBigInteger('customer_product_id')->nullable(false)->change();
             $table->foreign('customer_product_id')->references('id')->on('customer_product')->onDelete('cascade');
         });
     }

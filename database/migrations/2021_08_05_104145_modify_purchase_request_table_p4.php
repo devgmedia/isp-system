@@ -13,9 +13,9 @@ class ModifyPurchaseRequestTableP4 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_request', function (Blueprint $table) {  
+        Schema::table('purchase_request', function (Blueprint $table) {
             $table->unsignedBigInteger('supplier_id')->nullable()->default(null);
-           
+
             $table->foreign('supplier_id')->references('id')->on('supplier')->onDelete('set null');
         });
     }
@@ -27,11 +27,11 @@ class ModifyPurchaseRequestTableP4 extends Migration
      */
     public function down()
     {
-        Schema::table('purchase_request', function (Blueprint $table) { 
+        Schema::table('purchase_request', function (Blueprint $table) {
             $table->dropForeign('purchase_request_supplier_id');
         });
 
-        Schema::table('purchase_request', function (Blueprint $table) { 
+        Schema::table('purchase_request', function (Blueprint $table) {
             $table->dropColumn('supplier_id');
         });
     }

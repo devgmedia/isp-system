@@ -16,7 +16,6 @@ class ModifyAgentNotificationTableP3 extends Migration
         Schema::table('agent_notification', function (Blueprint $table) {
             $table->date('date')->nullable()->default(null)->change();
         });
-
     }
 
     /**

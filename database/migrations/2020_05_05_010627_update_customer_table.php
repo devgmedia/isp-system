@@ -14,9 +14,9 @@ class UpdateCustomerTable extends Migration
     public function up()
     {
         Schema::table('customer', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('user_id')->nullable()->default(null);
             $table->foreign('user_id')->references('id')->on('user')->onDelete('set null');
-        }); 
+        });
     }
 
     /**
@@ -29,6 +29,6 @@ class UpdateCustomerTable extends Migration
         Schema::table('customer', function (Blueprint $table) {
             $table->dropForeign('customer_user_id_foreign');
             $table->dropColumn('user_id');
-        });        
+        });
     }
 }

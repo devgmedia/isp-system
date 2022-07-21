@@ -14,11 +14,10 @@ class ModifyOnuTableP4 extends Migration
     public function up()
     {
         Schema::table('onu', function (Blueprint $table) {
-            $table->string('cvlan_mgmt')->nullable()->default(NULL);
-            $table->string('cvlan_user')->nullable()->default(NULL);
-            $table->string('svlan_mgmt')->nullable()->default(NULL);
-            $table->string('svlan_user')->nullable()->default(NULL);
-
+            $table->string('cvlan_mgmt')->nullable()->default(null);
+            $table->string('cvlan_user')->nullable()->default(null);
+            $table->string('svlan_mgmt')->nullable()->default(null);
+            $table->string('svlan_user')->nullable()->default(null);
         });
     }
 

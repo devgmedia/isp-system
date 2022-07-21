@@ -12,9 +12,9 @@ class ModifyPurchaseOrderItemBoqTableP1 extends Migration
      * @return void
      */
     public function up()
-    { 
-        Schema::table('purchase_order_item_boq', function (Blueprint $table) { 
-            $table->boolean('status_ready')->nullable()->default(NULL);   
+    {
+        Schema::table('purchase_order_item_boq', function (Blueprint $table) {
+            $table->boolean('status_ready')->nullable()->default(null);
         });
     }
 

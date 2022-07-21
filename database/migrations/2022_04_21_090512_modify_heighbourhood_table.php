@@ -13,7 +13,7 @@ class ModifyHeighbourhoodTable extends Migration
      */
     public function up()
     {
-        Schema::table('neighbourhood', function (Blueprint $table) {   
+        Schema::table('neighbourhood', function (Blueprint $table) {
             $table->unsignedBigInteger('province_id')->nullable()->default(null)->before('hamlet_id');
             $table->foreign('province_id')->references('id')->on('province')->onDelete('set null');
 

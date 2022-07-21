@@ -28,7 +28,7 @@ class CreateArInvoiceWhatsappTable extends Migration
             $table->tinyInteger('job_total_received')->nullable()->default(null);
             $table->tinyInteger('job_total_recipient')->nullable()->default(null);
             $table->tinyInteger('job_total_sent')->nullable()->default(null);
-            
+
             $table->timestamps();
 
             $table->foreign('ar_invoice_id')->references('id')->on('ar_invoice')->onDelete('set null');

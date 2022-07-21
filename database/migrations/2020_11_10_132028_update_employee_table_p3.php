@@ -28,6 +28,5 @@ class UpdateEmployeeTableP3 extends Migration
         Schema::table('employee', function (Blueprint $table) {
             $table->boolean('active');
         });
-        
     }
 }

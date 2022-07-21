@@ -16,7 +16,7 @@ class ModifyCashBankTableP5 extends Migration
         Schema::table('cash_bank', function (Blueprint $table) {
             $table->unsignedBigInteger('chart_of_account_title_id')->nullable()->default(null);
             $table->foreign('chart_of_account_title_id')->references('id')->on('chart_of_account_title')->onDelete('set null');
-        });   
+        });
 
         Schema::table('cash_bank', function (Blueprint $table) {
             $table->dropForeign('cash_bank_branch_id_foreign');

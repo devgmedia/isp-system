@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class DropPreCustomerPicTable extends Migration
@@ -12,7 +11,7 @@ class DropPreCustomerPicTable extends Migration
      * @return void
      */
     public function up()
-    { 
+    {
         Schema::dropIfExists('pre_customer_pic_phone_number');
         Schema::dropIfExists('pre_customer_pic');
     }
@@ -23,7 +22,6 @@ class DropPreCustomerPicTable extends Migration
      * @return void
      */
     public function down()
-    { 
-        
+    {
     }
 }

@@ -34,7 +34,7 @@ class ModifyCashierOutTableP9 extends Migration
         });
 
         Schema::table('cashier_out', function (Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('cashier_out_category')->onDelete('set null');            
+            $table->foreign('category_id')->references('id')->on('cashier_out_category')->onDelete('set null');
         });
 
         // accounting_division_category
@@ -55,7 +55,6 @@ class ModifyCashierOutTableP9 extends Migration
             $table->unsignedBigInteger('chart_of_account_title_id')->nullable()->default(null);
             $table->foreign('chart_of_account_title_id')->references('id')->on('chart_of_account_title')->onDelete('set null');
         });
-        
     }
 
     /**

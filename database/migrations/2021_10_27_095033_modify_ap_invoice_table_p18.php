@@ -14,7 +14,7 @@ class ModifyApInvoiceTableP18 extends Migration
     public function up()
     {
         Schema::table('ap_invoice', function (Blueprint $table) {
-            $table->float('paid_taxes', 15, 2)->nullable(false)->default(0);            
+            $table->float('paid_taxes', 15, 2)->nullable(false)->default(0);
         });
     }
 

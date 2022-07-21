@@ -13,14 +13,14 @@ class ModifyPreSurveyReportingCoverageTableP1 extends Migration
      */
     public function up()
     {
-        Schema::table('pre_survey_reporting_coverage', function (Blueprint $table) { 
-            $table->unsignedBigInteger('bts_id')->nullable()->default(NULL);
-            $table->tinyInteger('bts_distance')->nullable()->default(NULL);
-            $table->unsignedBigInteger('tower_type_id')->nullable()->default(NULL);
-            $table->string('note')->nullable()->default(NULL);
-            $table->string('cable_type')->nullable()->default(NULL);  
-            $table->foreign('bts_id')->references('id')->on('bts')->onDelete('set null'); 
-            $table->foreign('tower_type_id')->references('id')->on('tower_type')->onDelete('set null'); 
+        Schema::table('pre_survey_reporting_coverage', function (Blueprint $table) {
+            $table->unsignedBigInteger('bts_id')->nullable()->default(null);
+            $table->tinyInteger('bts_distance')->nullable()->default(null);
+            $table->unsignedBigInteger('tower_type_id')->nullable()->default(null);
+            $table->string('note')->nullable()->default(null);
+            $table->string('cable_type')->nullable()->default(null);
+            $table->foreign('bts_id')->references('id')->on('bts')->onDelete('set null');
+            $table->foreign('tower_type_id')->references('id')->on('tower_type')->onDelete('set null');
         });
     }
 

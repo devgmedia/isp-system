@@ -18,11 +18,11 @@ class CreateCustomerProductInstallationItemTable extends Migration
             $table->uuid('uuid');
 
             $table->unsignedBigInteger('customer_product_id')->nullable()->default(null);
-            $table->foreign('customer_product_id')->references('id')->on('customer_product')->onDelete('set null');            
-            
+            $table->foreign('customer_product_id')->references('id')->on('customer_product')->onDelete('set null');
+
             $table->unsignedBigInteger('item_id')->nullable()->default(null);
             $table->foreign('item_id')->references('id')->on('item')->onDelete('set null');
-            
+
             $table->enum('item_status', ['pick_up', 'installation', 'returned'])->nullable()->default(null);
 
             $table->timestamps();

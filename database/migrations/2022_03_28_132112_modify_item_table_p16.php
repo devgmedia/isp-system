@@ -14,10 +14,10 @@ class ModifyItemTableP16 extends Migration
     public function up()
     {
         Schema::table('item', function (Blueprint $table) {
-            $table->dropColumn('purchase_price'); 
+            $table->dropColumn('purchase_price');
         });
 
-        Schema::table('item', function (Blueprint $table) { 
+        Schema::table('item', function (Blueprint $table) {
             $table->double('purchase_price', 20, 2)->nullable()->default(null);
         });
     }

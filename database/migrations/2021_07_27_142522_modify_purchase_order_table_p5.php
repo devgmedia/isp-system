@@ -14,7 +14,7 @@ class ModifyPurchaseOrderTableP5 extends Migration
     public function up()
     {
         Schema::table('purchase_order', function (Blueprint $table) {
-            $table->float('total')->nullable(null)->change(); 
+            $table->float('total')->nullable(null)->change();
             $table->dropColumn('name');
         });
     }

@@ -13,7 +13,7 @@ class ModifyItemMovementTable extends Migration
      */
     public function up()
     {
-        Schema::table('item_movement_list', function (Blueprint $table) { 
+        Schema::table('item_movement_list', function (Blueprint $table) {
             $table->unsignedBigInteger('pic')->nullable()->default(null);
             $table->foreign('pic')->references('id')->on('spm')->onDelete('set null');
 

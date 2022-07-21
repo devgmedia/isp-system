@@ -13,11 +13,11 @@ class ModifyPurchaseOrderShippingAddressTableP1 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_order_shipping_address', function (Blueprint $table) {  
-            $table->string('email')->nullable()->default(NULL);
-            $table->string('phone_number')->nullable()->default(NULL);
-            $table->string('fax')->nullable()->default(NULL);
-            $table->string('address')->nullable()->default(NULL);
+        Schema::table('purchase_order_shipping_address', function (Blueprint $table) {
+            $table->string('email')->nullable()->default(null);
+            $table->string('phone_number')->nullable()->default(null);
+            $table->string('fax')->nullable()->default(null);
+            $table->string('address')->nullable()->default(null);
         });
     }
 

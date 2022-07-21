@@ -15,7 +15,7 @@ class CreatePreSurveyReportingCoverageBoqCategoryTable extends Migration
     {
         Schema::create('pre_survey_reporting_coverage_boq_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable()->default(NULL); 
+            $table->string('name')->nullable()->default(null);
             $table->timestamps();
         });
     }

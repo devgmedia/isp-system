@@ -34,6 +34,5 @@ class ModifyCashierInTableP10 extends Migration
      */
     public function down()
     {
-
     }
 }

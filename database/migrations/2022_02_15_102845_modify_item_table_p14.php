@@ -14,8 +14,8 @@ class ModifyItemTableP14 extends Migration
     public function up()
     {
         Schema::table('item', function (Blueprint $table) {
-            $table->integer('long_warranty')->nullable()->default(NULL);
-            $table->integer('long_expiration')->nullable()->default(NULL);
+            $table->integer('long_warranty')->nullable()->default(null);
+            $table->integer('long_expiration')->nullable()->default(null);
         });
     }
 

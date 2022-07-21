@@ -17,7 +17,7 @@ class ModifyApInvoiceTableP7 extends Migration
             $table->date('received_date')->nullable()->default(null);
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

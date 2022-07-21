@@ -17,7 +17,7 @@ class ModifyPaymentMethodGuideTableP2 extends Migration
             $table->dropForeign('payment_method_guide_payment_method_id_foreign');
             $table->dropColumn('payment_method_id');
 
-            $table->unsignedBigInteger('payment_method_type_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('payment_method_type_id')->nullable()->default(null);
             $table->foreign('payment_method_type_id')->references('id')->on('payment_method_type')->onDelete('set null');
         });
     }

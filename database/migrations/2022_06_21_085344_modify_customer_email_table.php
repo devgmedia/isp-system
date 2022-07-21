@@ -18,7 +18,7 @@ class ModifyCustomerEmailTable extends Migration
 
             $table->boolean('verified')->nullable()->default(null);
             $table->datetime('verified_at')->nullable()->default(null);
-            
+
             $table->datetime('verification_email_sent_at')->nullable()->default(null);
         });
     }

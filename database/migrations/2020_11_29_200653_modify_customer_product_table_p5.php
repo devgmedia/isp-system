@@ -16,7 +16,6 @@ class ModifyCustomerProductTableP5 extends Migration
         Schema::table('customer_product', function (Blueprint $table) {
             $table->boolean('auto_sent_invoice_via_email')->nullable()->default(false);
             $table->boolean('auto_sent_invoice_via_whatsapp')->nullable()->default(false);
-
         });
     }
 

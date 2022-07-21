@@ -26,7 +26,7 @@ class ModifyCashierInTableP5 extends Migration
     public function down()
     {
         Schema::table('cashier_in', function (Blueprint $table) {
-            $table->unsignedInteger('total')->change();            
+            $table->unsignedInteger('total')->change();
         });
     }
 }

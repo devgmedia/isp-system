@@ -26,7 +26,7 @@ class ModifySpmTableP6 extends Migration
     public function down()
     {
         Schema::table('spm', function (Blueprint $table) {
-            $table->unsignedInteger('paid_total')->change();            
+            $table->unsignedInteger('paid_total')->change();
         });
     }
 }

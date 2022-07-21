@@ -16,9 +16,9 @@ class CreateSurveyTaskingTable extends Migration
         Schema::create('survey_tasking', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid');
-            $table->unsignedBigInteger('survey_request_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('survey_request_id')->nullable()->default(null);
+            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
 
             $table->timestamps();
 

@@ -18,7 +18,7 @@ class ModifyCustomerPhoneNumberTable extends Migration
 
             $table->boolean('whatsapp_verified')->nullable()->default(null);
             $table->datetime('whatsapp_verified_at')->nullable()->default(null);
-            
+
             $table->datetime('whatsapp_verification_sent_at')->nullable()->default(null);
         });
     }

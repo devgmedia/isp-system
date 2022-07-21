@@ -15,7 +15,7 @@ class UpdatePurchaseRequestItemTableP2 extends Migration
     {
         // add supplier_id purchase_request_item
         Schema::table('purchase_request_item', function (Blueprint $table) {
-            $table->unsignedBigInteger('supplier_id')->nullable()->default(NULL)->after('total');
+            $table->unsignedBigInteger('supplier_id')->nullable()->default(null)->after('total');
 
             $table->foreign('supplier_id')->references('id')->on('supplier')->onDelete('set null');
         });

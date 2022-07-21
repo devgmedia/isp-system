@@ -14,8 +14,8 @@ class UpdatePurchaseRequestTable extends Migration
     public function up()
     {
         Schema::table('purchase_request', function (Blueprint $table) {
-            $table->unsignedBigInteger('company_id')->nullable()->default(NULL)->after('branch_id');
-            $table->unsignedBigInteger('customer_id')->nullable()->default(NULL)->after('company_id');
+            $table->unsignedBigInteger('company_id')->nullable()->default(null)->after('branch_id');
+            $table->unsignedBigInteger('customer_id')->nullable()->default(null)->after('company_id');
 
             $table->foreign('company_id')->references('id')->on('company')->onDelete('set null');
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('set null');

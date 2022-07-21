@@ -13,7 +13,7 @@ class ModifyTaxInTable extends Migration
      */
     public function up()
     {
-        Schema::table('tax_in', function (Blueprint $table) {    
+        Schema::table('tax_in', function (Blueprint $table) {
             $table->float('pph_pasal_25', 15, 2)->nullable()->default(0);
         });
     }

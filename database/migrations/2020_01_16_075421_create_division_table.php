@@ -16,9 +16,9 @@ class CreateDivisionTable extends Migration
         Schema::create('division', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('regional_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('company_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
+            $table->unsignedBigInteger('regional_id')->nullable()->default(null);
+            $table->unsignedBigInteger('company_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->unique(['name', 'branch_id']);

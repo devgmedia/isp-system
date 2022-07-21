@@ -15,13 +15,13 @@ class UpdateArInvoiceTableP7 extends Migration
     {
         Schema::table('ar_invoice', function (Blueprint $table) {
             $table->dropForeign('ar_invoice_brand_id_foreign');
-        }); 
+        });
 
         Schema::table('ar_invoice', function (Blueprint $table) {
             $table->dropColumn([
                 'brand_id',
             ]);
-        }); 
+        });
 
         Schema::table('ar_invoice', function (Blueprint $table) {
             $table->string('name')->nullable()->default(null);
@@ -61,7 +61,7 @@ class UpdateArInvoiceTableP7 extends Migration
         Schema::table('ar_invoice', function (Blueprint $table) {
             $table->dropForeign('ar_invoice_brand_id_foreign');
             $table->dropForeign('ar_invoice_previous_foreign');
-        }); 
+        });
 
         Schema::table('ar_invoice', function (Blueprint $table) {
             $table->dropColumn([

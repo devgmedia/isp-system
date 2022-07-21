@@ -19,7 +19,7 @@ class CreateArInvoiceCustomerDiscountTable extends Migration
             $table->unsignedBigInteger('customer_discount_id')->nullable()->default(null);
 
             $table->timestamps();
-            
+
             $table->foreign('ar_invoice_customer_id')->references('id')->on('ar_invoice_customer')->onDelete('set null');
             $table->foreign('customer_discount_id')->references('id')->on('customer_discount')->onDelete('set null');
         });

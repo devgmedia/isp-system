@@ -14,19 +14,19 @@ class UpdateArInvoiceCustomerProductTableP2 extends Migration
     public function up()
     {
         Schema::table('ar_invoice_customer_product', function (Blueprint $table) {
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_product_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_product_id')->nullable()->default(null);
 
-            $table->string('customer_product_name')->nullable()->default(NULL);
+            $table->string('customer_product_name')->nullable()->default(null);
 
-            $table->unsignedInteger('customer_product_price')->nullable()->default(NULL);
-            $table->boolean('customer_product_price_include_vat')->nullable()->default(NULL);
+            $table->unsignedInteger('customer_product_price')->nullable()->default(null);
+            $table->boolean('customer_product_price_include_vat')->nullable()->default(null);
 
-            $table->unsignedBigInteger('customer_product_payment_scheme_id')->nullable()->default(NULL);
-            $table->string('customer_product_payment_scheme_name')->nullable()->default(NULL);
+            $table->unsignedBigInteger('customer_product_payment_scheme_id')->nullable()->default(null);
+            $table->string('customer_product_payment_scheme_name')->nullable()->default(null);
 
-            $table->unsignedInteger('customer_product_bandwidth')->nullable()->default(NULL);
-            $table->unsignedBigInteger('customer_product_bandwidth_unit_id')->nullable()->default(NULL);
-            $table->string('customer_product_bandwidth_unit_name')->nullable()->default(NULL);
+            $table->unsignedInteger('customer_product_bandwidth')->nullable()->default(null);
+            $table->unsignedBigInteger('customer_product_bandwidth_unit_id')->nullable()->default(null);
+            $table->string('customer_product_bandwidth_unit_name')->nullable()->default(null);
 
             $table->foreign(
                 'ar_invoice_scheme_customer_product_id',
@@ -79,11 +79,11 @@ class UpdateArInvoiceCustomerProductTableP2 extends Migration
 
                 'customer_product_payment_scheme_id',
                 'customer_product_payment_scheme_name',
-                
+
                 'customer_product_bandwidth',
                 'customer_product_bandwidth_unit_id',
                 'customer_product_bandwidth_unit_name',
-            ]);         
+            ]);
         });
     }
 }

@@ -15,11 +15,11 @@ class UpdateArInvoiceCustomerProductTableP6 extends Migration
     {
         Schema::table('ar_invoice_customer_product', function (Blueprint $table) {
             $table->dropForeign('ar_invoice_customer_product_ar_invoice_customer_id_foreign');
-        }); 
+        });
 
         Schema::table('ar_invoice_customer_product', function (Blueprint $table) {
             $table->foreign('ar_invoice_customer_id')->references('id')->on('ar_invoice_customer')->onDelete('set null');
-        }); 
+        });
     }
 
     /**
@@ -31,10 +31,10 @@ class UpdateArInvoiceCustomerProductTableP6 extends Migration
     {
         Schema::table('ar_invoice_customer_product', function (Blueprint $table) {
             $table->dropForeign('ar_invoice_customer_product_ar_invoice_customer_id_foreign');
-        }); 
+        });
 
         Schema::table('ar_invoice_customer_product', function (Blueprint $table) {
             $table->foreign('ar_invoice_customer_id')->references('id')->on('ar_invoice')->onDelete('set null');
-        }); 
+        });
     }
 }

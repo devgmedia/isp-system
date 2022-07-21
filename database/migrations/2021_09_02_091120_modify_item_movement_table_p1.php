@@ -13,10 +13,8 @@ class ModifyItemMovementTableP1 extends Migration
      */
     public function up()
     {
-        Schema::table('item_movement', function (Blueprint $table) { 
-
-            $table->string('warehouse_notes')->nullable()->default(NULL);
- 
+        Schema::table('item_movement', function (Blueprint $table) {
+            $table->string('warehouse_notes')->nullable()->default(null);
         });
     }
 

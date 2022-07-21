@@ -14,7 +14,7 @@ class ModifyOdcMiniTableP1 extends Migration
     public function up()
     {
         Schema::table('odc_mini', function (Blueprint $table) {
-            $table->unsignedBigInteger('item_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('item_id')->nullable()->default(null);
 
             $table->foreign('item_id')->references('id')->on('item')->onDelete('set null');
         });

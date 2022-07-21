@@ -13,13 +13,13 @@ class ModifyItemTableP19 extends Migration
      */
     public function up()
     {
-        Schema::table('item', function (Blueprint $table) { 
-            $table->dropColumn('auction_price'); 
-        }); 
+        Schema::table('item', function (Blueprint $table) {
+            $table->dropColumn('auction_price');
+        });
 
-        Schema::table('item', function (Blueprint $table) { 
-            $table->float('auction_price', 15, 2)->nullable()->default(NULL);
-        }); 
+        Schema::table('item', function (Blueprint $table) {
+            $table->float('auction_price', 15, 2)->nullable()->default(null);
+        });
     }
 
     /**

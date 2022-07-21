@@ -13,7 +13,7 @@ class ModifyArInvoiceTableP28 extends Migration
      */
     public function up()
     {
-        Schema::table('ar_invoice', function (Blueprint $table) {            
+        Schema::table('ar_invoice', function (Blueprint $table) {
             $table->string('billing_approver')->nullable()->default(null);
             $table->string('billing_preparer')->nullable()->default(null);
         });

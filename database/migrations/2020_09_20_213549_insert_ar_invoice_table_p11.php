@@ -32,7 +32,7 @@ class InsertArInvoiceTableP11 extends Migration
         Schema::table('ar_invoice', function (Blueprint $table) {
             $table->dropUnique('ar_invoice_uuid_unique');
         });
-        
+
         Schema::table('ar_invoice', function (Blueprint $table) {
             $table->string('uuid')->unique()->default(null)->change();
         });

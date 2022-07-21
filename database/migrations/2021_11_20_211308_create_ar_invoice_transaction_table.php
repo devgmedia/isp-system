@@ -26,7 +26,7 @@ class CreateArInvoiceTransactionTable extends Migration
 
             $table->unsignedBigInteger('debit_coa_id')->nullable()->default(null);
             $table->unsignedBigInteger('debit_coa_card_id')->nullable()->default(null);
-            
+
             $table->unsignedBigInteger('credit_coa_id')->nullable()->default(null);
             $table->unsignedBigInteger('credit_coa_card_id')->nullable()->default(null);
 
@@ -37,7 +37,7 @@ class CreateArInvoiceTransactionTable extends Migration
 
             $table->foreign('debit_coa_id')->references('id')->on('chart_of_account')->onDelete('set null');
             $table->foreign('debit_coa_card_id')->references('id')->on('chart_of_account_card')->onDelete('set null');
-            
+
             $table->foreign('credit_coa_id')->references('id')->on('chart_of_account')->onDelete('set null');
             $table->foreign('credit_coa_card_id')->references('id')->on('chart_of_account_card')->onDelete('set null');
         });

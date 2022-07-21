@@ -16,7 +16,7 @@ class CreateEmployeeAddressTable extends Migration
         Schema::create('employee_address', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('employee_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('employee_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('employee_id')->references('id')->on('employee')->onDelete('set null');

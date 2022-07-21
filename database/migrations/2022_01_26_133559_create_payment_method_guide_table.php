@@ -15,9 +15,9 @@ class CreatePaymentMethodGuideTable extends Migration
     {
         Schema::create('payment_method_guide', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('number')->nullable()->default(NULL);
-            $table->text('description')->nullable()->default(NULL);
-            $table->unsignedBigInteger('payment_method_id')->nullable()->default(NULL);
+            $table->integer('number')->nullable()->default(null);
+            $table->text('description')->nullable()->default(null);
+            $table->unsignedBigInteger('payment_method_id')->nullable()->default(null);
 
             $table->timestamps();
 

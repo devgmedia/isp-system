@@ -22,7 +22,7 @@ class CreateCustomerChangeLogTable extends Migration
             $table->unsignedBigInteger('customer_id')->nullable()->default(null);
             $table->longText('customer_data')->nullable()->default(null);
             $table->unsignedBigInteger('employee_id')->nullable()->default(null);
-            
+
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('set null');

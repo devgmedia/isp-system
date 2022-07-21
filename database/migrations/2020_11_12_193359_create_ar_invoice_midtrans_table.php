@@ -19,7 +19,7 @@ class CreateArInvoiceMidtransTable extends Migration
             $table->string('order_id')->unique()->nullable()->default(null);
             $table->string('payment_type')->nullable()->default(null);
             $table->string('transaction_status')->nullable()->default(null);
-            $table->string('fraud_status')->nullable()->default(null);            
+            $table->string('fraud_status')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('ar_invoice_id')->references('id')->on('ar_invoice')->onDelete('set null');

@@ -14,17 +14,17 @@ class ModifyItemTableP20 extends Migration
     public function up()
     {
         Schema::table('item', function (Blueprint $table) {
-            $table->dropForeign('item_pic_foreign'); 
+            $table->dropForeign('item_pic_foreign');
         });
 
         Schema::table('item', function (Blueprint $table) {
-            $table->dropColumn('pic'); 
+            $table->dropColumn('pic');
         });
 
-        Schema::table('item', function (Blueprint $table) { 
+        Schema::table('item', function (Blueprint $table) {
             $table->unsignedBigInteger('pic')->nullable()->default(null);
-            $table->foreign('pic')->references('id')->on('division')->onDelete('set null'); 
-        }); 
+            $table->foreign('pic')->references('id')->on('division')->onDelete('set null');
+        });
     }
 
     /**

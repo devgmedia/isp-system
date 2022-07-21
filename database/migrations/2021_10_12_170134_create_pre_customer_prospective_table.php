@@ -16,16 +16,14 @@ class CreatePreCustomerProspectiveTable extends Migration
         Schema::create('pre_customer_prospective', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->unique();
-            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('prospective_by')->nullable()->default(NULL);
-            $table->date('prospective_date')->nullable()->default(NULL);
-            $table->string('prospective_name')->nullable()->default(NULL);
+            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(null);
+            $table->unsignedBigInteger('prospective_by')->nullable()->default(null);
+            $table->date('prospective_date')->nullable()->default(null);
+            $table->string('prospective_name')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('pre_customer_id')->references('id')->on('pre_customer')->onDelete('set null');
             $table->foreign('prospective_by')->references('id')->on('employee')->onDelete('set null');
-
-
         });
     }
 

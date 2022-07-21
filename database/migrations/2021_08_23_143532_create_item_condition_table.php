@@ -15,8 +15,8 @@ class CreateItemConditionTable extends Migration
     {
         Schema::create('item_condition', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('date')->nullable()->default(NULL)->change();
-            $table->time('time')->nullable()->default(NULL)->change();
+            $table->date('date')->nullable()->default(null)->change();
+            $table->time('time')->nullable()->default(null)->change();
             $table->timestamps();
         });
     }

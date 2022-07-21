@@ -14,8 +14,8 @@ class ModifySurveyReportingP1Table extends Migration
     public function up()
     {
         Schema::table('survey_reporting', function (Blueprint $table) {
-            $table->string('number')->nullable()->default(NULL); 
-       });
+            $table->string('number')->nullable()->default(null);
+        });
     }
 
     /**

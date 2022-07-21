@@ -15,10 +15,10 @@ class CreateSupplierBankAccountTable extends Migration
     {
         Schema::create('supplier_bank_account', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('bank_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('bank_id')->nullable()->default(null);
             $table->string('number');
-            $table->string('on_behalf_of')->nullable()->default(NULL);
-            $table->unsignedBigInteger('supplier_id')->nullable()->default(NULL);
+            $table->string('on_behalf_of')->nullable()->default(null);
+            $table->unsignedBigInteger('supplier_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->unique(['number', 'supplier_id']);

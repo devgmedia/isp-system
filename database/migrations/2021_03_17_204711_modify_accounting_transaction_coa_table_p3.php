@@ -21,11 +21,11 @@ class ModifyAccountingTransactionCoaTableP3 extends Migration
                 'coa_id',
                 'coa_card_id',
             ], 'acc_tra_coa_tra_id_coa_id_coa_car_id_unique');
-            
+
             $table->foreign('coa_card_id')->references('id')->on('chart_of_account_card')->onDelete('set null');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

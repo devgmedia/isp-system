@@ -17,7 +17,7 @@ class ModifySpmTableP2 extends Migration
             $table->unique('ap_invoice_id');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

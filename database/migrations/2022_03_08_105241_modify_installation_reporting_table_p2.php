@@ -14,7 +14,7 @@ class ModifyInstallationReportingTableP2 extends Migration
     public function up()
     {
         Schema::table('installation_reporting', function (Blueprint $table) {
-            $table->string('number')->nullable()->default(NULL)->unique();
+            $table->string('number')->nullable()->default(null)->unique();
         });
     }
 

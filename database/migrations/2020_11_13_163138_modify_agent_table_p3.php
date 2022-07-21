@@ -14,7 +14,7 @@ class ModifyAgentTableP3 extends Migration
     public function up()
     {
         Schema::table('agent', function (Blueprint $table) {
-            $table->renameColumn('token_device', 'device_token');    
+            $table->renameColumn('token_device', 'device_token');
         });
     }
 

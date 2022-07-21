@@ -16,10 +16,10 @@ class CreatePurchaseRequestShippingAddressTable extends Migration
         Schema::create('purchase_request_shipping_address', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email')->nullable()->default(NULL);
-            $table->string('phone_number')->nullable()->default(NULL);
-            $table->string('fax')->nullable()->default(NULL);
-            $table->string('address')->nullable()->default(NULL);
+            $table->string('email')->nullable()->default(null);
+            $table->string('phone_number')->nullable()->default(null);
+            $table->string('fax')->nullable()->default(null);
+            $table->string('address')->nullable()->default(null);
             $table->timestamps();
         });
     }

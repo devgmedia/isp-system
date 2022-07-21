@@ -15,12 +15,12 @@ class CreatePreCustomerProductTable extends Migration
     {
         Schema::create('pre_customer_product', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('sid')->unique()->nullable()->default(NULL);
+            $table->string('sid')->unique()->nullable()->default(null);
             $table->date('registration_date');
-            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('product_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('media_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('media_vendor_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(null);
+            $table->unsignedBigInteger('product_id')->nullable()->default(null);
+            $table->unsignedBigInteger('media_id')->nullable()->default(null);
+            $table->unsignedBigInteger('media_vendor_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('pre_customer_id')->references('id')->on('pre_customer')->onDelete('set null');

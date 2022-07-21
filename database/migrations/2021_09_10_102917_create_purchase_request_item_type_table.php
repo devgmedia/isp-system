@@ -15,7 +15,7 @@ class CreatePurchaseRequestItemTypeTable extends Migration
     {
         Schema::create('purchase_request_item_type', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique(); 
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }

@@ -14,8 +14,7 @@ class ModifyNumberToBoqTable extends Migration
     public function up()
     {
         Schema::table('boq', function (Blueprint $table) {
-            $table->string('number')->nullable()->default(NULL)->change();
-
+            $table->string('number')->nullable()->default(null)->change();
         });
     }
 

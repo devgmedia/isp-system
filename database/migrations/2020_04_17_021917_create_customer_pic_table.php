@@ -16,7 +16,7 @@ class CreateCustomerPicTable extends Migration
         Schema::create('customer_pic', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('customer_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('customer_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->unique(['name', 'customer_id']);

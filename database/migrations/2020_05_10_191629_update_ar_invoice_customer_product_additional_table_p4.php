@@ -39,7 +39,7 @@ class UpdateArInvoiceCustomerProductAdditionalTableP4 extends Migration
                 'billing_start_date',
                 'billing_end_date',
             ]);
-            
+
             $table->dropColumn([
                 'price',
                 'discount',

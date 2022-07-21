@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class UpdatePreCustomerProductTable extends Migration
@@ -13,10 +12,10 @@ class UpdatePreCustomerProductTable extends Migration
      */
     public function up()
     {
-        Schema::table('pre_customer_product', function($table) {
+        Schema::table('pre_customer_product', function ($table) {
             $table->dropColumn('sid');
             $table->dropColumn('registration_date');
-         });
+        });
     }
 
     /**
@@ -26,7 +25,7 @@ class UpdatePreCustomerProductTable extends Migration
      */
     public function down()
     {
-        Schema::table('pre_customer_product', function($table) {
+        Schema::table('pre_customer_product', function ($table) {
             $table->string('sid');
             $table->date('registration_date');
         });

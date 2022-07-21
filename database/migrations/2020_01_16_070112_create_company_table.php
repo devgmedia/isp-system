@@ -17,7 +17,7 @@ class CreateCompanyTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('code')->unique();
-            $table->string('npwp')->nullable()->default(NULL);
+            $table->string('npwp')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class UpdateCustomerTableP2 extends Migration
         Schema::table('customer', function (Blueprint $table) {
             DB::statement('ALTER TABLE customer MODIFY cid VARCHAR (255) COLLATE utf8_unicode_ci NOT NULL');
             DB::statement('ALTER TABLE customer MODIFY email VARCHAR (255) COLLATE utf8_unicode_ci NOT NULL');
-        }); 
+        });
     }
 
     /**
@@ -29,6 +29,6 @@ class UpdateCustomerTableP2 extends Migration
         Schema::table('customer', function (Blueprint $table) {
             DB::statement('ALTER TABLE customer MODIFY cid VARCHAR (255) COLLATE utf8_unicode_ci NULL DEFAULT NULL');
             DB::statement('ALTER TABLE customer MODIFY email VARCHAR (255) COLLATE utf8_unicode_ci NULL DEFAULT NULL');
-        }); 
+        });
     }
 }

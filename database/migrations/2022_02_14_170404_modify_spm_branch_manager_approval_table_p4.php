@@ -19,7 +19,7 @@ class ModifySpmBranchManagerApprovalTableP4 extends Migration
 
         Schema::table('spm_branch_manager_approval_list', function (Blueprint $table) {
             $table->foreign('spm_approval_id')->references('approval_id')->on('spm')->onDelete('set null')->onUpdate('set null');
-        });        
+        });
     }
 
     /**

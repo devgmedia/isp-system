@@ -14,7 +14,7 @@ class ModifyPaymentMethodTableP1 extends Migration
     public function up()
     {
         Schema::table('payment_method', function (Blueprint $table) {
-            $table->unsignedBigInteger('payment_method_category_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('payment_method_category_id')->nullable()->default(null);
 
             $table->foreign('payment_method_category_id')->references('id')->on('payment_method_category')->onDelete('set null');
         });

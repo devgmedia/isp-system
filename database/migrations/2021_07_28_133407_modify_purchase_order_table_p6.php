@@ -13,7 +13,7 @@ class ModifyPurchaseOrderTableP6 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_order', function (Blueprint $table) { 
+        Schema::table('purchase_order', function (Blueprint $table) {
             $table->string('ready_status_by')->nullable()->default(null);
             $table->string('completed_status_by')->nullable()->default(null);
         });
@@ -28,7 +28,7 @@ class ModifyPurchaseOrderTableP6 extends Migration
     {
         Schema::table('purchase_order', function (Blueprint $table) {
             $table->dropColumn('ready_status_by');
-            $table->dropColumn('completed_status_by'); 
+            $table->dropColumn('completed_status_by');
         });
     }
 }

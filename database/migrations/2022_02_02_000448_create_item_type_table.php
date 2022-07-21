@@ -17,7 +17,7 @@ class CreateItemTypeTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable()->default(null);
             $table->unsignedBigInteger('brand_id')->nullable()->default(null);
-            $table->unsignedBigInteger('brand_product_id')->nullable()->default(null); 
+            $table->unsignedBigInteger('brand_product_id')->nullable()->default(null);
             $table->string('uuid')->nullable()->default(null);
 
             $table->foreign('brand_id')->references('id')->on('item_brand')->onDelete('set null');

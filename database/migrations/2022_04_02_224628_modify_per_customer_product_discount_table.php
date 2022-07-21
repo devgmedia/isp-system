@@ -17,7 +17,7 @@ class ModifyPerCustomerProductDiscountTable extends Migration
             $table->string('discount_name')->nullable()->default(null);
             $table->unsignedInteger('discount_price')->nullable()->default(0);
             $table->unsignedInteger('discount_price_usd')->nullable()->default(0);
-            $table->unsignedInteger('discount_price_sgd')->nullable()->default(0);            
+            $table->unsignedInteger('discount_price_sgd')->nullable()->default(0);
         });
     }
 

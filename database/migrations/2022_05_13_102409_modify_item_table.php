@@ -14,13 +14,13 @@ class ModifyItemTable extends Migration
     public function up()
     {
         Schema::table('item', function (Blueprint $table) {
-            $table->unsignedBigInteger('from_ownership_bts_id')->nullable()->default(NULL)->after('from_ownership_branch_id'); 
- 
-            $table->foreign('from_ownership_bts_id')->references('id')->on('bts')->onDelete('set null');  
-             
-            $table->unsignedBigInteger('from_location_bts_id')->nullable()->default(NULL)->after('from_location_branch_id');  
+            $table->unsignedBigInteger('from_ownership_bts_id')->nullable()->default(null)->after('from_ownership_branch_id');
 
-            $table->foreign('from_location_bts_id')->references('id')->on('bts')->onDelete('set null'); 
+            $table->foreign('from_ownership_bts_id')->references('id')->on('bts')->onDelete('set null');
+
+            $table->unsignedBigInteger('from_location_bts_id')->nullable()->default(null)->after('from_location_branch_id');
+
+            $table->foreign('from_location_bts_id')->references('id')->on('bts')->onDelete('set null');
         });
     }
 

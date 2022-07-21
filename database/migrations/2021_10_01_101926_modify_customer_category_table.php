@@ -12,13 +12,13 @@ class ModifyCustomerCategoryTable extends Migration
      * @return void
      */
     public function up()
-    { 
-        Schema::table('customer_category', function (Blueprint $table) {  
-            $table->unique('name'); 
+    {
+        Schema::table('customer_category', function (Blueprint $table) {
+            $table->unique('name');
         });
-        
-        Schema::table('customer_category', function (Blueprint $table) {  
-            $table->string('name')->nullable(false)->change(); 
+
+        Schema::table('customer_category', function (Blueprint $table) {
+            $table->string('name')->nullable(false)->change();
         });
     }
 

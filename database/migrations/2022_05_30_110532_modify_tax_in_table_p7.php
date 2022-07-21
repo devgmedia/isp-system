@@ -13,7 +13,7 @@ class ModifyTaxInTableP7 extends Migration
      */
     public function up()
     {
-        Schema::table('tax_in', function (Blueprint $table) {    
+        Schema::table('tax_in', function (Blueprint $table) {
             $table->string('number')->nullable()->default(null);
         });
     }

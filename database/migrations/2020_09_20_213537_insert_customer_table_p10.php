@@ -32,7 +32,7 @@ class InsertCustomerTableP10 extends Migration
         Schema::table('customer', function (Blueprint $table) {
             $table->dropUnique('customer_uuid_unique');
         });
-        
+
         Schema::table('customer', function (Blueprint $table) {
             $table->string('uuid')->unique()->default(null)->change();
         });

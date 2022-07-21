@@ -13,11 +13,10 @@ class ModifyPurchaseOrderItemTableP6 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_order_item', function (Blueprint $table) {   
-
-            $table->dropColumn('unit'); 
+        Schema::table('purchase_order_item', function (Blueprint $table) {
+            $table->dropColumn('unit');
             $table->unsignedBigInteger('unit_id')->nullable()->default(null);
- 
+
             $table->foreign('unit_id')->references('id')->on('purchase_order_item_unit')->onDelete('set null');
         });
     }
@@ -30,11 +29,11 @@ class ModifyPurchaseOrderItemTableP6 extends Migration
     public function down()
     {
         Schema::table('purchase_order_item', function (Blueprint $table) {
-            $table->dropForeign('purchase_order_item_unit_id_foreign'); 
+            $table->dropForeign('purchase_order_item_unit_id_foreign');
         });
 
-        Schema::table('item_condition', function (Blueprint $table) { 
-            $table->dropColumn('unit');  
+        Schema::table('item_condition', function (Blueprint $table) {
+            $table->dropColumn('unit');
         });
     }
 }

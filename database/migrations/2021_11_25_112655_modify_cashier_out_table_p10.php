@@ -16,10 +16,10 @@ class ModifyCashierOutTableP10 extends Migration
         Schema::table('cashier_out', function (Blueprint $table) {
             $table->dropForeign('cashier_out_spm_id_foreign');
         });
-        
+
         Schema::table('cashier_out', function (Blueprint $table) {
             $table->dropColumn('spm_id');
-            
+
             $table->unsignedBigInteger('memo_spm_id')->nullable()->default(null);
             $table->foreign('memo_spm_id')->references('id')->on('spm')->onDelete('set null');
 

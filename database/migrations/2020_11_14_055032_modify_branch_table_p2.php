@@ -32,7 +32,7 @@ class ModifyBranchTableP2 extends Migration
             $table->dropUnique('branch_code_regional_unique');
             $table->dropUnique('branch_name_regional_id_unique');
             $table->unique(['name', 'company_id']);
-            $table->unique(['code']);            
+            $table->unique(['code']);
         });
     }
 }

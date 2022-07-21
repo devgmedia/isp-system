@@ -12,14 +12,14 @@ class ModifyPurchaseRequestItemTableP3 extends Migration
      * @return void
      */
     public function up()
-    { 
+    {
         Schema::table('purchase_request_item', function (Blueprint $table) {
             $table->string('name')->nullable()->default(null);
             $table->unsignedBigInteger('unit_id')->nullable()->default(null);
             $table->unsignedBigInteger('source_id')->nullable()->default(null);
             $table->string('number')->nullable()->default(null);
             $table->string('customer_name')->nullable()->default(null);
-            $table->unsignedBigInteger('customer_id')->nullable()->default(null); 
+            $table->unsignedBigInteger('customer_id')->nullable()->default(null);
 
             $table->foreign('unit_id')->references('id')->on('purchase_request_item_unit')->onDelete('set null');
             $table->foreign('source_id')->references('id')->on('purchase_request_item_source')->onDelete('set null');
@@ -50,4 +50,3 @@ class ModifyPurchaseRequestItemTableP3 extends Migration
         });
     }
 }
-

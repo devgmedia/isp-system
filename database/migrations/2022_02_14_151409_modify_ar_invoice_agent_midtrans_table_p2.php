@@ -14,7 +14,6 @@ class ModifyArInvoiceAgentMidtransTableP2 extends Migration
     public function up()
     {
         Schema::table('ar_invoice_agent_midtrans', function (Blueprint $table) {
-
             $table->dropForeign('ar_invoice_agent_midtrans_ar_invoice_id_foreign');
             $table->dropColumn('ar_invoice_id');
 

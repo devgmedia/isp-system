@@ -13,16 +13,16 @@ class ModifyPreSurveyReportingCoverageRabItemTableP1 extends Migration
      */
     public function up()
     {
-        Schema::table('pre_survey_reporting_coverage_rab_item', function (Blueprint $table) {  
+        Schema::table('pre_survey_reporting_coverage_rab_item', function (Blueprint $table) {
             $table->dropForeign('pre_sur_rep_cov_id_foreign');
         });
 
-        Schema::table('pre_survey_reporting_coverage_rab_item', function (Blueprint $table) {  
+        Schema::table('pre_survey_reporting_coverage_rab_item', function (Blueprint $table) {
             $table->dropUnique('pre_sur_rep_cov_rab_itm_unique');
         });
 
-        Schema::table('pre_survey_reporting_coverage_rab_item', function (Blueprint $table) {  
-            $table->foreign('pre_survey_reporting_coverage_id','pre_sur_rep_cov_id_foreign')->references('id')->on('pre_survey_reporting_coverage')->onDelete('set null'); 
+        Schema::table('pre_survey_reporting_coverage_rab_item', function (Blueprint $table) {
+            $table->foreign('pre_survey_reporting_coverage_id', 'pre_sur_rep_cov_id_foreign')->references('id')->on('pre_survey_reporting_coverage')->onDelete('set null');
         });
     }
 

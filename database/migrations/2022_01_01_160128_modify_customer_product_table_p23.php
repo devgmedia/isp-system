@@ -31,7 +31,7 @@ class ModifyCustomerProductTableP23 extends Migration
 
             $table->unsignedBigInteger('ar_invoice_faktur_id')->nullable()->default(null);
             $table->foreign('ar_invoice_faktur_id')->references('id')->on('ar_invoice_faktur')->onDelete('set null');
-            
+
             $table->string('receiver_name')->nullable()->default(null);
             $table->string('receiver_address')->nullable()->default(null);
             $table->string('receiver_phone_number')->nullable()->default(null);

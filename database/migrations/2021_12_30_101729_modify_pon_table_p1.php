@@ -14,7 +14,7 @@ class ModifyPonTableP1 extends Migration
     public function up()
     {
         Schema::table('pon', function (Blueprint $table) {
-            $table->unsignedBigInteger('item_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('item_id')->nullable()->default(null);
             $table->renameColumn('device_number', 'rack');
             $table->renameColumn('device_row_number', 'shelf');
             $table->renameColumn('device_row_port_number', 'slot');

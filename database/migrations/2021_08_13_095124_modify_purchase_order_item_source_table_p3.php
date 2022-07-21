@@ -13,7 +13,7 @@ class ModifyPurchaseOrderItemSourceTableP3 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_order_item_source', function (Blueprint $table) {  
+        Schema::table('purchase_order_item_source', function (Blueprint $table) {
             $table->string('name');
         });
     }
@@ -24,8 +24,8 @@ class ModifyPurchaseOrderItemSourceTableP3 extends Migration
      * @return void
      */
     public function down()
-    { 
-        Schema::table('purchase_order_item_source', function (Blueprint $table) { 
+    {
+        Schema::table('purchase_order_item_source', function (Blueprint $table) {
             $table->unsignedBigInteger('purchase_request_item_id')->nullable()->default(null);
         });
     }

@@ -13,7 +13,7 @@ class ModifyCustomerProductTableP41 extends Migration
      */
     public function up()
     {
-        Schema::table('customer_product', function (Blueprint $table) {            
+        Schema::table('customer_product', function (Blueprint $table) {
             $table->unsignedBigInteger('isolation_invoice')->nullable()->default(null);
             $table->foreign('isolation_invoice')->references('id')->on('ar_invoice')->onDelete('set null');
         });

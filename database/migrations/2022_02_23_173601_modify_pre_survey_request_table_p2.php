@@ -14,7 +14,7 @@ class ModifyPreSurveyRequestTableP2 extends Migration
     public function up()
     {
         Schema::table('pre_survey_request', function (Blueprint $table) {
-            $table->string('number')->nullable()->default(NULL)->unique();
+            $table->string('number')->nullable()->default(null)->unique();
         });
     }
 

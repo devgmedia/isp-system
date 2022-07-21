@@ -15,12 +15,12 @@ class CreateBtsItemTable extends Migration
     {
         Schema::create('bts_item', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('item_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('bts_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('item_id')->nullable()->default(null);
+            $table->unsignedBigInteger('bts_id')->nullable()->default(null);
 
             $table->foreign('item_id')->references('id')->on('item')->onDelete('set null');
             $table->foreign('bts_id')->references('id')->on('bts')->onDelete('set null');
-            
+
             $table->timestamps();
         });
     }

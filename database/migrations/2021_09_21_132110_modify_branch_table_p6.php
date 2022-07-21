@@ -19,7 +19,7 @@ class ModifyBranchTableP6 extends Migration
 
             $table->string('pr_finance_approval_email')->nullable()->default(null);
             $table->string('pr_finance_approval_name')->nullable()->default(null);
-            
+
             $table->string('pr_general_manager_approval_email')->nullable()->default(null);
             $table->string('pr_general_manager_approval_name')->nullable()->default(null);
 
@@ -50,7 +50,7 @@ class ModifyBranchTableP6 extends Migration
 
             $table->dropColumn('pr_finance_approval_email');
             $table->dropColumn('pr_finance_approval_name');
-            
+
             $table->dropColumn('pr_general_manager_approval_email');
             $table->dropColumn('pr_genaral_manager_approval_name');
 

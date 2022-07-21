@@ -18,7 +18,7 @@ class ModifySpmTableP4 extends Migration
             $table->unique('approval_id');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

@@ -13,10 +13,10 @@ class ModifyArInvoiceCustomerProductDiscountP1 extends Migration
      */
     public function up()
     {
-        Schema::table('ar_invoice_customer_product_discount', function (Blueprint $table) {                        
+        Schema::table('ar_invoice_customer_product_discount', function (Blueprint $table) {
             $table->float('total', 15, 2)->nullable()->default(0);
             $table->float('total_usd', 15, 2)->nullable()->default(0);
-            $table->float('total_sgd', 15, 2)->nullable()->default(0);            
+            $table->float('total_sgd', 15, 2)->nullable()->default(0);
         });
     }
 

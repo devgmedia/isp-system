@@ -27,10 +27,10 @@ class UdpateCustomerProductTable extends Migration
             $table->date('billing_start_date')->nullable()->default(null);
             $table->date('billing_end_date')->nullable()->default(null);
             $table->date('billing_date')->nullable()->default(null);
-            
+
             $table->unsignedBigInteger('dependency')->nullable()->default(null);
             $table->foreign('dependency')->references('id')->on('customer_product')->onDelete('set null');
-        }); 
+        });
     }
 
     /**
@@ -59,6 +59,6 @@ class UdpateCustomerProductTable extends Migration
 
             $table->dropForeign('customer_product_dependency_foreign');
             $table->dropColumn('dependency');
-        }); 
+        });
     }
 }

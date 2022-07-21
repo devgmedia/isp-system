@@ -14,9 +14,9 @@ class ModifyItemTableP7 extends Migration
     public function up()
     {
         Schema::table('item', function (Blueprint $table) {
-            $table->dropColumn('code'); 
+            $table->dropColumn('code');
 
-            $table->string('number')->nullable()->default(NULL); 
+            $table->string('number')->nullable()->default(null);
         });
     }
 

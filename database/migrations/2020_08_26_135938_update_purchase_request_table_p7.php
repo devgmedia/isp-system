@@ -29,7 +29,7 @@ class UpdatePurchaseRequestTableP7 extends Migration
     {
         Schema::table('purchase_request', function (Blueprint $table) {
             $table->dropForeign(['sub_department_id']);
-            
+
             $table->dropColumn([
                 'sub_department_id',
             ]);

@@ -15,7 +15,7 @@ class UpdateCustomerDiscountTableP3 extends Migration
     {
         Schema::table('customer_discount', function (Blueprint $table) {
             $table->boolean('locked_by_bill')->nullable()->default(null);
-        }); 
+        });
     }
 
     /**
@@ -29,6 +29,6 @@ class UpdateCustomerDiscountTableP3 extends Migration
             $table->dropColumn([
                 'locked_by_bill',
             ]);
-        }); 
+        });
     }
 }

@@ -15,7 +15,7 @@ class UpdatePurchaseRequestTableP2 extends Migration
     {
         // create purchase_request_category_id
         Schema::table('purchase_request', function (Blueprint $table) {
-            $table->unsignedBigInteger('purchase_request_category_id')->nullable()->default(NULL)->after('about');
+            $table->unsignedBigInteger('purchase_request_category_id')->nullable()->default(null)->after('about');
 
             $table->foreign('purchase_request_category_id')->references('id')->on('purchase_request_category')->onDelete('set null');
         });

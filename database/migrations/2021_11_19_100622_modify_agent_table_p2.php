@@ -13,9 +13,9 @@ class ModifyAgentTableP2 extends Migration
      */
     public function up()
     {
-        Schema::table('agent', function (Blueprint $table) {  
-           $table->datetime('whatsapp_start_conversation_sent_at')->nullable()->default(null);
-           $table->datetime('whatsapp_fee_confirmation_sent_at')->nullable()->default(null);
+        Schema::table('agent', function (Blueprint $table) {
+            $table->datetime('whatsapp_start_conversation_sent_at')->nullable()->default(null);
+            $table->datetime('whatsapp_fee_confirmation_sent_at')->nullable()->default(null);
         });
     }
 

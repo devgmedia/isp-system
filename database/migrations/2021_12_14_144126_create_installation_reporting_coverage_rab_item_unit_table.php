@@ -15,7 +15,7 @@ class CreateInstallationReportingCoverageRabItemUnitTable extends Migration
     {
         Schema::create('installation_reporting_coverage_rab_item_unit', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable()->default(NULL);
+            $table->string('name')->nullable()->default(null);
             $table->timestamps();
         });
     }

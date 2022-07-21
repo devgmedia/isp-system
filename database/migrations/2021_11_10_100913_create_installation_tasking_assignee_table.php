@@ -14,11 +14,11 @@ class CreateInstallationTaskingAssigneeTable extends Migration
     public function up()
     {
         Schema::create('installation_tasking_assignee', function (Blueprint $table) {
-            $table->bigIncrements('id'); 
-            $table->unsignedBigInteger('survey_tasking_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('assignor')->nullable()->default(NULL);
-            $table->unsignedBigInteger('assignee')->nullable()->default(NULL);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('survey_tasking_id')->nullable()->default(null);
+            $table->unsignedBigInteger('assignor')->nullable()->default(null);
+            $table->unsignedBigInteger('assignee')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
 
             $table->timestamps();
 

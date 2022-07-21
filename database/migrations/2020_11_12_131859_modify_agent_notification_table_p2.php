@@ -14,7 +14,7 @@ class ModifyAgentNotificationTableP2 extends Migration
     public function up()
     {
         Schema::table('agent_notification', function (Blueprint $table) {
-            $table->datetime('date')->nullable()->dafault(NULL)->change();
+            $table->datetime('date')->nullable()->dafault(null)->change();
         });
     }
 

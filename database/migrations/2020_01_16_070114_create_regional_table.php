@@ -17,7 +17,7 @@ class CreateRegionalTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('code')->unique();
-            $table->unsignedBigInteger('company_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('company_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('company')->onDelete('set null');

@@ -18,7 +18,7 @@ class UpdateArInvoiceSchemeCustomerTableP2 extends Migration
             $table->dropForeign('ar_invoice_scheme_customer_customer_id_foreign');
         });
 
-        Schema::table('ar_invoice_scheme_customer', function (Blueprint $table) {            
+        Schema::table('ar_invoice_scheme_customer', function (Blueprint $table) {
             $table->unsignedBigInteger('ar_invoice_scheme_id')->nullable()->default(null)->change();
             $table->foreign('ar_invoice_scheme_id')->references('id')->on('ar_invoice_scheme')->onDelete('set null');
 
@@ -39,8 +39,8 @@ class UpdateArInvoiceSchemeCustomerTableP2 extends Migration
             $table->dropForeign('ar_invoice_scheme_customer_customer_id_foreign');
         });
 
-        Schema::table('ar_invoice_scheme_customer', function (Blueprint $table) {      
-            $table->unsignedBigInteger('ar_invoice_scheme_id')->nullable(false)->change();      
+        Schema::table('ar_invoice_scheme_customer', function (Blueprint $table) {
+            $table->unsignedBigInteger('ar_invoice_scheme_id')->nullable(false)->change();
             $table->foreign('ar_invoice_scheme_id')->references('id')->on('ar_invoice_scheme')->onDelete('cascade');
 
             $table->unsignedBigInteger('customer_id')->nullable(false)->change();

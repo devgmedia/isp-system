@@ -15,8 +15,8 @@ class ModifyItemMacAddressTable extends Migration
     {
         Schema::table('item_mac_address', function (Blueprint $table) {
             $table->unsignedBigInteger('item_id')->nullable()->default(null);
-            $table->string('name')->unique()->nullable()->default(null);     
-            
+            $table->string('name')->unique()->nullable()->default(null);
+
             $table->foreign('item_id')->references('id')->on('item')->onDelete('set null');
         });
     }

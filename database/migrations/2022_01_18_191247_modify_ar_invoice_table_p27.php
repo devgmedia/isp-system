@@ -13,7 +13,7 @@ class ModifyArInvoiceTableP27 extends Migration
      */
     public function up()
     {
-        Schema::table('ar_invoice', function (Blueprint $table) {            
+        Schema::table('ar_invoice', function (Blueprint $table) {
             $table->string('billing_npwp_number')->nullable()->default(null);
             $table->string('billing_npwp_on_behalf_of')->nullable()->default(null);
             $table->string('billing_phone_number')->nullable()->default(null);

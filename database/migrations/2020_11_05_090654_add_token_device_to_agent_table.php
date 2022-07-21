@@ -14,7 +14,7 @@ class AddTokenDeviceToAgentTable extends Migration
     public function up()
     {
         Schema::table('agent', function (Blueprint $table) {
-            $table->string('token_device')->nullable()->default(NULL)->unique()->after('branch_id');
+            $table->string('token_device')->nullable()->default(null)->unique()->after('branch_id');
         });
     }
 

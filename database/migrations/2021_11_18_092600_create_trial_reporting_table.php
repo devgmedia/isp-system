@@ -16,10 +16,10 @@ class CreateTrialReportingTable extends Migration
         Schema::create('trial_reporting', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->unique();
-            $table->unsignedBigInteger('trial_request_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(NULL);
-            $table->text('description')->nullable()->default(NULL);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('trial_request_id')->nullable()->default(null);
+            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(null);
+            $table->text('description')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('trial_request_id')->references('id')->on('trial_request')->onDelete('set null');

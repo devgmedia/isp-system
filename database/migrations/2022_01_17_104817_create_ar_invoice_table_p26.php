@@ -13,9 +13,9 @@ class CreateArInvoiceTableP26 extends Migration
      */
     public function up()
     {
-        Schema::table('ar_invoice', function (Blueprint $table) {            
+        Schema::table('ar_invoice', function (Blueprint $table) {
             $table->float('discount_usd', 15, 2)->nullable()->default(0);
-            $table->float('discount_sgd', 15, 2)->nullable()->default(0);            
+            $table->float('discount_sgd', 15, 2)->nullable()->default(0);
         });
     }
 

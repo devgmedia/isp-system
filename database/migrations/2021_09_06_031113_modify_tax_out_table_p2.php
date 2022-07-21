@@ -17,8 +17,7 @@ class ModifyTaxOutTableP2 extends Migration
             $table->dropForeign('tax_out_ar_invoice_id_foreign');
         });
 
-
-        Schema::table('tax_out', function (Blueprint $table) {            
+        Schema::table('tax_out', function (Blueprint $table) {
             $table->foreign('ar_invoice_id')->references('id')->on('ar_invoice_v2')->onDelete('set null');
         });
     }

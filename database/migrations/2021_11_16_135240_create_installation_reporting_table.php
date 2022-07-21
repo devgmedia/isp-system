@@ -16,11 +16,11 @@ class CreateInstallationReportingTable extends Migration
         Schema::create('installation_reporting', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->unique();
-            $table->unsignedBigInteger('installation_tasking_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('installation_tasking_id')->nullable()->default(null);
             $table->unsignedBigInteger('pre_customer_id')->nullable()->default(null);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
-            $table->string('content')->nullable()->default(NULL);
-            $table->string('owncloud_link')->nullable()->default(NULL);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
+            $table->string('content')->nullable()->default(null);
+            $table->string('owncloud_link')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('installation_tasking_id')->references('id')->on('installation_tasking')->onDelete('set null');

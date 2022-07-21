@@ -17,7 +17,7 @@ class CreateItemOpnameListTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('item_opname_id')->nullable()->default(null);
             $table->unsignedBigInteger('item_id')->nullable()->default(null);
-            $table->date('date_opname')->nullable()->default(null);  
+            $table->date('date_opname')->nullable()->default(null);
             $table->unsignedBigInteger('location_branch_id')->nullable()->default(null);
             $table->unsignedBigInteger('location_regional_id')->nullable()->default(null);
             $table->unsignedBigInteger('location_company_id')->nullable()->default(null);

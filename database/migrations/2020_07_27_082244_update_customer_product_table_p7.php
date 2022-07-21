@@ -31,6 +31,6 @@ class UpdateCustomerProductTableP7 extends Migration
             $table->dropColumn('sid_mapping');
             $table->dropColumn('service_date');
             $table->dropColumn('billing_date');
-        });        
+        });
     }
 }

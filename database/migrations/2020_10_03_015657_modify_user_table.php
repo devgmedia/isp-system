@@ -16,7 +16,7 @@ class ModifyUserTable extends Migration
         Schema::table('user', function (Blueprint $table) {
             $table->dropUnique('user_email_unique');
         });
-        
+
         Schema::table('user', function (Blueprint $table) {
             $table->string('email')->nullable()->default(null)->change();
         });

@@ -15,16 +15,16 @@ class CreateProductAdditionalTable extends Migration
     {
         Schema::create('product_additional', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('sid')->unique()->nullable()->default(NULL);
+            $table->string('sid')->unique()->nullable()->default(null);
             $table->string('name');
             $table->unsignedInteger('price');
             $table->boolean('price_include_vat');
-            $table->unsignedBigInteger('payment_scheme_id')->nullable()->default(NULL);
-            $table->unsignedInteger('bandwidth')->nullable()->default(NULL);
-            $table->unsignedBigInteger('bandwidth_unit_id')->nullable()->default(NULL);
-            $table->string('description')->nullable()->default(NULL);
+            $table->unsignedBigInteger('payment_scheme_id')->nullable()->default(null);
+            $table->unsignedInteger('bandwidth')->nullable()->default(null);
+            $table->unsignedBigInteger('bandwidth_unit_id')->nullable()->default(null);
+            $table->string('description')->nullable()->default(null);
             $table->boolean('required');
-            $table->unsignedBigInteger('product_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('product_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->unique(['name', 'product_id']);

@@ -14,10 +14,10 @@ class ModifyArInvoiceCustomerProductTableP5 extends Migration
     public function up()
     {
         Schema::table('ar_invoice_customer_product', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id')->nullable()->default(null);             
-            $table->foreign('product_id')->references('id')->on('product')->onDelete('set null'); 
+            $table->unsignedBigInteger('product_id')->nullable()->default(null);
+            $table->foreign('product_id')->references('id')->on('product')->onDelete('set null');
 
-            $table->string('product_name')->nullable()->default(null);      
+            $table->string('product_name')->nullable()->default(null);
         });
     }
 

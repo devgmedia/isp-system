@@ -17,7 +17,7 @@ class CreateArInvoiceDetailProductAdditionalTable extends Migration
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('product_additional_id');
-            $table->foreign('product_additional_id','ap_id_ref')->references('id')->on('product_additional');
+            $table->foreign('product_additional_id', 'ap_id_ref')->references('id')->on('product_additional');
 
             $table->unsignedBigInteger('ar_invoice_detail_id');
             $table->foreign('ar_invoice_detail_id', 'aid_id_ref')->references('id')->on('ar_invoice_detail');

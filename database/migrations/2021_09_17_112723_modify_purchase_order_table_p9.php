@@ -13,7 +13,7 @@ class ModifyPurchaseOrderTableP9 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_order', function (Blueprint $table) { 
+        Schema::table('purchase_order', function (Blueprint $table) {
             $table->string('uuid')->unique();
         });
     }
@@ -24,13 +24,13 @@ class ModifyPurchaseOrderTableP9 extends Migration
      * @return void
      */
     public function down()
-    { 
+    {
         Schema::table('purchase_order', function (Blueprint $table) {
             $table->dropUnique('purchase_order_uuid_unique');
         });
 
-        Schema::table('purchase_order', function (Blueprint $table) { 
-            $table->dropColumn('uuid');  
+        Schema::table('purchase_order', function (Blueprint $table) {
+            $table->dropColumn('uuid');
         });
     }
 }

@@ -12,7 +12,7 @@ class ModifySpmGeneralManagerApprovalTableP3 extends Migration
      * @return void
      */
     public function up()
-    {        
+    {
         Schema::table('spm_general_manager_approval', function (Blueprint $table) {
             $table->boolean('read')->nullable()->default(null);
         });

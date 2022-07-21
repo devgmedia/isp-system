@@ -13,7 +13,7 @@ class ModifyCustomerTableP22 extends Migration
      */
     public function up()
     {
-        Schema::table('customer', function (Blueprint $table) {  
+        Schema::table('customer', function (Blueprint $table) {
             $table->string('contact_person')->nullable()->default(null);
         });
     }

@@ -14,15 +14,15 @@ class CreatePreSurveyTaskingTable extends Migration
     public function up()
     {
         Schema::create('pre_survey_tasking', function (Blueprint $table) {
-            $table->bigIncrements('id'); 
+            $table->bigIncrements('id');
             $table->string('uuid')->unique();
-            $table->unsignedBigInteger('pre_survey_request_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(NULL);  
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('pre_survey_request_id')->nullable()->default(null);
+            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('pre_survey_request_id')->references('id')->on('pre_survey_request')->onDelete('set null');
-            $table->foreign('pre_customer_id')->references('id')->on('pre_customer')->onDelete('set null'); 
+            $table->foreign('pre_customer_id')->references('id')->on('pre_customer')->onDelete('set null');
             $table->foreign('branch_id')->references('id')->on('branch')->onDelete('set null');
         });
     }

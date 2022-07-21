@@ -15,7 +15,7 @@ class CreateInstallationReportingCoverageBoqCategoryTable extends Migration
     {
         Schema::create('installation_reporting_coverage_boq_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable()->default(NULL);
+            $table->string('name')->nullable()->default(null);
             $table->timestamps();
         });
     }

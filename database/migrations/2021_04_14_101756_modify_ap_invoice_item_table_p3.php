@@ -26,7 +26,7 @@ class ModifyApInvoiceItemTableP3 extends Migration
     public function down()
     {
         Schema::table('ap_invoice_item', function (Blueprint $table) {
-            $table->unsignedInteger('price')->change();            
+            $table->unsignedInteger('price')->change();
         });
     }
 }

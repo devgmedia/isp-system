@@ -14,7 +14,7 @@ class UpdatePurchaseOrderItemSource extends Migration
     public function up()
     {
         Schema::table('purchase_order_item_source', function (Blueprint $table) {
-            $table->string('purchase_request_number')->nullable()->default(NULL)->change();
+            $table->string('purchase_request_number')->nullable()->default(null)->change();
         });
     }
 
@@ -26,7 +26,7 @@ class UpdatePurchaseOrderItemSource extends Migration
     public function down()
     {
         Schema::table('purchase_order_item_source', function (Blueprint $table) {
-            $table->unsignedInteger('purchase_request_number')->nullable()->default(NULL)->change();
+            $table->unsignedInteger('purchase_request_number')->nullable()->default(null)->change();
         });
     }
 }

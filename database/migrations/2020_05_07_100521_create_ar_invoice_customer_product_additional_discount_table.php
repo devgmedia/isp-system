@@ -19,7 +19,7 @@ class CreateArInvoiceCustomerProductAdditionalDiscountTable extends Migration
             $table->unsignedBigInteger('customer_product_additional_discount_id')->nullable()->default(null);
 
             $table->timestamps();
-            
+
             $table->foreign(
                 'ar_invoice_customer_product_additional_id',
                 'ar_inv_cus_pro_add_dis_ar_inv_cus_pro_add_id_foreign',

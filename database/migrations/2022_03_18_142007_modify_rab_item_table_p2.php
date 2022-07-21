@@ -14,14 +14,12 @@ class ModifyRabItemTableP2 extends Migration
     public function up()
     {
         Schema::table('rab_item', function (Blueprint $table) {
-
             $table->integer('status')->nullable()->default(null);
 
             $table->dropColumn([
                 'sales_lent',
                 'sales_buy',
             ]);
-
         });
     }
 

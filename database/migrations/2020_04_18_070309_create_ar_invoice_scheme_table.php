@@ -15,8 +15,8 @@ class CreateArInvoiceSchemeTable extends Migration
     {
         Schema::create('ar_invoice_scheme', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('payer')->nullable()->default(NULL);
-            $table->unsignedBigInteger('payment_scheme_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('payer')->nullable()->default(null);
+            $table->unsignedBigInteger('payment_scheme_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('payer')->references('id')->on('customer')->onDelete('set null');

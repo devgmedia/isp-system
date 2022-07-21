@@ -17,7 +17,7 @@ class CreateCustomerProductInstallationPhotoTable extends Migration
             $table->bigIncrements('id');
 
             $table->unsignedBigInteger('customer_product_id')->nullable()->default(null);
-            $table->foreign('customer_product_id', 'cus_pro_ins_pho_cus_pro_id_foreign')->references('id')->on('customer_product')->onDelete('set null');            
+            $table->foreign('customer_product_id', 'cus_pro_ins_pho_cus_pro_id_foreign')->references('id')->on('customer_product')->onDelete('set null');
 
             $table->string('filename');
 

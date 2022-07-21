@@ -15,20 +15,20 @@ class UpdateArInvoiceCustomerProductAdditionalTable extends Migration
     {
         Schema::create('ar_invoice_customer_product_additional', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_product_additional_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('ar_invoice_customer_product_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('customer_product_additional_id')->nullable()->default(NULL);
-            $table->string('customer_product_additional_name')->nullable()->default(NULL);
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_product_additional_id')->nullable()->default(null);
+            $table->unsignedBigInteger('ar_invoice_customer_product_id')->nullable()->default(null);
+            $table->unsignedBigInteger('customer_product_additional_id')->nullable()->default(null);
+            $table->string('customer_product_additional_name')->nullable()->default(null);
 
-            $table->unsignedInteger('customer_product_additional_price')->nullable()->default(NULL);
-            $table->boolean('customer_product_additional_price_include_vat')->nullable()->default(NULL);
+            $table->unsignedInteger('customer_product_additional_price')->nullable()->default(null);
+            $table->boolean('customer_product_additional_price_include_vat')->nullable()->default(null);
 
-            $table->unsignedBigInteger('customer_product_additional_payment_scheme_id')->nullable()->default(NULL);
-            $table->string('customer_product_additional_payment_scheme_name')->nullable()->default(NULL);
+            $table->unsignedBigInteger('customer_product_additional_payment_scheme_id')->nullable()->default(null);
+            $table->string('customer_product_additional_payment_scheme_name')->nullable()->default(null);
 
-            $table->unsignedInteger('customer_product_additional_bandwidth')->nullable()->default(NULL);
-            $table->unsignedBigInteger('customer_product_additional_bandwidth_unit_id')->nullable()->default(NULL);
-            $table->string('customer_product_additional_bandwidth_unit_name')->nullable()->default(NULL);     
+            $table->unsignedInteger('customer_product_additional_bandwidth')->nullable()->default(null);
+            $table->unsignedBigInteger('customer_product_additional_bandwidth_unit_id')->nullable()->default(null);
+            $table->string('customer_product_additional_bandwidth_unit_name')->nullable()->default(null);
 
             $table->timestamps();
 

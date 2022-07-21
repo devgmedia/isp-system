@@ -11,7 +11,6 @@ class CreateCashBankTable extends Migration
      *
      * @return void
      */
-    
     public function up()
     {
         Schema::create('cash_bank', function (Blueprint $table) {

@@ -14,7 +14,7 @@ class ModifyArInvoiceTableP25 extends Migration
     public function up()
     {
         Schema::table('ar_invoice', function (Blueprint $table) {
-            $table->string('brand_type_name')->nullable()->default(null);   
+            $table->string('brand_type_name')->nullable()->default(null);
         });
     }
 

@@ -16,7 +16,7 @@ class UpdatePurchaseRequestTableP3 extends Migration
         // create relation to purchase_request_status table and add field name to purchase_request table
         Schema::table('purchase_request', function (Blueprint $table) {
             $table->string('name')->after('id');
-            $table->unsignedBigInteger('purchase_request_status_id')->nullable()->default(NULL)->after('purchase_request_category_id');
+            $table->unsignedBigInteger('purchase_request_status_id')->nullable()->default(null)->after('purchase_request_category_id');
 
             $table->foreign('purchase_request_status_id')->references('id')->on('purchase_request_status')->onDelete('set null');
         });

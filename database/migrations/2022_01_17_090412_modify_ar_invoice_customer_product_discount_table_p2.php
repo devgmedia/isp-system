@@ -14,7 +14,7 @@ class ModifyArInvoiceCustomerProductDiscountTableP2 extends Migration
     public function up()
     {
         Schema::table('ar_invoice_customer_product_discount', function (Blueprint $table) {
-            $table->string('discount_name')->nullable()->default(null);      
+            $table->string('discount_name')->nullable()->default(null);
         });
     }
 

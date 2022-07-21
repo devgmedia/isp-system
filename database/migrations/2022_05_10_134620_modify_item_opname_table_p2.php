@@ -12,9 +12,9 @@ class ModifyItemOpnameTableP2 extends Migration
      * @return void
      */
     public function up()
-    { 
-        Schema::table('item_opname', function (Blueprint $table) { 
-            $table->unsignedBigInteger('branch_id')->nullable()->default(null)->after('total'); 
+    {
+        Schema::table('item_opname', function (Blueprint $table) {
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null)->after('total');
             $table->foreign('branch_id')->references('id')->on('branch')->onDelete('set null');
         });
     }

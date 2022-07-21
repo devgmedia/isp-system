@@ -12,12 +12,12 @@ class ModifyPreCustomerTableP4 extends Migration
      * @return void
      */
     public function up()
-    { 
-        Schema::table('pre_customer', function (Blueprint $table) {  
-            $table->unsignedBigInteger('approved_by')->nullable()->default(NULL);
+    {
+        Schema::table('pre_customer', function (Blueprint $table) {
+            $table->unsignedBigInteger('approved_by')->nullable()->default(null);
             $table->date('approved_date')->nullable()->default(null);
             $table->string('approved_name')->nullable()->default(null);
-            
+
             $table->foreign('approved_by')->references('id')->on('employee')->onDelete('set null');
         });
     }

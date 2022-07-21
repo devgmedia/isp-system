@@ -15,10 +15,10 @@ class CraeteSpmBranchManagerApprovalListTable extends Migration
     {
         Schema::create('spm_branch_manager_approval_list', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
+
             $table->unsignedBigInteger('approval_id')->nullable()->default(null);
             $table->foreign('approval_id')->references('id')->on('spm_branch_manager_approval')->onDelete('set null');
-            
+
             $table->unsignedBigInteger('spm_id')->nullable()->default(null);
             $table->foreign('spm_id')->references('id')->on('spm')->onDelete('set null');
             $table->string('spm_approval_id')->nullable()->default(null);

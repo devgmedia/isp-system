@@ -15,8 +15,8 @@ class CreatePonOtbTable extends Migration
     {
         Schema::create('pon_otb', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('pon_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('otb_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('pon_id')->nullable()->default(null);
+            $table->unsignedBigInteger('otb_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('pon_id')->references('id')->on('pon')->onDelete('set null');

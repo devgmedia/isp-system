@@ -13,8 +13,8 @@ class ModifyPreCustomerTableP5 extends Migration
      */
     public function up()
     {
-        Schema::table('pre_customer', function (Blueprint $table) {  
-            $table->string('cid')->unique()->nullable()->default(NULL);
+        Schema::table('pre_customer', function (Blueprint $table) {
+            $table->string('cid')->unique()->nullable()->default(null);
             $table->string('pic')->nullable()->default(null);
             $table->boolean('cancel')->nullable()->default(false);
             $table->datetime('cancel_at')->nullable()->default(null);

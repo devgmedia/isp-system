@@ -14,8 +14,8 @@ class ModifyQuantityToBoqItemTable extends Migration
     public function up()
     {
         Schema::table('boq_item', function (Blueprint $table) {
-            $table->string('quantity')->nullable()->default(NULL);
-            $table->unsignedBigInteger('unit_id')->nullable()->default(NULL);
+            $table->string('quantity')->nullable()->default(null);
+            $table->unsignedBigInteger('unit_id')->nullable()->default(null);
 
             $table->foreign('unit_id')->references('id')->on('boq_unit')->onDelete('set null');
         });

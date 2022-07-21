@@ -13,8 +13,8 @@ class ModifyPurchaseRequestTableP3 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_request', function (Blueprint $table) { 
-            $table->dropColumn('name'); 
+        Schema::table('purchase_request', function (Blueprint $table) {
+            $table->dropColumn('name');
             $table->unsignedBigInteger('currency_id')->nullable()->default(null);
             $table->unsignedBigInteger('payment_method_id')->nullable()->default(null);
             $table->unsignedBigInteger('shipping_address_id')->nullable()->default(null);

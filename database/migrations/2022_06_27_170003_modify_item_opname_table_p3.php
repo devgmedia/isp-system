@@ -13,8 +13,8 @@ class ModifyItemOpnameTableP3 extends Migration
      */
     public function up()
     {
-        Schema::table('item_opname', function (Blueprint $table) { 
-            $table->date('date_opname')->nullable()->default(null);  
+        Schema::table('item_opname', function (Blueprint $table) {
+            $table->date('date_opname')->nullable()->default(null);
         });
     }
 

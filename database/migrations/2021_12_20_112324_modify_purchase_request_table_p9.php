@@ -14,7 +14,6 @@ class ModifyPurchaseRequestTableP9 extends Migration
     public function up()
     {
         Schema::table('purchase_request', function (Blueprint $table) {
-           
             $table->dropForeign(['department_id']);
             $table->dropForeign(['sub_department_id']);
 

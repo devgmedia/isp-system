@@ -15,7 +15,7 @@ class CreateTrialQuestionTable extends Migration
     {
         Schema::create('trial_question', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('name')->nullable()->default(NULL);
+            $table->text('name')->nullable()->default(null);
             $table->timestamps();
         });
     }

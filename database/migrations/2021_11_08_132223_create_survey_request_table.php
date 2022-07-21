@@ -16,11 +16,11 @@ class CreateSurveyRequestTable extends Migration
         Schema::create('survey_request', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('uuid')->unique();
-            $table->unsignedBigInteger('pre_survey_reporting_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('request_by')->nullable()->default(NULL);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
-            $table->date('request_date')->nullable()->default(NULL);
-            $table->string('request_name')->nullable()->default(NULL);
+            $table->unsignedBigInteger('pre_survey_reporting_id')->nullable()->default(null);
+            $table->unsignedBigInteger('request_by')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
+            $table->date('request_date')->nullable()->default(null);
+            $table->string('request_name')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('pre_survey_reporting_id')->references('id')->on('pre_survey_reporting')->onDelete('set null');

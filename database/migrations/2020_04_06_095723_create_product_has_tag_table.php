@@ -15,8 +15,8 @@ class CreateProductHasTagTable extends Migration
     {
         Schema::create('product_has_tag', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('product_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('tag_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('product_id')->nullable()->default(null);
+            $table->unsignedBigInteger('tag_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('product')->onDelete('set null');

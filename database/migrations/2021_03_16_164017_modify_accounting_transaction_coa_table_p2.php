@@ -28,7 +28,7 @@ class ModifyAccountingTransactionCoaTableP2 extends Migration
             $table->foreign('transaction_id')->references('id')->on('accounting_transaction')->onDelete('set null');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

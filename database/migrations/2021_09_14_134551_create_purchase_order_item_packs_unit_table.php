@@ -15,7 +15,7 @@ class CreatePurchaseOrderItemPacksUnitTable extends Migration
     {
         Schema::create('purchase_order_item_packs_unit', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique(); 
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }

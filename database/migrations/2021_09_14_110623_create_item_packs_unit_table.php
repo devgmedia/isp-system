@@ -15,7 +15,7 @@ class CreateItemPacksUnitTable extends Migration
     {
         Schema::create('item_packs_unit', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->unique(); 
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }

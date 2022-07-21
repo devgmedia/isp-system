@@ -16,7 +16,7 @@ class ModifyCustomerProductTable extends Migration
         Schema::table('customer_product', function (Blueprint $table) {
             $table->unsignedBigInteger('site_province_id')->nullable()->default(null);
             $table->foreign('site_province_id')->references('id')->on('province')->onDelete('set null');
-            
+
             $table->unsignedBigInteger('site_district_id')->nullable()->default(null);
             $table->foreign('site_district_id')->references('id')->on('district')->onDelete('set null');
 
@@ -35,7 +35,7 @@ class ModifyCustomerProductTable extends Migration
 
             $table->unsignedBigInteger('sales')->nullable()->default(null);
             $table->foreign('sales')->references('id')->on('employee')->onDelete('set null');
-            
+
             $table->unsignedBigInteger('customer_relation')->nullable()->default(null);
             $table->foreign('customer_relation')->references('id')->on('employee')->onDelete('set null');
         });

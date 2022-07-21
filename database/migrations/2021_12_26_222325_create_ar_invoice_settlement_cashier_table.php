@@ -21,7 +21,7 @@ class CreateArInvoiceSettlementCashierTable extends Migration
 
             $table->unsignedBigInteger('cashier_in_id')->nullable()->default(null);
             $table->foreign('cashier_in_id')->references('id')->on('cashier_in')->onDelete('set null');
-            
+
             $table->timestamps();
         });
     }

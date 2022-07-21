@@ -26,12 +26,12 @@ class CreateArInvoiceSchemeCustomerProductAdditionalTableP2 extends Migration
             )->references('id')->on('ar_invoice_scheme_customer')->onDelete('set null');
 
             $table->foreign(
-                'ar_invoice_scheme_customer_product_id',                
+                'ar_invoice_scheme_customer_product_id',
                 'ar_inv_sch_cus_pro_add_ar_inv_sch_cus_pro_id_foreign',
             )->references('id')->on('ar_invoice_scheme_customer_product')->onDelete('set null');
 
             $table->foreign(
-                'customer_product_additional_id',                
+                'customer_product_additional_id',
                 'ar_inv_sch_cus_pro_add_cus_pro_add_id_foreign',
             )->references('id')->on('customer_product_additional')->onDelete('set null');
         });

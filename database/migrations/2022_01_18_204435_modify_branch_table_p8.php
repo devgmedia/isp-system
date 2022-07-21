@@ -13,7 +13,7 @@ class ModifyBranchTableP8 extends Migration
      */
     public function up()
     {
-        Schema::table('branch', function (Blueprint $table) {            
+        Schema::table('branch', function (Blueprint $table) {
             $table->string('billing_approver')->nullable()->default(null);
             $table->string('billing_preparer')->nullable()->default(null);
         });

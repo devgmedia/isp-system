@@ -14,8 +14,8 @@ class ModifyItemTableP6 extends Migration
     public function up()
     {
         Schema::table('item', function (Blueprint $table) {
-            $table->string('code')->nullable()->default(NULL); 
-            $table->string('purchase_barcodes')->nullable()->default(NULL); 
+            $table->string('code')->nullable()->default(null);
+            $table->string('purchase_barcodes')->nullable()->default(null);
         });
     }
 

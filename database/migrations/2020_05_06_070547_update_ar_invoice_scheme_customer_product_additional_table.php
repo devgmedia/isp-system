@@ -18,14 +18,14 @@ class UpdateArInvoiceSchemeCustomerProductAdditionalTable extends Migration
             $table->dropForeign('ar_inv_sch_cus_pro_add_cus_pro_add_id_foreign');
         });
 
-        Schema::table('ar_invoice_scheme_customer_product_additional', function (Blueprint $table) {            
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_product_id')->nullable()->default(null)->change();        
+        Schema::table('ar_invoice_scheme_customer_product_additional', function (Blueprint $table) {
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_product_id')->nullable()->default(null)->change();
             $table->foreign(
                 'ar_invoice_scheme_customer_product_id',
                 'ar_inv_sch_cus_pro_add_ar_inv_sch_cus_pro_id_foreign',
             )->references('id')->on('ar_invoice_scheme_customer_product')->onDelete('set null');
 
-            $table->unsignedBigInteger('customer_product_additional_id')->nullable()->default(null)->change(); 
+            $table->unsignedBigInteger('customer_product_additional_id')->nullable()->default(null)->change();
             $table->foreign(
                 'customer_product_additional_id',
                 'ar_inv_sch_cus_pro_add_cus_pro_add_id_foreign',
@@ -45,14 +45,14 @@ class UpdateArInvoiceSchemeCustomerProductAdditionalTable extends Migration
             $table->dropForeign('ar_inv_sch_cus_pro_add_cus_pro_add_id_foreign');
         });
 
-        Schema::table('ar_invoice_scheme_customer_product_additional', function (Blueprint $table) {   
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_product_id')->nullable(false)->change();              
+        Schema::table('ar_invoice_scheme_customer_product_additional', function (Blueprint $table) {
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_product_id')->nullable(false)->change();
             $table->foreign(
                 'ar_invoice_scheme_customer_product_id',
                 'ar_inv_sch_cus_pro_add_ar_inv_sch_cus_pro_id_foreign',
             )->references('id')->on('ar_invoice_scheme_customer_product')->onDelete('cascade');
 
-            $table->unsignedBigInteger('customer_product_additional_id')->nullable(false)->change();    
+            $table->unsignedBigInteger('customer_product_additional_id')->nullable(false)->change();
             $table->foreign(
                 'customer_product_additional_id',
                 'ar_inv_sch_cus_pro_add_cus_pro_add_id_foreign',

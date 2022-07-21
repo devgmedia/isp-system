@@ -15,7 +15,7 @@ class CreateTowerTypeTable extends Migration
     {
         Schema::create('tower_type', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable()->default(NULL); 
+            $table->string('name')->nullable()->default(null);
             $table->timestamps();
         });
     }

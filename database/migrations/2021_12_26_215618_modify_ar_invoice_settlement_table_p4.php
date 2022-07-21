@@ -16,7 +16,7 @@ class ModifyArInvoiceSettlementTableP4 extends Migration
         Schema::table('ar_invoice_settlement', function (Blueprint $table) {
             $table->dropForeign('ar_invoice_settlement_ar_invoice_id_foreign');
         });
-        
+
         Schema::table('ar_invoice_settlement', function (Blueprint $table) {
             $table->dropColumn('ar_invoice_id');
         });

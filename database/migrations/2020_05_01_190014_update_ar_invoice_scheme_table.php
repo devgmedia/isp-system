@@ -17,8 +17,8 @@ class UpdateArInvoiceSchemeTable extends Migration
             $table->dropForeign('ar_invoice_scheme_payer_foreign');
         });
 
-        Schema::table('ar_invoice_scheme', function (Blueprint $table) {            
-            $table->unsignedBigInteger('payer')->nullable(FALSE)->change();
+        Schema::table('ar_invoice_scheme', function (Blueprint $table) {
+            $table->unsignedBigInteger('payer')->nullable(false)->change();
         });
 
         Schema::table('ar_invoice_scheme', function (Blueprint $table) {
@@ -37,8 +37,8 @@ class UpdateArInvoiceSchemeTable extends Migration
             $table->dropForeign('ar_invoice_scheme_payer_foreign');
         });
 
-        Schema::table('ar_invoice_scheme', function (Blueprint $table) {            
-            $table->unsignedBigInteger('payer')->nullable()->default(NULL)->change();
+        Schema::table('ar_invoice_scheme', function (Blueprint $table) {
+            $table->unsignedBigInteger('payer')->nullable()->default(null)->change();
         });
 
         Schema::table('ar_invoice_scheme', function (Blueprint $table) {

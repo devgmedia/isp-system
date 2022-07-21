@@ -18,16 +18,16 @@ class CreateItemAuctionTable extends Migration
             $table->unsignedBigInteger('item_id')->nullable()->default(null);
             $table->foreign('item_id')->references('id')->on('item')->onDelete('set null');
             $table->date('date_of_auction')->nullable()->default(null);
-            $table->float('auction_price', 15, 2)->nullable()->default(NULL);
+            $table->float('auction_price', 15, 2)->nullable()->default(null);
             $table->unsignedBigInteger('finance_approved_by')->nullable()->default(null);
             $table->foreign('finance_approved_by')->references('id')->on('supplier')->onDelete('set null');
             $table->datetime('finance_approved_date')->nullable()->default(null);
-            $table->string('finance_approved_name')->nullable()->default(NULL); 
+            $table->string('finance_approved_name')->nullable()->default(null);
             $table->unsignedBigInteger('warehouse_approved_by')->nullable()->default(null);
             $table->foreign('warehouse_approved_by')->references('id')->on('supplier')->onDelete('set null');
             $table->datetime('warehouse_approved_date')->nullable()->default(null);
-            $table->string('warehouse_approved_name')->nullable()->default(NULL); 
-            $table->string('warehouse_approved_file')->nullable()->default(NULL); 
+            $table->string('warehouse_approved_name')->nullable()->default(null);
+            $table->string('warehouse_approved_file')->nullable()->default(null);
             $table->timestamps();
         });
     }

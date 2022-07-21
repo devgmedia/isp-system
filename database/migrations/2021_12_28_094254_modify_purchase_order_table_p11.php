@@ -13,9 +13,9 @@ class ModifyPurchaseOrderTableP11 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_order', function (Blueprint $table) { 
-            $table->double('dp')->nullable()->default(NULL); 
-            $table->double('pelunasan')->nullable()->default(NULL);
+        Schema::table('purchase_order', function (Blueprint $table) {
+            $table->double('dp')->nullable()->default(null);
+            $table->double('pelunasan')->nullable()->default(null);
         });
     }
 

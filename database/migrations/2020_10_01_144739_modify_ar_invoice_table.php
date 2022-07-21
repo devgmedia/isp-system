@@ -31,7 +31,7 @@ class ModifyArInvoiceTable extends Migration
             $table->dropColumn([
                 'remaining_payment',
                 'previous_remaining_payment',
-                'paid_total', 
+                'paid_total',
             ]);
         });
     }

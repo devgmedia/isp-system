@@ -15,7 +15,7 @@ class ItemReturnCategory extends Migration
     {
         Schema::create('item_return_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable()->default(NULL); 
+            $table->string('name')->nullable()->default(null);
             $table->timestamps();
         });
     }

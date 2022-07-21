@@ -13,8 +13,8 @@ class ModifyItemTableP13 extends Migration
      */
     public function up()
     {
-        Schema::table('item', function (Blueprint $table) { 
-            $table->string('note')->nullable()->default(NULL);
+        Schema::table('item', function (Blueprint $table) {
+            $table->string('note')->nullable()->default(null);
         });
     }
 

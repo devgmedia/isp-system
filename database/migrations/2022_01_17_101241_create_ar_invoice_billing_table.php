@@ -15,7 +15,7 @@ class CreateArInvoiceBillingTable extends Migration
     {
         Schema::create('ar_invoice_billing', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
+
             $table->unsignedBigInteger('ar_invoice_id')->nullable()->default(null);
             $table->foreign('ar_invoice_id')->references('id')->on('ar_invoice')->onDelete('set null');
 

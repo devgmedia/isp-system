@@ -15,7 +15,7 @@ class UpdateCustomerProductTableP3 extends Migration
     {
         Schema::table('customer_product', function (Blueprint $table) {
             $table->boolean('previous_month_not_billed')->nullable()->default(null);
-        }); 
+        });
     }
 
     /**
@@ -27,6 +27,6 @@ class UpdateCustomerProductTableP3 extends Migration
     {
         Schema::table('customer_product', function (Blueprint $table) {
             $table->dropColumn('previous_month_not_billed');
-        }); 
+        });
     }
 }

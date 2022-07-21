@@ -15,7 +15,7 @@ class UpdateArInvoiceSchemeTableP5 extends Migration
     {
         Schema::table('ar_invoice_scheme', function (Blueprint $table) {
             $table->string('name')->nullable()->default(null);
-        }); 
+        });
     }
 
     /**

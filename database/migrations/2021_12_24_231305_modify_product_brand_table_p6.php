@@ -14,7 +14,7 @@ class ModifyProductBrandTableP6 extends Migration
     public function up()
     {
         Schema::table('product_brand', function (Blueprint $table) {
-            $table->string('customer_account_default_password')->nullable()->default(null); 
+            $table->string('customer_account_default_password')->nullable()->default(null);
         });
     }
 

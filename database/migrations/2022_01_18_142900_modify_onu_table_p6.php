@@ -14,7 +14,7 @@ class ModifyOnuTableP6 extends Migration
     public function up()
     {
         Schema::table('onu', function (Blueprint $table) {
-            $table->date('date')->nullable()->default(NULL);
+            $table->date('date')->nullable()->default(null);
         });
     }
 

@@ -16,8 +16,8 @@ class UpdatePreCustomerTable extends Migration
         Schema::table('pre_customer', function (Blueprint $table) {
             $table->dropColumn('request_pre_survey_date');
             $table->dropColumn('request_survey_date');
-            $table->unsignedBigInteger('add_product_to_customer')->nullable()->default(NULL)->after('update_to_prospect_date');
-    
+            $table->unsignedBigInteger('add_product_to_customer')->nullable()->default(null)->after('update_to_prospect_date');
+
             $table->foreign('add_product_to_customer')->references('id')->on('customer')->onDelete('set null');
         });
     }
@@ -29,14 +29,14 @@ class UpdatePreCustomerTable extends Migration
      */
     public function down()
     {
-        Schema::table('pre_customer', function($table){
+        Schema::table('pre_customer', function ($table) {
             $table->dropForeign('pre_customer_add_product_to_customer_roreign');
-         });
- 
-         Schema::table('pre_customer', function($table) {
-             $table->date('request_pre_survey_date');
-             $table->date('request_survey_date');
-             $table->dropColumn('add_product_to_customer');
-         });
+        });
+
+        Schema::table('pre_customer', function ($table) {
+            $table->date('request_pre_survey_date');
+            $table->date('request_survey_date');
+            $table->dropColumn('add_product_to_customer');
+        });
     }
 }

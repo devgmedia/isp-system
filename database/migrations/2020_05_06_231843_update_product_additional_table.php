@@ -43,7 +43,7 @@ class UpdateProductAdditionalTable extends Migration
         });
 
         Schema::table('product_additional', function (Blueprint $table) {
-            $table->string('sid')->unique()->nullable()->default(NULL);
+            $table->string('sid')->unique()->nullable()->default(null);
         });
     }
 }

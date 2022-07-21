@@ -15,8 +15,8 @@ class CreateArInvoiceCustomerTable extends Migration
     {
         Schema::create('ar_invoice_customer', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('ar_invoice_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('customer_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('ar_invoice_id')->nullable()->default(null);
+            $table->unsignedBigInteger('customer_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('ar_invoice_id')->references('id')->on('ar_invoice')->onDelete('set null');

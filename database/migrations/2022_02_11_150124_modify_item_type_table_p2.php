@@ -14,10 +14,10 @@ class ModifyItemTypeTableP2 extends Migration
     public function up()
     {
         Schema::table('item_type', function (Blueprint $table) {
-            $table->date('discontinue_date')->nullable()->default(NULL);
-            $table->string('discontinue_name')->nullable()->default(NULL);
-            $table->unsignedBigInteger('discontinue_by')->nullable()->default(NULL);
-            
+            $table->date('discontinue_date')->nullable()->default(null);
+            $table->string('discontinue_name')->nullable()->default(null);
+            $table->unsignedBigInteger('discontinue_by')->nullable()->default(null);
+
             $table->foreign('discontinue_by')->references('id')->on('user')->onDelete('set null');
         });
     }

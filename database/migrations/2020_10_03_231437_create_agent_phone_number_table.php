@@ -16,7 +16,7 @@ class CreateAgentPhoneNumberTable extends Migration
         Schema::create('agent_phone_number', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('number');
-            
+
             $table->unsignedBigInteger('agent_id')->nullable()->defalt(null);
             $table->foreign('agent_id')->references('id')->on('agent')->onDelete('set null');
 

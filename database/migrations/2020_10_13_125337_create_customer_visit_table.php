@@ -17,17 +17,16 @@ class CreateCustomerVisitTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->string('report');
-            $table->unsignedBigInteger('customer_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('customer_id')->nullable()->default(null);
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('set null');
-           
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
-            $table->foreign('branch_id')->references('id')->on('branch')->onDelete('set null');
-            
-            $table->unsignedBigInteger('employee_id')->nullable()->default(NULL);
-            $table->foreign('employee_id')->references('id')->on('employee')->onDelete('set null');
-            
-            $table->timestamps();
 
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
+            $table->foreign('branch_id')->references('id')->on('branch')->onDelete('set null');
+
+            $table->unsignedBigInteger('employee_id')->nullable()->default(null);
+            $table->foreign('employee_id')->references('id')->on('employee')->onDelete('set null');
+
+            $table->timestamps();
         });
     }
 

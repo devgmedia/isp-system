@@ -16,7 +16,7 @@ class CreatePaymentMethodTypeTable extends Migration
         Schema::create('payment_method_type', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
-            $table->unsignedBigInteger('payment_method_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('payment_method_id')->nullable()->default(null);
 
             $table->timestamps();
 

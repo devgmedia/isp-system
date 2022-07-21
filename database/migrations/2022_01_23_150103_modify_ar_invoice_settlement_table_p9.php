@@ -16,7 +16,7 @@ class ModifyArInvoiceSettlementTableP9 extends Migration
         Schema::table('ar_invoice_settlement', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id')->nullable()->default(null);
             $table->foreign('product_id')->references('id')->on('product')->onDelete('set null');
-            
+
             $table->unsignedBigInteger('customer_category_id')->nullable()->default(null);
             $table->foreign('customer_category_id')->references('id')->on('customer_category')->onDelete('set null');
         });

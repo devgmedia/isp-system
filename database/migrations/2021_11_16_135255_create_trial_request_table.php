@@ -17,13 +17,13 @@ class CreateTrialRequestTable extends Migration
             $table->bigIncrements('id');
             $table->string('uuid')->unique();
             $table->unsignedBigInteger('pre_customer_id')->nullable()->default(null);
-            $table->unsignedBigInteger('installation_reporting_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('request_by')->nullable()->default(NULL);
-            $table->date('request_date')->nullable()->default(NULL);
-            $table->string('request_name')->nullable()->default(NULL);
-            $table->date('start_date')->nullable()->default(NULL);
-            $table->date('end_date')->nullable()->default(NULL);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('installation_reporting_id')->nullable()->default(null);
+            $table->unsignedBigInteger('request_by')->nullable()->default(null);
+            $table->date('request_date')->nullable()->default(null);
+            $table->string('request_name')->nullable()->default(null);
+            $table->date('start_date')->nullable()->default(null);
+            $table->date('end_date')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('pre_customer_id')->references('id')->on('pre_customer')->onDelete('set null');

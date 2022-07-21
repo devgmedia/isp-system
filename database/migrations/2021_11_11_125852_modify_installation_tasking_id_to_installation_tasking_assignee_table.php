@@ -16,7 +16,7 @@ class ModifyInstallationTaskingIdToInstallationTaskingAssigneeTable extends Migr
         Schema::table('installation_tasking_assignee', function (Blueprint $table) {
             $table->dropForeign('installation_tasking_assignee_survey_tasking_id_foreign');
 
-            $table->renameColumn('survey_tasking_id', 'installation_tasking_id')->nullable()->default(NULL);
+            $table->renameColumn('survey_tasking_id', 'installation_tasking_id')->nullable()->default(null);
 
             $table->foreign('installation_tasking_id')->references('id')->on('installation_tasking')->onDelete('set null');
         });

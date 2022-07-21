@@ -13,7 +13,7 @@ class ModifySpmTableP12 extends Migration
      */
     public function up()
     {
-        Schema::table('spm', function (Blueprint $table) {  
+        Schema::table('spm', function (Blueprint $table) {
             $table->date('date')->nullable()->default(null);
         });
     }

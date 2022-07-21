@@ -21,7 +21,7 @@ class CreateArInvoiceSettlementInvoiceTable extends Migration
 
             $table->unsignedBigInteger('ar_invoice_id')->nullable()->default(null);
             $table->foreign('ar_invoice_id')->references('id')->on('ar_invoice')->onDelete('set null');
-            
+
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class UpdateCustomerProductAdditionalTableP5 extends Migration
         Schema::table('customer_product_additional', function (Blueprint $table) {
             $table->boolean('previous_month_not_billed')->nullable()->default(null);
             $table->boolean('locked_by_bill')->nullable()->default(null);
-        }); 
+        });
     }
 
     /**
@@ -31,6 +31,6 @@ class UpdateCustomerProductAdditionalTableP5 extends Migration
                 'previous_month_not_billed',
                 'locked_by_bill',
             ]);
-        }); 
+        });
     }
 }

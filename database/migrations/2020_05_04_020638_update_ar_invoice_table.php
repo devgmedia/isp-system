@@ -19,9 +19,9 @@ class UpdateArInvoiceTable extends Migration
             $table->float('ppn', 15, 2)->change();
             $table->float('total', 15, 2)->change();
 
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->foreign('branch_id')->references('id')->on('branch')->onDelete('set null');
-        });        
+        });
     }
 
     /**
@@ -39,6 +39,6 @@ class UpdateArInvoiceTable extends Migration
 
             $table->dropForeign('ar_invoice_branch_id_foreign');
             $table->dropColumn('branch_id');
-        });   
+        });
     }
 }

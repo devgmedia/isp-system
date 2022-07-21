@@ -13,9 +13,9 @@ class ModifyJournalDivisionTableP2 extends Migration
      */
     public function up()
     {
-        Schema::table('journal_division', function (Blueprint $table) {            
+        Schema::table('journal_division', function (Blueprint $table) {
             $table->unsignedBigInteger('chart_of_account_title_id')->nullable()->default(null);
-            $table->foreign('chart_of_account_title_id')->references('id')->on('chart_of_account_title')->onDelete('set null');            
+            $table->foreign('chart_of_account_title_id')->references('id')->on('chart_of_account_title')->onDelete('set null');
 
             $table->dropUnique('journal_division_name_unique');
             $table->unique(['name', 'branch_id']);

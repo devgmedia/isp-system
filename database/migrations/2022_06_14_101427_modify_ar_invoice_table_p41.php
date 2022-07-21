@@ -13,7 +13,7 @@ class ModifyArInvoiceTableP41 extends Migration
      */
     public function up()
     {
-        Schema::table('ar_invoice', function (Blueprint $table) {  
+        Schema::table('ar_invoice', function (Blueprint $table) {
             $table->unique('number');
         });
     }

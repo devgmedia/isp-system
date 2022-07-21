@@ -38,7 +38,7 @@ class ModifyApInvoiceItemPoCategoryTableP5 extends Migration
             $table->foreign('debit_coa_card_id')->references('id')->on('chart_of_account_card')->onDelete('set null');
 
             $table->foreign('credit_coa_id')->references('id')->on('chart_of_account')->onDelete('set null');
-            $table->foreign('credit_coa_card_id')->references('id')->on('chart_of_account_card')->onDelete('set null');            
+            $table->foreign('credit_coa_card_id')->references('id')->on('chart_of_account_card')->onDelete('set null');
         });
     }
 

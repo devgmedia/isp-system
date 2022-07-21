@@ -15,8 +15,8 @@ class CreateEmployeeAddressHasTagTable extends Migration
     {
         Schema::create('employee_address_has_tag', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('address_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('tag_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('address_id')->nullable()->default(null);
+            $table->unsignedBigInteger('tag_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('address_id')->references('id')->on('employee_address')->onDelete('set null');

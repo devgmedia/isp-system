@@ -13,9 +13,9 @@ class ModifyPreSurveyReportingTableP1 extends Migration
      */
     public function up()
     {
-        Schema::table('pre_survey_reporting', function (Blueprint $table) { 
-            $table->string('content')->nullable()->default(NULL);  
-            $table->string('owncloud_link')->nullable()->default(NULL);  
+        Schema::table('pre_survey_reporting', function (Blueprint $table) {
+            $table->string('content')->nullable()->default(null);
+            $table->string('owncloud_link')->nullable()->default(null);
         });
     }
 
@@ -25,7 +25,7 @@ class ModifyPreSurveyReportingTableP1 extends Migration
      * @return void
      */
     public function down()
-    { 
+    {
         //
     }
 }

@@ -14,10 +14,11 @@ class CreateInstallationTaskingTable extends Migration
     public function up()
     {
         Schema::create('installation_tasking', function (Blueprint $table) {
-            $table->bigIncrements('id'); $table->string('uuid');
-            $table->unsignedBigInteger('installation_request_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->bigIncrements('id');
+            $table->string('uuid');
+            $table->unsignedBigInteger('installation_request_id')->nullable()->default(null);
+            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
 
             $table->timestamps();
 

@@ -13,7 +13,6 @@ class ModifyPurchaseOrderItemTableP3 extends Migration
      */
     public function up()
     {
-
         Schema::table('purchase_order_item', function (Blueprint $table) {
             $table->string('unit')->nullable()->default(null);
             $table->unsignedBigInteger('sumber_id')->nullable()->default(null);

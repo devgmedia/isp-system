@@ -13,7 +13,7 @@ class ModifyPreCustomerPhoneNumberTable extends Migration
      */
     public function up()
     {
-        Schema::table('pre_customer_phone_number', function (Blueprint $table) { 
+        Schema::table('pre_customer_phone_number', function (Blueprint $table) {
             $table->boolean('whatsapp')->nullable()->default(false);
             $table->boolean('telegram')->nullable()->default(false);
             $table->boolean('home')->nullable()->default(false);

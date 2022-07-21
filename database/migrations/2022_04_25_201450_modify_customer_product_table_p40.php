@@ -15,7 +15,7 @@ class ModifyCustomerProductTableP40 extends Migration
     {
         Schema::table('customer_product', function (Blueprint $table) {
             $table->datetime('isolation_whatsapp_at')->nullable()->default(null);
-            
+
             $table->unsignedBigInteger('isolation_whatsapp_by')->nullable()->default(null);
             $table->foreign('isolation_whatsapp_by')->references('id')->on('employee')->onDelete('set null');
         });

@@ -22,7 +22,7 @@ class ModifyApInvoiceItemTable extends Migration
                 ->references('id')
                 ->on('ar_invoice_customer_product')
                 ->onDelete('set null');
-            
+
             $table->unsignedBigInteger('ar_invoice_customer_product_additional_id')->nullable()->default(null);
             $table->foreign(
                 'ar_invoice_customer_product_additional_id',
@@ -31,7 +31,7 @@ class ModifyApInvoiceItemTable extends Migration
                 ->references('id')
                 ->on('ar_invoice_customer_product_additional')
                 ->onDelete('set null');
-            
+
             $table->unsignedBigInteger('ar_invoice_customer_product_discount_id')->nullable()->default(null);
             $table->foreign(
                 'ar_invoice_customer_product_discount_id',

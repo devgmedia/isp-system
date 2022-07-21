@@ -13,8 +13,7 @@ class UpdatePurchaseRequestItemTableP3 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_request_item', function (Blueprint $table)
-        {
+        Schema::table('purchase_request_item', function (Blueprint $table) {
             $table->dropColumn('note');
         });
     }

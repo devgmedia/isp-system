@@ -15,7 +15,7 @@ class UpdateCustomerProductTableP5 extends Migration
     {
         Schema::table('customer_product', function (Blueprint $table) {
             $table->boolean('locked_by_bill')->nullable()->default(null);
-        }); 
+        });
     }
 
     /**
@@ -29,6 +29,6 @@ class UpdateCustomerProductTableP5 extends Migration
             $table->dropColumn([
                 'locked_by_bill',
             ]);
-        }); 
+        });
     }
 }

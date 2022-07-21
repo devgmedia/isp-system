@@ -19,7 +19,6 @@ class ModifyItemMovementTableP3 extends Migration
 
             $table->foreign('from_movement_category_id')->references('id')->on('item_movement_category')->onDelete('set null');
             $table->foreign('to_movement_category_id')->references('id')->on('item_movement_category')->onDelete('set null');
-        
         });
     }
 

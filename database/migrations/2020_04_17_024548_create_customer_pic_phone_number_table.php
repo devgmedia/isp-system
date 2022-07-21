@@ -16,8 +16,8 @@ class CreateCustomerPicPhoneNumberTable extends Migration
         Schema::create('customer_pic_phone_number', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('number');
-            $table->unsignedBigInteger('customer_pic_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('customer_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('customer_pic_id')->nullable()->default(null);
+            $table->unsignedBigInteger('customer_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->unique(['number', 'customer_id']);

@@ -13,7 +13,7 @@ class ModifyAccountingDivisionCategoryTableP3 extends Migration
      */
     public function up()
     {
-        Schema::table('accounting_division_category', function (Blueprint $table) {  
+        Schema::table('accounting_division_category', function (Blueprint $table) {
             $table->string('uuid');
         });
     }

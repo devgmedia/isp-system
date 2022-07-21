@@ -13,7 +13,7 @@ class ModifySpmTableP11 extends Migration
      */
     public function up()
     {
-        Schema::table('spm', function (Blueprint $table) {  
+        Schema::table('spm', function (Blueprint $table) {
             $table->float('remaining_payment', 15, 2)->nullable()->default(0);
         });
     }

@@ -15,7 +15,7 @@ class CreatePreSurveyReportingCoverageRabCategoryTable extends Migration
     {
         Schema::create('pre_survey_reporting_coverage_rab_category', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable()->default(NULL); 
+            $table->string('name')->nullable()->default(null);
             $table->timestamps();
         });
     }

@@ -15,18 +15,18 @@ class CreateSurveyReportingTable extends Migration
     {
         Schema::create('survey_reporting', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('uuid')->unique(); 
-            $table->unsignedBigInteger('survey_tasking_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(NULL);  
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
+            $table->string('uuid')->unique();
+            $table->unsignedBigInteger('survey_tasking_id')->nullable()->default(null);
+            $table->unsignedBigInteger('pre_customer_id')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
             $table->timestamps();
-  
+
             $table->foreign('survey_tasking_id')->references('id')->on('survey_tasking')->onDelete('set null');
-            $table->foreign('pre_customer_id')->references('id')->on('pre_customer')->onDelete('set null'); 
+            $table->foreign('pre_customer_id')->references('id')->on('pre_customer')->onDelete('set null');
             $table->foreign('branch_id')->references('id')->on('branch')->onDelete('set null');
 
-            $table->string('content')->nullable()->default(NULL);  
-            $table->string('owncloud_link')->nullable()->default(NULL);  
+            $table->string('content')->nullable()->default(null);
+            $table->string('owncloud_link')->nullable()->default(null);
         });
     }
 

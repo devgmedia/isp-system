@@ -13,7 +13,7 @@ class ModifyCustomerPhoneNumberTableP4 extends Migration
      */
     public function up()
     {
-        Schema::table('customer_phone_number', function (Blueprint $table) {  
+        Schema::table('customer_phone_number', function (Blueprint $table) {
             $table->boolean('personal')->nullable()->default(null);
         });
     }

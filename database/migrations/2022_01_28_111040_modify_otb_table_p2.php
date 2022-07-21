@@ -27,7 +27,7 @@ class ModifyOtbTableP2 extends Migration
     public function down()
     {
         Schema::table('otb', function (Blueprint $table) {
-            $table->unsignedBigInteger('pon_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('pon_id')->nullable()->default(null);
 
             $table->foreign('pon_id')->references('id')->on('pon')->onDelete('set null');
         });

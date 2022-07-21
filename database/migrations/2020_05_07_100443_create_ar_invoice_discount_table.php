@@ -32,7 +32,7 @@ class CreateArInvoiceDiscountTable extends Migration
             $table->timestamps();
 
             $table->unique(['ar_invoice_id', 'discount_id']);
-            
+
             $table->foreign('ar_invoice_id')->references('id')->on('ar_invoice')->onDelete('set null');
             $table->foreign('discount_id')->references('id')->on('discount')->onDelete('set null');
 

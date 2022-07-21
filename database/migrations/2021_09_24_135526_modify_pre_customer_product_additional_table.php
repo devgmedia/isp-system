@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class ModifyPreCustomerProductAdditionalTable extends Migration
@@ -13,9 +12,9 @@ class ModifyPreCustomerProductAdditionalTable extends Migration
      */
     public function up()
     {
-        Schema::table('pre_customer_product_additional', function($table) {
-            $table->boolean('ignore_tax')->nullable()->default(null); 
-         });
+        Schema::table('pre_customer_product_additional', function ($table) {
+            $table->boolean('ignore_tax')->nullable()->default(null);
+        });
     }
 
     /**
@@ -25,8 +24,8 @@ class ModifyPreCustomerProductAdditionalTable extends Migration
      */
     public function down()
     {
-        Schema::table('pre_customer_product_additional', function($table) {
+        Schema::table('pre_customer_product_additional', function ($table) {
             $table->dropColumn('ignore_tax');
-         });
+        });
     }
 }

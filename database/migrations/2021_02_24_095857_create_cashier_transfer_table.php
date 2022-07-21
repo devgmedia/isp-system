@@ -11,7 +11,6 @@ class CreateCashierTransferTable extends Migration
      *
      * @return void
      */
-    
     public function up()
     {
         Schema::create('cashier_transfer', function (Blueprint $table) {

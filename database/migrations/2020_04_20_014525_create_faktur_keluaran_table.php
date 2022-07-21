@@ -22,11 +22,11 @@ class CreateFakturKeluaranTable extends Migration
             $table->integer('dpp');
             $table->integer('ppn');
             $table->integer('pnbp');
-            $table->unsignedBigInteger('customer_id')->nullable()->default(NULL);
-            $table->string('customer_name')->nullable()->default(NULL);
-            $table->string('customer_npwp')->nullable()->default(NULL);
-            $table->unsignedBigInteger('branch_id')->nullable()->default(NULL);
-            $table->string('branch_name')->nullable()->default(NULL);
+            $table->unsignedBigInteger('customer_id')->nullable()->default(null);
+            $table->string('customer_name')->nullable()->default(null);
+            $table->string('customer_npwp')->nullable()->default(null);
+            $table->unsignedBigInteger('branch_id')->nullable()->default(null);
+            $table->string('branch_name')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('set null');

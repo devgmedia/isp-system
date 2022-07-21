@@ -15,11 +15,11 @@ class ModifyCashierOutTableP5 extends Migration
     {
         Schema::table('cashier_out', function (Blueprint $table) {
             $table->unsignedBigInteger('chart_of_account_id')->nullable()->default(null);
-            
+
             $table->foreign('chart_of_account_id')->references('id')->on('chart_of_account')->onDelete('set null');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

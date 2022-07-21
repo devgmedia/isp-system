@@ -19,7 +19,7 @@ class ModifyPerCustomerProductAdditionalTable extends Migration
 
             $table->dropColumn('adjusted_quantity');
             $table->dropColumn('quantity');
-            
+
             $table->dropColumn('ignore_tax');
         });
     }

@@ -20,7 +20,7 @@ class ModifyCustomerProductTableP31 extends Migration
             $table->dropForeign('customer_product_site_village_id_foreign');
             $table->dropForeign('customer_product_marketing_foreign');
         });
-        
+
         Schema::table('customer_product', function (Blueprint $table) {
             $table->dropColumn('site_province_id');
             $table->dropColumn('site_district_id');

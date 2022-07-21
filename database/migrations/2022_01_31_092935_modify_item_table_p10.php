@@ -14,8 +14,8 @@ class ModifyItemTableP10 extends Migration
     public function up()
     {
         Schema::table('item', function (Blueprint $table) {
-            $table->string('purchase_request_number')->nullable()->default(null); 
-            $table->string('purchase_order_number')->nullable()->default(null); 
+            $table->string('purchase_request_number')->nullable()->default(null);
+            $table->string('purchase_order_number')->nullable()->default(null);
         });
     }
 

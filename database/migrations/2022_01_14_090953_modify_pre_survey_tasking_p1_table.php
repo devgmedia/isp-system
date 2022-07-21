@@ -13,9 +13,8 @@ class ModifyPreSurveyTaskingP1Table extends Migration
      */
     public function up()
     {
-        
         Schema::table('pre_survey_tasking', function (Blueprint $table) {
-            $table->string('code')->nullable()->default(NULL);  
+            $table->string('code')->nullable()->default(null);
         });
     }
 

@@ -19,7 +19,7 @@ class UpdateCustomerTableP7 extends Migration
                 'bill_activated',
                 'active',
             ]);
-        }); 
+        });
     }
 
     /**
@@ -35,6 +35,6 @@ class UpdateCustomerTableP7 extends Migration
             ]);
             $table->boolean('bill_activated')->nullable()->default(false);
             $table->boolean('active')->nullable()->default(false);
-        }); 
+        });
     }
 }

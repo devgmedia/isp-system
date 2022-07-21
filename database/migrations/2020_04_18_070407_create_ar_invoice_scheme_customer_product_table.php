@@ -15,8 +15,8 @@ class CreateArInvoiceSchemeCustomerProductTable extends Migration
     {
         Schema::create('ar_invoice_scheme_customer_product', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable()->default(NULL);
-            $table->unsignedBigInteger('customer_product_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable()->default(null);
+            $table->unsignedBigInteger('customer_product_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign(

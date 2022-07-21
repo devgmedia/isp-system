@@ -23,7 +23,6 @@ class UpdateSupplierTable extends Migration
 
             $table->foreign('created_by')->references('id')->on('user')->onDelete('set null');
             $table->foreign('verified_by')->references('id')->on('user')->onDelete('set null');
-
         });
     }
 

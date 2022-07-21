@@ -15,14 +15,14 @@ class CreateBtsInterfaceTable extends Migration
     {
         Schema::create('bts_interface', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('bts_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('bts_id')->nullable()->default(null);
             $table->foreign('bts_id')->references('id')->on('bts')->onDelete('set null');
 
-            $table->unsignedInteger('bandwidth')->nullable()->defauil(NULL);
-            $table->unsignedBigInteger('bandwidth_unit_id')->nullable()->default(NULL);
+            $table->unsignedInteger('bandwidth')->nullable()->defauil(null);
+            $table->unsignedBigInteger('bandwidth_unit_id')->nullable()->default(null);
             $table->foreign('bandwidth_unit_id')->references('id')->on('bandwidth_unit')->onDelete('set null');
-            
-            $table->unsignedBigInteger('bandwidth_type_id')->nullable()->default(NULL);
+
+            $table->unsignedBigInteger('bandwidth_type_id')->nullable()->default(null);
             $table->foreign('bandwidth_type_id')->references('id')->on('bandwidth_type')->onDelete('set null');
 
             $table->timestamps();

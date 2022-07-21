@@ -14,19 +14,19 @@ class UpdateArInvoiceCustomerTable extends Migration
     public function up()
     {
         Schema::table('ar_invoice_customer', function (Blueprint $table) {
-            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('ar_invoice_scheme_customer_id')->nullable()->default(null);
 
             $table->string('customer_cid');
             $table->string('customer_name');
-            $table->unsignedBigInteger('customer_province_id')->nullable()->default(NULL);
-            $table->string('customer_province_name')->nullable()->default(NULL);
-            $table->unsignedBigInteger('customer_district_id')->nullable()->default(NULL);
-            $table->string('customer_district_name')->nullable()->default(NULL);
-            $table->unsignedBigInteger('customer_sub_district_id')->nullable()->default(NULL);
-            $table->string('customer_sub_district_name')->nullable()->default(NULL);
-            $table->unsignedBigInteger('customer_village_id')->nullable()->default(NULL);
-            $table->string('customer_village_name')->nullable()->default(NULL);
-            $table->string('customer_address')->nullable()->default(NULL);
+            $table->unsignedBigInteger('customer_province_id')->nullable()->default(null);
+            $table->string('customer_province_name')->nullable()->default(null);
+            $table->unsignedBigInteger('customer_district_id')->nullable()->default(null);
+            $table->string('customer_district_name')->nullable()->default(null);
+            $table->unsignedBigInteger('customer_sub_district_id')->nullable()->default(null);
+            $table->string('customer_sub_district_name')->nullable()->default(null);
+            $table->unsignedBigInteger('customer_village_id')->nullable()->default(null);
+            $table->string('customer_village_name')->nullable()->default(null);
+            $table->string('customer_address')->nullable()->default(null);
 
             $table->foreign('ar_invoice_scheme_customer_id')->references('id')->on('ar_invoice_scheme_customer')->onDelete('set null');
 
@@ -56,7 +56,7 @@ class UpdateArInvoiceCustomerTable extends Migration
         Schema::table('ar_invoice_customer', function (Blueprint $table) {
             $table->dropColumn([
                 'ar_invoice_scheme_customer_id',
-                
+
                 'customer_cid',
                 'customer_name',
                 'customer_province_id',

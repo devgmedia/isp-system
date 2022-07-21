@@ -20,12 +20,12 @@ class ModifySpmTableP3 extends Migration
         Schema::table('spm', function (Blueprint $table) {
             $table->dropUnique('spm_ap_invoice_id_unique');
         });
-        
+
         Schema::table('spm', function (Blueprint $table) {
             $table->foreign('ap_invoice_id')->references('id')->on('ap_invoice')->onDelete('set null');
         });
     }
-    
+
     /**
      * Reverse the migrations.
      *

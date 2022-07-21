@@ -14,7 +14,7 @@ class ModifyInstallationTaskingTableP2 extends Migration
     public function up()
     {
         Schema::table('installation_tasking', function (Blueprint $table) {
-            $table->string('number')->nullable()->default(NULL)->unique();
+            $table->string('number')->nullable()->default(null)->unique();
         });
     }
 

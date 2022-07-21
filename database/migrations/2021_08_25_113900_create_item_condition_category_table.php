@@ -14,8 +14,8 @@ class CreateItemConditionCategoryTable extends Migration
     public function up()
     {
         Schema::create('item_condition_category', function (Blueprint $table) {
-            $table->bigIncrements('id'); 
-            $table->string('name')->unique(); 
+            $table->bigIncrements('id');
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }

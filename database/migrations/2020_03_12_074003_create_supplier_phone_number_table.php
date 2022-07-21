@@ -16,7 +16,7 @@ class CreateSupplierPhoneNumberTable extends Migration
         Schema::create('supplier_phone_number', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('number');
-            $table->unsignedBigInteger('supplier_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('supplier_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->unique(['number', 'supplier_id']);

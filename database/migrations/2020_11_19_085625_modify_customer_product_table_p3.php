@@ -16,7 +16,6 @@ class ModifyCustomerProductTableP3 extends Migration
         Schema::table('customer_product', function (Blueprint $table) {
             $table->boolean('adjusted_price')->nullable()->default(null);
             $table->unsignedInteger('special_price')->nullable()->default(null);
-
         });
     }
 

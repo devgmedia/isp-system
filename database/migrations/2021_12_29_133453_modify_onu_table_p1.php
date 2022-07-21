@@ -23,15 +23,13 @@ class ModifyOnuTableP1 extends Migration
                 'ip',
             ]);
 
-            $table->unsignedBigInteger('onu_type_id')->nullable()->default(NULL);
-            $table->integer('index')->nullable()->default(NULL);
-            $table->integer('serial_number')->nullable()->default(NULL);
-            $table->integer('distance')->nullable()->default(NULL);
-            $table->integer('onu_password')->nullable()->default(NULL);
+            $table->unsignedBigInteger('onu_type_id')->nullable()->default(null);
+            $table->integer('index')->nullable()->default(null);
+            $table->integer('serial_number')->nullable()->default(null);
+            $table->integer('distance')->nullable()->default(null);
+            $table->integer('onu_password')->nullable()->default(null);
 
             $table->foreign('onu_type_id')->references('id')->on('onu_type')->onDelete('set null');
-
-
         });
     }
 

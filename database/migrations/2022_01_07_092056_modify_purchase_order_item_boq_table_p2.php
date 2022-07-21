@@ -13,10 +13,10 @@ class ModifyPurchaseOrderItemBoqTableP2 extends Migration
      */
     public function up()
     {
-        Schema::table('purchase_order_item_boq', function (Blueprint $table) {  
-            $table->unsignedBigInteger('purchase_order_id')->nullable()->default(NULL); 
-            
-            $table->foreign('purchase_order_id')->references('id')->on('purchase_order')->onDelete('set null'); 
+        Schema::table('purchase_order_item_boq', function (Blueprint $table) {
+            $table->unsignedBigInteger('purchase_order_id')->nullable()->default(null);
+
+            $table->foreign('purchase_order_id')->references('id')->on('purchase_order')->onDelete('set null');
         });
     }
 

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class UpdatePreCustomerProductDiscountTable extends Migration
@@ -33,7 +32,6 @@ class UpdatePreCustomerProductDiscountTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->tinyInteger('total_usage');
-            
         });
     }
 }

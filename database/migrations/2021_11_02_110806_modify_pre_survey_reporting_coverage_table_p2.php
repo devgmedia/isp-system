@@ -13,10 +13,9 @@ class ModifyPreSurveyReportingCoverageTableP2 extends Migration
      */
     public function up()
     {
-        Schema::table('pre_survey_reporting_coverage', function (Blueprint $table) {  
-            $table->unsignedTinyInteger('pole_7_meters')->nullable()->default(NULL);   
-            $table->unsignedTinyInteger('pole_9_meters')->nullable()->default(NULL); 
-             
+        Schema::table('pre_survey_reporting_coverage', function (Blueprint $table) {
+            $table->unsignedTinyInteger('pole_7_meters')->nullable()->default(null);
+            $table->unsignedTinyInteger('pole_9_meters')->nullable()->default(null);
         });
     }
 

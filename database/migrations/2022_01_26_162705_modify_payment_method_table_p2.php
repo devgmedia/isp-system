@@ -14,7 +14,7 @@ class ModifyPaymentMethodTableP2 extends Migration
     public function up()
     {
         Schema::table('payment_method', function (Blueprint $table) {
-            $table->text('description')->nullable()->default(NULL);
+            $table->text('description')->nullable()->default(null);
         });
     }
 

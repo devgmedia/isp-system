@@ -22,8 +22,6 @@ class CreatePreCustomerVerificationContactLogEmailTable extends Migration
             $table->dateTime('sent_at')->nullable()->default(null);
             $table->timestamps();
 
-
-
             $table->foreign(
                 'pre_customer_verification_contact_log_id',
                 'pre_cus_ver_con_log_pre_cus_ver_con_log_ema'

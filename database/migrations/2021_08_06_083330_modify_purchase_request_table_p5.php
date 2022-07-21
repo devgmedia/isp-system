@@ -15,13 +15,12 @@ class ModifyPurchaseRequestTableP5 extends Migration
     {
         Schema::table('purchase_request', function (Blueprint $table) {
             $table->boolean('division_approval_request')->default(false)->after('created_date');
-            $table->unsignedBigInteger('division_approved_by')->nullable()->default(NULL);
-            $table->string('division_approved_name')->nullable()->default(NULL);
-            $table->date('division_approved_date')->nullable()->default(NULL);
+            $table->unsignedBigInteger('division_approved_by')->nullable()->default(null);
+            $table->string('division_approved_name')->nullable()->default(null);
+            $table->date('division_approved_date')->nullable()->default(null);
 
             $table->foreign('division_approved_by')->references('id')->on('division')->onDelete('set null');
-            
-          });
+        });
     }
 
     /**
@@ -33,7 +32,7 @@ class ModifyPurchaseRequestTableP5 extends Migration
     {
         Schema::table('purchase_request', function (Blueprint $table) {
             $table->dropColumn([
-                'division_approval_request', 
+                'division_approval_request',
                 'division_approved_by',
                 'division_approved_name',
                 'division_approved_date',

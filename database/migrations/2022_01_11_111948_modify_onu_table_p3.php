@@ -14,7 +14,7 @@ class ModifyOnuTableP3 extends Migration
     public function up()
     {
         Schema::table('onu', function (Blueprint $table) {
-            $table->unsignedBigInteger('customer_product_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('customer_product_id')->nullable()->default(null);
 
             $table->foreign('customer_product_id')->references('id')->on('customer_product')->onDelete('set null');
         });

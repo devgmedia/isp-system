@@ -16,7 +16,7 @@ class CreateSupplierPicTable extends Migration
         Schema::create('supplier_pic', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedBigInteger('supplier_id')->nullable()->default(NULL);
+            $table->unsignedBigInteger('supplier_id')->nullable()->default(null);
             $table->timestamps();
 
             $table->unique(['name', 'supplier_id']);

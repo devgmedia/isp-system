@@ -18,7 +18,7 @@ class CreateCustomerProductPaymentTable extends Migration
 
             $table->unsignedBigInteger('customer_product_id')->nullable()->default(null);
             $table->foreign('customer_product_id')->references('id')->on('customer_product')->onDelete('set null');
-            
+
             $table->unsignedBigInteger('cash_bank_id')->nullable()->default(null);
             $table->foreign('cash_bank_id')->references('id')->on('cash_bank')->onDelete('set null');
 

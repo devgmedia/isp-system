@@ -15,7 +15,7 @@ class UpdateProductBrandTable extends Migration
     {
         Schema::table('product_brand', function (Blueprint $table) {
             $table->string('billing_email')->nullable()->default(null);
-        }); 
+        });
     }
 
     /**
@@ -29,6 +29,6 @@ class UpdateProductBrandTable extends Migration
             $table->dropColumn([
                 'billing_email',
             ]);
-        }); 
+        });
     }
 }
