@@ -1,6 +1,6 @@
 <?php
 
-namespace Gmedia\IspSystem\Providers;
+namespace Gmedia\IspSystem;
 
 use Illuminate\Support\ServiceProvider;
 
