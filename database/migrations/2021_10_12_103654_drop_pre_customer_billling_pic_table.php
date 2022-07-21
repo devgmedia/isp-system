@@ -10,7 +10,7 @@ class DropPreCustomerBilllingPicTable extends Migration
      *
      * @return void
      */
-    protected $connection = 'isp-system';
+    protected $connection = 'isp_system';
 
     public function up()
     {
