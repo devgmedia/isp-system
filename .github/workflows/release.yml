@@ -1,28 +1,12 @@
 name: Release
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
     tags:
       - 'v*'
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-      - name: Pint
-        uses: aglipanci/laravel-pint-action@0.1.0
-        with:
-          preset: laravel 
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Pint
-          skip_fetch: true
-          tagging_message: ${{ github.ref }}
       - name: Create Release
         uses: actions/create-release@v1
         env:
