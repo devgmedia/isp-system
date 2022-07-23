@@ -1,20 +1,15 @@
-name: Linting
+name: Integrate Laravel Pint with Github Actions
 on: [push]
 jobs:
-  Linting:
+  Test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: "Linting use laravel-pint"
-        uses: aglipanci/laravel-pint-action@0.1.0
-        with:
-          preset: laravel
-      - name: "Commit changes"
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "PHP Linting (Pint)"
-      - name: "Run if changes have been detected"
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
-        run: echo "Changes!"
-      - name: "Run if no changes have been detected"
-        if: steps.auto-commit-action.outputs.changes_detected == 'false'
-        run: echo "No Changes!"
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress
+
+      - name: Check code style
+        run: ./vendor/bin/pint --test --preset laravel
