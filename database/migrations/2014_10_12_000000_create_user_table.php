@@ -19,7 +19,7 @@ class CreateUserTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable()->default(null);
+            $table->timestamp('email_verified_at')->nullable()->default(NULL);
             $table->string('password');
             $table->rememberToken();
             $table->string('api_token', 80)->unique()->nullable()->default(null);
