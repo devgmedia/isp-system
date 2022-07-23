@@ -21,7 +21,7 @@ Install this package
 ## MySQL connection name
 
 ```
-  isp-system
+  isp_system
 ```
 
 ## Already used in
