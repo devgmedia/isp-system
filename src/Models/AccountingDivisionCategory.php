@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class AccountingDivisionCategory extends Model
 {
     protected $connection = 'isp_system';
+
     protected $table = 'accounting_division_category';
+
     protected $fillable = [
         // 'id',
 
