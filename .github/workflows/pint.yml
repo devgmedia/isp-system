@@ -4,12 +4,17 @@ jobs:
   Linting:
     runs-on: ubuntu-latest
     steps:
-      - name: Linting use laravel-pint
+      - name: "Linting use laravel-pint"
         uses: aglipanci/laravel-pint-action@0.1.0
         with:
           preset: laravel
-      - name: Commit changes
+      - name: "Commit changes"
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: PHP Linting (Pint)
-          skip_fetch: true
+          commit_message: "PHP Linting (Pint)"
+      - name: "Run if changes have been detected"
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        run: echo "Changes!"
+      - name: "Run if no changes have been detected"
+        if: steps.auto-commit-action.outputs.changes_detected == 'false'
+        run: echo "No Changes!"
