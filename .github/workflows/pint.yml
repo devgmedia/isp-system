@@ -1,7 +1,7 @@
 name: Linting
 on: [push]
 jobs:
-  linting:
+  Linting:
     runs-on: ubuntu-latest
     steps:
       - name: Linting use laravel-pint
