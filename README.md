@@ -1,36 +1,33 @@
 # Hi, I'm Gmedia Developer! 👋 
 
-[Link package](https://packagist.org/packages/devgmedia/isp-system)
-
-## 🚀 About
-It contains a list of the model databases extracted from ERPv2. So this will change frequently.
+It contains sources extracted from ERPv2. So this will change frequently.
 
 ## Features
 
 - All Models
 - All database migrations
 
-## Installation
+## Usage
 
-Install this package
+Install the package
 
 ```sh
   composer require devgmedia/isp-system
 ```
 
-## MySQL connection name
-
-```
-  isp_system
-```
+Create MySQL connection with name <code>isp_system</code>
 
 ## Already used in
 
-- [Retail Agent](https://play.google.com/store/apps/details?id=com.gmedia.fiberstream_customer_mobile)
-- [Retail Pelanggan](https://play.google.com/store/apps/details?id=com.gmedia.fiberstream_agent)
-- [Sales (Comming Soon) . . .]()
+- [Agent Retail](https://play.google.com/store/apps/details?id=com.gmedia.fiberstream_customer_mobile)
+- [Customer Retail](https://play.google.com/store/apps/details?id=com.gmedia.fiberstream_agent)
+- [Sales Retail (Comming Soon ... )]()
 
 ## Authors
 
 - [@hendrix](https://gitlab.com/hendrixxxx)
 - [@ariefnovianto](https://github.com/oppytut)
+
+## Link
+
+- [Packagist](https://packagist.org/packages/devgmedia/isp-system)
