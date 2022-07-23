@@ -1,21 +1,28 @@
-name: Create Release
+name: Release
 on:
+  workflow_dispatch:
   push:
-      # Sequence of patterns matched against refs/tags
-      tags:
-        - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
-  workflow_run:
-    workflows: ["PHP Linting (Pint)"]
-    types:
-      - completed
+    branches:
+      - main
+    tags:
+      - 'v*'
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      - name: Pint
+        uses: aglipanci/laravel-pint-action@0.1.0
+        with:
+          preset: laravel 
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Pint
+          skip_fetch: true
       - name: Create Release
-        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
