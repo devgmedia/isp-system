@@ -1,0 +1,10 @@
+name: linting
+on: [push]
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: linting use laravel-pint
+        uses: aglipanci/laravel-pint-action@0.1.0
+        with:
+          preset: laravel
