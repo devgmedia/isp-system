@@ -1,7 +1,7 @@
 {
     "name": "devgmedia/isp-system",
     "description": "Internet Service Provider System",
-    "version": "2.0.22",
+    "version": "2.0.23",
     "homepage": "https://github.com/devgmedia/isp-system",
     "license": "MIT",
     "authors": [
@@ -25,6 +25,13 @@
         "psr-4": {
             "Gmedia\\IspSystem\\": "src"
         }        
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gmedia\\IspSystem\\IspSystemServiceProvider"
+            ]
+        }
     },
     "require": {
         "illuminate/support": "^6.0||^7.0||^8.0||^9.0",
