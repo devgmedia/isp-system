@@ -35,7 +35,7 @@ class CreatePreCustomerVerificationContactLogPhoneNumberTable extends Migration
             $table->foreign(
                 'pre_customer_phone_number_id',
                 'pre_cus_pho_num_pre_cus_pho_num'
-                )
+            )
                 ->references('id')
                 ->on('pre_customer_phone_number')
                 ->onDelete('set null');
