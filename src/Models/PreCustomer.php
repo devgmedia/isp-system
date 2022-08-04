@@ -73,6 +73,8 @@ class PreCustomer extends Model
         'verification_attempt',
         'verification_contact',
         'verification_contact_sent',
+
+        'code_verification',
     ];
 
     protected $hidden = [];
@@ -138,6 +140,8 @@ class PreCustomer extends Model
         'verification_attempt' => 'integer',
         'verification_contact' => 'integer',
         'verification_contact_sent' => 'integer',
+
+        'code_verification' => 'string',
     ];
 
     public function province()
