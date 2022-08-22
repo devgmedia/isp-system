@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use App\Models\BandwidthType;
-use App\Models\BandwidthUnit;
+use Gmedia\IspSystem\Models\BandwidthType;
+use Gmedia\IspSystem\Models\BandwidthUnit;
 use Illuminate\Database\Eloquent\Model;
 
 class BtsInterface extends Model

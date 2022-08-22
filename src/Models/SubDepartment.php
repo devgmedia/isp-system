@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use App\Models\Branch;
-use App\Models\Department;
+use Gmedia\IspSystem\Models\Branch;
+use Gmedia\IspSystem\Models\Department;
 use Illuminate\Database\Eloquent\Model;
 
 class SubDepartment extends Model

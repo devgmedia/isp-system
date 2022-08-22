@@ -4,7 +4,7 @@ namespace Gmedia\IspSystem\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-// use App\Models\PurchaseOrderItemSource as PurchaseOrderItemSourceModel;
+// use Gmedia\IspSystem\Models\PurchaseOrderItemSource as PurchaseOrderItemSourceModel;
 
 class PurchaseOrderItem extends Model
 {

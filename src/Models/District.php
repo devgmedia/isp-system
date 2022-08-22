@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use App\Models\Province;
-use App\Models\SubDistrict;
+use Gmedia\IspSystem\Models\Province;
+use Gmedia\IspSystem\Models\SubDistrict;
 use Illuminate\Database\Eloquent\Model;
 
 class District extends Model

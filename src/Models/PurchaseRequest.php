@@ -2,12 +2,12 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use App\Models\Branch as BranchModel;
-use App\Models\Department as DepartmentModel;
-use App\Models\Division as DivisionModel;
-use App\Models\PurchaseRequestItem as PurchaseRequestItemModel;
-use App\Models\SubDepartment as SubDepartmentModel;
-use App\Models\Supplier as SupplierModel;
+use Gmedia\IspSystem\Models\Branch as BranchModel;
+use Gmedia\IspSystem\Models\Department as DepartmentModel;
+use Gmedia\IspSystem\Models\Division as DivisionModel;
+use Gmedia\IspSystem\Models\PurchaseRequestItem as PurchaseRequestItemModel;
+use Gmedia\IspSystem\Models\SubDepartment as SubDepartmentModel;
+use Gmedia\IspSystem\Models\Supplier as SupplierModel;
 use App\User as UserModel;
 use Illuminate\Database\Eloquent\Model;
 

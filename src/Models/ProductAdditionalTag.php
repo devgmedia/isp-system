@@ -2,7 +2,7 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use App\Models\ProductAdditional;
+use Gmedia\IspSystem\Models\ProductAdditional;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductAdditionalTag extends Model
