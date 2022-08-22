@@ -2,7 +2,6 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Gmedia\IspSystem\Models\Hamlet;
 use Illuminate\Database\Eloquent\Model;
 
 class Neighbourhood extends Model

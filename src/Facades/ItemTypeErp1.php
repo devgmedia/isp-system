@@ -2,14 +2,11 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Gmedia\IspSystem\Models\ItemType;
 use Gmedia\IspSystem\Models\ItemBrand;
 use Gmedia\IspSystem\Models\ItemBrandProduct;
-use Carbon\Carbon;
+use Gmedia\IspSystem\Models\ItemType;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class ItemTypeErp1
@@ -17,17 +14,18 @@ class ItemTypeErp1
     public static function migrateItemType(
         $item,
         $conn
-    )
-    {
+    ) {
         // uuid
         $uuid = $item->uuid;
 
-        if (!$uuid) do {
-            $uuid = Uuid::uuid4();
-        } while (
-            ItemType::where('uuid', $uuid)->exists()
-            OR DB::connection($conn)->table('gmd_item')->where('uuid', $uuid)->exists()
-        );
+        if (! $uuid) {
+            do {
+                $uuid = Uuid::uuid4();
+            } while (
+                ItemType::where('uuid', $uuid)->exists()
+                or DB::connection($conn)->table('gmd_item')->where('uuid', $uuid)->exists()
+            );
+        }
 
         DB::connection($conn)
             ->table('gmd_item')
@@ -40,10 +38,9 @@ class ItemTypeErp1
     public static function migrateItemTypeUuid(
         $uuid,
         $conn
-    )
-    {
+    ) {
         $output = new ConsoleOutput();
-        $output->writeln('<info>Uuid:</info> ' . $uuid);
+        $output->writeln('<info>Uuid:</info> '.$uuid);
 
         $output->writeln('<comment>Perparing migrate . . .</comment>');
 
@@ -57,7 +54,6 @@ class ItemTypeErp1
             ->where('id', $item->brand)
             ->first();
 
-
         $brand_product_erp1 = DB::connection($conn)
             ->table('gmd_item_categories')
             ->where('id', $item->category_id)
@@ -66,11 +62,11 @@ class ItemTypeErp1
             $brand = ItemBrand::where('uuid', $brand_erp1->uuid)->first();
             $brand_product = ItemBrandProduct::where('uuid', $brand_product_erp1->uuid)->first();
 
-            $output->writeln('<info>Uuid Brand:</info> ' . $brand->uuid);
-            $output->writeln('<info>Uuid Brand Product:</info> ' . $brand_product->uuid);
+            $output->writeln('<info>Uuid Brand:</info> '.$brand->uuid);
+            $output->writeln('<info>Uuid Brand Product:</info> '.$brand_product->uuid);
 
-            if (!ItemType::where('uuid', $uuid)->exists()) {
-                $output->writeln('<info>Item Type id:</info> ' . $item->id);
+            if (! ItemType::where('uuid', $uuid)->exists()) {
+                $output->writeln('<info>Item Type id:</info> '.$item->id);
 
                 ItemType::create([
                     'uuid' => $item->uuid,
@@ -78,8 +74,8 @@ class ItemTypeErp1
                     'brand_id' => $brand->id,
                     'brand_product_id' => $brand_product->id,
                 ]);
-            }else{
-                $output->writeln('<info>Item Type Update id:</info> ' . $item->id);
+            } else {
+                $output->writeln('<info>Item Type Update id:</info> '.$item->id);
 
                 ItemType::where('uuid', $item->uuid)->update([
                     'name' => $item->item_name,
@@ -95,8 +91,7 @@ class ItemTypeErp1
         $log = applog('erp__erp1_fac');
         $log->save('migrate ItemErp1 to item type');
 
-        foreach (DB::connection('erp1')->table('gmd_item')->cursor() as $item)
-        {
+        foreach (DB::connection('erp1')->table('gmd_item')->cursor() as $item) {
             static::migrateItemType($item, 'erp1');
         }
     }

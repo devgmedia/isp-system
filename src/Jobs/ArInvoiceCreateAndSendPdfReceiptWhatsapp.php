@@ -2,20 +2,22 @@
 
 namespace Gmedia\IspSystem\Jobs;
 
+use Gmedia\IspSystem\Facades\ArInvoice;
+use Gmedia\IspSystem\Models\ArInvoice as ModelsArInvoice;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Gmedia\IspSystem\Facades\ArInvoice;
-use Gmedia\IspSystem\Models\ArInvoice as ModelsArInvoice;
 
 class ArInvoiceCreateAndSendPdfReceiptWhatsapp implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $invoice_id;
+
     protected $disk;
+
     /**
      * Create a new job instance.
      *
@@ -38,7 +40,9 @@ class ArInvoiceCreateAndSendPdfReceiptWhatsapp implements ShouldQueue
 
         if ($invoice) {
             ArInvoice::createReceiptPdf($invoice, $this->disk);
-            if (!$invoice->receipt_whatsapp_sent) ArInvoice::sendReceiptWhatsapp($invoice);
+            if (! $invoice->receipt_whatsapp_sent) {
+                ArInvoice::sendReceiptWhatsapp($invoice);
+            }
         }
     }
 }

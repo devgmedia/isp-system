@@ -2,21 +2,24 @@
 
 namespace Gmedia\IspSystem\Jobs;
 
+use Gmedia\IspSystem\Facades\ArInvoice;
+use Gmedia\IspSystem\Facades\Log;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Gmedia\IspSystem\Facades\ArInvoice;
-use Gmedia\IspSystem\Facades\Log;
 
 class MidtransGetStatus implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $order_id;
+
     protected $invoice_id;
+
     protected $log;
+
     /**
      * Create a new job instance.
      *

@@ -2,20 +2,22 @@
 
 namespace Gmedia\IspSystem\Jobs;
 
+use Gmedia\IspSystem\Facades\ArInvoice;
+use Gmedia\IspSystem\Models\ArInvoice as ArInvoiceModel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Gmedia\IspSystem\Facades\ArInvoice;
-use Gmedia\IspSystem\Models\ArInvoice as ArInvoiceModel;
 
 class ArInvoiceCreatePdfReceipt implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $invoice_id;
+
     protected $disk;
+
     /**
      * Create a new job instance.
      *
@@ -35,6 +37,8 @@ class ArInvoiceCreatePdfReceipt implements ShouldQueue
     public function handle()
     {
         $invoice = ArInvoiceModel::find($this->invoice_id);
-        if ($invoice) ArInvoice::createReceiptPdf($invoice, $this->disk);
+        if ($invoice) {
+            ArInvoice::createReceiptPdf($invoice, $this->disk);
+        }
     }
 }

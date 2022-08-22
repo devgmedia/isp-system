@@ -233,7 +233,9 @@ class PraGlCashier
         $log = applog('erp, pra_gl_cashier__fac, delete_from_cashier_in');
         $log->save('debug');
 
-        if (!$cashier_in->journal) return;
+        if (! $cashier_in->journal) {
+            return;
+        }
 
         $cashier_in->journal->items()->delete();
 
@@ -250,7 +252,9 @@ class PraGlCashier
         $log = applog('erp, pra_gl_cashier__fac, delete_from_cashier_out');
         $log->save('debug');
 
-        if (!$cashier_out->journal) return;
+        if (! $cashier_out->journal) {
+            return;
+        }
 
         $cashier_out->journal->items()->delete();
 

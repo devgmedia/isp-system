@@ -106,7 +106,9 @@ class PraGlCashierIn
         $log = applog('erp, pra_gl_cashier_in__fac, delete');
         $log->save('debug');
 
-        if (!$cashier_in->journal) return;
+        if (! $cashier_in->journal) {
+            return;
+        }
 
         $cashier_in->journal->items()->delete();
 

@@ -2,13 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
+use App\User as UserModel;
 use Gmedia\IspSystem\Models\Branch as BranchModel;
 use Gmedia\IspSystem\Models\Department as DepartmentModel;
 use Gmedia\IspSystem\Models\Division as DivisionModel;
 use Gmedia\IspSystem\Models\PurchaseRequestItem as PurchaseRequestItemModel;
 use Gmedia\IspSystem\Models\SubDepartment as SubDepartmentModel;
 use Gmedia\IspSystem\Models\Supplier as SupplierModel;
-use App\User as UserModel;
 use Illuminate\Database\Eloquent\Model;
 
 class PurchaseRequest extends Model
