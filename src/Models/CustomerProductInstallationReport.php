@@ -28,6 +28,17 @@ class CustomerProductInstallationReport extends Model
         'signature_customer',
         'distribution_olt',
         'distribution_odp',
+
+        'cable_type',
+        'cable_distance',
+        'roset_soc',
+        'power_optic_odp',
+        'power_optic_roset_onu',
+        'onu_index',
+        'ip_management',
+        'user_login',
+        'ssid',
+        'wpa',
     ];
 
     protected $hidden = [];
@@ -35,126 +46,37 @@ class CustomerProductInstallationReport extends Model
     protected $casts = [
         'id' => 'integer',
 
-        'uuid'=> 'string',
-        'customer_product_id'=> 'integer',
-        'service'=> 'string',
-        'circuit_id'=> 'string',
-        'add_on'=> 'string',
-        'onu_ont_type'=> 'string',
-        'ip_gateway'=> 'string',
-        'power_on_odp'=> 'string',
-        'power_on_onu'=> 'string',
-        'server'=> 'string',
-        'speed_upload'=> 'string',
-        'speed_download'=> 'string',
-        'signature_technical'=> 'string',
-        'signature_customer'=> 'string',
-        'distribution_olt'=> 'string',
-        'distribution_odp'=> 'string'
+        'uuid' => 'string',
+        'customer_product_id' => 'integer',
+        'service' => 'string',
+        'circuit_id' => 'string',
+        'add_on' => 'string',
+        'onu_ont_type' => 'string',
+        'ip_gateway' => 'string',
+        'power_on_odp' => 'string',
+        'power_on_onu' => 'string',
+        'server' => 'string',
+        'speed_upload' => 'string',
+        'speed_download' => 'string',
+        'signature_technical' => 'string',
+        'signature_customer' => 'string',
+        'distribution_olt' => 'string',
+        'distribution_odp' => 'string',
+
+        'cable_type' => 'string',
+        'cable_distance' => 'string',
+        'roset_soc' => 'string',
+        'power_optic_odp' => 'string',
+        'power_optic_roset_onu' => 'string',
+        'onu_index' => 'string',
+        'ip_management' => 'string',
+        'user_login' => 'string',
+        'ssid' => 'string',
+        'wpa' => 'string',
     ];
 
     public function customer_product()
     {
         return $this->belongsTo(CustomerProduct::class);
-    }
-
-    public function district()
-    {
-        return $this->belongsTo(District::class);
-    }
-
-    public function sub_district()
-    {
-        return $this->belongsTo(SubDistrict::class);
-    }
-
-    public function village()
-    {
-        return $this->belongsTo(Village::class);
-    }
-
-    public function previous_isp()
-    {
-        return $this->belongsTo(Isp::class);
-    }
-
-    public function previous_isp_bandwidth_unit()
-    {
-        return $this->belongsTo(BandwidthUnit::class);
-    }
-
-    public function branch()
-    {
-        return $this->belongsTo(Branch::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function previous_isp_bandwidth_type()
-    {
-        return $this->belongsTo(BandwidthType::class);
-    }
-
-    public function emails()
-    {
-        return $this->hasMany(CustomerEmail::class);
-    }
-
-    public function phone_numbers()
-    {
-        return $this->hasMany(CustomerPhoneNumber::class);
-    }
-
-    public function customer_products()
-    {
-        return $this->hasMany(CustomerProduct::class);
-    }
-
-    public function products()
-    {
-        return $this->belongsToMany(Product::class, CustomerProduct::class)->withPivot('id');
-    }
-
-    public function invoice_scheme_pays()
-    {
-        return $this->hasMany(ArInvoiceScheme::class, 'payer');
-    }
-
-    public function invoice_scheme_customers()
-    {
-        return $this->hasMany(ArInvoiceSchemeCustomer::class);
-    }
-
-    public function invoice_pays()
-    {
-        return $this->hasMany(ArInvoice::class, 'payer');
-    }
-
-    public function invoice_customers()
-    {
-        return $this->hasMany(ArInvoiceCustomer::class);
-    }
-
-    public function logs()
-    {
-        return $this->hasMany(CustomerLog::class);
-    }
-
-    public function brand()
-    {
-        return $this->belongsTo(ProductBrand::class);
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(CustomerCategory::class);
-    }
-
-    public function memo_ref()
-    {
-        return $this->belongsTo(Branch::class, 'memo');
     }
 }
