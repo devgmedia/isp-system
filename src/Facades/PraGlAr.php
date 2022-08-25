@@ -267,7 +267,9 @@ class PraGlAr
         $log = applog('erp, pra_gl_ar__fac, delete');
         $log->save('debug');
 
-        if (!$ar_invoice->journal) return;
+        if (! $ar_invoice->journal) {
+            return;
+        }
 
         $ar_invoice->journal->items()->delete();
 

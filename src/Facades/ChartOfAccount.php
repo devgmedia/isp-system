@@ -9,8 +9,7 @@ class ChartOfAccount
     public static function getIdByTransaction(
         $transaction_name = null,
         $branch_id = null
-    )
-    {
+    ) {
         $accounting_transaction_coa_query = DB::table('accounting_transaction_coa')
             ->select(
                 'accounting_transaction_coa.id',

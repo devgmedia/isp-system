@@ -161,7 +161,7 @@ class CustomerProduct extends Pivot
         'tax_rate',
         'tax_rounding',
 
-        'vendor_id'
+        'vendor_id',
     ];
 
     protected $hidden = [];
@@ -296,7 +296,7 @@ class CustomerProduct extends Pivot
         'tax_rate' => 'integer',
         'tax_rounding' => 'string',
 
-        'vendor_id' => 'integer'
+        'vendor_id' => 'integer',
     ];
 
     public function customer()

@@ -2,7 +2,6 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Gmedia\IspSystem\Models\Bts;
 use Illuminate\Database\Eloquent\Model;
 
 class BtsContract extends Model

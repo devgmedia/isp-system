@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Illuminate\Support\Facades\App as FacadesApp;
+use Carbon\Carbon;
+use DivineOmega\SSHConnection\SSHConnection;
 use Gmedia\IspSystem\Facades\Mail as MailFac;
-use Gmedia\IspSystem\Facades\Radius;
 use Gmedia\IspSystem\Mail\Service\AutoDisableMail;
 use Gmedia\IspSystem\Mail\Service\CollectedAutoDisableMail;
 use Gmedia\IspSystem\Mail\Service\CollectedNextDismantleMail;
@@ -16,17 +16,16 @@ use Gmedia\IspSystem\Models\CustomerProductLog;
 use Gmedia\IspSystem\Models\Employee;
 use Gmedia\IspSystem\Models\ProductRouter;
 use Gmedia\IspSystem\User;
-use Carbon\Carbon;
-use DivineOmega\SSHConnection\SSHConnection;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App as FacadesApp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use phpseclib\Crypt\RSA;
 use phpseclib\Net\SSH2;
-use Symfony\Component\Process\Process;
-use \RouterOS\Client; // tudak bisa pakai alias
-use \RouterOS\Query; // tudak bisa pakai alias
+use RouterOS\Client;
+use RouterOS\Query; // tudak bisa pakai alias
+use Symfony\Component\Process\Process; // tudak bisa pakai alias
 
 class Service
 {
@@ -182,7 +181,7 @@ class Service
                     end
                 ) as service_is_active"),
 
-                DB::raw("(
+                DB::raw('(
                     case when
                         (
                             case when
@@ -198,7 +197,7 @@ class Service
                     else
                         false
                     end
-                ) as price_is_valid"),
+                ) as price_is_valid'),
 
                 'customer_product.email_support_auto_disable_sent_at',
                 'ar_invoice_customer_product.invoice_id',
@@ -321,18 +320,25 @@ class Service
 
         $log->new()->properties($service->product->routers)->save('checking on router list');
         $service->product->routers->each(function ($router) use (&$number_removed, $radius_username) {
-            if ($router->os) switch ($router->os->name) {
-                case 'Mikrotik':
-                    if (static::removeMikrotikPppoe($router, $radius_username)) $number_removed++;
-                    break;
+            if ($router->os) {
+                switch ($router->os->name) {
+                    case 'Mikrotik':
+                        if (static::removeMikrotikPppoe($router, $radius_username)) {
+                            $number_removed++;
+                        }
+                        break;
 
-                case 'VyOS':
-                    if (static::removeVyosPppoe($router, $radius_username)) $number_removed++;
-                    break;
+                    case 'VyOS':
+                        if (static::removeVyosPppoe($router, $radius_username)) {
+                            $number_removed++;
+                        }
+                        break;
+                }
             }
         });
 
         $log->save('removing '.$number_removed.' PPPoE');
+
         return $number_removed;
     }
 
@@ -347,7 +353,7 @@ class Service
             'host' => $router->host,
             'user' => $router->user,
             'pass' => $router->pass,
-            'port' => (int)$router->port,
+            'port' => (int) $router->port,
         ]);
 
         $log->save('connected to the '.$router->host);
@@ -358,7 +364,9 @@ class Service
         $response = $client->qr($query);
         $pppoes = collect($response);
 
-        if ($pppoes->isEmpty()) return false;
+        if ($pppoes->isEmpty()) {
+            return false;
+        }
 
         $pppoe = $pppoes->first();
         $pppoe_id = $pppoe['.id'];
@@ -380,10 +388,14 @@ class Service
         $log->new()->properties($router->host)->save('host');
 
         $vyos_script = config('app.auto_disable_vyos_script');
-        if (!$vyos_script) return false;
+        if (! $vyos_script) {
+            return false;
+        }
 
         $python_process = config('app.python_process');
-        if (!$python_process) return false;
+        if (! $python_process) {
+            return false;
+        }
 
         $process = new Process(
             $python_process.' '.
@@ -397,7 +409,7 @@ class Service
 
         $process->run();
 
-        if (!$process->isSuccessful()) {
+        if (! $process->isSuccessful()) {
             $log->save('failed to execute');
             $log->new()->properties($process->getErrorOutput())->save('error output');
 
@@ -405,6 +417,7 @@ class Service
         }
 
         $log->new()->properties($process->getOutput())->save('output');
+
         return true;
     }
 
@@ -431,6 +444,7 @@ class Service
         $error = $command->getError();
         if ($error) {
             $log->new()->properties($error)->save('error');
+
             return false;
         }
 
@@ -457,7 +471,7 @@ class Service
         $result = $ssh->login($router->user, [
             ['Password' => $router->pass],
         ]);
-        if (!$result) {
+        if (! $result) {
             $log->save('login failed');
         }
 
@@ -492,16 +506,17 @@ class Service
 
         $ar_invoice->invoice_customers->each(function ($ar_invoice_customer) use (&$paid_all, &$customer_product, &$invoice_ref) {
             $ar_invoice_customer->invoice_customer_products->each(function ($ar_invoice_customer_product) use (&$paid_all, &$customer_product, &$invoice_ref) {
-
                 $customer_product = $ar_invoice_customer_product->customer_product;
-                if (!$customer_product) return true;
+                if (! $customer_product) {
+                    return true;
+                }
 
                 $customer_product->invoice_products->each(function ($invoice_product) use (&$paid_all, &$invoice_ref) {
                     if (
                         $invoice_product->invoice_customer &&
                         $invoice_product->invoice_customer->invoice &&
                         $invoice_product->invoice_customer->invoice->due_date->lt(Carbon::now()->startOfDay()) &&
-                        !$invoice_product->invoice_customer->invoice->paid
+                        ! $invoice_product->invoice_customer->invoice->paid
                     ) {
                         $paid_all = false;
                         $invoice_ref = $invoice_product->invoice_customer->invoice;
@@ -510,9 +525,10 @@ class Service
             });
 
             $ar_invoice_customer->invoice_customer_product_additionals->each(function ($ar_invoice_customer_product_additional) use (&$paid_all, &$customer_product, &$invoice_ref) {
-
                 $customer_product_additional = $ar_invoice_customer_product_additional->customer_product_additional;
-                if (!$customer_product_additional) return true;
+                if (! $customer_product_additional) {
+                    return true;
+                }
 
                 $customer_product = $customer_product_additional->customer_product;
                 $paid_all = true;
@@ -521,7 +537,7 @@ class Service
                         $invoice_additional->invoice_customer &&
                         $invoice_additional->invoice_customer->invoice &&
                         $invoice_additional->invoice_customer->invoice->due_date->lt(Carbon::now()->startOfDay()) &&
-                        !$invoice_additional->invoice_customer->invoice->paid
+                        ! $invoice_additional->invoice_customer->invoice->paid
                     ) {
                         $paid_all = false;
                         $invoice_ref = $invoice_additional->invoice_customer->invoice;
@@ -723,7 +739,7 @@ class Service
                     end
                 ) as service_is_active"),
 
-                DB::raw("(
+                DB::raw('(
                     case when
                         (
                             case when
@@ -739,7 +755,7 @@ class Service
                     else
                         false
                     end
-                ) as price_is_valid"),
+                ) as price_is_valid'),
 
                 'customer_product.email_support_auto_disable_sent_at',
                 'ar_invoice_customer_product.invoice_id',
@@ -828,8 +844,8 @@ class Service
         $log->save('debug');
 
         if (
-            !$customer_product->email_support_auto_disable_sent_at OR
-            !$customer_product->email_support_auto_disable_sent_at->isCurrentMonth()
+            ! $customer_product->email_support_auto_disable_sent_at or
+            ! $customer_product->email_support_auto_disable_sent_at->isCurrentMonth()
         ) {
             $to = config('services.service.retail_auto_disable_to_mail_address');
             $cc = config('services.service.retail_auto_disable_cc_mail_address');
@@ -890,7 +906,7 @@ class Service
         });
         $phone_numbers = $phone_numbers->all();
 
-        if (!FacadesApp::environment('production')) {
+        if (! FacadesApp::environment('production')) {
             $dev_phone_numbers = config('app.dev_phone_numbers');
 
             if (FacadesApp::environment(['staging', 'development']) && $dev_phone_numbers) {
@@ -979,7 +995,7 @@ class Service
         });
         $phone_numbers = $phone_numbers->all();
 
-        if (!FacadesApp::environment('production')) {
+        if (! FacadesApp::environment('production')) {
             $dev_phone_numbers = config('app.dev_phone_numbers');
 
             if (FacadesApp::environment(['staging', 'development']) && $dev_phone_numbers) {

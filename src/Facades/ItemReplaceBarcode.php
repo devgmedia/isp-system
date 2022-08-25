@@ -2,19 +2,12 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Gmedia\IspSystem\Models\Item;
-use Carbon\Carbon;
+use Endroid\QrCode\Logo\Logo;
 use Endroid\QrCode\QrCode as EndroidQrCode;
 use Endroid\QrCode\Writer\PngWriter;
-use Endroid\QrCode\Logo\Logo;
-use Endroid\QrCode\Label\Label;
-use Endroid\QrCode\Color\Color;
-use Illuminate\Support\Facades\DB;
+use Gmedia\IspSystem\Models\Item;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use niklasravnsborg\LaravelPdf\PdfWrapper;
-use Ramsey\Uuid\Uuid;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class ItemReplaceBarcode
@@ -22,7 +15,7 @@ class ItemReplaceBarcode
     public static function ReplaceBarcode($item)
     {
         $output = new ConsoleOutput();
-        $output->writeln('<info>Number:</info> ' . $item->number);
+        $output->writeln('<info>Number:</info> '.$item->number);
 
         $data['qr_code'] = (new PngWriter())->write(
             EndroidQrCode::create($item->number)
@@ -30,7 +23,7 @@ class ItemReplaceBarcode
                 ->setMargin(0),
             Logo::create(url('libraries/frest-admin/app-assets/images/logo/logo-black-v2.png'))
                 ->setResizeToWidth(20)
-            )
+        )
             ->getDataUri();
 
         $data['number'] = $item->number;
@@ -48,7 +41,9 @@ class ItemReplaceBarcode
 
         $file_path = 'item/'.str_replace('/', '_', $item->number).'.pdf';
         $storage = Storage::disk(config('filesystems.primary_disk'));
-        if ($storage->exists($file_path)) $storage->delete($file_path);
+        if ($storage->exists($file_path)) {
+            $storage->delete($file_path);
+        }
         $storage->put($file_path, $pdf->output(), 'public');
     }
 
@@ -57,8 +52,7 @@ class ItemReplaceBarcode
         $log = applog('erp__erp1_fac');
         $log->save('migrate ItemErp1 to item type');
 
-        foreach (Item::cursor() as $item)
-        {
+        foreach (Item::cursor() as $item) {
             static::ReplaceBarcode($item);
         }
     }

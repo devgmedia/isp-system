@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
 class Whatsapp
 {
@@ -13,19 +13,20 @@ class Whatsapp
         $phone_number,
         $components = null,
         $callback = false
-    )
-    {
+    ) {
         $log = applog('erp, whatsapp__fac, send');
         $log->save('debug');
 
         $url = 'https://multichannel.qiscus.com/whatsapp/v1/'.config('app.qisqus_app_code').'/'.config('app.qisqus_channel_id').'/messages';
 
-        if (!$components) $components = [
-            [
-                'type' => 'body',
-                'parameters' => $parameters,
-            ],
-        ];
+        if (! $components) {
+            $components = [
+                [
+                    'type' => 'body',
+                    'parameters' => $parameters,
+                ],
+            ];
+        }
 
         $log->new()->properties($template_name)->save('template_name');
         $log->new()->properties($phone_number)->save('phone_number');
@@ -57,7 +58,9 @@ class Whatsapp
         $response_status = $response->getStatusCode();
         $log->new()->properties($response_status)->save('response status');
 
-        if ($callback) $callback($response_body);
+        if ($callback) {
+            $callback($response_body);
+        }
 
         return $response->getStatusCode() >= 200 && $response->getStatusCode() < 300;
     }
@@ -69,8 +72,7 @@ class Whatsapp
         $is_all_success = false,
         $components = null,
         $callback = false
-    )
-    {
+    ) {
         $log = applog('erp, whatsapp__fac, send_multiple_receivers');
         $log->save('debug');
 
@@ -98,7 +100,10 @@ class Whatsapp
             }
         });
 
-        if ($is_all_success) return $all_success;
+        if ($is_all_success) {
+            return $all_success;
+        }
+
         return $success;
     }
 }

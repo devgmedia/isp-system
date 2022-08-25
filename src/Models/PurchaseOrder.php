@@ -2,12 +2,12 @@
 
 namespace Gmedia\IspSystem\Models;
 
+use App\User as UserModel;
 use Gmedia\IspSystem\Models\Branch as BranchModel;
 use Gmedia\IspSystem\Models\PurchaseOrderItem as PurchaseOrderItemModel;
 use Gmedia\IspSystem\Models\PurchaseOrderItemBoq as PurchaseOrderItemBoqModel;
 use Gmedia\IspSystem\Models\PurchaseOrderItemRab as PurchaseOrderItemRabModel;
 use Gmedia\IspSystem\Models\Supplier as SupplierModel;
-use App\User as UserModel;
 use Illuminate\Database\Eloquent\Model;
 
 class PurchaseOrder extends Model
