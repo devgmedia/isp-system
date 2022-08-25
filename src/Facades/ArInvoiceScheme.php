@@ -18,7 +18,7 @@ class ArInvoiceScheme
         $log->save('debug');
 
         $customer->load([
-            'customer_products',
+            'customer_products'
         ]);
 
         $customer->customer_products->each(function ($customer_product) {
@@ -53,7 +53,8 @@ class ArInvoiceScheme
         CustomerProduct $customer_product,
         $use_additional_create_callback = false,
         $createAdditionalScheme = null
-    ) {
+    )
+    {
         $log = applog('erp, ar_invoice_scheme__fac, create_product_scheme');
         $log->save('debug');
 
@@ -257,7 +258,6 @@ class ArInvoiceScheme
         });
 
         $schemes = $schemes->unique('id');
-
         return $schemes;
     }
 
@@ -277,7 +277,6 @@ class ArInvoiceScheme
         });
 
         $schemes = $schemes->unique('id');
-
         return $schemes;
     }
 
@@ -303,7 +302,6 @@ class ArInvoiceScheme
         }
 
         $schemes = $schemes->unique('id');
-
         return $schemes;
     }
 
@@ -321,10 +319,9 @@ class ArInvoiceScheme
         foreach (ArInvoiceSchemeModel::cursor() as $scheme) {
             // hapus yang tidak ada pembayar
             $payer = $scheme->payer_ref;
-            if (! $payer) {
+            if (!$payer) {
                 $scheme->delete();
                 $deleted++;
-
                 return true;
             }
 
@@ -332,13 +329,11 @@ class ArInvoiceScheme
             if ($scheme->scheme_customers->count() === 0) {
                 $scheme->delete();
                 $deleted++;
-
                 return true;
             }
         }
 
         $log->new()->properties($deleted)->save('deleted');
-
         return $deleted === 0 && $customer_deleted === 0 && $product_deleted === 0 && $additional_deleted === 0;
     }
 
@@ -351,24 +346,21 @@ class ArInvoiceScheme
 
         foreach (ArInvoiceSchemeCustomer::cursor() as $scheme_customer) {
             $customer = $scheme_customer->customer;
-            if (! $customer) {
+            if (!$customer) {
                 $scheme_customer->delete();
                 $deleted++;
-
                 return true;
             }
 
             $scheme = $scheme_customer->scheme;
-            if (! $scheme) {
+            if (!$scheme) {
                 $scheme_customer->delete();
                 $deleted++;
-
                 return true;
             }
         }
 
         $log->new()->properties($deleted)->save('deleted');
-
         return $deleted === 0;
     }
 
@@ -381,24 +373,21 @@ class ArInvoiceScheme
 
         foreach (ArInvoiceSchemeCustomerProduct::cursor() as $scheme_product) {
             $customer_product = $scheme_product->customer_product;
-            if (! $customer_product) {
+            if (!$customer_product) {
                 $scheme_product->delete();
                 $deleted++;
-
                 return true;
             }
 
             $scheme_customer = $scheme_product->scheme_customer;
-            if (! $scheme_customer) {
+            if (!$scheme_customer) {
                 $scheme_product->delete();
                 $deleted++;
-
                 return true;
             }
         }
 
         $log->new()->properties($deleted)->save('deleted');
-
         return $deleted === 0;
     }
 
@@ -411,25 +400,22 @@ class ArInvoiceScheme
 
         foreach (ArInvoiceSchemeCustomerProductAdditional::cursor() as $scheme_additional) {
             $customer_product_additional = $scheme_additional->customer_product_additional;
-            if (! $customer_product_additional) {
+            if (!$customer_product_additional) {
                 $scheme_additional->delete();
                 $deleted++;
-
                 return true;
             }
 
             $scheme_product = $scheme_additional->scheme_product;
             $scheme_customer = $scheme_additional->scheme_customer;
-            if (! $scheme_product && ! $scheme_customer) {
+            if (!$scheme_product && !$scheme_customer) {
                 $scheme_additional->delete();
                 $deleted++;
-
                 return true;
             }
         }
 
         $log->new()->properties($deleted)->save('deleted');
-
         return $deleted === 0;
     }
 
@@ -450,7 +436,7 @@ class ArInvoiceScheme
             'customer_products.customer_product_additionals.product_additional',
         ])->cursor() as $customer) {
             $customer->customer_products->each(function ($customer_product) {
-                if (! $customer_product->invoice_scheme_product) {
+                if (!$customer_product->invoice_scheme_product) {
                     static::createProductScheme($customer_product);
                 }
 
@@ -460,7 +446,7 @@ class ArInvoiceScheme
                         $customer_product_additional->product_additional &&
                         $customer_product_additional->product_additional->ar_invoice_item_category &&
                         $customer_product_additional->product_additional->ar_invoice_item_category->name === 'Instalasi' &&
-                        ! $customer_product_additional->invoice_scheme_additional
+                        !$customer_product_additional->invoice_scheme_additional
                     ) {
                         static::createAdditionalScheme($customer_product_additional);
                     }

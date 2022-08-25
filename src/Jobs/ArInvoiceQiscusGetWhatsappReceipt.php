@@ -2,22 +2,20 @@
 
 namespace Gmedia\IspSystem\Jobs;
 
-use Gmedia\IspSystem\Facades\ArInvoice;
-use Gmedia\IspSystem\Models\ArInvoice as ArInvoiceModel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Gmedia\IspSystem\Facades\ArInvoice;
+use Gmedia\IspSystem\Models\ArInvoice as ArInvoiceModel;
 
 class ArInvoiceQiscusGetWhatsappReceipt implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $invoice_id;
-
     protected $broadcast_job_id;
-
     /**
      * Create a new job instance.
      *
@@ -37,8 +35,6 @@ class ArInvoiceQiscusGetWhatsappReceipt implements ShouldQueue
     public function handle()
     {
         $invoice = ArInvoiceModel::find($this->invoice_id);
-        if ($invoice) {
-            ArInvoice::qiscusGetWhatsappReceipt($invoice, $this->broadcast_job_id);
-        }
+        if ($invoice) ArInvoice::qiscusGetWhatsappReceipt($invoice, $this->broadcast_job_id);
     }
 }

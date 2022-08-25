@@ -2,6 +2,7 @@
 
 namespace Gmedia\IspSystem\Models;
 
+use Gmedia\IspSystem\Models\ItemMovementList;
 use Illuminate\Database\Eloquent\Model;
 
 class ItemMovement extends Model

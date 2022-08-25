@@ -2,22 +2,22 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Carbon\Carbon;
 use Gmedia\IspSystem\Facades\Customer as FacadesCustomer;
 use Gmedia\IspSystem\Models\ArInvoiceFaktur;
 use Gmedia\IspSystem\Models\ArInvoiceItemCategory;
+use Gmedia\IspSystem\Models\ProductBrand;
 use Gmedia\IspSystem\Models\Branch;
 use Gmedia\IspSystem\Models\CashBank;
 use Gmedia\IspSystem\Models\Customer;
 use Gmedia\IspSystem\Models\CustomerCategory;
 use Gmedia\IspSystem\Models\CustomerProduct;
-use Gmedia\IspSystem\Models\ProductBrand;
 use Gmedia\IspSystem\Models\Regional;
 use Gmedia\IspSystem\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Ramsey\Uuid\Uuid;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class Erp1
@@ -27,19 +27,20 @@ class Erp1
         $conn,
         Branch $branch,
         CustomerCategory $category = null
-    ) {
+    )
+    {
         $log = applog('erp, erp1__fac, migrate_customer');
         $log->save('debug');
 
         // uuid
         $uuid = $customer->uuid;
 
-        if (! $uuid) {
+        if (!$uuid) {
             do {
                 $uuid = Uuid::uuid4();
             } while (
                 Customer::where('uuid', $uuid)->exists()
-                or DB::connection($conn)->table('gmd_finance_customer')->where('uuid', $uuid)->exists()
+                OR DB::connection($conn)->table('gmd_finance_customer')->where('uuid', $uuid)->exists()
             );
 
             DB::connection($conn)
@@ -56,12 +57,13 @@ class Erp1
         $conn,
         Branch $branch,
         CustomerCategory $category = null
-    ) {
+    )
+    {
         $log = applog('erp, erp1__fac, migrate_customer_uuid');
         $log->save('debug');
 
         $output = new ConsoleOutput();
-        $output->writeln('<info>Uuid:</info> '.$uuid);
+        $output->writeln('<info>Uuid:</info> ' . $uuid);
 
         $customer = DB::connection($conn)
             ->table('gmd_finance_customer')
@@ -69,11 +71,12 @@ class Erp1
             ->first();
 
         $output->writeln('<comment>Perparing migrate . . .</comment>');
-        $output->writeln('<info>Customer id:</info> '.$customer->id);
+        $output->writeln('<info>Customer id:</info> ' . $customer->id);
 
         $migration_issue = [];
 
         /** clearing resources */
+
         DB::connection($conn)
             ->table('gmd_finance_customer')
             ->where('id', $customer->id)
@@ -82,12 +85,11 @@ class Erp1
         /** collecting values */
 
         // cid
-        if (! $customer->customer_id) {
+        if (!$customer->customer_id) {
             $output->writeln('empty cid');
             $output->writeln('deleted');
 
             Customer::where('uuid', $uuid)->delete();
-
             return;
         }
         $cid = $customer->customer_id;
@@ -181,6 +183,7 @@ class Erp1
         ];
 
         /** validating required values */
+
         $validator = Validator::make($values, [
             'uuid' => 'required',
             'cid' => 'required',
@@ -233,7 +236,7 @@ class Erp1
 
             $validator = Validator::make($values, [
                 'uuid' => [
-                    Rule::unique('customer')->where(function ($query) use ($uuid, $id) {
+                    Rule::unique('customer')->where(function ($query) use($uuid, $id) {
                         return $query->where([
                             ['uuid', '=', $uuid],
                             ['id', '<>', $id],
@@ -241,7 +244,7 @@ class Erp1
                     }),
                 ],
                 'cid' => [
-                    Rule::unique('customer')->where(function ($query) use ($cid, $id) {
+                    Rule::unique('customer')->where(function ($query) use($cid, $id) {
                         return $query->where([
                             ['cid', '=', $cid],
                             ['id', '<>', $id],
@@ -249,7 +252,7 @@ class Erp1
                     }),
                 ],
                 'name' => [
-                    Rule::unique('customer')->where(function ($query) use ($name, $branch_id, $id) {
+                    Rule::unique('customer')->where(function ($query) use($name, $branch_id, $id) {
                         return $query->where([
                             ['name', '=', $name],
                             ['branch_id', '=', $branch_id],
@@ -283,7 +286,7 @@ class Erp1
                 'uuid' => 'unique:App\Models\Customer,uuid',
                 'cid' => 'unique:App\Models\Customer,cid',
                 'name' => [
-                    Rule::unique('customer')->where(function ($query) use ($name, $branch_id) {
+                    Rule::unique('customer')->where(function ($query) use($name, $branch_id) {
                         return $query->where([
                             ['name', '=', $name],
                             ['branch_id', '=', $branch_id],
@@ -336,12 +339,12 @@ class Erp1
                     $uuid = $service->uuid;
                     $output->writeln('uuid: '.$uuid);
 
-                    if (! $uuid) {
+                    if (!$uuid) {
                         do {
                             $uuid = Uuid::uuid4();
                         } while (
                             CustomerProduct::where('uuid', $uuid)->exists()
-                            or DB::connection($conn)->table('gmd_finance_customer_service')->where('uuid', $uuid)->exists()
+                            OR DB::connection($conn)->table('gmd_finance_customer_service')->where('uuid', $uuid)->exists()
                         );
 
                         DB::connection($conn)
@@ -353,6 +356,7 @@ class Erp1
                     $migration_issue = [];
 
                     /** clearing resources */
+
                     DB::connection($conn)
                         ->table('gmd_finance_customer_service')
                         ->where('id', $service->id)
@@ -444,7 +448,8 @@ class Erp1
                     $ar_invoice_faktur_id = null;
                     if ($service->jenis_ppn === 0) {
                         $ar_invoice_faktur_id = ArInvoiceFaktur::where('name', 'Standar')->value('id');
-                    } elseif ($service->jenis_ppn === 1) {
+                    }
+                    else if ($service->jenis_ppn === 1) {
                         $ar_invoice_faktur_id = ArInvoiceFaktur::where('name', 'Sederhana')->value('id');
                     }
                     $output->writeln('ar_invoice_faktur_id: '.$ar_invoice_faktur_id);
@@ -539,6 +544,7 @@ class Erp1
                     ];
 
                     /** validating required values */
+
                     $validator = Validator::make($values, [
                         'uuid' => 'required',
                         'sid' => 'required',
@@ -587,7 +593,7 @@ class Erp1
 
                         $validator = Validator::make($values, [
                             'uuid' => [
-                                Rule::unique('customer_product')->where(function ($query) use ($uuid, $id) {
+                                Rule::unique('customer_product')->where(function ($query) use($uuid, $id) {
                                     return $query->where([
                                         ['uuid', '=', $uuid],
                                         ['id', '<>', $id],
@@ -595,7 +601,7 @@ class Erp1
                                 }),
                             ],
                             'sid' => [
-                                Rule::unique('customer_product')->where(function ($query) use ($sid, $id) {
+                                Rule::unique('customer_product')->where(function ($query) use($sid, $id) {
                                     return $query->where([
                                         ['sid', '=', $sid],
                                         ['id', '<>', $id],
@@ -680,12 +686,12 @@ class Erp1
                                 $uuid = $service_add->uuid;
                                 $output->writeln('uuid: '.$uuid);
 
-                                if (! $uuid) {
+                                if (!$uuid) {
                                     do {
                                         $uuid = Uuid::uuid4();
                                     } while (
                                         CustomerProduct::where('uuid', $uuid)->exists()
-                                        or DB::connection($conn)->table('gmd_finance_customer_service_add')->where('uuid', $uuid)->exists()
+                                        OR DB::connection($conn)->table('gmd_finance_customer_service_add')->where('uuid', $uuid)->exists()
                                     );
 
                                     DB::connection($conn)
@@ -697,6 +703,7 @@ class Erp1
                                 $migration_issue = [];
 
                                 /** clearing resources */
+
                                 DB::connection($conn)
                                     ->table('gmd_finance_customer_service_add')
                                     ->where('id', $service_add->id)
@@ -761,6 +768,7 @@ class Erp1
                                 ];
 
                                 /** validating required values */
+
                                 $validator = Validator::make($values, [
                                     'uuid' => 'required',
                                     'ar_invoice_item_category_id' => 'required|exists:App\Models\ArInvoiceItemCategory,id',
@@ -795,7 +803,7 @@ class Erp1
 
                                     $validator = Validator::make($values, [
                                         'uuid' => [
-                                            Rule::unique('customer_product_additional')->where(function ($query) use ($uuid, $id) {
+                                            Rule::unique('customer_product_additional')->where(function ($query) use($uuid, $id) {
                                                 return $query->where([
                                                     ['uuid', '=', $uuid],
                                                     ['id', '<>', $id],
@@ -855,18 +863,14 @@ class Erp1
                                 ->where('erp1_id', $payment)
                                 ->first();
 
-                            if (! $cash_bank) {
-                                return true;
-                            }
+                            if (!$cash_bank) return true;
 
                             $new_payment = $new_customer_product->customer_product_payments()
                                 ->where('cash_bank_id', $cash_bank->id)
                                 ->first();
 
-                            if (! $new_payment) {
-                                $new_payment = $new_customer_product->customer_product_payments()
+                            if (!$new_payment) $new_payment = $new_customer_product->customer_product_payments()
                                 ->create(['cash_bank_id' => $cash_bank->id]);
-                            }
                         });
                     }
                 });
@@ -879,7 +883,8 @@ class Erp1
         $log = applog('erp, erp1__fac, migrate_customer_yogyakarta');
         $log->save('debug');
 
-        foreach (DB::connection('erp1')->table('gmd_finance_customer')->cursor() as $customer) {
+        foreach (DB::connection('erp1')->table('gmd_finance_customer')->cursor() as $customer)
+        {
             /** Branch */
             $branch_name = null;
             $company_name = null;
@@ -911,9 +916,7 @@ class Erp1
                     break;
             }
 
-            if (! $branch_name) {
-                continue;
-            }
+            if (!$branch_name) continue;
 
             $regional_query = Regional::select(
                 'regional.id',
@@ -945,7 +948,7 @@ class Erp1
                     $category = CustomerCategory::where('name', 'CORPORATE')->first();
                     break;
 
-                    // case :
+                // case :
                 //     $category = CustomerCategory::where('name', 'EDUCATION')->first();
                 //     break;
 
@@ -961,7 +964,7 @@ class Erp1
                     $category = CustomerCategory::where('name', 'GAME ONLINE')->first();
                     break;
 
-                    // case :
+                // case :
                 //     $category = CustomerCategory::where('name', 'GOVERNMENT')->first();
                 //     break;
 
@@ -997,11 +1000,11 @@ class Erp1
                     $category = CustomerCategory::where('name', 'UNIVERSITAS / AKADEMI')->first();
                     break;
 
-                    // case :
+                // case :
                 //     $category = CustomerCategory::where('name', 'RESTAURANT')->first();
                 //     break;
 
-                    // case :
+                // case :
                 //     $category = CustomerCategory::where('name', 'REST')->first();
                 //     break;
 
@@ -1014,6 +1017,7 @@ class Erp1
             /** Execute migraton */
             static::migrateCustomer($customer, 'erp1', $branch, $category);
         }
+
     }
 
     public static function migrateCustomerBali()
@@ -1021,7 +1025,8 @@ class Erp1
         $log = applog('erp, erp1__fac, migrate_customer_bali');
         $log->save('debug');
 
-        foreach (DB::connection('erp1_2nd')->table('gmd_finance_customer')->cursor() as $customer) {
+        foreach (DB::connection('erp1_2nd')->table('gmd_finance_customer')->cursor() as $customer)
+        {
             /** Branch */
             $branch_name = null;
             $company_name = null;
@@ -1048,9 +1053,7 @@ class Erp1
                     break;
             }
 
-            if (! $branch_name) {
-                continue;
-            }
+            if (!$branch_name) continue;
 
             $regional_query = Regional::select(
                 'regional.id',
@@ -1106,7 +1109,7 @@ class Erp1
                     $category = CustomerCategory::where('name', 'HOTEL')->first();
                     break;
 
-                    // case :
+                // case :
                 //     $category = CustomerCategory::where('name', 'INSTANSI PEMERINTAH')->first();
                 //     break;
 
@@ -1114,7 +1117,7 @@ class Erp1
                     $category = CustomerCategory::where('name', 'ISP')->first();
                     break;
 
-                    // case :
+                // case :
                 //     $category = CustomerCategory::where('name', 'KAFE')->first();
                 //     break;
 
@@ -1126,7 +1129,7 @@ class Erp1
                     $category = CustomerCategory::where('name', 'PERSONAL')->first();
                     break;
 
-                    // case :
+                // case :
                 //     $category = CustomerCategory::where('name', 'SEKOLAH')->first();
                 //     break;
 
@@ -1138,7 +1141,7 @@ class Erp1
                     $category = CustomerCategory::where('name', 'RESTAURANT')->first();
                     break;
 
-                    // case :
+                // case :
                 //     $category = CustomerCategory::where('name', 'REST')->first();
                 //     break;
 

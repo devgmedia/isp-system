@@ -2,6 +2,10 @@
 
 namespace Gmedia\IspSystem\Models;
 
+use Gmedia\IspSystem\Models\Branch;
+use Gmedia\IspSystem\Models\BtsContract;
+use Gmedia\IspSystem\Models\BtsInterface;
+use Gmedia\IspSystem\Models\BtsItem;
 use Illuminate\Database\Eloquent\Model;
 
 class Bts extends Model

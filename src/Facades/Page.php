@@ -1,18 +1,20 @@
 <?php
 
+
 namespace App\Facades;
 
 use Gmedia\IspSystem\Models\Branch;
-use Gmedia\IspSystem\Models\ChartOfAccountTitle;
 use Gmedia\IspSystem\Models\ProductBrand;
-use Gmedia\IspSystem\Models\SpmBranchManagerApproval;
-use Gmedia\IspSystem\Models\SpmDirectorApproval;
-use Gmedia\IspSystem\Models\SpmFinanceApproval;
-use Gmedia\IspSystem\Models\SpmGeneralManagerApproval;
 use Gmedia\IspSystem\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Gmedia\IspSystem\Models\ChartOfAccountTitle;
 use Illuminate\Support\Facades\DB;
+use Gmedia\IspSystem\Models\SpmBranchManagerApproval;
+use Gmedia\IspSystem\Models\SpmFinanceApproval;
+use Gmedia\IspSystem\Models\SpmGeneralManagerApproval;
+use Gmedia\IspSystem\Models\SpmDirectorApproval;
+use Carbon\Carbon;
 
 class Page
 {
@@ -24,6 +26,7 @@ class Page
             'employee.branch.regional',
         ])
         ->find(Auth::guard('api')->id());
+
 
         $branch = $user->employee->branch;
 
@@ -83,7 +86,7 @@ class Page
         $session_brand_id = $request->session()->get('brand_id');
         if ($session_brand_id) {
             $brand = ProductBrand::find($session_brand_id);
-        } elseif ($user->employee->preferred_brand) {
+        } else if ($user->employee->preferred_brand) {
             $brand = ProductBrand::find($user->employee->preferred_brand);
         } else {
             $brand = ProductBrand::oldest()->first();
@@ -129,12 +132,10 @@ class Page
         $branch_id = $branch->id;
 
         $session_branch_id = $request->session()->get('branch_id');
-        if ($session_branch_id) {
-            $branch_id = $session_branch_id;
-        }
+        if ($session_branch_id) $branch_id = $session_branch_id;
 
         $chart_of_account_title_id = $request->session()->get('chart_of_account_title_id');
-        if (! $chart_of_account_title_id) {
+        if (!$chart_of_account_title_id) {
             $chart_of_account_title_query = ChartOfAccountTitle::where('branch_id', $branch_id)
                 ->orderByDesc('effective_date');
 
@@ -165,12 +166,10 @@ class Page
         $branch_id = $branch->id;
 
         $session_branch_id = $request->session()->get('branch_id');
-        if ($session_branch_id) {
-            $branch_id = $session_branch_id;
-        }
+        if ($session_branch_id) $branch_id = $session_branch_id;
 
         $chart_of_account_title_id = $request->session()->get('chart_of_account_title_id');
-        if (! $chart_of_account_title_id) {
+        if (!$chart_of_account_title_id) {
             $chart_of_account_title_query = ChartOfAccountTitle::where('branch_id', $branch_id)
                 ->orderByDesc('effective_date');
 
@@ -252,7 +251,7 @@ class Page
 
                 'director_is_active' => $regional->spm_director_is_active,
                 'director_unread' => $director_unread,
-            ],
+            ]
         ];
 
         return collect($default_options)->merge($additional_options)->all();
@@ -270,12 +269,10 @@ class Page
         $branch_id = $branch->id;
 
         $session_branch_id = $request->session()->get('branch_id');
-        if ($session_branch_id) {
-            $branch_id = $session_branch_id;
-        }
+        if ($session_branch_id) $branch_id = $session_branch_id;
 
         $chart_of_account_title_id = $request->session()->get('chart_of_account_title_id');
-        if (! $chart_of_account_title_id) {
+        if (!$chart_of_account_title_id) {
             $chart_of_account_title_query = ChartOfAccountTitle::where('branch_id', $branch_id)
                 ->orderByDesc('effective_date');
 

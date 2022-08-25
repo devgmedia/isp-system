@@ -27,9 +27,7 @@ class TaxIn
         $log->save('debug');
 
         $tax_in = $invoice->tax_in;
-        if ($tax_in) {
-            $tax_in->delete();
-        }
+        if ($tax_in) $tax_in->delete();
 
         return true;
     }

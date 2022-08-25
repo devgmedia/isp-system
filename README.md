@@ -1,6 +1,6 @@
 # Hi, I'm Gmedia Developer! 👋 
 
-It contains sources extracted from ERPv2. So this will change frequently.
+It contains sources extracted from ERPv2. So this will change frequently. 
 
 ## Features
 

@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Carbon\Carbon;
 use Gmedia\IspSystem\Models\AgentCashWithdrawal as AgentCashWithdrawalModel;
 use Gmedia\IspSystem\Models\Employee;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App as FacadesApp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +24,7 @@ class AgentCashWithdrawal
         });
         $phone_numbers = $phone_numbers->all();
 
-        if (! FacadesApp::environment('production')) {
+        if (!FacadesApp::environment('production')) {
             $dev_phone_numbers = config('app.dev_phone_numbers');
 
             if (FacadesApp::environment(['staging', 'development']) && $dev_phone_numbers) {

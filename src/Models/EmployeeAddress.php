@@ -2,6 +2,8 @@
 
 namespace Gmedia\IspSystem\Models;
 
+use Gmedia\IspSystem\Models\Employee;
+use Gmedia\IspSystem\Models\EmployeeAddressTag;
 use Illuminate\Database\Eloquent\Model;
 
 class EmployeeAddress extends Model

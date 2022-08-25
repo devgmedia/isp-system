@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Swift_Mailer;
 use Swift_SmtpTransport;
+use Swift_Mailer;
 
 class Mail
 {

@@ -2,12 +2,12 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Carbon\Carbon;
+use Illuminate\Support\Facades\App as FacadesApp;
+use Gmedia\IspSystem\Models\ArInvoice;
+use Illuminate\Support\Facades\Mail;
 use Gmedia\IspSystem\Facades\Mail as MailFac;
 use Gmedia\IspSystem\Mail\ArInvoiceEnterprise\ReminderMail;
-use Gmedia\IspSystem\Models\ArInvoice;
-use Illuminate\Support\Facades\App as FacadesApp;
-use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class ArInvoiceEnterprise
 {
@@ -21,9 +21,8 @@ class ArInvoiceEnterprise
         $log->save('debug');
 
         $payer = $invoice->payer_ref;
-        if (! $payer) {
+        if (!$payer) {
             $log->save('payer not found');
-
             return;
         }
 
@@ -65,16 +64,13 @@ class ArInvoiceEnterprise
         $payer->emails->each(function ($email, $key) use (&$to, &$cc) {
             if ($key === 0) {
                 $to = $email->name;
-
                 return true;
             }
 
             $cc->push($email->name);
         });
 
-        if (! $to && ! in_array(FacadesApp::environment(), ['development', 'testing'])) {
-            return false;
-        }
+        if (!$to && !in_array(FacadesApp::environment(), ['development', 'testing'])) return false;
         $cc = $cc->all();
 
         $log->new()->properties(['to' => $to, 'cc' => $cc])->save('email address');
@@ -104,12 +100,12 @@ class ArInvoiceEnterprise
 
             Mail::setSwiftMailer($default_mail);
 
-            if (! empty($invoice_reminders)) {
+            if (!empty($invoice_reminders)) {
                 $invoice->email_reminders()->createMany($invoice_reminders);
             }
 
             foreach ($invoice_objects as $key => $invoice) {
-                if (! ($invoice->reminder_email_count >= 0)) {
+                if (!($invoice->reminder_email_count >= 0)) {
                     $invoice->reminder_email_count = 0;
                 }
 
@@ -117,7 +113,7 @@ class ArInvoiceEnterprise
                 $invoice->save();
             }
 
-            $is_success = true;
+            $is_success =  true;
         } catch (\Exception $e) {
             $log->new()->properties($e->getMessage())->save('error');
         }

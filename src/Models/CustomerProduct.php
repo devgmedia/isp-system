@@ -160,6 +160,8 @@ class CustomerProduct extends Pivot
 
         'tax_rate',
         'tax_rounding',
+
+        'vendor_id'
     ];
 
     protected $hidden = [];
@@ -293,6 +295,8 @@ class CustomerProduct extends Pivot
 
         'tax_rate' => 'integer',
         'tax_rounding' => 'string',
+
+        'vendor_id' => 'integer'
     ];
 
     public function customer()
@@ -443,5 +447,10 @@ class CustomerProduct extends Pivot
     public function customer_product_installation_item()
     {
         return $this->hasMany(CustomerProductInstallationItem::class, 'customer_product_id');
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Supplier::class, 'vendor_id');
     }
 }

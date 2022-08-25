@@ -2,7 +2,10 @@
 
 namespace Gmedia\IspSystem\Models;
 
+use Gmedia\IspSystem\Models\Branch;
 // model
+use Gmedia\IspSystem\Models\Customer;
+use Gmedia\IspSystem\Models\Employee;
 use Illuminate\Database\Eloquent\Model;
 
 class CustomerCall extends Model

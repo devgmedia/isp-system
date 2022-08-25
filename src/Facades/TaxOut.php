@@ -27,9 +27,7 @@ class TaxOut
         $log->save('debug');
 
         $tax_out = $invoice->tax_out;
-        if ($tax_out) {
-            $tax_out->delete();
-        }
+        if ($tax_out) $tax_out->delete();
 
         return true;
     }
