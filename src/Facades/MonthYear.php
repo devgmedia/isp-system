@@ -103,7 +103,8 @@ class MonthYear
     public static function numberToMonth($n, $lang = 'en')
     {
         $month = static::getMonthLang($lang);
-        return $month[$n-1];
+
+        return $month[$n - 1];
     }
 
     public static function getMonthAsNumber($start_date = null, $end_date = null)

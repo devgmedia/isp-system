@@ -14,12 +14,15 @@ class MoveFile implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $from_disk;
+
     protected $from_path;
 
     protected $to_disk;
+
     protected $to_path;
 
     protected $availability;
+
     /**
      * Create a new job instance.
      *

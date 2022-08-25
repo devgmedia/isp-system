@@ -2,7 +2,6 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Gmedia\IspSystem\Models\SubDistrict;
 use Illuminate\Database\Eloquent\Model;
 
 class Village extends Model

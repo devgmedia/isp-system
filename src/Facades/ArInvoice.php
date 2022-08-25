@@ -2,12 +2,12 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Illuminate\Support\Facades\App as FacadesApp;
-use Gmedia\IspSystem\Facades\ArInvoiceScheme;
+use Carbon\Carbon;
+use chillerlan\QRCode\QRCode;
+use Endroid\QrCode\QrCode as EndroidQrCode;
+use Endroid\QrCode\Writer\PngWriter;
 use Gmedia\IspSystem\Facades\Calculate as CalculateFac;
 use Gmedia\IspSystem\Facades\Mail as MailFac;
-use Gmedia\IspSystem\Facades\MonthYear;
-use Gmedia\IspSystem\Facades\Service;
 use Gmedia\IspSystem\Facades\ZipStream as ZipStreamFac;
 use Gmedia\IspSystem\Jobs\ArInvoiceCreateAndSendPdfReceiptWhatsapp;
 use Gmedia\IspSystem\Jobs\ArInvoiceCreatePdf;
@@ -30,12 +30,9 @@ use Gmedia\IspSystem\Models\CustomerProduct;
 use Gmedia\IspSystem\Models\CustomerProductAdditional;
 use Gmedia\IspSystem\Models\ProductBrand;
 use Gmedia\IspSystem\Models\ProductBrandType;
-use Carbon\Carbon;
-use chillerlan\QRCode\QRCode;
-use Endroid\QrCode\QrCode as EndroidQrCode;
-use Endroid\QrCode\Writer\PngWriter;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use Illuminate\Support\Facades\App as FacadesApp;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -68,16 +65,16 @@ class ArInvoice
 
         if ($last_number) {
             $explode_last_number = explode('/', $last_number);
-            $number = $explode_last_number[0] . '/' . $explode_last_number[1] . '/' . $explode_last_number[2] . '/' . sprintf('%04d', intval($explode_last_number[3]) + 1);
+            $number = $explode_last_number[0].'/'.$explode_last_number[1].'/'.$explode_last_number[2].'/'.sprintf('%04d', intval($explode_last_number[3]) + 1);
         }
 
-        if (!$number) {
-            $number = 'INV/' . $branch->code . '/' . $billing_date->format('my') . '/' . '0001';
+        if (! $number) {
+            $number = 'INV/'.$branch->code.'/'.$billing_date->format('my').'/'.'0001';
         }
 
         while (DB::table('ar_invoice')->where('number', $number)->exists()) {
             $explode_number = explode('/', $number);
-            $number = $explode_number[0] . '/' . $explode_number[1] . '/' . $explode_number[2] . '/' . sprintf('%04d', intval($explode_number[3]) + 1);
+            $number = $explode_number[0].'/'.$explode_number[1].'/'.$explode_number[2].'/'.sprintf('%04d', intval($explode_number[3]) + 1);
         }
 
         return $number;
@@ -105,11 +102,11 @@ class ArInvoice
             $explode_last_number = explode('/', $last_number);
             $explode_last_segment = explode('.', $explode_last_number[2]);
 
-            $number = $explode_last_number[0] . '/' . $explode_last_number[1] . '/' . sprintf('%03d', intval($explode_last_segment[0]) + 1) . '.' . $explode_last_segment[1];
+            $number = $explode_last_number[0].'/'.$explode_last_number[1].'/'.sprintf('%03d', intval($explode_last_segment[0]) + 1).'.'.$explode_last_segment[1];
         } else {
             $number = 'INV/'
-                . substr($customer->cid, 0, 2) . '.' . substr($customer->cid, 2, 4) . '/'
-                . sprintf('%03d', $customer->invoice_increment + 1) . '.' . Carbon::now()->format('my');
+                .substr($customer->cid, 0, 2).'.'.substr($customer->cid, 2, 4).'/'
+                .sprintf('%03d', $customer->invoice_increment + 1).'.'.Carbon::now()->format('my');
         }
 
         return $number;
@@ -125,7 +122,9 @@ class ArInvoice
             $scheme->payer_ref->brand &&
             $scheme->payer_ref->brand->type &&
             $scheme->payer_ref->brand->type->name !== 'Retail Internet Service'
-        ) return;
+        ) {
+            return;
+        }
 
         $date = $date->toImmutable();
         $billing_date = $billing_date->toImmutable();
@@ -146,13 +145,15 @@ class ArInvoice
         if ($date->gte(Carbon::create(2022, 4, 1, 0))) {
             $tax_rate = 11;
         }
-        $log->save('tax_rate: ' . $tax_rate);
+        $log->save('tax_rate: '.$tax_rate);
 
         // customer_product
         $customer_product = null;
 
         if ($installation) {
-            if ($scheme->invoices()->exists()) return;
+            if ($scheme->invoices()->exists()) {
+                return;
+            }
 
             $customer_product = $scheme->scheme_customers->first()
                 ->scheme_customer_product_additionals->first()
@@ -164,7 +165,9 @@ class ArInvoice
                 ->whereMonth('billing_date', $billing_date->month)
                 ->whereYear('billing_date', $billing_date->year)
                 ->exists()
-            ) return;
+            ) {
+                return;
+            }
 
             $customer_product = $scheme->scheme_customers->first()
                 ->scheme_customer_products->first()
@@ -173,7 +176,9 @@ class ArInvoice
 
         // product
         $product = null;
-        if ($customer_product) $product = $customer_product->product;
+        if ($customer_product) {
+            $product = $customer_product->product;
+        }
 
         // subsidy
         $subsidy = false;
@@ -183,19 +188,27 @@ class ArInvoice
 
         // brand
         $brand = null;
-        if ($product) $brand = $product->brand;
+        if ($product) {
+            $brand = $product->brand;
+        }
 
         // brand_type
         $brand_type = null;
-        if ($brand) $brand_type = $brand->type;
+        if ($brand) {
+            $brand_type = $brand->type;
+        }
 
         // agent
         $agent = null;
-        if ($customer_product) $agent = $customer_product->agent;
+        if ($customer_product) {
+            $agent = $customer_product->agent;
+        }
 
         // sales
         $sales = null;
-        if ($customer_product) $sales = $customer_product->sales_ref;
+        if ($customer_product) {
+            $sales = $customer_product->sales_ref;
+        }
 
         // json_product_tag
         $json_product_tag = null;
@@ -210,7 +223,9 @@ class ArInvoice
         }
 
         // number
-        if (!$number) $number = static::generateNumber($scheme->payer_ref->branch, $billing_date);
+        if (! $number) {
+            $number = static::generateNumber($scheme->payer_ref->branch, $billing_date);
+        }
 
         $scheme->load([
             'scheme_customers',
@@ -431,8 +446,8 @@ class ArInvoice
 
                 $product_name = $product->name;
                 if ($scheme_customer_product->customer_product->adjusted_bandwidth) {
-                    $product_name = $product_name . ' ' .
-                        $scheme_customer_product->customer_product->special_bandwidth . ' ' .
+                    $product_name = $product_name.' '.
+                        $scheme_customer_product->customer_product->special_bandwidth.' '.
                         $scheme_customer_product->customer_product->product->bandwidth_unit->name;
                 }
 
@@ -599,7 +614,7 @@ class ArInvoice
                     ]);
 
                     $product_delete = false;
-                    if (!$product_date->between($product_billing_start_date, $product_billing_end_date)) {
+                    if (! $product_date->between($product_billing_start_date, $product_billing_end_date)) {
                         $log->save('delete status is true, not in billing period');
                         $product_delete = true;
                     }
@@ -621,7 +636,7 @@ class ArInvoice
 
                         $product_price = $product_price * $product_billing_period->length() / $product_full_billing_period->length();
                         $product_price_after_discount = $product_price - $product_discount;
-                    } else if (Str::contains($invoice_customer_product->customer_product_name, '9 Bulan')) {
+                    } elseif (Str::contains($invoice_customer_product->customer_product_name, '9 Bulan')) {
                         $log->save('9 Bulan');
 
                         $product_full_billing_period = Period::make(
@@ -639,7 +654,7 @@ class ArInvoice
                         $product_price = $product_price * $product_billing_period->length() / $product_full_billing_period->length();
                         $product_price_after_discount = $product_price - $product_discount;
                     }
-                } else if ($invoice_customer_product->customer_product_payment_scheme_name === 'Monthly') {
+                } elseif ($invoice_customer_product->customer_product_payment_scheme_name === 'Monthly') {
                     $log->save('monthly');
 
                     $product_start_date = $invoice_customer_product->customer_product->billing_start_date ?
@@ -652,22 +667,22 @@ class ArInvoice
 
                     $product_delete = false;
 
-                    if (!$product_delete && $product_end_date->lt($product_billing_start_date)) {
+                    if (! $product_delete && $product_end_date->lt($product_billing_start_date)) {
                         $log->save('delete is true, end date less than billing start date');
                         $product_delete = true;
                     }
 
-                    if (!$product_delete && $product_start_date->gt($product_billing_end_date)) {
+                    if (! $product_delete && $product_start_date->gt($product_billing_end_date)) {
                         $log->save('delete is true, start date greater than billing end date');
                         $product_delete = true;
                     }
 
-                    if (!$product_delete && $product_end_date->lt($product_start_date)) { // dinonaktifkan sebelum dipakai
+                    if (! $product_delete && $product_end_date->lt($product_start_date)) { // dinonaktifkan sebelum dipakai
                         $log->save('delete is true, end date less than start date');
                         $product_delete = true;
                     }
 
-                    if (!$product_delete) {
+                    if (! $product_delete) {
                         $product_full_billing_period = Period::make($product_billing_start_date, $product_billing_end_date);
                         $product_period = Period::make($product_start_date, $product_end_date);
                         $product_billing_period = $product_full_billing_period->overlapAll($product_period);
@@ -687,125 +702,131 @@ class ArInvoice
                 $product_price_after_discount = $product_price - $product_discount;
 
                 // discount
-                if (!$product_delete) foreach ($invoice_customer_product->invoice_customer_product_discounts as $invoice_customer_product_discount) {
-                    $log->save('looping discount');
+                if (! $product_delete) {
+                    foreach ($invoice_customer_product->invoice_customer_product_discounts as $invoice_customer_product_discount) {
+                        $log->save('looping discount');
 
-                    if ($invoice_customer_product_discount->customer_product_discount_name === 'Diskon 20% Dokter dan Tenaga Medis') {
-                        $log->save('discount 20%');
+                        if ($invoice_customer_product_discount->customer_product_discount_name === 'Diskon 20% Dokter dan Tenaga Medis') {
+                            $log->save('discount 20%');
 
-                        $start_date = $invoice_customer_product_discount->customer_product_discount->start_date ?
+                            $start_date = $invoice_customer_product_discount->customer_product_discount->start_date ?
                             $invoice_customer_product_discount->customer_product_discount->start_date->toImmutable() :
                             $product_billing_start_date;
 
-                        $end_date = $invoice_customer_product_discount->customer_product_discount->end_date ?
+                            $end_date = $invoice_customer_product_discount->customer_product_discount->end_date ?
                             $invoice_customer_product_discount->customer_product_discount->end_date->toImmutable() :
                             $product_billing_end_date;
 
-                        if (!$invoice->billing_date->between($start_date, $end_date)) {
-                            $log->new()->properties($invoice_customer_product_discount)->save('discount deleted');
-                            $invoice_customer_product_discount->delete();
-                            continue;
-                        }
+                            if (! $invoice->billing_date->between($start_date, $end_date)) {
+                                $log->new()->properties($invoice_customer_product_discount)->save('discount deleted');
+                                $invoice_customer_product_discount->delete();
 
-                        $product_discount += $product_price_after_discount * 20 / 100;
-                        $product_price_after_discount = $product_price_after_discount - $product_discount;
-                    } else if ($invoice_customer_product_discount->customer_product_discount_name === 'Pay 75% HUT RI') {
-                        $log->save('pay 75%');
+                                continue;
+                            }
 
-                        $start_date = $invoice_customer_product_discount->customer_product_discount->start_date ?
+                            $product_discount += $product_price_after_discount * 20 / 100;
+                            $product_price_after_discount = $product_price_after_discount - $product_discount;
+                        } elseif ($invoice_customer_product_discount->customer_product_discount_name === 'Pay 75% HUT RI') {
+                            $log->save('pay 75%');
+
+                            $start_date = $invoice_customer_product_discount->customer_product_discount->start_date ?
                             $invoice_customer_product_discount->customer_product_discount->start_date->toImmutable() :
                             $product_billing_start_date;
 
-                        $end_date = $invoice_customer_product_discount->customer_product_discount->end_date ?
+                            $end_date = $invoice_customer_product_discount->customer_product_discount->end_date ?
                             $invoice_customer_product_discount->customer_product_discount->end_date->toImmutable() :
                             $product_billing_end_date;
 
-                        if (!$invoice->billing_date->between($start_date, $end_date)) {
-                            $log->new()->properties($invoice_customer_product_discount)->save('discount deleted');
-                            $invoice_customer_product_discount->delete();
-                            continue;
-                        }
+                            if (! $invoice->billing_date->between($start_date, $end_date)) {
+                                $log->new()->properties($invoice_customer_product_discount)->save('discount deleted');
+                                $invoice_customer_product_discount->delete();
 
-                        $product_discount += $product_price_after_discount * 25 / 100;
-                        $product_price_after_discount = $product_price_after_discount - $product_discount;
-                    } else if ($invoice_customer_product_discount->customer_product_discount_name === 'Member Get Member, Free 1 Bulan') {
-                        $log->save('promo member get member');
+                                continue;
+                            }
 
-                        if (CustomerModel::where([
-                            'referrer' => $scheme->payer_ref->id,
-                            'referrer_used_for_discount' => false,
-                        ])->count() >= 3) {
-                            $log->save('promo executed');
+                            $product_discount += $product_price_after_discount * 25 / 100;
+                            $product_price_after_discount = $product_price_after_discount - $product_discount;
+                        } elseif ($invoice_customer_product_discount->customer_product_discount_name === 'Member Get Member, Free 1 Bulan') {
+                            $log->save('promo member get member');
 
-                            CustomerModel::where([
+                            if (CustomerModel::where([
                                 'referrer' => $scheme->payer_ref->id,
                                 'referrer_used_for_discount' => false,
-                            ])->limit(3)->update([
-                                'referrer_used_for_discount' => true,
-                            ]);
+                            ])->count() >= 3) {
+                                $log->save('promo executed');
 
-                            $product_discount += $product_price_after_discount * 100 / 100;
-                            $product_price_after_discount = $product_price_after_discount - $product_discount;
-                        }
-                    } else if ($invoice_customer_product_discount->customer_product_discount_name === 'Diskon Sembako 99rb') {
-                        $log->save('discount 99rb');
+                                CustomerModel::where([
+                                    'referrer' => $scheme->payer_ref->id,
+                                    'referrer_used_for_discount' => false,
+                                ])->limit(3)->update([
+                                    'referrer_used_for_discount' => true,
+                                ]);
 
-                        $start_date = $invoice_customer_product_discount->customer_product_discount->start_date ?
+                                $product_discount += $product_price_after_discount * 100 / 100;
+                                $product_price_after_discount = $product_price_after_discount - $product_discount;
+                            }
+                        } elseif ($invoice_customer_product_discount->customer_product_discount_name === 'Diskon Sembako 99rb') {
+                            $log->save('discount 99rb');
+
+                            $start_date = $invoice_customer_product_discount->customer_product_discount->start_date ?
                             $invoice_customer_product_discount->customer_product_discount->start_date->toImmutable() :
                             $product_billing_start_date;
 
-                        $end_date = $invoice_customer_product_discount->customer_product_discount->end_date ?
+                            $end_date = $invoice_customer_product_discount->customer_product_discount->end_date ?
                             $invoice_customer_product_discount->customer_product_discount->end_date->toImmutable() :
                             $product_billing_end_date;
 
-                        if (!$invoice->billing_date->between($start_date, $end_date)) {
-                            $log->new()->properties($invoice_customer_product_discount)->save('discount deleted');
-                            $invoice_customer_product_discount->delete();
-                            continue;
-                        }
+                            if (! $invoice->billing_date->between($start_date, $end_date)) {
+                                $log->new()->properties($invoice_customer_product_discount)->save('discount deleted');
+                                $invoice_customer_product_discount->delete();
 
-                        if ($sembako_full_period && $sembako_period) {
-                            $log->save('discount executed');
-                            $product_discount += 99000 * $sembako_period / $sembako_full_period;
-                            $product_price_after_discount = $product_price_after_discount - $product_discount;
-                        }
-                    } else if ($invoice_customer_product_discount->customer_product_discount_name === 'Get 1 Member, Free 1 Bulan') {
-                        $log->save('promo get 1 member');
+                                continue;
+                            }
 
-                        if (CustomerModel::where([
-                            'referrer' => $scheme->payer_ref->id,
-                            'referrer_used_for_discount' => false,
-                        ])->count() >= 1) {
-                            $log->save('promo executed');
+                            if ($sembako_full_period && $sembako_period) {
+                                $log->save('discount executed');
+                                $product_discount += 99000 * $sembako_period / $sembako_full_period;
+                                $product_price_after_discount = $product_price_after_discount - $product_discount;
+                            }
+                        } elseif ($invoice_customer_product_discount->customer_product_discount_name === 'Get 1 Member, Free 1 Bulan') {
+                            $log->save('promo get 1 member');
 
-                            CustomerModel::where([
+                            if (CustomerModel::where([
                                 'referrer' => $scheme->payer_ref->id,
                                 'referrer_used_for_discount' => false,
-                            ])->limit(1)->update([
-                                'referrer_used_for_discount' => true,
-                            ]);
+                            ])->count() >= 1) {
+                                $log->save('promo executed');
 
-                            $product_discount += $product_price_after_discount * 100 / 100;
-                            $product_price_after_discount = $product_price_after_discount - $product_discount;
-                        }
-                    } else if ($invoice_customer_product_discount->customer_product_discount_name === 'HUT RI 76') {
-                        $log->save('hut ri 76');
+                                CustomerModel::where([
+                                    'referrer' => $scheme->payer_ref->id,
+                                    'referrer_used_for_discount' => false,
+                                ])->limit(1)->update([
+                                    'referrer_used_for_discount' => true,
+                                ]);
 
-                        $start_date = $invoice_customer_product_discount->customer_product_discount->start_date ?
+                                $product_discount += $product_price_after_discount * 100 / 100;
+                                $product_price_after_discount = $product_price_after_discount - $product_discount;
+                            }
+                        } elseif ($invoice_customer_product_discount->customer_product_discount_name === 'HUT RI 76') {
+                            $log->save('hut ri 76');
+
+                            $start_date = $invoice_customer_product_discount->customer_product_discount->start_date ?
                             $invoice_customer_product_discount->customer_product_discount->start_date->toImmutable() :
                             $product_billing_start_date;
 
-                        $end_date = $invoice_customer_product_discount->customer_product_discount->end_date ?
+                            $end_date = $invoice_customer_product_discount->customer_product_discount->end_date ?
                             $invoice_customer_product_discount->customer_product_discount->end_date->toImmutable() :
                             $product_billing_end_date;
 
-                        if (!$invoice->billing_date->between($start_date, $end_date)) {
-                            $log->new()->properties($invoice_customer_product_discount)->save('discount deleted');
-                            $invoice_customer_product_discount->delete();
-                            continue;
-                        }
+                            if (! $invoice->billing_date->between($start_date, $end_date)) {
+                                $log->new()->properties($invoice_customer_product_discount)->save('discount deleted');
+                                $invoice_customer_product_discount->delete();
 
-                        $hut_ri_76_discount = true;
+                                continue;
+                            }
+
+                            $hut_ri_76_discount = true;
+                        }
                     }
                 }
 
@@ -851,7 +872,7 @@ class ArInvoice
                 $tax_base += $product_tax_base;
                 $total += $product_total;
 
-                if (!$product_delete || ($product_delete && $invoice_customer_product->invoice_customer_product_additionals->count() > 0)) {
+                if (! $product_delete || ($product_delete && $invoice_customer_product->invoice_customer_product_additionals->count() > 0)) {
                     // additional
                     foreach ($invoice_customer_product->invoice_customer_product_additionals as $invoice_customer_product_additional) {
                         $log->save('looping additional');
@@ -892,12 +913,13 @@ class ArInvoice
                                 'billing_date' => $additional_date->toDateString(),
                             ]);
 
-                            if (!$additional_date->between($additional_billing_start_date, $additional_billing_end_date)) {
+                            if (! $additional_date->between($additional_billing_start_date, $additional_billing_end_date)) {
                                 $log->new()->properties($invoice_customer_product_additional)->save('deleted, not in billing period');
                                 $invoice_customer_product_additional->delete();
+
                                 continue;
                             }
-                        } else if ($invoice_customer_product_additional->customer_product_additional_payment_scheme_name === 'Monthly') {
+                        } elseif ($invoice_customer_product_additional->customer_product_additional_payment_scheme_name === 'Monthly') {
                             $log->save('monthly');
 
                             $additional_start_date = $invoice_customer_product_additional->customer_product_additional->billing_start_date ?
@@ -911,18 +933,21 @@ class ArInvoice
                             if ($additional_end_date->lt($additional_billing_start_date)) {
                                 $log->new()->properties($invoice_customer_product_additional)->save('deleted, end date less than billing start date');
                                 $invoice_customer_product_additional->delete();
+
                                 continue;
                             }
 
                             if ($additional_start_date->gt($additional_billing_end_date)) {
                                 $log->new()->properties($invoice_customer_product_additional)->save('deleted, start date greater than billing end date');
                                 $invoice_customer_product_additional->delete();
+
                                 continue;
                             }
 
                             if ($additional_end_date->lt($additional_start_date)) { // dinonaktifkan sebelum dipakai
                                 $log->new()->properties($invoice_customer_product_additional)->save('deleted, end date less than start date');
                                 $invoice_customer_product_additional->delete();
+
                                 continue;
                             }
 
@@ -1021,12 +1046,13 @@ class ArInvoice
                         'billing_date' => $additional_date->toDateString(),
                     ]);
 
-                    if (!$additional_date->between($additional_billing_start_date, $additional_billing_end_date)) {
+                    if (! $additional_date->between($additional_billing_start_date, $additional_billing_end_date)) {
                         $log->new()->properties($invoice_customer_product_additional)->save('deleted, not in billing period');
                         $invoice_customer_product_additional->delete();
+
                         continue;
                     }
-                } else if ($invoice_customer_product_additional->customer_product_additional_payment_scheme_name === 'Monthly') {
+                } elseif ($invoice_customer_product_additional->customer_product_additional_payment_scheme_name === 'Monthly') {
                     $log->save('monthly');
 
                     $additional_start_date = $invoice_customer_product_additional->customer_product_additional->billing_start_date ?
@@ -1040,18 +1066,21 @@ class ArInvoice
                     if ($additional_end_date->lt($additional_billing_start_date)) {
                         $log->new()->properties($invoice_customer_product_additional)->save('deleted, end date less than billing start date');
                         $invoice_customer_product_additional->delete();
+
                         continue;
                     }
 
                     if ($additional_start_date->gt($additional_billing_end_date)) {
                         $log->new()->properties($invoice_customer_product_additional)->save('deleted, start date greater than billing end date');
                         $invoice_customer_product_additional->delete();
+
                         continue;
                     }
 
                     if ($additional_end_date->lt($additional_start_date)) { // dinonaktifkan sebelum dipakai
                         $log->new()->properties($invoice_customer_product_additional)->save('deleted, end date less than start date');
                         $invoice_customer_product_additional->delete();
+
                         continue;
                     }
 
@@ -1169,14 +1198,20 @@ class ArInvoice
 
             if ($invoice->brand_type_name === 'Retail Internet Service') {
                 dispatch(new ArInvoiceCreatePdfRetailInternet($invoice->id));
-                if ($temporary_disk) dispatch(new ArInvoiceCreatePdfRetailInternet($invoice->id, $temporary_disk));
+                if ($temporary_disk) {
+                    dispatch(new ArInvoiceCreatePdfRetailInternet($invoice->id, $temporary_disk));
+                }
             } else {
                 dispatch(new ArInvoiceCreatePdf($invoice->id));
-                if ($temporary_disk) dispatch(new ArInvoiceCreatePdf($invoice->id, $temporary_disk));
+                if ($temporary_disk) {
+                    dispatch(new ArInvoiceCreatePdf($invoice->id, $temporary_disk));
+                }
             }
 
             dispatch(new ArInvoiceCreatePdfReceipt($invoice->id));
-            if ($temporary_disk) dispatch(new ArInvoiceCreatePdfReceipt($invoice->id, $temporary_disk));
+            if ($temporary_disk) {
+                dispatch(new ArInvoiceCreatePdfReceipt($invoice->id, $temporary_disk));
+            }
         }
     }
 
@@ -1207,39 +1242,53 @@ class ArInvoice
             $scheme_customer->scheme_customer_products->each(function ($scheme_customer_product) use (&$billing_date) {
                 $customer_product = $scheme_customer_product->customer_product;
 
-                if ($customer_product->product) if ($customer_product->product->payment_scheme->name === 'One Pay') {
-                    if ($customer_product->billing_date) {
-                        if (
-                            !$billing_date or
-                            $customer_product->billing_date->lt($billing_date)
-                        ) $billing_date = $customer_product->billing_date;
-                    }
-                } else if ($customer_product->product->payment_scheme->name === 'Monthly') {
-                    if ($customer_product->billing_start_date) {
-                        if (
-                            !$billing_date or
-                            $customer_product->billing_start_date->lt($billing_date)
-                        ) $billing_date = $customer_product->billing_start_date;
+                if ($customer_product->product) {
+                    if ($customer_product->product->payment_scheme->name === 'One Pay') {
+                        if ($customer_product->billing_date) {
+                            if (
+                                ! $billing_date or
+                                $customer_product->billing_date->lt($billing_date)
+                            ) {
+                                $billing_date = $customer_product->billing_date;
+                            }
+                        }
+                    } elseif ($customer_product->product->payment_scheme->name === 'Monthly') {
+                        if ($customer_product->billing_start_date) {
+                            if (
+                                ! $billing_date or
+                                $customer_product->billing_start_date->lt($billing_date)
+                            ) {
+                                $billing_date = $customer_product->billing_start_date;
+                            }
+                        }
                     }
                 }
 
                 $customer_product->customer_product_additionals->each(function ($customer_product_additional) use (&$billing_date) {
-                    if (!$customer_product_additional->product_additional) return true;
-                    if ($customer_product_additional->product_additional->name === 'Installation') return true;
+                    if (! $customer_product_additional->product_additional) {
+                        return true;
+                    }
+                    if ($customer_product_additional->product_additional->name === 'Installation') {
+                        return true;
+                    }
 
                     if ($customer_product_additional->product_additional->payment_scheme->name === 'One Pay') {
                         if ($customer_product_additional->billing_date) {
                             if (
-                                !$billing_date or
+                                ! $billing_date or
                                 $customer_product_additional->billing_date->lt($billing_date)
-                            ) $billing_date = $customer_product_additional->billing_date;
+                            ) {
+                                $billing_date = $customer_product_additional->billing_date;
+                            }
                         }
-                    } else if ($customer_product_additional->product_additional->payment_scheme->name === 'Monthly') {
+                    } elseif ($customer_product_additional->product_additional->payment_scheme->name === 'Monthly') {
                         if ($customer_product_additional->billing_start_date) {
                             if (
-                                !$billing_date or
+                                ! $billing_date or
                                 $customer_product_additional->billing_start_date->lt($billing_date)
-                            ) $billing_date = $customer_product_additional->billing_start_date;
+                            ) {
+                                $billing_date = $customer_product_additional->billing_start_date;
+                            }
                         }
                     }
                 });
@@ -1258,8 +1307,8 @@ class ArInvoice
                 $log->save('create earliest invoice');
 
                 if (
-                    !$scheme->ignore_prorated && // prorated
-                    !$billing_date->isSameMonth($first_billing_date) // invoice prorated pertama tanggalnya sesuai inputan
+                    ! $scheme->ignore_prorated && // prorated
+                    ! $billing_date->isSameMonth($first_billing_date) // invoice prorated pertama tanggalnya sesuai inputan
                 ) {
                     $invoice_date = $billing_date->startOfMonth()->toImmutable();
                     $invoice_billing_date = $billing_date->startOfMonth()->toImmutable();
@@ -1278,7 +1327,7 @@ class ArInvoice
                 $invoice = $invoice_query->first();
 
                 if ($invoice) {
-                    if (!$invoice->paid && !$invoice->email_sent && !$invoice->whatsapp_sent) {
+                    if (! $invoice->paid && ! $invoice->email_sent && ! $invoice->whatsapp_sent) {
                         $invoice_uuid = $invoice->uuid;
                         $invoice_number = $invoice->number;
 
@@ -1317,9 +1366,11 @@ class ArInvoice
                 if ($customer_product_additional->product_additional && $customer_product_additional->product_additional->name === 'Installation') {
                     if ($customer_product_additional->billing_date) {
                         if (
-                            !$billing_date or
+                            ! $billing_date or
                             $customer_product_additional->billing_date->lt($billing_date)
-                        ) $billing_date = $customer_product_additional->billing_date;
+                        ) {
+                            $billing_date = $customer_product_additional->billing_date;
+                        }
                     }
                 }
             });
@@ -1333,7 +1384,7 @@ class ArInvoice
             $invoice = $invoice_query->first();
 
             if ($invoice) {
-                if (!$invoice->paid && !$invoice->email_sent && !$invoice->whatsapp_sent) {
+                if (! $invoice->paid && ! $invoice->email_sent && ! $invoice->whatsapp_sent) {
                     $invoice_uuid = $invoice->uuid;
                     $invoice_number = $invoice->number;
 
@@ -1490,25 +1541,29 @@ class ArInvoice
         $invoice_midtrans = ArInvoiceMidtrans::where('order_id', $order_id)->first();
         $invoice = $invoice_midtrans->invoice;
 
-        if (!$invoice) return;
-        if ($invoice->paid) return;
+        if (! $invoice) {
+            return;
+        }
+        if ($invoice->paid) {
+            return;
+        }
 
         $url = FacadesApp::environment('production') ?
-            'https://api.midtrans.com/v2/' . $order_id . '/status' :
-            'https://api.sandbox.midtrans.com/v2/' . $order_id . '/status';
+            'https://api.midtrans.com/v2/'.$order_id.'/status' :
+            'https://api.sandbox.midtrans.com/v2/'.$order_id.'/status';
 
         $request = new GuzzleRequest('GET', $url, [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-            'Authorization' => 'Basic ' . base64_encode(config('app.midtrans_server_key') . ':'),
+            'Authorization' => 'Basic '.base64_encode(config('app.midtrans_server_key').':'),
         ]);
         $response = (new GuzzleClient())->sendRequest($request);
 
         if ($response->getStatusCode() === 400) {
             $log->save('Missing or invalid data.');
-        } else if ($response->getStatusCode() === 401) {
+        } elseif ($response->getStatusCode() === 401) {
             $log->save('Authentication error.');
-        } else if ($response->getStatusCode() === 404) {
+        } elseif ($response->getStatusCode() === 404) {
             $log->save('The requested resource is not found.');
         }
 
@@ -1530,7 +1585,9 @@ class ArInvoice
         $log->new()->properties(['order_id' => $order_id])->save('midtrans handle');
 
         $invoice_midtrans = ArInvoiceMidtrans::where('order_id', $order_id)->get();
-        if (!$invoice_midtrans) return 'not found';
+        if (! $invoice_midtrans) {
+            return 'not found';
+        }
 
         $success = false;
         $expire = false;
@@ -1538,7 +1595,9 @@ class ArInvoice
 
         foreach ($invoice_midtrans as $invoice_midtrans_item) {
             $invoice = $invoice_midtrans_item->invoice;
-            if (!$invoice) return 'invoice not found';
+            if (! $invoice) {
+                return 'invoice not found';
+            }
 
             if ($transaction_status === 'capture') {
                 $log->save('capture');
@@ -1554,23 +1613,23 @@ class ArInvoice
                         $success = true;
                     }
                 }
-            } else if ($transaction_status === 'settlement') {
+            } elseif ($transaction_status === 'settlement') {
                 $log->save('settlement');
                 $log->save('success');
                 $success = true;
-            } else if ($transaction_status === 'pending') {
+            } elseif ($transaction_status === 'pending') {
                 $log->save('pending');
                 $message = 'pending';
 
                 dispatch(new MidtransGetStatus($order_id, $invoice->id, $log))->delay(now()->addMinutes(60));
-            } else if ($transaction_status === 'deny') {
+            } elseif ($transaction_status === 'deny') {
                 $log->save('deny');
                 $message = 'deny';
-            } else if ($transaction_status === 'expire') {
+            } elseif ($transaction_status === 'expire') {
                 $log->save('expire');
                 $message = 'expire';
                 $expire = true;
-            } else if ($transaction_status === 'cancel') {
+            } elseif ($transaction_status === 'cancel') {
                 $log->save('cancel');
                 $message = 'cancel';
             }
@@ -1602,14 +1661,20 @@ class ArInvoice
 
                 if ($invoice->brand_type_name === 'Retail Internet Service') {
                     dispatch(new ArInvoiceCreatePdfRetailInternet($invoice->id));
-                    if ($temporary_disk) dispatch(new ArInvoiceCreatePdfRetailInternet($invoice->id, $temporary_disk));
+                    if ($temporary_disk) {
+                        dispatch(new ArInvoiceCreatePdfRetailInternet($invoice->id, $temporary_disk));
+                    }
                 } else {
                     dispatch(new ArInvoiceCreatePdf($invoice->id));
-                    if ($temporary_disk) dispatch(new ArInvoiceCreatePdf($invoice->id, $temporary_disk));
+                    if ($temporary_disk) {
+                        dispatch(new ArInvoiceCreatePdf($invoice->id, $temporary_disk));
+                    }
                 }
 
                 dispatch(new ArInvoiceCreateAndSendPdfReceiptWhatsapp($invoice->id));
-                if ($temporary_disk) dispatch(new ArInvoiceCreateAndSendPdfReceiptWhatsapp($invoice->id, $temporary_disk));
+                if ($temporary_disk) {
+                    dispatch(new ArInvoiceCreateAndSendPdfReceiptWhatsapp($invoice->id, $temporary_disk));
+                }
 
                 Service::updateIsolation($invoice);
                 Customer::updateInstallationInvoicePaidDate($invoice);
@@ -1652,7 +1717,9 @@ class ArInvoice
 
         $invoice = $invoice_midtrans->invoice;
 
-        if (!$invoice->midtrans_payment_cost) $invoice->midtrans_payment_cost = 0;
+        if (! $invoice->midtrans_payment_cost) {
+            $invoice->midtrans_payment_cost = 0;
+        }
         $success = false;
 
         if ($invoice_midtrans->transaction_status === 'capture') {
@@ -1663,15 +1730,15 @@ class ArInvoice
                     $success = true;
                 }
             }
-        } else if ($invoice_midtrans->transaction_status === 'settlement') {
+        } elseif ($invoice_midtrans->transaction_status === 'settlement') {
             $success = true;
-        } else if ($invoice_midtrans->transaction_status === 'pending') {
+        } elseif ($invoice_midtrans->transaction_status === 'pending') {
             // pending
-        } else if ($invoice_midtrans->transaction_status === 'deny') {
+        } elseif ($invoice_midtrans->transaction_status === 'deny') {
             // deny
-        } else if ($invoice_midtrans->transaction_status === 'expire') {
+        } elseif ($invoice_midtrans->transaction_status === 'expire') {
             // expire
-        } else if ($invoice_midtrans->transaction_status === 'cancel') {
+        } elseif ($invoice_midtrans->transaction_status === 'cancel') {
             // cancel
         }
 
@@ -1756,7 +1823,9 @@ class ArInvoice
         $log->save('debug');
 
         $invoice = ArInvoiceModel::where('uuid', $uuid)->first();
-        if ($invoice) static::midtransUpdatePaymentCosts($invoice);
+        if ($invoice) {
+            static::midtransUpdatePaymentCosts($invoice);
+        }
     }
 
     public static function createPdf(ArInvoiceModel $invoice, $disk = null)
@@ -1819,9 +1888,15 @@ class ArInvoice
         $invoice['customer_email'] = $invoice['payer_email'];
         $invoice['customer_cid'] = $invoice['payer_cid'];
 
-        if (!$invoice['company_fax']) $invoice['company_fax'] = '-';
-        if (!$invoice['customer_phone_number']) $invoice['customer_phone_number'] = '-';
-        if (!$invoice['customer_email']) $invoice['customer_email'] = '-';
+        if (! $invoice['company_fax']) {
+            $invoice['company_fax'] = '-';
+        }
+        if (! $invoice['customer_phone_number']) {
+            $invoice['customer_phone_number'] = '-';
+        }
+        if (! $invoice['customer_email']) {
+            $invoice['customer_email'] = '-';
+        }
 
         $invoice['billing_start_date'] = '-';
         $invoice['billing_end_date'] = '-';
@@ -1882,14 +1957,16 @@ class ArInvoice
 
         $prevRemainingIsPositive = $invoice['previous_remaining_payment'] >= 0;
 
-        $invoice['discount'] = 'Rp' . number_format($invoice['discount'], 0, ',', '.');
-        $invoice['tax_base'] = 'Rp' . number_format($invoice['tax_base'], 0, ',', '.');
-        $invoice['tax'] = 'Rp' . number_format($invoice['tax'], 0, ',', '.');
-        $invoice['previous_remaining_payment'] = 'Rp' . number_format($invoice['previous_remaining_payment'], 0, ',', '.');
-        $invoice['words'] = CalculateFac::process((int)$invoice['total']);
-        $invoice['total'] = 'Rp' . number_format($invoice['total'], 0, ',', '.');
+        $invoice['discount'] = 'Rp'.number_format($invoice['discount'], 0, ',', '.');
+        $invoice['tax_base'] = 'Rp'.number_format($invoice['tax_base'], 0, ',', '.');
+        $invoice['tax'] = 'Rp'.number_format($invoice['tax'], 0, ',', '.');
+        $invoice['previous_remaining_payment'] = 'Rp'.number_format($invoice['previous_remaining_payment'], 0, ',', '.');
+        $invoice['words'] = CalculateFac::process((int) $invoice['total']);
+        $invoice['total'] = 'Rp'.number_format($invoice['total'], 0, ',', '.');
 
-        if ($prevRemainingIsPositive) $invoice['previous_remaining_payment'] = '- ' . $invoice['previous_remaining_payment'];
+        if ($prevRemainingIsPositive) {
+            $invoice['previous_remaining_payment'] = '- '.$invoice['previous_remaining_payment'];
+        }
 
         $invoice['qrcode_url'] = (new QRCode)->render($invoice['number']);
 
@@ -1901,12 +1978,16 @@ class ArInvoice
             'creator' => $invoice['brand_name'],
         ]);
 
-        $file_path = 'invoice/' . str_replace('/', '_', $invoice['number']) . '.pdf';
+        $file_path = 'invoice/'.str_replace('/', '_', $invoice['number']).'.pdf';
 
-        if (!$disk) $disk = config('filesystems.primary_disk');
+        if (! $disk) {
+            $disk = config('filesystems.primary_disk');
+        }
 
         $storage = Storage::disk($disk);
-        if ($storage->exists($file_path)) $storage->delete($file_path);
+        if ($storage->exists($file_path)) {
+            $storage->delete($file_path);
+        }
         $storage->put($file_path, $pdf->output(), 'public');
     }
 
@@ -1962,8 +2043,12 @@ class ArInvoice
         $invoice['customer_address'] = $invoice['payer_address'];
         $invoice['customer_phone_number'] = $invoice['payer_phone_number'];
 
-        if (!$invoice['customer_address']) $invoice['customer_address'] = '-';
-        if (!$invoice['customer_phone_number']) $invoice['customer_phone_number'] = '-';
+        if (! $invoice['customer_address']) {
+            $invoice['customer_address'] = '-';
+        }
+        if (! $invoice['customer_phone_number']) {
+            $invoice['customer_phone_number'] = '-';
+        }
 
         $invoice['billing_start_date'] = '-';
         $invoice['billing_end_date'] = '-';
@@ -1971,7 +2056,7 @@ class ArInvoice
         $invoice['customers'] = collect($invoice['invoice_customers'])->map(function ($customer) use (&$invoice) {
             $customer['products'] = collect($customer['invoice_customer_products'])->map(function ($product) use (&$invoice) {
                 $product['additionals'] = collect($product['invoice_customer_product_additionals'])->map(function ($additional) {
-                    $additional['price'] = 'Rp' . number_format($additional['price'], 0, ',', '.');
+                    $additional['price'] = 'Rp'.number_format($additional['price'], 0, ',', '.');
 
                     return $additional;
                 })->all();
@@ -1993,7 +2078,7 @@ class ArInvoice
                     }
                 }
 
-                $product['price'] = 'Rp' . number_format($product['price'], 0, ',', '.');
+                $product['price'] = 'Rp'.number_format($product['price'], 0, ',', '.');
 
                 return $product;
             })->all();
@@ -2012,7 +2097,7 @@ class ArInvoice
                     }
                 }
 
-                $additional['price'] = 'Rp' . number_format($additional['price'], 0, ',', '.');
+                $additional['price'] = 'Rp'.number_format($additional['price'], 0, ',', '.');
 
                 return $additional;
             })->all();
@@ -2028,19 +2113,21 @@ class ArInvoice
         $invoice['billing_date'] = Carbon::createFromFormat('Y-m-d', $invoice['billing_date'])->translatedFormat('d F Y');
 
         $invoice['previous_date'] = $invoice['previous_date'] ? Carbon::createFromFormat('Y-m-d', $invoice['previous_date'])->translatedFormat('d F Y') : '-';
-        $invoice['previous_total'] = $invoice['previous_total'] ? 'Rp' . number_format($invoice['previous_total'], 0, ',', '.') : 'Rp0';
+        $invoice['previous_total'] = $invoice['previous_total'] ? 'Rp'.number_format($invoice['previous_total'], 0, ',', '.') : 'Rp0';
 
         $prevRemainingIsPositive = $invoice['previous_remaining_payment'] >= 0;
 
-        $invoice['discount'] = 'Rp' . number_format($invoice['discount'], 0, ',', '.');
-        $invoice['tax_base'] = 'Rp' . number_format($invoice['tax_base'], 0, ',', '.');
-        $invoice['tax'] = 'Rp' . number_format($invoice['tax'], 0, ',', '.');
-        $invoice['previous_remaining_payment'] = 'Rp' . number_format($invoice['previous_remaining_payment'], 0, ',', '.');
-        $invoice['total'] = 'Rp' . number_format($invoice['total'], 0, ',', '.');
+        $invoice['discount'] = 'Rp'.number_format($invoice['discount'], 0, ',', '.');
+        $invoice['tax_base'] = 'Rp'.number_format($invoice['tax_base'], 0, ',', '.');
+        $invoice['tax'] = 'Rp'.number_format($invoice['tax'], 0, ',', '.');
+        $invoice['previous_remaining_payment'] = 'Rp'.number_format($invoice['previous_remaining_payment'], 0, ',', '.');
+        $invoice['total'] = 'Rp'.number_format($invoice['total'], 0, ',', '.');
 
-        if ($prevRemainingIsPositive) $invoice['previous_remaining_payment'] = '- ' . $invoice['previous_remaining_payment'];
+        if ($prevRemainingIsPositive) {
+            $invoice['previous_remaining_payment'] = '- '.$invoice['previous_remaining_payment'];
+        }
 
-        $payment_link = config('app.client_domain') != null ? config('app.client_domain') : 'https://staging.api.erpv2.gmedia.id' . '/pay' . '/' . $invoice_ref->uuid;
+        $payment_link = config('app.client_domain') != null ? config('app.client_domain') : 'https://staging.api.erpv2.gmedia.id'.'/pay'.'/'.$invoice_ref->uuid;
         $invoice['qr_code'] = (new PngWriter())->write(EndroidQrCode::create($payment_link)->setSize(144)->setMargin(0))->getDataUri();
         $data['invoice'] = $invoice;
 
@@ -2050,12 +2137,16 @@ class ArInvoice
         //     'creator' => $invoice['brand_name'],
         // ]);
 
-        $file_path = 'invoice/' . str_replace('/', '_', $invoice['number']) . '.pdf';
+        $file_path = 'invoice/'.str_replace('/', '_', $invoice['number']).'.pdf';
 
-        if (!$disk) $disk = config('filesystems.primary_disk');
+        if (! $disk) {
+            $disk = config('filesystems.primary_disk');
+        }
 
         $storage = Storage::disk($disk);
-        if ($storage->exists($file_path)) $storage->delete($file_path);
+        if ($storage->exists($file_path)) {
+            $storage->delete($file_path);
+        }
         // $storage->put($file_path, $pdf->output(), 'public');
     }
 
@@ -2110,8 +2201,12 @@ class ArInvoice
         $invoice['customer_email'] = $invoice['payer_email'];
         $invoice['customer_cid'] = $invoice['payer_cid'];
 
-        if (!$invoice['company_fax']) $invoice['company_fax'] = '-';
-        if (!$invoice['customer_phone_number']) $invoice['customer_phone_number'] = '-';
+        if (! $invoice['company_fax']) {
+            $invoice['company_fax'] = '-';
+        }
+        if (! $invoice['customer_phone_number']) {
+            $invoice['customer_phone_number'] = '-';
+        }
 
         $invoice['customers'] = collect($invoice['invoice_customers'])->map(function ($customer) {
             $customer['products'] = collect($customer['invoice_customer_products'])->map(function ($product) {
@@ -2149,13 +2244,15 @@ class ArInvoice
         }
         $prevRemainingIsPositive = $invoice['previous_remaining_payment'] >= 0;
 
-        $invoice['discount'] = 'Rp' . number_format($invoice['discount'], 0, ',', '.');
-        $invoice['tax_base'] = 'Rp' . number_format($invoice['tax_base'], 0, ',', '.');
-        $invoice['tax'] = 'Rp' . number_format($invoice['tax'], 0, ',', '.');
-        $invoice['previous_remaining_payment'] = 'Rp' . number_format($invoice['previous_remaining_payment'], 0, ',', '.');
-        $invoice['total'] = 'Rp' . number_format($invoice['total'], 0, ',', '.');
+        $invoice['discount'] = 'Rp'.number_format($invoice['discount'], 0, ',', '.');
+        $invoice['tax_base'] = 'Rp'.number_format($invoice['tax_base'], 0, ',', '.');
+        $invoice['tax'] = 'Rp'.number_format($invoice['tax'], 0, ',', '.');
+        $invoice['previous_remaining_payment'] = 'Rp'.number_format($invoice['previous_remaining_payment'], 0, ',', '.');
+        $invoice['total'] = 'Rp'.number_format($invoice['total'], 0, ',', '.');
 
-        if ($prevRemainingIsPositive) $invoice['previous_remaining_payment'] = '- ' . $invoice['previous_remaining_payment'];
+        if ($prevRemainingIsPositive) {
+            $invoice['previous_remaining_payment'] = '- '.$invoice['previous_remaining_payment'];
+        }
 
         $invoice['qrcode_url'] = (new QRCode())->render($invoice['uuid']);
 
@@ -2173,12 +2270,16 @@ class ArInvoice
         //     'creator' => $invoice['brand_name'],
         // ]);
 
-        $file_path = 'invoice_receipt/' . str_replace('/', '_', $invoice['number']) . '.pdf';
+        $file_path = 'invoice_receipt/'.str_replace('/', '_', $invoice['number']).'.pdf';
 
-        if (!$disk) $disk = config('filesystems.primary_disk');
+        if (! $disk) {
+            $disk = config('filesystems.primary_disk');
+        }
 
         $storage = Storage::disk($disk);
-        if ($storage->exists($file_path)) $storage->delete($file_path);
+        if ($storage->exists($file_path)) {
+            $storage->delete($file_path);
+        }
         // $storage->put($file_path, $pdf->output(), 'public');
     }
 
@@ -2236,7 +2337,9 @@ class ArInvoice
             ->where('date', '<', $invoice->date)
             ->where('paid', false)
             ->exists()
-        ) return false;
+        ) {
+            return false;
+        }
 
         $invoice_ref = $invoice;
         $invoice = $invoice_ref->toArray();
@@ -2288,7 +2391,6 @@ class ArInvoice
             unset($customer['invoice_customer_products']);
 
             $customer['additionals'] = collect($customer['invoice_customer_product_additionals'])->map(function ($additional) use (&$invoice) {
-
                 if ($additional['customer_product_additional_payment_scheme_name'] === 'Monthly') {
                     $start_date = Carbon::createFromFormat('Y-m-d', $additional['billing_start_date']);
                     $end_date = Carbon::createFromFormat('Y-m-d', $additional['billing_end_date']);
@@ -2330,22 +2432,29 @@ class ArInvoice
         $invoice['previous_remaining_payment'] = number_format($invoice['previous_remaining_payment'], 0, ',', '.');
         $invoice['total'] = number_format($invoice['total'], 0, ',', '.');
 
-        if ($prevRemainingIsPositive) $invoice['previous_remaining_payment'] = '- ' . $invoice['previous_remaining_payment'];
+        if ($prevRemainingIsPositive) {
+            $invoice['previous_remaining_payment'] = '- '.$invoice['previous_remaining_payment'];
+        }
 
         $to = null;
         $cc = collect();
 
         $payer_ref = $invoice_ref->payer_ref;
 
-        if ($payer_ref) $payer_ref->emails->each(function ($email, $key) use (&$to, &$cc) {
-            if ($key === 0) {
-                $to = $email->name;
-                return true;
-            }
+        if ($payer_ref) {
+            $payer_ref->emails->each(function ($email, $key) use (&$to, &$cc) {
+                if ($key === 0) {
+                    $to = $email->name;
 
-            $cc->push($email->name);
-        });
-        if (!$to) return false;
+                    return true;
+                }
+
+                $cc->push($email->name);
+            });
+        }
+        if (! $to) {
+            return false;
+        }
 
         $cc = $cc->all();
 
@@ -2378,6 +2487,7 @@ class ArInvoice
             return true;
         } catch (\Exception $e) {
             $log->new()->properties($e->getMessage())->save('error');
+
             return false;
         }
     }
@@ -2519,22 +2629,29 @@ class ArInvoice
         $invoice['previous_remaining_payment'] = number_format($invoice['previous_remaining_payment'], 0, ',', '.');
         $invoice['total'] = number_format($invoice['total'], 0, ',', '.');
 
-        if ($prevRemainingIsPositive) $invoice['previous_remaining_payment'] = '- ' . $invoice['previous_remaining_payment'];
+        if ($prevRemainingIsPositive) {
+            $invoice['previous_remaining_payment'] = '- '.$invoice['previous_remaining_payment'];
+        }
 
         $to = null;
         $cc = collect();
 
         $payer_ref = $invoice_ref->payer_ref;
 
-        if ($payer_ref) $payer_ref->emails->each(function ($email, $key) use (&$to, &$cc) {
-            if ($key === 0) {
-                $to = $email->name;
-                return true;
-            }
+        if ($payer_ref) {
+            $payer_ref->emails->each(function ($email, $key) use (&$to, &$cc) {
+                if ($key === 0) {
+                    $to = $email->name;
 
-            $cc->push($email->name);
-        });
-        if (!$to) return false;
+                    return true;
+                }
+
+                $cc->push($email->name);
+            });
+        }
+        if (! $to) {
+            return false;
+        }
 
         $cc = $cc->all();
 
@@ -2564,6 +2681,7 @@ class ArInvoice
             return true;
         } catch (\Exception $e) {
             $log->new()->properties($e->getMessage())->save('error');
+
             return false;
         }
     }
@@ -2705,22 +2823,29 @@ class ArInvoice
         $invoice['previous_remaining_payment'] = number_format($invoice['previous_remaining_payment'], 0, ',', '.');
         $invoice['total'] = number_format($invoice['total'], 0, ',', '.');
 
-        if ($prevRemainingIsPositive) $invoice['previous_remaining_payment'] = '- ' . $invoice['previous_remaining_payment'];
+        if ($prevRemainingIsPositive) {
+            $invoice['previous_remaining_payment'] = '- '.$invoice['previous_remaining_payment'];
+        }
 
         $to = null;
         $cc = collect();
 
         $payer_ref = $invoice_ref->payer_ref;
 
-        if ($payer_ref) $payer_ref->emails->each(function ($email, $key) use (&$to, &$cc) {
-            if ($key === 0) {
-                $to = $email->name;
-                return true;
-            }
+        if ($payer_ref) {
+            $payer_ref->emails->each(function ($email, $key) use (&$to, &$cc) {
+                if ($key === 0) {
+                    $to = $email->name;
 
-            $cc->push($email->name);
-        });
-        if (!$to) return false;
+                    return true;
+                }
+
+                $cc->push($email->name);
+            });
+        }
+        if (! $to) {
+            return false;
+        }
 
         $cc = $cc->all();
 
@@ -2750,6 +2875,7 @@ class ArInvoice
             return true;
         } catch (\Exception $e) {
             $log->new()->properties($e->getMessage())->save('error');
+
             return false;
         }
     }
@@ -2772,7 +2898,9 @@ class ArInvoice
             ->where('date', '<', $invoice->date)
             ->where('paid', false)
             ->exists()
-        ) return false;
+        ) {
+            return false;
+        }
 
         $phone_numbers = collect();
         $invoice->payer_ref->phone_numbers->each(function ($phone_number_ref) use (&$phone_numbers) {
@@ -2781,6 +2909,7 @@ class ArInvoice
 
         if ($phone_numbers->isEmpty()) {
             $log->save('phone number empty');
+
             return false;
         }
         $phone_numbers = $phone_numbers->all();
@@ -2797,7 +2926,7 @@ class ArInvoice
             ],
             [
                 'type' => 'text',
-                'text' => config('app.client_domain') . '/pay' . '/' . $invoice->uuid,
+                'text' => config('app.client_domain').'/pay'.'/'.$invoice->uuid,
             ],
             [
                 'type' => 'text',
@@ -2805,7 +2934,7 @@ class ArInvoice
             ],
         ];
 
-        if (!Str::contains($invoice->name, 'Installation')) {
+        if (! Str::contains($invoice->name, 'Installation')) {
             // template_namme
             $template_name = 'monthly_invoice_with_confirm';
 
@@ -2824,8 +2953,10 @@ class ArInvoice
 
             $period = '-';
             if ($start_period && $end_period) {
-                if ($start_period->isSameMonth($end_period)) $period = $start_period->translatedFormat('F');
-                $period = $start_period->translatedFormat('F') . ' - ' . $end_period->translatedFormat('F');
+                if ($start_period->isSameMonth($end_period)) {
+                    $period = $start_period->translatedFormat('F');
+                }
+                $period = $start_period->translatedFormat('F').' - '.$end_period->translatedFormat('F');
             }
             array_unshift($parameters, [
                 'type' => 'text',
@@ -2834,10 +2965,10 @@ class ArInvoice
         }
 
         $storage = Storage::disk(config('filesystems.primary_disk'));
-        $pdf_path = 'invoice/' . str_replace('/', '_', $invoice->number) . '.pdf';
+        $pdf_path = 'invoice/'.str_replace('/', '_', $invoice->number).'.pdf';
 
         $pdf_url = $storage->url($pdf_path);
-        $pdf_filename = str_replace('/', '_', $invoice->number) . '.pdf';
+        $pdf_filename = str_replace('/', '_', $invoice->number).'.pdf';
 
         $components = [
             [
@@ -2899,7 +3030,7 @@ class ArInvoice
         $log = applog('erp, ar_invoice__fac, qisqus_get_whatsapp');
         $log->save('debug');
 
-        $url = 'https://multichannel.qiscus.com/api/v2/admin/broadcast_jobs/' . $broadcast_job_id;
+        $url = 'https://multichannel.qiscus.com/api/v2/admin/broadcast_jobs/'.$broadcast_job_id;
         $request = new GuzzleRequest('GET', $url, [
             'Authorization' => config('app.qisqus_admin_token'),
             'Content-Type' => 'application/json',
@@ -2914,16 +3045,18 @@ class ArInvoice
             $broadcast_job = $response_body->data->broadcast_job;
             $whatsapp = $invoice->whatsapps()->where('broadcast_job_id', $broadcast_job_id)->first();
 
-            if ($whatsapp) $whatsapp->update([
-                'broadcast_name' => $broadcast_job->name,
-                'job_status' => $broadcast_job->status,
+            if ($whatsapp) {
+                $whatsapp->update([
+                    'broadcast_name' => $broadcast_job->name,
+                    'job_status' => $broadcast_job->status,
 
-                'job_total_failed' => $broadcast_job->total_failed,
-                'job_total_read' => $broadcast_job->total_read,
-                'job_total_received' => $broadcast_job->total_received,
-                'job_total_recipient' => $broadcast_job->total_recipient,
-                'job_total_sent' => $broadcast_job->total_sent,
-            ]);
+                    'job_total_failed' => $broadcast_job->total_failed,
+                    'job_total_read' => $broadcast_job->total_read,
+                    'job_total_received' => $broadcast_job->total_received,
+                    'job_total_recipient' => $broadcast_job->total_recipient,
+                    'job_total_sent' => $broadcast_job->total_sent,
+                ]);
+            }
         }
     }
 
@@ -2944,6 +3077,7 @@ class ArInvoice
 
         if ($phone_numbers->isEmpty()) {
             $log->save('phone number empty');
+
             return false;
         }
         $phone_numbers = $phone_numbers->all();
@@ -2960,7 +3094,7 @@ class ArInvoice
             ],
             [
                 'type' => 'text',
-                'text' => config('app.client_domain') . '/pay' . '/' . $invoice->uuid,
+                'text' => config('app.client_domain').'/pay'.'/'.$invoice->uuid,
             ],
             [
                 'type' => 'text',
@@ -3004,7 +3138,7 @@ class ArInvoice
             $invoice->reminder_whatsapp_sent = true;
             $invoice->reminder_whatsapp_sent_at = Carbon::now()->toDateTimeString();
 
-            if (!$invoice->reminder_whatsapp_count) {
+            if (! $invoice->reminder_whatsapp_count) {
                 $invoice->reminder_whatsapp_count = 0;
             }
             $invoice->reminder_whatsapp_count += 1;
@@ -3030,7 +3164,7 @@ class ArInvoice
         $log = applog('erp, ar_invoice__fac, qisqus_get_whatsapp_reminder');
         $log->save('debug');
 
-        $url = 'https://multichannel.qiscus.com/api/v2/admin/broadcast_jobs/' . $broadcast_job_id;
+        $url = 'https://multichannel.qiscus.com/api/v2/admin/broadcast_jobs/'.$broadcast_job_id;
         $request = new GuzzleRequest('GET', $url, [
             'Authorization' => config('app.qisqus_admin_token'),
             'Content-Type' => 'application/json',
@@ -3045,16 +3179,18 @@ class ArInvoice
             $broadcast_job = $response_body->data->broadcast_job;
             $whatsapp_reminder = $invoice->whatsapp_reminders()->where('broadcast_job_id', $broadcast_job_id)->first();
 
-            if ($whatsapp_reminder) $whatsapp_reminder->update([
-                'broadcast_name' => $broadcast_job->name,
-                'job_status' => $broadcast_job->status,
+            if ($whatsapp_reminder) {
+                $whatsapp_reminder->update([
+                    'broadcast_name' => $broadcast_job->name,
+                    'job_status' => $broadcast_job->status,
 
-                'job_total_failed' => $broadcast_job->total_failed,
-                'job_total_read' => $broadcast_job->total_read,
-                'job_total_received' => $broadcast_job->total_received,
-                'job_total_recipient' => $broadcast_job->total_recipient,
-                'job_total_sent' => $broadcast_job->total_sent,
-            ]);
+                    'job_total_failed' => $broadcast_job->total_failed,
+                    'job_total_read' => $broadcast_job->total_read,
+                    'job_total_received' => $broadcast_job->total_received,
+                    'job_total_recipient' => $broadcast_job->total_recipient,
+                    'job_total_sent' => $broadcast_job->total_sent,
+                ]);
+            }
         }
     }
 
@@ -3075,15 +3211,16 @@ class ArInvoice
 
         if ($phone_numbers->isEmpty()) {
             $log->save('phone number empty');
+
             return false;
         }
         $phone_numbers = $phone_numbers->all();
 
         $storage = Storage::disk(config('filesystems.primary_disk'));
-        $pdf_path = 'invoice_receipt/' . str_replace('/', '_', $invoice['number']) . '.pdf';
+        $pdf_path = 'invoice_receipt/'.str_replace('/', '_', $invoice['number']).'.pdf';
 
         $pdf_url = $storage->url($pdf_path);
-        $pdf_filename = str_replace('/', '_', $invoice['number']) . '.pdf';
+        $pdf_filename = str_replace('/', '_', $invoice['number']).'.pdf';
 
         $template_name = 'invoice_receipt';
         $components = [
@@ -3148,7 +3285,7 @@ class ArInvoice
         $log = applog('erp, ar_invoice__fac, qisqus_get_whatsapp_reminder');
         $log->save('debug');
 
-        $url = 'https://multichannel.qiscus.com/api/v2/admin/broadcast_jobs/' . $broadcast_job_id;
+        $url = 'https://multichannel.qiscus.com/api/v2/admin/broadcast_jobs/'.$broadcast_job_id;
         $request = new GuzzleRequest('GET', $url, [
             'Authorization' => config('app.qisqus_admin_token'),
             'Content-Type' => 'application/json',
@@ -3163,16 +3300,18 @@ class ArInvoice
             $broadcast_job = $response_body->data->broadcast_job;
             $whatsapp_receipt = $invoice->whatsapp_receipts()->where('broadcast_job_id', $broadcast_job_id)->first();
 
-            if ($whatsapp_receipt) $whatsapp_receipt->update([
-                'broadcast_name' => $broadcast_job->name,
-                'job_status' => $broadcast_job->status,
+            if ($whatsapp_receipt) {
+                $whatsapp_receipt->update([
+                    'broadcast_name' => $broadcast_job->name,
+                    'job_status' => $broadcast_job->status,
 
-                'job_total_failed' => $broadcast_job->total_failed,
-                'job_total_read' => $broadcast_job->total_read,
-                'job_total_received' => $broadcast_job->total_received,
-                'job_total_recipient' => $broadcast_job->total_recipient,
-                'job_total_sent' => $broadcast_job->total_sent,
-            ]);
+                    'job_total_failed' => $broadcast_job->total_failed,
+                    'job_total_read' => $broadcast_job->total_read,
+                    'job_total_received' => $broadcast_job->total_received,
+                    'job_total_recipient' => $broadcast_job->total_recipient,
+                    'job_total_sent' => $broadcast_job->total_sent,
+                ]);
+            }
         }
     }
 
@@ -3182,7 +3321,9 @@ class ArInvoice
         $log->save('debug');
 
         $scheme = $invoice->scheme;
-        if (!$scheme) return;
+        if (! $scheme) {
+            return;
+        }
 
         // installation
         $installation = Str::contains($scheme->name, 'Installation');
@@ -3207,7 +3348,9 @@ class ArInvoice
                 $customer_product = $scheme_customer_product->customer_product;
             }
         }
-        if (!$customer_product) return;
+        if (! $customer_product) {
+            return;
+        }
 
         // updating invoice
         $invoice->update(['billing_end_date' => $customer_product->billing_end_date]);
@@ -3219,7 +3362,9 @@ class ArInvoice
         $log->save('debug');
 
         $scheme = $invoice->scheme;
-        if (!$scheme) return;
+        if (! $scheme) {
+            return;
+        }
 
         // installation
         $installation = Str::contains($scheme->name, 'Installation');
@@ -3244,10 +3389,14 @@ class ArInvoice
                 $customer_product = $scheme_customer_product->customer_product;
             }
         }
-        if (!$customer_product) return;
+        if (! $customer_product) {
+            return;
+        }
 
         $product_tags = [];
-        if (!$customer_product->product) return;
+        if (! $customer_product->product) {
+            return;
+        }
 
         $customer_product->product->tags->each(function ($tag) use (&$product_tags) {
             array_push($product_tags, ['id' => $tag->id]);
@@ -3262,7 +3411,9 @@ class ArInvoice
         $log->save('debug');
 
         $scheme = $invoice->scheme;
-        if (!$scheme) return;
+        if (! $scheme) {
+            return;
+        }
 
         // installation
         $installation = Str::contains($scheme->name, 'Installation');
@@ -3287,8 +3438,12 @@ class ArInvoice
                 $customer_product = $scheme_customer_product->customer_product;
             }
         }
-        if (!$customer_product) return;
-        if (!$customer_product->product) return;
+        if (! $customer_product) {
+            return;
+        }
+        if (! $customer_product->product) {
+            return;
+        }
 
         $subsidy = false;
         if (Str::contains($customer_product->product->name, 'Subsidy')) {
@@ -3307,11 +3462,13 @@ class ArInvoice
             ->where('name', 'not like', '%Installation%')
             ->cursor() as $scheme) {
             if (
-                !$scheme->invoices()
+                ! $scheme->invoices()
                     ->whereMonth('billing_date', Carbon::now()->month)
                     ->whereYear('billing_date', Carbon::now()->year)
                     ->exists()
-            ) static::createOrUpdate($scheme, true);
+            ) {
+                static::createOrUpdate($scheme, true);
+            }
         }
     }
 
@@ -3324,11 +3481,13 @@ class ArInvoice
             ->where('name', 'not like', '%Installation%')
             ->cursor() as $scheme) {
             if (
-                !$scheme->invoices()
+                ! $scheme->invoices()
                     ->whereMonth('billing_date', Carbon::now()->month)
                     ->whereYear('billing_date', Carbon::now()->year)
                     ->exists()
-            ) static::createOrUpdate($scheme, true);
+            ) {
+                static::createOrUpdate($scheme, true);
+            }
         }
     }
 
@@ -3348,34 +3507,34 @@ class ArInvoice
         $postpaid__non_prorated__start_date = function ($date) use ($year, $month) {
             return "date_sub(
                 makedate(
-                    year('" . $year . "-" . $month . "-01'),
+                    year('".$year.'-'.$month."-01'),
                     (
-                        dayofyear('" . $year . "-" . $month . "-01') - 1 +
+                        dayofyear('".$year.'-'.$month."-01') - 1 +
                         if(
-                            dayofmonth(" . $date . ") > 28,
+                            dayofmonth(".$date.') > 28,
                             1,
-                            dayofmonth(" . $date . ")
+                            dayofmonth('.$date.')
                         )
                     )
                 ),
                 interval 1 month
-            )";
+            )';
         };
         $postpaid__non_prorated__end_date = function ($date) use ($year, $month) {
             return "date_sub(date_add(date_sub(
                 makedate(
-                    year('" . $year . "-" . $month . "-01'),
+                    year('".$year.'-'.$month."-01'),
                     (
-                        dayofyear('" . $year . "-" . $month . "-01') - 1 +
+                        dayofyear('".$year.'-'.$month."-01') - 1 +
                         if(
-                            dayofmonth(" . $date . ") > 28,
+                            dayofmonth(".$date.') > 28,
                             1,
-                            dayofmonth(" . $date . ")
+                            dayofmonth('.$date.')
                         )
                     )
                 ),
                 interval 1 month
-            ), interval 1 month), interval 1 day)";
+            ), interval 1 month), interval 1 day)';
         };
 
         /**
@@ -3386,12 +3545,12 @@ class ArInvoice
          * billing_start_date = date_sub(date('".$year."-".$month."-01'), interval 1 month)
          */
         $postpaid__prorated__start_date = "date_sub(
-            date('" . $year . "-" . $month . "-01'),
+            date('".$year.'-'.$month."-01'),
             interval 1 month
         )";
         $postpaid__prorated__end_date = "last_day(
             date_sub(
-                date('" . $year . "-" . $month . "-01'),
+                date('".$year.'-'.$month."-01'),
                 interval 1 month
             )
         )";
@@ -3405,35 +3564,35 @@ class ArInvoice
          */
         $non_postpaid__non_prorated__start_date = function ($date) use ($year, $month) {
             return "makedate(
-                year('" . $year . "-" . $month . "-01'),
+                year('".$year.'-'.$month."-01'),
                 (
-                    dayofyear('" . $year . "-" . $month . "-01') - 1 +
+                    dayofyear('".$year.'-'.$month."-01') - 1 +
                     if(
-                        dayofmonth(" . $date . ") > 28,
+                        dayofmonth(".$date.') > 28,
                         1,
-                        dayofmonth(" . $date . ")
+                        dayofmonth('.$date.')
                     )
                 )
-            )";
+            )';
         };
         $non_postpaid__non_prorated__end_date = function ($date) use ($year, $month) {
             return "date_sub(
                 date_add(
                     makedate(
-                        year('" . $year . "-" . $month . "-01'),
+                        year('".$year.'-'.$month."-01'),
                         (
-                            dayofyear('" . $year . "-" . $month . "-01') - 1 +
+                            dayofyear('".$year.'-'.$month."-01') - 1 +
                             if(
-                                dayofmonth(" . $date . ") > 28,
+                                dayofmonth(".$date.') > 28,
                                 1,
-                                dayofmonth(" . $date . ")
+                                dayofmonth('.$date.')
                             )
                         )
                     ),
                     interval 1 month
                 ),
                 interval 1 day
-            )";
+            )';
         };
 
         /**
@@ -3443,9 +3602,9 @@ class ArInvoice
          * billing_date = ?
          * billing_start_date = date('".$year."-".$month."-01')
          */
-        $non_postpaid__prorated__start_date = "date('" . $year . "-" . $month . "-01')";
+        $non_postpaid__prorated__start_date = "date('".$year.'-'.$month."-01')";
         $non_postpaid__prorated__end_date = "last_day(
-            date('" . $year . "-" . $month . "-01')
+            date('".$year.'-'.$month."-01')
         )";
 
         // billing customer product
@@ -3486,11 +3645,11 @@ class ArInvoice
                 'customer.id',
                 'customer.name as customer_name',
                 'customer.cid',
-                DB::raw("((
+                DB::raw('((
                     select
                         count(customer_product.id)
                     from
-                        (" . $billing__customer_product_query->toSql() . ") as customer_product
+                        ('.$billing__customer_product_query->toSql().") as customer_product
                     where
                         customer_product.customer_id = customer.id
                     and
@@ -3511,13 +3670,13 @@ class ArInvoice
                                                 customer_product.ignore_prorated
                                             then
                                                 (
-                                                    (customer_product.billing_start_date <= " . $postpaid__non_prorated__end_date('customer_product.billing_start_date') . ") and
-                                                    (customer_product.billing_end_date >= " . $postpaid__non_prorated__start_date('customer_product.billing_start_date') . ")
+                                                    (customer_product.billing_start_date <= ".$postpaid__non_prorated__end_date('customer_product.billing_start_date').') and
+                                                    (customer_product.billing_end_date >= '.$postpaid__non_prorated__start_date('customer_product.billing_start_date').')
                                                 )
                                             else
                                                 (
-                                                    (customer_product.billing_start_date <= " . $postpaid__prorated__end_date . ") and
-                                                    (customer_product.billing_end_date >= " . $postpaid__prorated__start_date . ")
+                                                    (customer_product.billing_start_date <= '.$postpaid__prorated__end_date.') and
+                                                    (customer_product.billing_end_date >= '.$postpaid__prorated__start_date.')
                                                 )
                                             end
                                         else
@@ -3525,13 +3684,13 @@ class ArInvoice
                                                 customer_product.ignore_prorated
                                             then
                                                 (
-                                                    (customer_product.billing_start_date <= " . $non_postpaid__non_prorated__end_date('customer_product.billing_start_date') . ") and
-                                                    (customer_product.billing_end_date >= " . $non_postpaid__non_prorated__start_date('customer_product.billing_start_date') . ")
+                                                    (customer_product.billing_start_date <= '.$non_postpaid__non_prorated__end_date('customer_product.billing_start_date').') and
+                                                    (customer_product.billing_end_date >= '.$non_postpaid__non_prorated__start_date('customer_product.billing_start_date').')
                                                 )
                                             else
                                                 (
-                                                    (customer_product.billing_start_date <= " . $non_postpaid__prorated__end_date . ") and
-                                                    (customer_product.billing_end_date >= " . $non_postpaid__prorated__start_date . ")
+                                                    (customer_product.billing_start_date <= '.$non_postpaid__prorated__end_date.') and
+                                                    (customer_product.billing_end_date >= '.$non_postpaid__prorated__start_date.')
                                                 )
                                             end
                                         end
@@ -3543,13 +3702,13 @@ class ArInvoice
                                                 customer_product.ignore_prorated
                                             then
                                                 (
-                                                    (customer_product.billing_start_date <= " . $postpaid__non_prorated__end_date('customer_product.billing_start_date') . ") and
-                                                    (" . $postpaid__non_prorated__end_date('customer_product.billing_start_date') . " >= " . $postpaid__non_prorated__start_date('customer_product.billing_start_date') . ")
+                                                    (customer_product.billing_start_date <= '.$postpaid__non_prorated__end_date('customer_product.billing_start_date').') and
+                                                    ('.$postpaid__non_prorated__end_date('customer_product.billing_start_date').' >= '.$postpaid__non_prorated__start_date('customer_product.billing_start_date').')
                                                 )
                                             else
                                                 (
-                                                    (customer_product.billing_start_date <= " . $postpaid__prorated__end_date . ") and
-                                                    (" . $postpaid__prorated__end_date . " >= " . $postpaid__prorated__start_date . ")
+                                                    (customer_product.billing_start_date <= '.$postpaid__prorated__end_date.') and
+                                                    ('.$postpaid__prorated__end_date.' >= '.$postpaid__prorated__start_date.')
                                                 )
                                             end
                                         else
@@ -3557,13 +3716,13 @@ class ArInvoice
                                                 customer_product.ignore_prorated
                                             then
                                                 (
-                                                    (customer_product.billing_start_date <= " . $non_postpaid__non_prorated__end_date('customer_product.billing_start_date') . ") and
-                                                    (" . $non_postpaid__non_prorated__end_date('customer_product.billing_start_date') . " >= " . $non_postpaid__non_prorated__start_date('customer_product.billing_start_date') . ")
+                                                    (customer_product.billing_start_date <= '.$non_postpaid__non_prorated__end_date('customer_product.billing_start_date').') and
+                                                    ('.$non_postpaid__non_prorated__end_date('customer_product.billing_start_date').' >= '.$non_postpaid__non_prorated__start_date('customer_product.billing_start_date').')
                                                 )
                                             else
                                                 (
-                                                    (customer_product.billing_start_date <= " . $non_postpaid__prorated__end_date . ") and
-                                                    (" . $non_postpaid__prorated__end_date . " >= " . $non_postpaid__prorated__start_date . ")
+                                                    (customer_product.billing_start_date <= '.$non_postpaid__prorated__end_date.') and
+                                                    ('.$non_postpaid__prorated__end_date.' >= '.$non_postpaid__prorated__start_date.")
                                                 )
                                             end
                                         end
@@ -3575,7 +3734,7 @@ class ArInvoice
                                 case when
                                     customer_product.billing_date is not null
                                 then
-                                    (customer_product.billing_date between date('" . $year . "-" . $month . "-01') and last_day(date('" . $year . "-" . $month . "-01')))
+                                    (customer_product.billing_date between date('".$year.'-'.$month."-01') and last_day(date('".$year.'-'.$month."-01')))
                                 else
                                     false
                                 end
@@ -3611,9 +3770,9 @@ class ArInvoice
                             case when
                                 (ar_invoice.hybrid and ar_invoice.postpaid)
                             then
-                                ar_invoice.due_date between date('" . $year . "-" . $month . "-01') and last_day(date('" . $year . "-" . $month . "-01'))
+                                ar_invoice.due_date between date('".$year.'-'.$month."-01') and last_day(date('".$year.'-'.$month."-01'))
                             else
-                                ar_invoice.date between date('" . $year . "-" . $month . "-01') and last_day(date('" . $year . "-" . $month . "-01'))
+                                ar_invoice.date between date('".$year.'-'.$month."-01') and last_day(date('".$year.'-'.$month."-01'))
                             end
                         )
                     and
@@ -3634,7 +3793,9 @@ class ArInvoice
         $log = applog('erp, ar_invoice__fac, create_zip_receipt_daily');
         $log->save('debug');
 
-        if (!FacadesApp::environment('production')) return;
+        if (! FacadesApp::environment('production')) {
+            return;
+        }
 
         $branches = Branch::with('invoices')->get();
         $branches->map(function ($branch) use ($log) {
@@ -3647,7 +3808,7 @@ class ArInvoice
                 $bucket = ZipStreamFac::set(config('filesystems.primary_disk'));
 
                 // subsidy_only
-                $file_name = $month_name . '_' . 'Subsidy_Only' . '_' . $branch->name . '.zip';
+                $file_name = $month_name.'_'.'Subsidy_Only'.'_'.$branch->name.'.zip';
                 $zip = ZipStream::create($file_name);
 
                 $branch->invoices()
@@ -3655,21 +3816,22 @@ class ArInvoice
                     ->whereYear('date', Carbon::now()->year)
                     ->where('name', 'like', '%Subsidy%')
                     ->each(function ($invoice) use ($bucket, $storage, $zip) {
-                        $file_name = str_replace('/', '_', $invoice->number) . '.pdf';
-                        $path = 'invoice_receipt/' . $file_name;
+                        $file_name = str_replace('/', '_', $invoice->number).'.pdf';
+                        $path = 'invoice_receipt/'.$file_name;
 
-                        if (!$storage->exists($path)) {
+                        if (! $storage->exists($path)) {
                             dispatch(new ArInvoiceCreatePdfReceipt($invoice->id));
+
                             return true;
                         }
 
-                        $zip->add('s3://' . $bucket . '/' . $path);
+                        $zip->add('s3://'.$bucket.'/'.$path);
                     });
 
-                $zip->saveTo('s3://' . $bucket . '/invoice_receipt_zip');
+                $zip->saveTo('s3://'.$bucket.'/invoice_receipt_zip');
 
                 // non_subsidy_only
-                $file_name = $month_name . '_' . 'Non_Subsidy_Only' . '_' . $branch->name . '.zip';
+                $file_name = $month_name.'_'.'Non_Subsidy_Only'.'_'.$branch->name.'.zip';
                 $zip = ZipStream::create($file_name);
 
                 $branch->invoices()
@@ -3677,18 +3839,19 @@ class ArInvoice
                     ->whereYear('date', Carbon::now()->year)
                     ->where('name', 'not like', '%Subsidy%')
                     ->each(function ($invoice) use ($bucket, $storage, $zip) {
-                        $file_name = str_replace('/', '_', $invoice->number) . '.pdf';
-                        $path = 'invoice_receipt/' . $file_name;
+                        $file_name = str_replace('/', '_', $invoice->number).'.pdf';
+                        $path = 'invoice_receipt/'.$file_name;
 
-                        if (!$storage->exists($path)) {
+                        if (! $storage->exists($path)) {
                             dispatch(new ArInvoiceCreatePdfReceipt($invoice->id));
+
                             return true;
                         }
 
-                        $zip->add('s3://' . $bucket . '/' . $path);
+                        $zip->add('s3://'.$bucket.'/'.$path);
                     });
 
-                $zip->saveTo('s3://' . $bucket . '/invoice_receipt_zip');
+                $zip->saveTo('s3://'.$bucket.'/invoice_receipt_zip');
             }
         });
 
@@ -3819,7 +3982,7 @@ class ArInvoice
                         end
                     end
                 ) as active"),
-                DB::raw("(
+                DB::raw('(
                     case when
                         (
                             select
@@ -3834,8 +3997,8 @@ class ArInvoice
                     else
                         false
                     end
-                ) as has_email"),
-                DB::raw("(
+                ) as has_email'),
+                DB::raw('(
                     case when
                         (
                             case when
@@ -3851,7 +4014,7 @@ class ArInvoice
                     else
                         false
                     end
-                ) as price_is_valid"),
+                ) as price_is_valid'),
             )
             ->leftJoinSub($invoice_customer_query, 'ar_invoice_customer', function ($join) {
                 $join->on('ar_invoice.id', '=', 'ar_invoice_customer.ar_invoice_id');
@@ -3878,7 +4041,9 @@ class ArInvoice
         $invoices->each(function ($invoice) use ($log) {
             $log->new()->properties($invoice)->save('invoice data');
 
-            if (!ArInvoiceModel::where('id', $invoice->id)->exists()) return true;
+            if (! ArInvoiceModel::where('id', $invoice->id)->exists()) {
+                return true;
+            }
 
             if (static::sendEmail(ArInvoiceModel::find($invoice->id), true)) {
                 // log
@@ -4010,7 +4175,7 @@ class ArInvoice
                         end
                     end
                 ) as active"),
-                DB::raw("(
+                DB::raw('(
                     case when
                         (
                             select
@@ -4025,8 +4190,8 @@ class ArInvoice
                     else
                         false
                     end
-                ) as has_phone_number"),
-                DB::raw("(
+                ) as has_phone_number'),
+                DB::raw('(
                     case when
                         (
                             case when
@@ -4042,7 +4207,7 @@ class ArInvoice
                     else
                         false
                     end
-                ) as price_is_valid"),
+                ) as price_is_valid'),
             )
             ->leftJoinSub($invoice_customer_query, 'ar_invoice_customer', function ($join) {
                 $join->on('ar_invoice.id', '=', 'ar_invoice_customer.ar_invoice_id');
@@ -4209,7 +4374,7 @@ class ArInvoice
                         end
                     end
                 ) as active"),
-                DB::raw("(
+                DB::raw('(
                     case when
                         (
                             select
@@ -4224,8 +4389,8 @@ class ArInvoice
                     else
                         false
                     end
-                ) as has_email"),
-                DB::raw("(
+                ) as has_email'),
+                DB::raw('(
                     case when
                         (
                             case when
@@ -4241,7 +4406,7 @@ class ArInvoice
                     else
                         false
                     end
-                ) as price_is_valid"),
+                ) as price_is_valid'),
             )
             ->leftJoinSub($invoice_customer_query, 'ar_invoice_customer', function ($join) {
                 $join->on('ar_invoice.id', '=', 'ar_invoice_customer.ar_invoice_id');
@@ -4353,7 +4518,7 @@ class ArInvoice
                 'ar_invoice.payer_name',
                 'ar_invoice.payer_cid',
                 'ar_invoice.number',
-                DB::raw("(
+                DB::raw('(
                     case when
                         (
                             select
@@ -4368,8 +4533,8 @@ class ArInvoice
                     else
                         false
                     end
-                ) as has_phone_number"),
-                DB::raw("(
+                ) as has_phone_number'),
+                DB::raw('(
                     case when
                         (
                             case when
@@ -4385,7 +4550,7 @@ class ArInvoice
                     else
                         false
                     end
-                ) as price_is_valid"),
+                ) as price_is_valid'),
             )
             ->leftJoinSub($invoice_customer_query, 'ar_invoice_customer', function ($join) {
                 $join->on('ar_invoice.id', '=', 'ar_invoice_customer.ar_invoice_id');
@@ -4552,7 +4717,7 @@ class ArInvoice
                         end
                     end
                 ) as active"),
-                DB::raw("(
+                DB::raw('(
                     case when
                         (
                             select
@@ -4567,8 +4732,8 @@ class ArInvoice
                     else
                         false
                     end
-                ) as has_phone_number"),
-                DB::raw("(
+                ) as has_phone_number'),
+                DB::raw('(
                     case when
                         (
                             case when
@@ -4584,7 +4749,7 @@ class ArInvoice
                     else
                         false
                     end
-                ) as price_is_valid"),
+                ) as price_is_valid'),
             )
             ->leftJoinSub($invoice_customer_query, 'ar_invoice_customer', function ($join) {
                 $join->on('ar_invoice.id', '=', 'ar_invoice_customer.ar_invoice_id');
@@ -4668,30 +4833,32 @@ class ArInvoice
         $tax_base_usd += $invoice_customer_product->total_usd;
         $tax_base_sgd += $invoice_customer_product->total_sgd;
 
-        if ($invoice_customer_product->item_category) switch ($invoice_customer_product->item_category->name) {
-            case 'Bandwidth':
-                $tax_base_bandwidth += $invoice_customer_product->total;
-                break;
+        if ($invoice_customer_product->item_category) {
+            switch ($invoice_customer_product->item_category->name) {
+                case 'Bandwidth':
+                    $tax_base_bandwidth += $invoice_customer_product->total;
+                    break;
 
-            case 'Data Center':
-                $tax_base_data_center += $invoice_customer_product->total;
-                break;
+                case 'Data Center':
+                    $tax_base_data_center += $invoice_customer_product->total;
+                    break;
 
-            case 'Instalasi':
-                $tax_base_instalasi += $invoice_customer_product->total;
-                break;
+                case 'Instalasi':
+                    $tax_base_instalasi += $invoice_customer_product->total;
+                    break;
 
-            case 'Manage Service':
-                $tax_base_manage_service += $invoice_customer_product->total;
-                break;
+                case 'Manage Service':
+                    $tax_base_manage_service += $invoice_customer_product->total;
+                    break;
 
-            case 'Lain-Lain':
-                $tax_base_lain_lain += $invoice_customer_product->total;
-                break;
+                case 'Lain-Lain':
+                    $tax_base_lain_lain += $invoice_customer_product->total;
+                    break;
 
-            case 'Aplikasi':
-                $tax_base_aplikasi += $invoice_customer_product->total;
-                break;
+                case 'Aplikasi':
+                    $tax_base_aplikasi += $invoice_customer_product->total;
+                    break;
+            }
         }
 
         // additional
@@ -4710,30 +4877,32 @@ class ArInvoice
             $tax_base_usd += $invoice_customer_product_additional->total_usd;
             $tax_base_sgd += $invoice_customer_product_additional->total_sgd;
 
-            if ($invoice_customer_product_additional->item_category) switch ($invoice_customer_product_additional->item_category->name) {
-                case 'Bandwidth':
-                    $tax_base_bandwidth += $invoice_customer_product_additional->total;
-                    break;
+            if ($invoice_customer_product_additional->item_category) {
+                switch ($invoice_customer_product_additional->item_category->name) {
+                    case 'Bandwidth':
+                        $tax_base_bandwidth += $invoice_customer_product_additional->total;
+                        break;
 
-                case 'Data Center':
-                    $tax_base_data_center += $invoice_customer_product_additional->total;
-                    break;
+                    case 'Data Center':
+                        $tax_base_data_center += $invoice_customer_product_additional->total;
+                        break;
 
-                case 'Instalasi':
-                    $tax_base_instalasi += $invoice_customer_product_additional->total;
-                    break;
+                    case 'Instalasi':
+                        $tax_base_instalasi += $invoice_customer_product_additional->total;
+                        break;
 
-                case 'Manage Service':
-                    $tax_base_manage_service += $invoice_customer_product_additional->total;
-                    break;
+                    case 'Manage Service':
+                        $tax_base_manage_service += $invoice_customer_product_additional->total;
+                        break;
 
-                case 'Lain-Lain':
-                    $tax_base_lain_lain += $invoice_customer_product_additional->total;
-                    break;
+                    case 'Lain-Lain':
+                        $tax_base_lain_lain += $invoice_customer_product_additional->total;
+                        break;
 
-                case 'Aplikasi':
-                    $tax_base_aplikasi += $invoice_customer_product_additional->total;
-                    break;
+                    case 'Aplikasi':
+                        $tax_base_aplikasi += $invoice_customer_product_additional->total;
+                        break;
+                }
             }
         });
 
@@ -4759,7 +4928,9 @@ class ArInvoice
         if ($invoice_obj->date->gte(Carbon::create(2022, 4, 1, 0))) {
             $tax_rate = 11;
         }
-        if ($invoice_obj->tax_rate) $tax_rate = $invoice_obj->tax_rate;
+        if ($invoice_obj->tax_rate) {
+            $tax_rate = $invoice_obj->tax_rate;
+        }
 
         $tax_rounding_func = function ($tax_base, $tax_rate, $rounding) {
             $tax = 0;
@@ -4782,7 +4953,7 @@ class ArInvoice
         $tax_usd = $tax_rounding_func($tax_base_usd, $tax_rate, $invoice_obj->tax_rounding);
         $tax_sgd = $tax_rounding_func($tax_base_sgd, $tax_rate, $invoice_obj->tax_rounding);
 
-        if (!$invoice_obj->is_tax) {
+        if (! $invoice_obj->is_tax) {
             $tax = 0;
             $tax_usd = 0;
             $tax_sgd = 0;
@@ -4877,12 +5048,11 @@ class ArInvoice
             }
         }
 
-        $payment_link = config('app.client_domain') . '/pay' . '/' . $invoice->uuid;
-        $invoice_link = config('app.client_domain') . '/invoice' . '/' . $invoice->uuid;
+        $payment_link = config('app.client_domain').'/pay'.'/'.$invoice->uuid;
+        $invoice_link = config('app.client_domain').'/invoice'.'/'.$invoice->uuid;
 
         $invoice->qr_code = (new PngWriter())->write(EndroidQrCode::create($invoice->brand_type_name === 'Retail Internet Service' ? $payment_link : $invoice_link)->setSize(128)->setMargin(0))->getDataUri();
         $invoice->payment_link = $invoice->brand_type_name === 'Retail Internet Service' ? $payment_link : null;
-
 
         $data['invoice'] = $invoice;
 
@@ -4892,12 +5062,16 @@ class ArInvoice
             'creator' => $invoice['brand_name'],
         ]);
 
-        $file_path = 'invoice/' . str_replace('/', '_', $invoice['number']) . '.pdf';
+        $file_path = 'invoice/'.str_replace('/', '_', $invoice['number']).'.pdf';
 
-        if (!$disk) $disk = config('filesystems.primary_disk');
+        if (! $disk) {
+            $disk = config('filesystems.primary_disk');
+        }
 
         $storage = Storage::disk($disk);
-        if ($storage->exists($file_path)) $storage->delete($file_path);
+        if ($storage->exists($file_path)) {
+            $storage->delete($file_path);
+        }
         $storage->put($file_path, $pdf->output(), 'public');
     }
 
@@ -4940,27 +5114,37 @@ class ArInvoice
             $month,
             $chart_of_account_title_id
         ) {
-            if (!$customer_product->active) return true;
-            if (!$customer_product->enterprise_billing_date) return true;
-            if (!$customer_product->billing_cycle) return true;
-            if (!$customer_product->billing_time) return true;
+            if (! $customer_product->active) {
+                return true;
+            }
+            if (! $customer_product->enterprise_billing_date) {
+                return true;
+            }
+            if (! $customer_product->billing_cycle) {
+                return true;
+            }
+            if (! $customer_product->billing_time) {
+                return true;
+            }
 
             $billing_date = $customer_product->enterprise_billing_date->toImmutable();
             $generate_date = Carbon::createFromDate($year, $month, 1)->toImmutable();
             $due_date = $billing_date->addDays($customer_product->billing_time);
             $period_end_date = $billing_date->addMonthsNoOverflow($customer_product->billing_cycle);
 
-            if (!$customer_product->billing_cycle) {
+            if (! $customer_product->billing_cycle) {
                 if (
                     $billing_date->isSameMonth($generate_date) &&
                     $billing_date->isSameYear($generate_date)
-                ) static::enterpriseGenerateSigleService(
-                    $customer_product,
-                    $chart_of_account_title_id,
-                    $billing_date,
-                    $due_date,
-                    $period_end_date
-                );
+                ) {
+                    static::enterpriseGenerateSigleService(
+                        $customer_product,
+                        $chart_of_account_title_id,
+                        $billing_date,
+                        $due_date,
+                        $period_end_date
+                    );
+                }
 
                 return true;
             }
@@ -4969,13 +5153,15 @@ class ArInvoice
                 if (
                     $billing_date->isSameMonth($generate_date) &&
                     $billing_date->isSameYear($generate_date)
-                ) static::enterpriseGenerateSigleService(
-                    $customer_product,
-                    $chart_of_account_title_id,
-                    $billing_date,
-                    $due_date,
-                    $period_end_date
-                );
+                ) {
+                    static::enterpriseGenerateSigleService(
+                        $customer_product,
+                        $chart_of_account_title_id,
+                        $billing_date,
+                        $due_date,
+                        $period_end_date
+                    );
+                }
 
                 $billing_date = $billing_date->addMonthsNoOverflow($customer_product->billing_cycle);
             } while ($billing_date->lt($generate_date->endOfMonth()->addDay()));
@@ -5004,13 +5190,19 @@ class ArInvoice
             &$generate,
             $billing_date
         ) {
-            if (!$invoice_customer_product->invoice_customer) return true;
-            if (!$invoice_customer_product->invoice_customer->invoice) return true;
+            if (! $invoice_customer_product->invoice_customer) {
+                return true;
+            }
+            if (! $invoice_customer_product->invoice_customer->invoice) {
+                return true;
+            }
 
             if (
                 $invoice_customer_product->invoice_customer->invoice->date->isSameMonth($billing_date) &&
                 $invoice_customer_product->invoice_customer->invoice->date->isSameYear($billing_date)
-            ) $generate = false;
+            ) {
+                $generate = false;
+            }
         });
 
         if ($generate) {
@@ -5143,30 +5335,32 @@ class ArInvoice
             $tax_base_usd += $invoice_customer_product->total_usd;
             $tax_base_sgd += $invoice_customer_product->total_sgd;
 
-            if ($invoice_customer_product->item_category) switch ($invoice_customer_product->item_category->name) {
-                case 'Bandwidth':
-                    $tax_base_bandwidth += $invoice_customer_product->total;
-                    break;
+            if ($invoice_customer_product->item_category) {
+                switch ($invoice_customer_product->item_category->name) {
+                    case 'Bandwidth':
+                        $tax_base_bandwidth += $invoice_customer_product->total;
+                        break;
 
-                case 'Data Center':
-                    $tax_base_data_center += $invoice_customer_product->total;
-                    break;
+                    case 'Data Center':
+                        $tax_base_data_center += $invoice_customer_product->total;
+                        break;
 
-                case 'Instalasi':
-                    $tax_base_instalasi += $invoice_customer_product->total;
-                    break;
+                    case 'Instalasi':
+                        $tax_base_instalasi += $invoice_customer_product->total;
+                        break;
 
-                case 'Manage Service':
-                    $tax_base_manage_service += $invoice_customer_product->total;
-                    break;
+                    case 'Manage Service':
+                        $tax_base_manage_service += $invoice_customer_product->total;
+                        break;
 
-                case 'Lain-Lain':
-                    $tax_base_lain_lain += $invoice_customer_product->total;
-                    break;
+                    case 'Lain-Lain':
+                        $tax_base_lain_lain += $invoice_customer_product->total;
+                        break;
 
-                case 'Aplikasi':
-                    $tax_base_aplikasi += $invoice_customer_product->total;
-                    break;
+                    case 'Aplikasi':
+                        $tax_base_aplikasi += $invoice_customer_product->total;
+                        break;
+                }
             }
 
             // additional
@@ -5199,30 +5393,32 @@ class ArInvoice
                 $tax_base_usd += $invoice_customer_product_additional->total_usd;
                 $tax_base_sgd += $invoice_customer_product_additional->total_sgd;
 
-                if ($invoice_customer_product_additional->item_category) switch ($invoice_customer_product_additional->item_category->name) {
-                    case 'Bandwidth':
-                        $tax_base_bandwidth += $invoice_customer_product_additional->total;
-                        break;
+                if ($invoice_customer_product_additional->item_category) {
+                    switch ($invoice_customer_product_additional->item_category->name) {
+                        case 'Bandwidth':
+                            $tax_base_bandwidth += $invoice_customer_product_additional->total;
+                            break;
 
-                    case 'Data Center':
-                        $tax_base_data_center += $invoice_customer_product_additional->total;
-                        break;
+                        case 'Data Center':
+                            $tax_base_data_center += $invoice_customer_product_additional->total;
+                            break;
 
-                    case 'Instalasi':
-                        $tax_base_instalasi += $invoice_customer_product_additional->total;
-                        break;
+                        case 'Instalasi':
+                            $tax_base_instalasi += $invoice_customer_product_additional->total;
+                            break;
 
-                    case 'Manage Service':
-                        $tax_base_manage_service += $invoice_customer_product_additional->total;
-                        break;
+                        case 'Manage Service':
+                            $tax_base_manage_service += $invoice_customer_product_additional->total;
+                            break;
 
-                    case 'Lain-Lain':
-                        $tax_base_lain_lain += $invoice_customer_product_additional->total;
-                        break;
+                        case 'Lain-Lain':
+                            $tax_base_lain_lain += $invoice_customer_product_additional->total;
+                            break;
 
-                    case 'Aplikasi':
-                        $tax_base_aplikasi += $invoice_customer_product_additional->total;
-                        break;
+                        case 'Aplikasi':
+                            $tax_base_aplikasi += $invoice_customer_product_additional->total;
+                            break;
+                    }
                 }
             });
 
@@ -5274,13 +5470,15 @@ class ArInvoice
             if ($invoice_obj->date->gte(Carbon::create(2022, 4, 1, 0))) {
                 $tax_rate = 11;
             }
-            if ($invoice_obj->tax_rate) $tax_rate = $invoice_obj->tax_rate;
+            if ($invoice_obj->tax_rate) {
+                $tax_rate = $invoice_obj->tax_rate;
+            }
 
             $tax = floor($tax_base * $tax_rate / 100);
             $tax_usd = floor($tax_base_usd * $tax_rate / 100);
             $tax_sgd = floor($tax_base_sgd * $tax_rate / 100);
 
-            if (!$invoice_obj->is_tax) {
+            if (! $invoice_obj->is_tax) {
                 $tax = 0;
                 $tax_usd = 0;
                 $tax_sgd = 0;
@@ -5320,7 +5518,9 @@ class ArInvoice
             ArInvoice::enterpriseCreatePdf($invoice_obj);
             TaxOut::create($invoice_obj);
 
-            if ($invoice_obj->memo) ApInvoice::createMemo($invoice_obj);
+            if ($invoice_obj->memo) {
+                ApInvoice::createMemo($invoice_obj);
+            }
         }
     }
 }

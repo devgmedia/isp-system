@@ -2,7 +2,6 @@
 
 namespace Gmedia\IspSystem\Models;
 
-use Gmedia\IspSystem\Models\Village;
 use Illuminate\Database\Eloquent\Model;
 
 class Hamlet extends Model
