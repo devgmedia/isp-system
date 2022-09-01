@@ -162,6 +162,8 @@ class CustomerProduct extends Pivot
         'tax_rounding',
 
         'vendor_id',
+
+        'path_ba_installation',
     ];
 
     protected $hidden = [];
@@ -297,6 +299,8 @@ class CustomerProduct extends Pivot
         'tax_rounding' => 'string',
 
         'vendor_id' => 'integer',
+
+        'path_ba_installation' => 'string',
     ];
 
     public function customer()
