@@ -1008,7 +1008,6 @@ class Erp1
                 case 13:
                     $category = CustomerCategory::where('name', 'WARNET')->first();
                     break;
-
             }
 
             /** Execute migraton */
@@ -1145,7 +1144,6 @@ class Erp1
                 case 13:
                     $category = CustomerCategory::where('name', 'WARNET')->first();
                     break;
-
             }
 
             /** Execute migraton */
