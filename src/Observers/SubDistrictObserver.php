@@ -12,7 +12,9 @@ class SubDistrictObserver
         do {
             $uuid = Uuid::uuid4();
         } while (SubDistrict::where('uuid', $uuid)->exists());
-        if (!$sub_district->uuid) $sub_district->uuid = $uuid;
+        if (! $sub_district->uuid) {
+            $sub_district->uuid = $uuid;
+        }
     }
 
     /**

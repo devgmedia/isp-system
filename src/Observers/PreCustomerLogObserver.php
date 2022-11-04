@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\PreCustomerLog;
 use app\Models\User;
 use Carbon\Carbon;
+use Gmedia\IspSystem\Models\PreCustomerLog;
 use Illuminate\Support\Facades\Auth;
 
 class PreCustomerLogObserver
@@ -16,16 +16,19 @@ class PreCustomerLogObserver
 
         $user_id = Auth::guard('api')->id();
         if ($user_id) {
-            $user = User::with('employee')->find($user_id);            
+            $user = User::with('employee')->find($user_id);
             if ($user->employee) {
                 $preCustomerLog->caused_by = $user->employee->id;
             }
         }
 
-        if  (!$preCustomerLog->pre_customer_data) $preCustomerLog->pre_customer_data = json_encode([
-            'id' => $preCustomerLog->pre_customer_id,
-        ]);
+        if (! $preCustomerLog->pre_customer_data) {
+            $preCustomerLog->pre_customer_data = json_encode([
+                'id' => $preCustomerLog->pre_customer_id,
+            ]);
+        }
     }
+
     /**q
      * Handle the customer product additional "created" event.
      *

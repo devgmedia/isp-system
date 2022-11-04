@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\CustomerLog;
 use app\Models\User;
 use Carbon\Carbon;
+use Gmedia\IspSystem\Models\CustomerLog;
 use Illuminate\Support\Facades\Auth;
 
 class CustomerLogObserver
@@ -16,16 +16,19 @@ class CustomerLogObserver
 
         $user_id = Auth::guard('api')->id();
         if ($user_id) {
-            $user = User::with('employee')->find($user_id);            
+            $user = User::with('employee')->find($user_id);
             if ($user->employee) {
                 $customerLog->caused_by = $user->employee->id;
             }
         }
 
-        if  (!$customerLog->customer_data) $customerLog->customer_data = json_encode([
-            'id' => $customerLog->customer_id,
-        ]);
+        if (! $customerLog->customer_data) {
+            $customerLog->customer_data = json_encode([
+                'id' => $customerLog->customer_id,
+            ]);
+        }
     }
+
     /**q
      * Handle the customer product additional "created" event.
      *

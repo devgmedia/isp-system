@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TechnicalVendor extends Model
 {
     protected $connection = 'isp_system';
-    
+
     protected $table = 'technical_vendor';
 
     protected $fillable = [
@@ -25,9 +25,9 @@ class TechnicalVendor extends Model
 
     protected $casts = [
         'id' => 'integer',
-        'name'  => 'string',
-        'supplier_id'  => 'integer',
-        'auto_installation_retail'  => 'boolean',
+        'name' => 'string',
+        'supplier_id' => 'integer',
+        'auto_installation_retail' => 'boolean',
 
         'created_at' => 'datetime',
         'updated_at' => 'datetime',

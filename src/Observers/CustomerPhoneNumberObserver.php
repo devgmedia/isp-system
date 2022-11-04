@@ -12,7 +12,9 @@ class CustomerPhoneNumberObserver
         do {
             $uuid = Uuid::uuid4();
         } while (CustomerPhoneNumber::where('uuid', $uuid)->exists());
-        if (!$customerPhoneNumber->uuid) $customerPhoneNumber->uuid = $uuid;
+        if (! $customerPhoneNumber->uuid) {
+            $customerPhoneNumber->uuid = $uuid;
+        }
     }
 
     /**

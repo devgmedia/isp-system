@@ -12,7 +12,9 @@ class OdcMiniObserver
         do {
             $uuid = Uuid::uuid4();
         } while (OdcMini::where('uuid', $uuid)->exists());
-        if (!$odc_mini->uuid) $odc_mini->uuid = $uuid;
+        if (! $odc_mini->uuid) {
+            $odc_mini->uuid = $uuid;
+        }
     }
 
     /**

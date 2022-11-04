@@ -2,10 +2,9 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Ramsey\Uuid\Uuid;
-
-// models
 use Gmedia\IspSystem\Models\TrialRequest;
+// models
+use Ramsey\Uuid\Uuid;
 
 class TrialRequestObserve
 {

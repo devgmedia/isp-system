@@ -12,7 +12,9 @@ class CustomerVisitObserver
         do {
             $uuid = Uuid::uuid4();
         } while (CustomerVisit::where('uuid', $uuid)->exists());
-        if (!$customerVisit->uuid) $customerVisit->uuid = $uuid;
+        if (! $customerVisit->uuid) {
+            $customerVisit->uuid = $uuid;
+        }
     }
 
     /**

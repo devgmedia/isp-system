@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\InstallationReporting as InstallationReportingModel;
 use Carbon\Carbon;
+use Gmedia\IspSystem\Models\InstallationReporting as InstallationReportingModel;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
@@ -14,7 +14,9 @@ class InstallationReportingObserver
         do {
             $uuid = Uuid::uuid4();
         } while (InstallationReportingModel::where('uuid', $uuid)->exists());
-        if (!$InstallationReporting->uuid) $InstallationReporting->uuid = $uuid;
+        if (! $InstallationReporting->uuid) {
+            $InstallationReporting->uuid = $uuid;
+        }
 
         $installationReporting = DB::table('installation_tasking')->find($InstallationReporting->pre_survey_tasking_id);
 
@@ -25,9 +27,9 @@ class InstallationReportingObserver
 
         $code_date = Carbon::now()->format('my');
 
-        $branch = sprintf("%02d", $installationReporting->branch_id);
-        $count = sprintf("%04s", $get_installation_reporting + 1);
+        $branch = sprintf('%02d', $installationReporting->branch_id);
+        $count = sprintf('%04s', $get_installation_reporting + 1);
 
-        $InstallationReporting->number = 'IRP/' . $branch . '/' . $code_date . '/' . $count;
+        $InstallationReporting->number = 'IRP/'.$branch.'/'.$code_date.'/'.$count;
     }
 }

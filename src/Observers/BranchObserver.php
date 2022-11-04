@@ -12,7 +12,9 @@ class BranchObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Branch::where('uuid', $uuid)->exists());
-        if (!$branch->uuid) $branch->uuid = $uuid;
+        if (! $branch->uuid) {
+            $branch->uuid = $uuid;
+        }
     }
 
     /**

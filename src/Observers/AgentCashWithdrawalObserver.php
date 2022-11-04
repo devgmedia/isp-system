@@ -12,7 +12,9 @@ class AgentCashWithdrawalObserver
         do {
             $uuid = Uuid::uuid4();
         } while (AgentCashWithdrawal::where('uuid', $uuid)->exists());
-        if (!$agentCashWithdrawal->uuid) $agentCashWithdrawal->uuid = $uuid;
+        if (! $agentCashWithdrawal->uuid) {
+            $agentCashWithdrawal->uuid = $uuid;
+        }
     }
 
     /**

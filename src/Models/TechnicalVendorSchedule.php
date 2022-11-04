@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TechnicalVendorSchedule extends Model
 {
     protected $connection = 'isp_system';
-    
+
     protected $table = 'technical_vendor_schedule';
 
     protected $fillable = [

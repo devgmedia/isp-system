@@ -12,7 +12,9 @@ class ProductAdditionalObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ProductAdditional::where('uuid', $uuid)->exists());
-        if (!$productAdditional->uuid) $productAdditional->uuid = $uuid;
+        if (! $productAdditional->uuid) {
+            $productAdditional->uuid = $uuid;
+        }
     }
 
     /**

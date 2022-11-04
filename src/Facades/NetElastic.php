@@ -3,8 +3,8 @@
 namespace Gmedia\IspSystem\Facades;
 
 use Gmedia\IspSystem\Models\ProductRouter;
-use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
 class NetElastic
 {
@@ -29,12 +29,14 @@ class NetElastic
         $response = (new GuzzleClient(['verify' => false]))->sendRequest($request);
         $status = $response->getStatusCode();
 
-        if (!($status >= 200)) return false;
+        if (! ($status >= 200)) {
+            return false;
+        }
 
         $response_header = $response->getHeaders();
         $token = $response_header['Authorization'][0];
 
-        // get bngs        
+        // get bngs
         $request = new GuzzleRequest('GET', $url.'/v1/bngs', [
             'accept' => 'application/json',
             'Content-Type' => 'application/json',
@@ -42,13 +44,17 @@ class NetElastic
         ]);
         $response = (new GuzzleClient(['verify' => false]))->sendRequest($request);
         $status = $response->getStatusCode();
-        
-        if (!($status >= 200)) return false;
-        
+
+        if (! ($status >= 200)) {
+            return false;
+        }
+
         $response_body = json_decode($response->getBody()->getContents());
         $bngs = $response_body;
 
-        if ($bngs->count < 1) return false;
+        if ($bngs->count < 1) {
+            return false;
+        }
         foreach ($bngs->result as $bng) {
             // clearonlinefailrecord
             $request = new GuzzleRequest('POST', $url.'/v1/bng/clearonlinefailrecord', [
@@ -61,7 +67,7 @@ class NetElastic
             ]));
             $response = (new GuzzleClient(['verify' => false]))->sendRequest($request);
             $response_body = json_decode($response->getBody()->getContents());
-            
+
             // clearabnormalofflinerecord
             $request = new GuzzleRequest('POST', $url.'/v1/bng/clearabnormalofflinerecord', [
                 'accept' => 'application/json',

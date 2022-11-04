@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\PurchaseRequest;
 use Gmedia\IspSystem\Models\Branch as BranchModel;
+use Gmedia\IspSystem\Models\PurchaseRequest;
 use Ramsey\Uuid\Uuid;
 
 class PurchaseRequestObserver
@@ -13,7 +13,9 @@ class PurchaseRequestObserver
         do {
             $uuid = Uuid::uuid4();
         } while (PurchaseRequest::where('uuid', $uuid)->exists());
-        if (!$purchaseRequest->uuid) $purchaseRequest->uuid = $uuid;
+        if (! $purchaseRequest->uuid) {
+            $purchaseRequest->uuid = $uuid;
+        }
 
         $date = $purchaseRequest->date;
         $branch_id = $purchaseRequest->branch_id;
@@ -25,12 +27,12 @@ class PurchaseRequestObserver
             ->where('branch_id', $branch_id)
             ->latest()
             ->first();
-            
-        $latest_number = !empty($latest) ? $latest->number : 0;
+
+        $latest_number = ! empty($latest) ? $latest->number : 0;
 
         $urut_arr = explode('/', $latest_number);
-        $urut = $urut_arr[count($urut_arr)-1];
-        $no = sprintf('%04d', $urut+1);
+        $urut = $urut_arr[count($urut_arr) - 1];
+        $no = sprintf('%04d', $urut + 1);
 
         // get branch code
         $branch_code = BranchModel::find($branch_id)->code;
@@ -41,6 +43,7 @@ class PurchaseRequestObserver
 
         $purchaseRequest->number = $number;
     }
+
     /**
      * Handle the purchase request "created" event.
      *

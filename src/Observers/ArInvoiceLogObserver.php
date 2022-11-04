@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\ArInvoiceLog;
 use app\Models\User;
 use Carbon\Carbon;
+use Gmedia\IspSystem\Models\ArInvoiceLog;
 use Illuminate\Support\Facades\Auth;
 
 class ArInvoiceLogObserver
@@ -16,16 +16,19 @@ class ArInvoiceLogObserver
 
         $user_id = Auth::guard('api')->id();
         if ($user_id) {
-            $user = User::with('employee')->find($user_id);            
+            $user = User::with('employee')->find($user_id);
             if ($user->employee) {
                 $arInvoiceLog->caused_by = $user->employee->id;
             }
         }
 
-        if (!$arInvoiceLog->ar_invoice_data) $arInvoiceLog->ar_invoice_data = json_encode([
-            'id' => $arInvoiceLog->ar_invoice_id,
-        ]);
+        if (! $arInvoiceLog->ar_invoice_data) {
+            $arInvoiceLog->ar_invoice_data = json_encode([
+                'id' => $arInvoiceLog->ar_invoice_id,
+            ]);
+        }
     }
+
     /**
      * Handle the customer product additional "created" event.
      *

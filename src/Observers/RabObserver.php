@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\Rab;
 use Carbon\Carbon;
+use Gmedia\IspSystem\Models\Rab;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
@@ -14,8 +14,7 @@ class RabObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Rab::where('uuid', $uuid)->exists());
-        if (!$rab->uuid) {
-
+        if (! $rab->uuid) {
             $survey_reporting = DB::table('survey_reporting')->find($rab->survey_reporting_id);
 
             $get_rab = DB::table('rab')
@@ -25,15 +24,15 @@ class RabObserver
 
             $code_date = Carbon::now()->format('my');
 
-            $branch = sprintf("%02d", $survey_reporting->branch_id);
-            $count = sprintf("%04s", $get_rab + 1);
+            $branch = sprintf('%02d', $survey_reporting->branch_id);
+            $count = sprintf('%04s', $get_rab + 1);
 
             $rab->uuid = $uuid;
-            $rab->number = 'IRP/' . $branch . '/' . $code_date . '/' . $count;
+            $rab->number = 'IRP/'.$branch.'/'.$code_date.'/'.$count;
             $rab->date = Carbon::now();
             $rab->branch_id = $survey_reporting->branch_id;
             $rab->pre_customer_id = $survey_reporting->pre_customer_id;
-        };
+        }
     }
 
     /**

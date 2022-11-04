@@ -12,7 +12,9 @@ class CashOpnameObserver
         do {
             $uuid = Uuid::uuid4();
         } while (CashOpname::where('uuid', $uuid)->exists());
-        if (!$cashOpname->uuid) $cashOpname->uuid = $uuid;
+        if (! $cashOpname->uuid) {
+            $cashOpname->uuid = $uuid;
+        }
     }
 
     /**

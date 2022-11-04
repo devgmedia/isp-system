@@ -15,10 +15,12 @@ class CashierOutCategoryObserver
         do {
             $uuid = Uuid::uuid4();
         } while (CashierOutCategory::where('uuid', $uuid)->exists());
-        if (!$cashierOutCategory->uuid) $cashierOutCategory->uuid = $uuid;
+        if (! $cashierOutCategory->uuid) {
+            $cashierOutCategory->uuid = $uuid;
+        }
 
         // code
-        if (!$cashierOutCategory->code) {
+        if (! $cashierOutCategory->code) {
             $code = null;
 
             $last_cashier_out_category = DB::table('cashier_out_category')
@@ -36,7 +38,7 @@ class CashierOutCategoryObserver
                 $code = $explode_last_code[0].'/'.$explode_last_code[1].'/'.sprintf('%03d', intval($explode_last_code[2]) + 1);
             }
 
-            if (!$code) {
+            if (! $code) {
                 $chart_of_account_title = ChartOfAccountTitle::find($cashierOutCategory->chart_of_account_title_id);
                 $code = 'COC/'.$chart_of_account_title->branch->code.'/'.'001';
             }

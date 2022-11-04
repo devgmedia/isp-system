@@ -12,7 +12,9 @@ class InternetMediaVendorObserver
         do {
             $uuid = Uuid::uuid4();
         } while (InternetMediaVendor::where('uuid', $uuid)->exists());
-        if (!$internet_media_vendor->uuid) $internet_media_vendor->uuid = $uuid;
+        if (! $internet_media_vendor->uuid) {
+            $internet_media_vendor->uuid = $uuid;
+        }
     }
 
     /**

@@ -12,7 +12,9 @@ class BandwidthUnitObserver
         do {
             $uuid = Uuid::uuid4();
         } while (BandwidthUnit::where('uuid', $uuid)->exists());
-        if (!$bandwidth_type->uuid) $bandwidth_type->uuid = $uuid;
+        if (! $bandwidth_type->uuid) {
+            $bandwidth_type->uuid = $uuid;
+        }
     }
 
     /**

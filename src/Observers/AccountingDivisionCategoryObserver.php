@@ -12,7 +12,9 @@ class AccountingDivisionCategoryObserver
         do {
             $uuid = Uuid::uuid4();
         } while (AccountingDivisionCategory::where('uuid', $uuid)->exists());
-        if (!$accountingDivisionCategory->uuid) $accountingDivisionCategory->uuid = $uuid;
+        if (! $accountingDivisionCategory->uuid) {
+            $accountingDivisionCategory->uuid = $uuid;
+        }
     }
 
     /**

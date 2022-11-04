@@ -12,7 +12,7 @@ class Radius
         $log = applog('erp, radius__fac, create_user');
         $log->new()->properties($username)->save('username');
 
-        if (!DB::connection('radius')->table('userinfo')->where('username', $username)->exists()) {
+        if (! DB::connection('radius')->table('userinfo')->where('username', $username)->exists()) {
             $log->save('add userinfo');
 
             DB::connection('radius')->table('userinfo')->insert([
@@ -28,7 +28,7 @@ class Radius
             $log->save('userinfo is exists');
         }
 
-        if (!DB::connection('radius')->table('userbillinfo')->where('username', $username)->exists()) {
+        if (! DB::connection('radius')->table('userbillinfo')->where('username', $username)->exists()) {
             $log->save('add userbillinfo');
 
             DB::connection('radius')->table('userbillinfo')->insert([
@@ -47,7 +47,7 @@ class Radius
             $log->save('userbillinginfo is exists');
         }
 
-        if (!DB::connection('radius')->table('radcheck')->where('username', $username)->exists()) {
+        if (! DB::connection('radius')->table('radcheck')->where('username', $username)->exists()) {
             $log->save('add radcheck');
 
             DB::connection('radius')->table('radcheck')->insert([
@@ -64,7 +64,7 @@ class Radius
     public static function deleteUser($username)
     {
         $log = applog('erp, radius__fac, delete_user');
-        
+
         // userinfo
         $userinfo = DB::connection('radius')->table('userinfo')
             ->where('username', $username)
@@ -74,8 +74,8 @@ class Radius
 
         DB::connection('radius')->table('userinfo')
             ->where('username', $username)
-            ->delete();            
-        
+            ->delete();
+
         // userbillinfo
         $userbillinfo = DB::connection('radius')->table('userbillinfo')
             ->where('username', $username)
@@ -86,7 +86,7 @@ class Radius
         DB::connection('radius')->table('userbillinfo')
             ->where('username', $username)
             ->delete();
-        
+
         // radcheck
         $radcheck = DB::connection('radius')->table('radcheck')
             ->where('username', $username)

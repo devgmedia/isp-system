@@ -3,11 +3,11 @@
 namespace Gmedia\IspSystem\Facades;
 
 use App;
-use Gmedia\IspSystem\Models\ArInvoice;
-use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 use Gmedia\IspSystem\Facades\Mail as MailFac;
 use Gmedia\IspSystem\Mail\ArInvoiceEnterprise\ReminderMail;
-use Carbon\Carbon;
+use Gmedia\IspSystem\Models\ArInvoice;
+use Illuminate\Support\Facades\Mail;
 
 class ArInvoiceEnterprise
 {
@@ -19,10 +19,11 @@ class ArInvoiceEnterprise
             .'send_reminder_email'
         );
         $log->save('debug');
-        
+
         $payer = $invoice->payer_ref;
-        if (!$payer) {
+        if (! $payer) {
             $log->save('payer not found');
+
             return;
         }
 
@@ -38,7 +39,7 @@ class ArInvoiceEnterprise
                 &$invoices_total,
                 &$invoice_reminders,
                 &$invoice_objects
-            ) {                
+            ) {
                 $invoices_total += $invoice->total;
 
                 array_push($invoices, [
@@ -57,7 +58,7 @@ class ArInvoiceEnterprise
 
                 $invoice->email_reminders()->create();
             });
-        
+
         $invoices_total = number_format($invoices_total, 0, ',', '.');
 
         $to = null;
@@ -66,16 +67,19 @@ class ArInvoiceEnterprise
         $payer->emails->each(function ($email, $key) use (&$to, &$cc) {
             if ($key === 0) {
                 $to = $email->name;
+
                 return true;
             }
 
             $cc->push($email->name);
         });
 
-        if (!$to && !in_array(App::environment(), ['staging', 'testing', 'development'])) return false;
+        if (! $to && ! in_array(App::environment(), ['staging', 'testing', 'development'])) {
+            return false;
+        }
         $cc = $cc->all();
 
-        $log->new()->properties(['to' => $to, 'cc' => $cc])->save('email address');        
+        $log->new()->properties(['to' => $to, 'cc' => $cc])->save('email address');
 
         $default_mail = Mail::getSwiftMailer();
         $invoice_reminder_mail = MailFac::getSwiftMailer('internet_enterprise_billing');
@@ -101,7 +105,7 @@ class ArInvoiceEnterprise
         Mail::setSwiftMailer($default_mail);
 
         foreach ($invoice_objects as $key => $invoice) {
-            if (!($invoice->reminder_email_count >= 0)) {
+            if (! ($invoice->reminder_email_count >= 0)) {
                 $invoice->reminder_email_count = 0;
             }
 

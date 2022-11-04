@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Observers;
 
+use Carbon\Carbon;
 use Gmedia\IspSystem\Models\ArInvoiceSettlement;
 use Gmedia\IspSystem\Models\Branch;
-use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 
 class ArInvoiceSettlementObserver
@@ -14,8 +14,10 @@ class ArInvoiceSettlementObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ArInvoiceSettlement::where('uuid', $uuid)->exists());
-        if (!$arInvoiceSettlement->uuid) $arInvoiceSettlement->uuid = $uuid;
-        
+        if (! $arInvoiceSettlement->uuid) {
+            $arInvoiceSettlement->uuid = $uuid;
+        }
+
         // number
         $branch = Branch::find($arInvoiceSettlement->branch_id);
         $last_settlement = ArInvoiceSettlement::select(
@@ -36,7 +38,7 @@ class ArInvoiceSettlementObserver
             $number = $explode_last_number[0].'/'.$explode_last_number[1].'/'.$explode_last_number[2].'/'.sprintf('%04d', intval($explode_last_number[3]) + 1);
         }
 
-        if (!$number) {
+        if (! $number) {
             $number = 'CR/'.$branch->code.'/'.Carbon::now()->format('my').'/'.'0001';
         }
 

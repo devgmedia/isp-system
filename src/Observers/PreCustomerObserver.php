@@ -2,27 +2,28 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Facades\Customer;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
-use Spatie\Permission\Models\Role;
-use Ramsey\Uuid\Uuid;
-use Gmedia\IspSystem\Models\PreCustomer as PreCustomerModel;
-use Gmedia\IspSystem\Models\ProductBrand;
 use App\Models\User;
 use Faker\Factory as Faker;
+use Gmedia\IspSystem\Facades\Customer;
+use Gmedia\IspSystem\Models\PreCustomer as PreCustomerModel;
+use Gmedia\IspSystem\Models\ProductBrand;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Ramsey\Uuid\Uuid;
+use Spatie\Permission\Models\Role;
 
 class PreCustomerObserver
 {
     public function creating(PreCustomerModel $preCustomer)
     {
         // cid
-        if (!$preCustomer->cid) $preCustomer->cid = Customer::generateCid($preCustomer->branch);
+        if (! $preCustomer->cid) {
+            $preCustomer->cid = Customer::generateCid($preCustomer->branch);
+        }
         $uuid = null;
 
         // uuid
-        if (!$preCustomer->uuid) {
-
+        if (! $preCustomer->uuid) {
             do {
                 $uuid = Uuid::uuid4();
             } while (PreCustomerModel::where('uuid', $uuid)->exists());
@@ -30,10 +31,12 @@ class PreCustomerObserver
         }
 
         // user_id
-        if (!$preCustomer->user_id) {
+        if (! $preCustomer->user_id) {
             $password = Faker::create()->regexify('[A-Za-z0-9]{8}');
             $brand = ProductBrand::find($preCustomer->brand_id);
-            if ($brand) $password = Hash::make($brand->pre_customer_account_default_password);
+            if ($brand) {
+                $password = Hash::make($brand->pre_customer_account_default_password);
+            }
 
             $user = User::create([
                 'name' => 'pre_customer_'.$uuid,
@@ -44,7 +47,7 @@ class PreCustomerObserver
             ]);
             $role = Role::where('name', 'pre_customer')->get();
             $user->assignRole($role);
-            
+
             $preCustomer->user_id = $user->id;
             // send password to pre_customer email
         }

@@ -12,7 +12,9 @@ class ServicesProductObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ServiceProduct::where('uuid', $uuid)->exists());
-        if (!$services_product->uuid) $services_product->uuid = $uuid;
+        if (! $services_product->uuid) {
+            $services_product->uuid = $uuid;
+        }
     }
 
     /**

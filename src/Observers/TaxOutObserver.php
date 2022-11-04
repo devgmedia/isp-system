@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Observers;
 
+use Carbon\Carbon;
 use Gmedia\IspSystem\Models\Branch;
 use Gmedia\IspSystem\Models\TaxOut;
-use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 
 class TaxOutObserver
@@ -14,7 +14,9 @@ class TaxOutObserver
         do {
             $uuid = Uuid::uuid4();
         } while (TaxOut::where('uuid', $uuid)->exists());
-        if (!$taxOut->uuid) $taxOut->uuid = $uuid;
+        if (! $taxOut->uuid) {
+            $taxOut->uuid = $uuid;
+        }
 
         // number
         $branch = Branch::find($taxOut->branch_id);
@@ -36,7 +38,7 @@ class TaxOutObserver
             $number = $explode_last_number[0].'/'.$explode_last_number[1].'/'.$explode_last_number[2].'/'.sprintf('%04d', intval($explode_last_number[3]) + 1);
         }
 
-        if (!$number) {
+        if (! $number) {
             $number = 'TO/'.$branch->code.'/'.Carbon::now()->format('my').'/'.'0001';
         }
 

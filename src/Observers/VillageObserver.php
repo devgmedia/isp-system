@@ -12,7 +12,9 @@ class VillageObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Village::where('uuid', $uuid)->exists());
-        if (!$village->uuid) $village->uuid = $uuid;
+        if (! $village->uuid) {
+            $village->uuid = $uuid;
+        }
     }
 
     /**

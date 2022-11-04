@@ -15,10 +15,12 @@ class CashierInCategoryObserver
         do {
             $uuid = Uuid::uuid4();
         } while (CashierInCategory::where('uuid', $uuid)->exists());
-        if (!$cashierInCategory->uuid) $cashierInCategory->uuid = $uuid;
+        if (! $cashierInCategory->uuid) {
+            $cashierInCategory->uuid = $uuid;
+        }
 
         // code
-        if (!$cashierInCategory->code) {
+        if (! $cashierInCategory->code) {
             $code = null;
 
             $last_cashier_in_category = DB::table('cashier_in_category')
@@ -36,7 +38,7 @@ class CashierInCategoryObserver
                 $code = $explode_last_code[0].'/'.$explode_last_code[1].'/'.sprintf('%03d', intval($explode_last_code[2]) + 1);
             }
 
-            if (!$code) {
+            if (! $code) {
                 $chart_of_account_title = ChartOfAccountTitle::find($cashierInCategory->chart_of_account_title_id);
                 $code = 'CIC/'.$chart_of_account_title->branch->code.'/'.'001';
             }

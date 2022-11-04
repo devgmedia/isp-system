@@ -12,7 +12,9 @@ class OdpObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Odp::where('uuid', $uuid)->exists());
-        if (!$odp->uuid) $odp->uuid = $uuid;
+        if (! $odp->uuid) {
+            $odp->uuid = $uuid;
+        }
     }
 
     /**

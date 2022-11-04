@@ -12,7 +12,9 @@ class OnuObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Onu::where('uuid', $uuid)->exists());
-        if (!$onu->uuid) $onu->uuid = $uuid;
+        if (! $onu->uuid) {
+            $onu->uuid = $uuid;
+        }
     }
 
     /**

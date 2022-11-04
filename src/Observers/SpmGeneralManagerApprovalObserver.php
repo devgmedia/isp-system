@@ -13,7 +13,9 @@ class SpmGeneralManagerApprovalObserver
             $uuid = Uuid::uuid4();
         } while (SpmGeneralManagerApproval::where('uuid', $uuid)->exists());
 
-        if (!$spmGeneralManagerApproval->uuid) $spmGeneralManagerApproval->uuid = $uuid;
+        if (! $spmGeneralManagerApproval->uuid) {
+            $spmGeneralManagerApproval->uuid = $uuid;
+        }
     }
 
     /**

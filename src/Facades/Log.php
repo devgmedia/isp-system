@@ -47,7 +47,7 @@ class Log
             'class' => $frame->class,
             'method' => $frame->method,
         ];
-        
+
         $this->properties = [
             'properties' => $this->properties,
             'trace' => $this->trace,

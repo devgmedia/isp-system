@@ -13,7 +13,9 @@ class SpmFinanceApprovalObserver
             $uuid = Uuid::uuid4();
         } while (SpmFinanceApproval::where('uuid', $uuid)->exists());
 
-        if (!$spmFinanceApproval->uuid) $spmFinanceApproval->uuid = $uuid;
+        if (! $spmFinanceApproval->uuid) {
+            $spmFinanceApproval->uuid = $uuid;
+        }
     }
 
     /**

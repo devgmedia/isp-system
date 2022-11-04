@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\Boq;
 use Carbon\Carbon;
+use Gmedia\IspSystem\Models\Boq;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
@@ -14,8 +14,7 @@ class BoqObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Boq::where('uuid', $uuid)->exists());
-        if (!$boq->uuid) {
-
+        if (! $boq->uuid) {
             $survey_reporting = DB::table('survey_reporting')->find($boq->survey_reporting_id);
 
             $get_boq = DB::table('boq')
@@ -25,15 +24,15 @@ class BoqObserver
 
             $code_date = Carbon::now()->format('my');
 
-            $branch = sprintf("%02d", $survey_reporting->branch_id);
-            $count = sprintf("%04s", $get_boq + 1);
+            $branch = sprintf('%02d', $survey_reporting->branch_id);
+            $count = sprintf('%04s', $get_boq + 1);
 
             $boq->uuid = $uuid;
-            $boq->number = 'BOQ/' . $branch . '/' . $code_date . '/' . $count;
+            $boq->number = 'BOQ/'.$branch.'/'.$code_date.'/'.$count;
             $boq->date = Carbon::now();
             $boq->branch_id = $survey_reporting->branch_id;
             $boq->pre_customer_id = $survey_reporting->pre_customer_id;
-        };
+        }
     }
 
     /**

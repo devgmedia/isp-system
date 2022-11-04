@@ -2,15 +2,7 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\ItemOpname;
-use Gmedia\IspSystem\Models\ItemOpnameList;
 use Gmedia\IspSystem\Models\ItemOpnameSession;
-use Gmedia\IspSystem\Models\Item as ItemModal;
-use Gmedia\IspSystem\Models\Branch as BranchModel;
-
-use Ramsey\Uuid\Uuid;
-
-use Carbon\Carbon;
 
 class ItemOpnameSessionObserver
 {
@@ -21,7 +13,7 @@ class ItemOpnameSessionObserver
      * @return void
      */
     public function creating(ItemOpnameSession $item)
-    {  
+    {
         //
     }
 

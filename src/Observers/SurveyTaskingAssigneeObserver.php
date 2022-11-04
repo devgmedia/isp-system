@@ -13,7 +13,9 @@ class SurveyTaskingAssigneeObserver
             $uuid = Uuid::uuid4();
         } while (SurveyTaskingAssignee::where('uuid', $uuid)->exists());
 
-        if (!$surveyTaskingAssignee->uuid) $surveyTaskingAssignee->uuid = $uuid;
+        if (! $surveyTaskingAssignee->uuid) {
+            $surveyTaskingAssignee->uuid = $uuid;
+        }
     }
 
     /**

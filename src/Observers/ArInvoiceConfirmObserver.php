@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\ArInvoiceConfirm;
 use app\Models\User;
+use Gmedia\IspSystem\Models\ArInvoiceConfirm;
 use Illuminate\Support\Facades\Auth;
 
 class ArInvoiceConfirmObserver
@@ -12,12 +12,13 @@ class ArInvoiceConfirmObserver
     {
         $user_id = Auth::guard('api')->id();
         if ($user_id) {
-            $user = User::with('employee')->find($user_id);            
+            $user = User::with('employee')->find($user_id);
             if ($user->employee) {
                 $arInvoiceConfirm->submit_by = $user->employee->id;
             }
         }
     }
+
     /**q
      * Handle the customer product additional "created" event.
      *

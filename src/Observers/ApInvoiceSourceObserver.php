@@ -12,7 +12,9 @@ class ApInvoiceSourceObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ApInvoiceSource::where('uuid', $uuid)->exists());
-        if (!$apInvoiceSource->uuid) $apInvoiceSource->uuid = $uuid;
+        if (! $apInvoiceSource->uuid) {
+            $apInvoiceSource->uuid = $uuid;
+        }
     }
 
     /**

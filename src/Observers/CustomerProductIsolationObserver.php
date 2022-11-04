@@ -3,14 +3,14 @@
 namespace Gmedia\IspSystem\Observers;
 
 use Gmedia\IspSystem\Models\CustomerProductIsolation;
-use Carbon\Carbon;
 
 class CustomerProductIsolationObserver
 {
     public function creating(CustomerProductIsolation $customerProductIsolation)
     {
-        // 
+        //
     }
+
     /**
      * Handle the customer product additional "created" event.
      *

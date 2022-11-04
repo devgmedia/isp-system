@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\Supplier;
 use app\Models\User;
+use Gmedia\IspSystem\Models\Supplier;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 
@@ -14,11 +14,13 @@ class SupplierObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Supplier::where('uuid', $uuid)->exists());
-        if (!$supplier->uuid) $supplier->uuid = $uuid;
+        if (! $supplier->uuid) {
+            $supplier->uuid = $uuid;
+        }
 
         $user_id = Auth::guard('api')->id();
         if ($user_id) {
-            $user = User::with('employee')->find($user_id);            
+            $user = User::with('employee')->find($user_id);
             if ($user->employee) {
                 $supplier->created_by = $user->employee->id;
             }

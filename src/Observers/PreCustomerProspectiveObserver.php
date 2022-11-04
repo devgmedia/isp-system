@@ -2,18 +2,9 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Facades\Cid;
-use Carbon\Carbon;
-use Faker\Factory as Faker;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
-use Spatie\Permission\Models\Role;
-use Ramsey\Uuid\Uuid;
-
-// models
-use app\Models\User as UserModel;
 use Gmedia\IspSystem\Models\PreCustomerProspective;
+// models
+use Ramsey\Uuid\Uuid;
 
 class PreCustomerProspectiveObserver
 {

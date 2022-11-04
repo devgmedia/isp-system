@@ -12,7 +12,9 @@ class KasbonObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Kasbon::where('uuid', $uuid)->exists());
-        if (!$kasbon->uuid) $kasbon->uuid = $uuid;
+        if (! $kasbon->uuid) {
+            $kasbon->uuid = $uuid;
+        }
     }
 
     /**

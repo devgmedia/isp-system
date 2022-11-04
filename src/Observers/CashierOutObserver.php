@@ -12,7 +12,9 @@ class CashierOutObserver
         do {
             $uuid = Uuid::uuid4();
         } while (CashierOut::where('uuid', $uuid)->exists());
-        if (!$cashierOut->uuid) $cashierOut->uuid = $uuid;
+        if (! $cashierOut->uuid) {
+            $cashierOut->uuid = $uuid;
+        }
     }
 
     /**

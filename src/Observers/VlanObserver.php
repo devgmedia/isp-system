@@ -12,7 +12,9 @@ class VlanObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Vlan::where('uuid', $uuid)->exists());
-        if (!$vlan->uuid) $vlan->uuid = $uuid;
+        if (! $vlan->uuid) {
+            $vlan->uuid = $uuid;
+        }
     }
 
     /**

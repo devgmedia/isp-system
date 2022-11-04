@@ -13,7 +13,9 @@ class SpmBranchManagerApprovalObserver
             $uuid = Uuid::uuid4();
         } while (SpmBranchManagerApproval::where('uuid', $uuid)->exists());
 
-        if (!$spmBranchManagerApproval->uuid) $spmBranchManagerApproval->uuid = $uuid;
+        if (! $spmBranchManagerApproval->uuid) {
+            $spmBranchManagerApproval->uuid = $uuid;
+        }
     }
 
     /**

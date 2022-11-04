@@ -2,10 +2,10 @@
 
 namespace Gmedia\IspSystem\Observers;
 
+use Carbon\Carbon;
 use Gmedia\IspSystem\Facades\Spm as SpmFac;
 use Gmedia\IspSystem\Models\Branch;
 use Gmedia\IspSystem\Models\Spm;
-use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 
 class SpmObserver
@@ -13,13 +13,13 @@ class SpmObserver
     public function creating(Spm $spm)
     {
         // uuid
-        if (!$spm->uuid) {
+        if (! $spm->uuid) {
             $uuid = null;
-            
+
             do {
                 $uuid = Uuid::uuid4();
             } while (Spm::where('uuid', $uuid)->exists());
-    
+
             $spm->uuid = $uuid;
         }
 
@@ -43,7 +43,7 @@ class SpmObserver
             $number = $explode_last_number[0].'/'.$explode_last_number[1].'/'.$explode_last_number[2].'/'.sprintf('%04d', intval($explode_last_number[3]) + 1);
         }
 
-        if (!$number) {
+        if (! $number) {
             $number = 'SPM/'.$branch->code.'/'.Carbon::now()->format('my').'/'.'0001';
         }
 

@@ -12,6 +12,8 @@ class TrialTaskingObserver
         do {
             $uuid = Uuid::uuid4();
         } while (TrialTaskingModel::where('uuid', $uuid)->exists());
-        if (!$TrialTasking->uuid) $TrialTasking->uuid = $uuid;
+        if (! $TrialTasking->uuid) {
+            $TrialTasking->uuid = $uuid;
+        }
     }
 }

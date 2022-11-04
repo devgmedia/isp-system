@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Observers;
 
+use Carbon\Carbon;
 use Gmedia\IspSystem\Models\ApInvoice;
 use Gmedia\IspSystem\Models\Branch;
-use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 
 class ApInvoiceObserver
@@ -14,7 +14,9 @@ class ApInvoiceObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ApInvoice::where('uuid', $uuid)->exists());
-        if (!$apInvoice->uuid) $apInvoice->uuid = $uuid;
+        if (! $apInvoice->uuid) {
+            $apInvoice->uuid = $uuid;
+        }
 
         // number
         $branch = Branch::find($apInvoice->branch_id);
@@ -36,7 +38,7 @@ class ApInvoiceObserver
             $number = $explode_last_number[0].'/'.$explode_last_number[1].'/'.$explode_last_number[2].'/'.sprintf('%04d', intval($explode_last_number[3]) + 1);
         }
 
-        if (!$number) {
+        if (! $number) {
             $number = 'AP/'.$branch->code.'/'.Carbon::now()->format('my').'/'.'0001';
         }
 

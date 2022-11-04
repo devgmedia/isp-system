@@ -2,13 +2,11 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\Branch;
 use Gmedia\IspSystem\Models\Employee;
-use Ramsey\Uuid\Uuid;
-use Illuminate\Support\Facades\Auth;
-
-// models
 use Gmedia\IspSystem\Models\PreSurveyRequest;
+use Illuminate\Support\Facades\Auth;
+// models
+use Ramsey\Uuid\Uuid;
 
 class PreSurveyRequestObserver
 {
@@ -25,9 +23,9 @@ class PreSurveyRequestObserver
             ->count();
 
         $number = $pre_survey + 1;
-        $num_padded = sprintf("%04s", $number);
+        $num_padded = sprintf('%04s', $number);
 
-        $pre_survey_request->number = 'PRE/' . $employe->branch->code . '/' . date('m') . date('y') . '/' . $num_padded;
+        $pre_survey_request->number = 'PRE/'.$employe->branch->code.'/'.date('m').date('y').'/'.$num_padded;
         $pre_survey_request->uuid = $uuid;
     }
 

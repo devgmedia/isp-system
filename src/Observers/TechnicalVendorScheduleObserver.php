@@ -12,7 +12,9 @@ class TechnicalVendorScheduleObserver
         do {
             $uuid = Uuid::uuid4();
         } while (TechnicalVendorSchedule::where('uuid', $uuid)->exists());
-        if (!$technical_vendor_schedule->uuid) $technical_vendor_schedule->uuid = $uuid;
+        if (! $technical_vendor_schedule->uuid) {
+            $technical_vendor_schedule->uuid = $uuid;
+        }
     }
 
     /**

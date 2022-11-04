@@ -48,7 +48,7 @@ class PraGlCashierOut
     }
 
     public static function update(CashierOut $cashier_out)
-    {        
+    {
         $log = applog('erp, pra_gl_cashier_out__fac, update');
         $log->save('debug');
 
@@ -88,7 +88,7 @@ class PraGlCashierOut
             'credit' => $cashier_out->total,
         ]);
     }
-    
+
     public static function updateOrCreate(CashierOut $cashier_out)
     {
         $log = applog('erp, pra_gl_cashier_out__fac, update_or_create');
@@ -106,10 +106,12 @@ class PraGlCashierOut
         $log = applog('erp, pra_gl_cashier_out__fac, delete');
         $log->save('debug');
 
-        if (!$cashier_out->journal) return;
+        if (! $cashier_out->journal) {
+            return;
+        }
 
         $cashier_out->journal->items()->delete();
-        
+
         $cashier_out->journal->journal_ar_invoices()->delete();
         $cashier_out->journal->journal_ap_invoices()->delete();
         $cashier_out->journal->journal_cashier_outs()->delete();

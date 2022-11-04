@@ -12,7 +12,9 @@ class EmployeeObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Employee::where('uuid', $uuid)->exists());
-        if (!$employee->uuid) $employee->uuid = $uuid;
+        if (! $employee->uuid) {
+            $employee->uuid = $uuid;
+        }
     }
 
     /**

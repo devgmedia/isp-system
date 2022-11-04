@@ -11,6 +11,7 @@ class CustomerProductAdditionalObserver
     {
         $customerProductAdditional->sid = Customer::generateSidForAdditional($customerProductAdditional->customer_product);
     }
+
     /**
      * Handle the customer product additional "created" event.
      *

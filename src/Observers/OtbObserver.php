@@ -12,7 +12,9 @@ class OtbObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Otb::where('uuid', $uuid)->exists());
-        if (!$otb->uuid) $otb->uuid = $uuid;
+        if (! $otb->uuid) {
+            $otb->uuid = $uuid;
+        }
     }
 
     /**

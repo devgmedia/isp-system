@@ -15,10 +15,12 @@ class CashBankObserver
         do {
             $uuid = Uuid::uuid4();
         } while (CashBank::where('uuid', $uuid)->exists());
-        if (!$cashBank->uuid) $cashBank->uuid = $uuid;
+        if (! $cashBank->uuid) {
+            $cashBank->uuid = $uuid;
+        }
 
         // code
-        if (!$cashBank->code) {
+        if (! $cashBank->code) {
             $code = null;
 
             $last_cash_bank = DB::table('cash_bank')
@@ -36,7 +38,7 @@ class CashBankObserver
                 $code = $explode_last_code[0].'/'.$explode_last_code[1].'/'.sprintf('%03d', intval($explode_last_code[2]) + 1);
             }
 
-            if (!$code) {
+            if (! $code) {
                 $chart_of_account_title = ChartOfAccountTitle::find($cashBank->chart_of_account_title_id);
                 $code = 'CB/'.$chart_of_account_title->branch->code.'/'.'001';
             }

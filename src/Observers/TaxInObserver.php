@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Observers;
 
+use Carbon\Carbon;
 use Gmedia\IspSystem\Models\Branch;
 use Gmedia\IspSystem\Models\TaxIn;
-use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 
 class TaxInObserver
@@ -14,7 +14,9 @@ class TaxInObserver
         do {
             $uuid = Uuid::uuid4();
         } while (TaxIn::where('uuid', $uuid)->exists());
-        if (!$taxIn->uuid) $taxIn->uuid = $uuid;
+        if (! $taxIn->uuid) {
+            $taxIn->uuid = $uuid;
+        }
 
         // number
         $branch = Branch::find($taxIn->branch_id);
@@ -36,7 +38,7 @@ class TaxInObserver
             $number = $explode_last_number[0].'/'.$explode_last_number[1].'/'.$explode_last_number[2].'/'.sprintf('%04d', intval($explode_last_number[3]) + 1);
         }
 
-        if (!$number) {
+        if (! $number) {
             $number = 'TI/'.$branch->code.'/'.Carbon::now()->format('my').'/'.'0001';
         }
 

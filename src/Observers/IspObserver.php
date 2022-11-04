@@ -12,7 +12,9 @@ class IspObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Isp::where('uuid', $uuid)->exists());
-        if (!$isp->uuid) $isp->uuid = $uuid;
+        if (! $isp->uuid) {
+            $isp->uuid = $uuid;
+        }
     }
 
     /**

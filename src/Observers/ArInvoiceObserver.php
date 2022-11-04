@@ -12,7 +12,9 @@ class ArInvoiceObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ArInvoice::where('uuid', $uuid)->exists());
-        if (!$arInvoice->uuid) $arInvoice->uuid = $uuid;
+        if (! $arInvoice->uuid) {
+            $arInvoice->uuid = $uuid;
+        }
     }
 
     /**

@@ -12,7 +12,9 @@ class OltObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Olt::where('uuid', $uuid)->exists());
-        if (!$olt->uuid) $olt->uuid = $uuid;
+        if (! $olt->uuid) {
+            $olt->uuid = $uuid;
+        }
     }
 
     /**

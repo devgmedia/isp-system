@@ -12,7 +12,9 @@ class PonObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Pon::where('uuid', $uuid)->exists());
-        if (!$pon->uuid) $pon->uuid = $uuid;
+        if (! $pon->uuid) {
+            $pon->uuid = $uuid;
+        }
     }
 
     /**

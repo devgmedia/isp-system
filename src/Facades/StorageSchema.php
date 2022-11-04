@@ -2,7 +2,6 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class StorageSchema
@@ -11,7 +10,7 @@ class StorageSchema
     {
         $checkFile = Storage::disk(config('filesystems.primary_disk'))->exists($path_file);
 
-        if (!$checkFile) {
+        if (! $checkFile) {
             abort(404);
         }
 
@@ -23,8 +22,8 @@ class StorageSchema
         ];
 
         $data = [
-            "file" => $file,
-            "response" => $response,
+            'file' => $file,
+            'response' => $response,
         ];
 
         return $data;

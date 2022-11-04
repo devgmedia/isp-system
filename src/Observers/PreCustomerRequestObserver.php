@@ -2,17 +2,17 @@
 
 namespace Gmedia\IspSystem\Observers;
 
+use app\Models\User;
+use Carbon\Carbon;
+use Faker\Factory as Faker;
 use Gmedia\IspSystem\Models\Employee;
 use Gmedia\IspSystem\Models\PreCustomerRequest;
 use Gmedia\IspSystem\Models\ProductBrand;
-use app\Models\User;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 use Spatie\Permission\Models\Role;
-use Faker\Factory as Faker;
 
 class PreCustomerRequestObserver
 {
@@ -22,10 +22,12 @@ class PreCustomerRequestObserver
             $uuid = Uuid::uuid4();
         } while (PreCustomerRequest::where('uuid', $uuid)->exists());
         $preCustomerRequest->uuid = $uuid;
-        
+
         $password = Faker::create()->regexify('[A-Za-z0-9]{8}');
         $brand = ProductBrand::find($preCustomerRequest->brand_id);
-        if ($brand) $password = Hash::make($brand->agent_account_default_password);
+        if ($brand) {
+            $password = Hash::make($brand->agent_account_default_password);
+        }
 
         $user = User::create([
             'name' => 'pre_customer_'.$uuid,
@@ -36,7 +38,7 @@ class PreCustomerRequestObserver
         ]);
         $role = Role::where('name', 'pre_customer')->get();
         $user->assignRole($role);
-        
+
         $preCustomerRequest->user_id = $user->id;
         $preCustomerRequest->submit_by = Employee::where('user_id', Auth::guard('api')->id())->value('id');
         $preCustomerRequest->submit_at = Carbon::now()->toDateTimeString();

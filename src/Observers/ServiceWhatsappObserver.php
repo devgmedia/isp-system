@@ -12,7 +12,9 @@ class ServiceWhatsappObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ServiceWhatsapp::where('uuid', $uuid)->exists());
-        if (!$serviceWhatsapp->uuid) $serviceWhatsapp->uuid = $uuid;
+        if (! $serviceWhatsapp->uuid) {
+            $serviceWhatsapp->uuid = $uuid;
+        }
     }
 
     /**

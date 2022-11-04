@@ -12,7 +12,9 @@ class ArInvoiceFakturObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ArInvoiceFaktur::where('uuid', $uuid)->exists());
-        if (!$arInvoiceFaktur->uuid) $arInvoiceFaktur->uuid = $uuid;
+        if (! $arInvoiceFaktur->uuid) {
+            $arInvoiceFaktur->uuid = $uuid;
+        }
     }
 
     /**

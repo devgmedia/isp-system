@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\PurchaseOrder;
 use Gmedia\IspSystem\Models\Branch as BranchModel;
+use Gmedia\IspSystem\Models\PurchaseOrder;
 use Ramsey\Uuid\Uuid;
 
 class PurchaseOrderObserver
@@ -13,7 +13,9 @@ class PurchaseOrderObserver
         do {
             $uuid = Uuid::uuid4();
         } while (PurchaseOrder::where('uuid', $uuid)->exists());
-        if (!$purchaseOrder->uuid) $purchaseOrder->uuid = $uuid;
+        if (! $purchaseOrder->uuid) {
+            $purchaseOrder->uuid = $uuid;
+        }
 
         $date = $purchaseOrder->date;
         $branch_id = $purchaseOrder->branch_id;
@@ -26,12 +28,11 @@ class PurchaseOrderObserver
         ->latest()
         ->first();
 
-        $latest_number = !empty($latest) ? $latest->number : 0;
+        $latest_number = ! empty($latest) ? $latest->number : 0;
 
         $urut_arr = explode('/', $latest_number);
-        $urut = $urut_arr[count($urut_arr)-1];
-        $no = sprintf('%04d', $urut+1);
-
+        $urut = $urut_arr[count($urut_arr) - 1];
+        $no = sprintf('%04d', $urut + 1);
 
         // get branch code
         $branch_code = BranchModel::find($branch_id)->code;

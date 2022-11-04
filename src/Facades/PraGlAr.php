@@ -132,7 +132,7 @@ class PraGlAr
     }
 
     public static function update(ArInvoice $ar_invoice)
-    {        
+    {
         $log = applog('erp, pra_gl_ar__fac, update');
         $log->save('debug');
 
@@ -249,7 +249,7 @@ class PraGlAr
             'credit' => $ar_invoice->tax,
         ]);
     }
-    
+
     public static function updateOrCreate(ArInvoice $ar_invoice)
     {
         $log = applog('erp, pra_gl_ar__fac, update_or_create');
@@ -267,10 +267,12 @@ class PraGlAr
         $log = applog('erp, pra_gl_ar__fac, delete');
         $log->save('debug');
 
-        if (!$ar_invoice->journal) return;
+        if (! $ar_invoice->journal) {
+            return;
+        }
 
         $ar_invoice->journal->items()->delete();
-        
+
         $ar_invoice->journal->journal_ar_invoices()->delete();
         $ar_invoice->journal->journal_ap_invoices()->delete();
         $ar_invoice->journal->journal_ar_invoices()->delete();

@@ -12,7 +12,9 @@ class SvlanObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Svlan::where('uuid', $uuid)->exists());
-        if (!$svlan->uuid) $svlan->uuid = $uuid;
+        if (! $svlan->uuid) {
+            $svlan->uuid = $uuid;
+        }
     }
 
     /**

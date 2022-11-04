@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\InstallationTasking;
 use Carbon\Carbon;
+use Gmedia\IspSystem\Models\InstallationTasking;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
@@ -15,7 +15,9 @@ class InstallationTaskingObserver
             $uuid = Uuid::uuid4();
         } while (InstallationTasking::where('uuid', $uuid)->exists());
 
-        if (!$InstallationTasking->uuid) $InstallationTasking->uuid = $uuid;
+        if (! $InstallationTasking->uuid) {
+            $InstallationTasking->uuid = $uuid;
+        }
 
         $InstallationRequest = DB::table('installation_request')->find($InstallationTasking->installation_request_id);
 
@@ -26,10 +28,10 @@ class InstallationTaskingObserver
 
         $code_date = Carbon::now()->format('my');
 
-        $branch = sprintf("%02d", $InstallationRequest->branch_id);
-        $count = sprintf("%04s", $get_installation_tasking + 1);
+        $branch = sprintf('%02d', $InstallationRequest->branch_id);
+        $count = sprintf('%04s', $get_installation_tasking + 1);
 
-        $InstallationTasking->number = 'ITA/' . $branch . '/' . $code_date . '/' . $count;
+        $InstallationTasking->number = 'ITA/'.$branch.'/'.$code_date.'/'.$count;
     }
 
     /**

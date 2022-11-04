@@ -12,6 +12,8 @@ class TrialReportingObserve
         do {
             $uuid = Uuid::uuid4();
         } while (TrialReportingModel::where('uuid', $uuid)->exists());
-        if (!$TrialReporting->uuid) $TrialReporting->uuid = $uuid;
+        if (! $TrialReporting->uuid) {
+            $TrialReporting->uuid = $uuid;
+        }
     }
 }

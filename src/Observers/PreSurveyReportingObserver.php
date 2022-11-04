@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\PreSurveyReporting as PreSurveyReportingModel;
 use Carbon\Carbon;
+use Gmedia\IspSystem\Models\PreSurveyReporting as PreSurveyReportingModel;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Uuid;
 
@@ -14,7 +14,9 @@ class PreSurveyReportingObserver
         do {
             $uuid = Uuid::uuid4();
         } while (PreSurveyReportingModel::where('uuid', $uuid)->exists());
-        if (!$PreSurveyReporting->uuid) $PreSurveyReporting->uuid = $uuid;
+        if (! $PreSurveyReporting->uuid) {
+            $PreSurveyReporting->uuid = $uuid;
+        }
 
         $PreSurveyTasking = DB::table('pre_survey_tasking')->find($PreSurveyReporting->pre_survey_tasking_id);
 
@@ -25,9 +27,9 @@ class PreSurveyReportingObserver
 
         $code_date = Carbon::now()->format('my');
 
-        $branch = sprintf("%02d", $PreSurveyTasking->branch_id);
-        $count = sprintf("%04s", $get_pre_survey_reporting + 1);
+        $branch = sprintf('%02d', $PreSurveyTasking->branch_id);
+        $count = sprintf('%04s', $get_pre_survey_reporting + 1);
 
-        $PreSurveyReporting->number = 'PRP/' . $branch . '/' . $code_date . '/' . $count;
+        $PreSurveyReporting->number = 'PRP/'.$branch.'/'.$code_date.'/'.$count;
     }
 }

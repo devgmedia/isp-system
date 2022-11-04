@@ -16,10 +16,10 @@ class TaxIn
             'ap_invoice_id' => $invoice->id,
             'branch_id' => $invoice->branch_id,
             'chart_of_account_title_id' => $invoice->chart_of_account_title_id,
-            
+
             'supplier_id' => $invoice->supplier_id,
             'invoice_date' => $invoice->date,
-            'supplier_name' => $invoice->supplier_id ? $invoice->supplier->name :  null,
+            'supplier_name' => $invoice->supplier_id ? $invoice->supplier->name : null,
         ]);
 
         return $tax_in;
@@ -31,7 +31,9 @@ class TaxIn
         $log->save('debug');
 
         $tax_in = $invoice->tax_in;
-        if ($tax_in) $tax_in->delete();
+        if ($tax_in) {
+            $tax_in->delete();
+        }
 
         return true;
     }

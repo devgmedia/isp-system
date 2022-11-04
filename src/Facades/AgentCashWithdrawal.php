@@ -3,9 +3,9 @@
 namespace Gmedia\IspSystem\Facades;
 
 use App;
+use Carbon\Carbon;
 use Gmedia\IspSystem\Models\AgentCashWithdrawal as AgentCashWithdrawalModel;
 use Gmedia\IspSystem\Models\Employee;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,7 +24,7 @@ class AgentCashWithdrawal
         });
         $phone_numbers = $phone_numbers->all();
 
-        if (!App::environment('production')) {
+        if (! App::environment('production')) {
             $dev_phone_numbers = config('phone_number.dev_list');
 
             if (App::environment(['staging', 'testing', 'development']) && $dev_phone_numbers) {
@@ -45,7 +45,7 @@ class AgentCashWithdrawal
         $success = false;
 
         $proof_of_transaction = $agent_cash_withdrawal->proof_of_transaction;
-        if ($proof_of_transaction) {            
+        if ($proof_of_transaction) {
             $storage = Storage::disk(config('disk.primary'));
             $file_path = 'agent_cash_withdrawal_proof_of_transaction/'.$proof_of_transaction;
 
@@ -81,7 +81,7 @@ class AgentCashWithdrawal
             $agent->update([
                 'whatsapp_fee_confirmation_sent_at' => Carbon::now()->toDateTimeString(),
             ]);
-    
+
             $agent_cash_withdrawal->update([
                 'whatsapp_sent_at' => Carbon::now()->toDateTimeString(),
                 'whatsapp_sent_by' => Employee::where('user_id', Auth::guard('api')->id())->value('id'),

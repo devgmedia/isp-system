@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Facades\Radius;
 use Gmedia\IspSystem\Facades\Customer;
+use Gmedia\IspSystem\Facades\Radius;
 use Gmedia\IspSystem\Models\PreCustomerProduct;
 
 class PreCustomerProductObserver
@@ -12,19 +12,25 @@ class PreCustomerProductObserver
     {        // retail_status
         $preCustomerProduct->retail_status = 'pending';
         // sid
-        if (!$preCustomerProduct->sid) $preCustomerProduct->sid = Customer::generateSid(null, $preCustomerProduct->pre_customer);
+        if (! $preCustomerProduct->sid) {
+            $preCustomerProduct->sid = Customer::generateSid(null, $preCustomerProduct->pre_customer);
+        }
 
         // radius
         if ($preCustomerProduct->product) {
-            $radius_username = $preCustomerProduct->sid . $preCustomerProduct->product->radius_username_suffix;
-            $radius_password = $preCustomerProduct->product->radius_password_prefix . $preCustomerProduct->sid;
+            $radius_username = $preCustomerProduct->sid.$preCustomerProduct->product->radius_username_suffix;
+            $radius_password = $preCustomerProduct->product->radius_password_prefix.$preCustomerProduct->sid;
         } else {
-            $radius_username = $preCustomerProduct->sid . '@gmedia.net.id';
-            $radius_password = 'pass4' . $preCustomerProduct->sid;
+            $radius_username = $preCustomerProduct->sid.'@gmedia.net.id';
+            $radius_password = 'pass4'.$preCustomerProduct->sid;
         }
 
-        if (!$preCustomerProduct->radius_username) $preCustomerProduct->radius_username = $radius_username;
-        if (!$preCustomerProduct->radius_password) $preCustomerProduct->radius_password = $radius_password;
+        if (! $preCustomerProduct->radius_username) {
+            $preCustomerProduct->radius_username = $radius_username;
+        }
+        if (! $preCustomerProduct->radius_password) {
+            $preCustomerProduct->radius_password = $radius_password;
+        }
 
         Radius::createUser($radius_username, $radius_password);
     }

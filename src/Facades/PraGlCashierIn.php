@@ -88,7 +88,7 @@ class PraGlCashierIn
             'credit' => 0,
         ]);
     }
-    
+
     public static function updateOrCreate(CashierIn $cashier_in)
     {
         $log = applog('erp, pra_gl_cashier_in__fac, update_or_create');
@@ -106,10 +106,12 @@ class PraGlCashierIn
         $log = applog('erp, pra_gl_cashier_in__fac, delete');
         $log->save('debug');
 
-        if (!$cashier_in->journal) return;
+        if (! $cashier_in->journal) {
+            return;
+        }
 
         $cashier_in->journal->items()->delete();
-        
+
         $cashier_in->journal->journal_ar_invoices()->delete();
         $cashier_in->journal->journal_ap_invoices()->delete();
         $cashier_in->journal->journal_cashier_ins()->delete();

@@ -2,15 +2,15 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\Agent;
-use Gmedia\IspSystem\Models\ProductBrand;
 use app\Models\User;
 use Carbon\Carbon;
+use Faker\Factory as Faker;
+use Gmedia\IspSystem\Models\Agent;
+use Gmedia\IspSystem\Models\ProductBrand;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 use Spatie\Permission\Models\Role;
-use Faker\Factory as Faker;
 
 class AgentObserver
 {
@@ -20,21 +20,23 @@ class AgentObserver
         $agent->registration_date = Carbon::now()->toDateString();
 
         // uuid
-        if (!$agent->uuid) {
+        if (! $agent->uuid) {
             $uuid = null;
-            
+
             do {
                 $uuid = Uuid::uuid4();
             } while (Agent::where('uuid', $uuid)->exists());
-    
+
             $agent->uuid = $uuid;
         }
 
         // user_id
-        if (!$agent->user_id) {
+        if (! $agent->user_id) {
             $password = Faker::create()->regexify('[A-Za-z0-9]{8}');
             $brand = ProductBrand::find($agent->brand_id);
-            if ($brand) $password = Hash::make($brand->agent_account_default_password);
+            if ($brand) {
+                $password = Hash::make($brand->agent_account_default_password);
+            }
 
             $user = User::create([
                 'name' => 'agent_'.$uuid,
@@ -45,7 +47,7 @@ class AgentObserver
             ]);
             $role = Role::where('name', 'agent')->get();
             $user->assignRole($role);
-            
+
             $agent->user_id = $user->id;
             // send password to agent email
         }

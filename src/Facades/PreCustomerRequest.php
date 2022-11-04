@@ -2,14 +2,14 @@
 
 namespace Gmedia\IspSystem\Facades;
 
+use Carbon\Carbon;
 use Gmedia\IspSystem\Models\Branch;
 use Gmedia\IspSystem\Models\PreCustomerRequest as PreCustomerRequestModel;
 use Gmedia\IspSystem\Models\PreCustomerRequestKnowFrom;
 use Gmedia\IspSystem\Models\PreCustomerRequestNeed;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
-use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use Illuminate\Support\Facades\Validator;
 
 class PreCustomerRequest
 {
@@ -18,14 +18,14 @@ class PreCustomerRequest
         $log = applog('erp__pre_customer_request_fac');
         $log->save('sync');
 
-        if (!Branch::where('name', $branch_name)->exists()) {
+        if (! Branch::where('name', $branch_name)->exists()) {
             return;
         }
-        
+
         $provinces = [];
         if ($branch_name === 'Yogyakarta') {
             $provinces = array_merge($provinces, [34]);
-        } else if ($branch_name === 'Bali') {
+        } elseif ($branch_name === 'Bali') {
             $provinces = array_merge($provinces, [35, 51]);
         }
 
@@ -82,7 +82,9 @@ class PreCustomerRequest
                     'string',
                     'email:rfc',
                     function ($attribute, $value, $fail) use ($phone_number) {
-                        if (!$phone_number && !$value) $fail('A email is required.');
+                        if (! $phone_number && ! $value) {
+                            $fail('A email is required.');
+                        }
                     },
                 ],
                 'phone_number' => [
@@ -90,16 +92,18 @@ class PreCustomerRequest
                     'string',
                     'regex:/^[0-9+()]{1}[0-9+()\s]{1,18}[0-9+()]{1}$/',
                     function ($attribute, $value, $fail) use ($email) {
-                        if (!$email && !$value) $fail('A phone number is required.');
+                        if (! $email && ! $value) {
+                            $fail('A phone number is required.');
+                        }
                     },
                 ],
                 'address' => 'nullable|string|regex:/^[A-Z]{1}[0-9A-Za-z()\-,.\/\s]+$/',
-                'know_from_id'=> 'nullable|exists:Gmedia\IspSystem\Models\PreCustomerRequestKnowFrom,id',
-                'need_id'=> 'nullable|exists:Gmedia\IspSystem\Models\PreCustomerRequestNeed,id',
+                'know_from_id' => 'nullable|exists:Gmedia\IspSystem\Models\PreCustomerRequestKnowFrom,id',
+                'need_id' => 'nullable|exists:Gmedia\IspSystem\Models\PreCustomerRequestNeed,id',
                 'branch_id' => 'required|exists:Gmedia\IspSystem\Models\Branch,id',
             ]);
 
-            return (!$validator->fails());
+            return ! $validator->fails();
         })->each(function ($item) {
             PreCustomerRequestModel::create($item);
         });

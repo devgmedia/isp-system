@@ -12,7 +12,9 @@ class HoldAmountObserver
         do {
             $uuid = Uuid::uuid4();
         } while (HoldAmount::where('uuid', $uuid)->exists());
-        if (!$holdAmount->uuid) $holdAmount->uuid = $uuid;
+        if (! $holdAmount->uuid) {
+            $holdAmount->uuid = $uuid;
+        }
     }
 
     /**

@@ -12,7 +12,9 @@ class ProvinceObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Province::where('uuid', $uuid)->exists());
-        if (!$province->uuid) $province->uuid = $uuid;
+        if (! $province->uuid) {
+            $province->uuid = $uuid;
+        }
     }
 
     /**

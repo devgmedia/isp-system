@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Facades\Radius;
 use Gmedia\IspSystem\Facades\Customer;
+use Gmedia\IspSystem\Facades\Radius;
 use Gmedia\IspSystem\Models\CustomerProduct;
 use Ramsey\Uuid\Uuid;
 
@@ -12,7 +12,9 @@ class CustomerProductObserver
     public function creating(CustomerProduct $customerProduct)
     {
         // sid
-        if (!$customerProduct->sid) $customerProduct->sid = Customer::generateSid($customerProduct->customer);
+        if (! $customerProduct->sid) {
+            $customerProduct->sid = Customer::generateSid($customerProduct->customer);
+        }
 
         // radius
         if ($customerProduct->product) {
@@ -23,13 +25,17 @@ class CustomerProductObserver
             $radius_password = 'pass4'.$customerProduct->sid;
         }
 
-        if (!$customerProduct->radius_username) $customerProduct->radius_username = $radius_username;
-        if (!$customerProduct->radius_password) $customerProduct->radius_password = $radius_password;
+        if (! $customerProduct->radius_username) {
+            $customerProduct->radius_username = $radius_username;
+        }
+        if (! $customerProduct->radius_password) {
+            $customerProduct->radius_password = $radius_password;
+        }
 
         Radius::createUser($radius_username, $radius_password);
 
         // uuid
-        if (!$customerProduct->uuid) {
+        if (! $customerProduct->uuid) {
             $uuid = null;
 
             do {

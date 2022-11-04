@@ -2,8 +2,8 @@
 
 namespace Gmedia\IspSystem\Observers;
 
-use Gmedia\IspSystem\Models\ArInvoiceEmailReminder;
 use app\Models\User;
+use Gmedia\IspSystem\Models\ArInvoiceEmailReminder;
 use Illuminate\Support\Facades\Auth;
 
 class ArInvoiceEmailReminderObserver
@@ -12,12 +12,13 @@ class ArInvoiceEmailReminderObserver
     {
         $user_id = Auth::guard('api')->id();
         if ($user_id) {
-            $user = User::with('employee')->find($user_id);            
+            $user = User::with('employee')->find($user_id);
             if ($user->employee) {
                 $arInvoiceEmailReminder->sent_by = $user->employee->id;
             }
         }
     }
+
     /**q
      * Handle the customer product additional "created" event.
      *

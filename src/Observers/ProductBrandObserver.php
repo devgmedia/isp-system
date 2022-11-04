@@ -12,7 +12,9 @@ class ProductBrandObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ProductBrand::where('uuid', $uuid)->exists());
-        if (!$productBrand->uuid) $productBrand->uuid = $uuid;
+        if (! $productBrand->uuid) {
+            $productBrand->uuid = $uuid;
+        }
     }
 
     /**

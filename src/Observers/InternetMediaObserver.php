@@ -12,7 +12,9 @@ class InternetMediaObserver
         do {
             $uuid = Uuid::uuid4();
         } while (InternetMedia::where('uuid', $uuid)->exists());
-        if (!$internet_media->uuid) $internet_media->uuid = $uuid;
+        if (! $internet_media->uuid) {
+            $internet_media->uuid = $uuid;
+        }
     }
 
     /**

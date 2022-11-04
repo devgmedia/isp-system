@@ -12,7 +12,9 @@ class JournalObserver
         do {
             $uuid = Uuid::uuid4();
         } while (Journal::where('uuid', $uuid)->exists());
-        if (!$journal->uuid) $journal->uuid = $uuid;
+        if (! $journal->uuid) {
+            $journal->uuid = $uuid;
+        }
     }
 
     /**

@@ -12,7 +12,9 @@ class ChartOfAccountTitleObserver
         do {
             $uuid = Uuid::uuid4();
         } while (ChartOfAccountTitle::where('uuid', $uuid)->exists());
-        if (!$chartOfAccountTitle->uuid) $chartOfAccountTitle->uuid = $uuid;
+        if (! $chartOfAccountTitle->uuid) {
+            $chartOfAccountTitle->uuid = $uuid;
+        }
     }
 
     /**

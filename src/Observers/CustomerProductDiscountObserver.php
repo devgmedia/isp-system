@@ -3,14 +3,14 @@
 namespace Gmedia\IspSystem\Observers;
 
 use Gmedia\IspSystem\Models\CustomerProductDiscount;
-use Carbon\Carbon;
 
 class CustomerProductDiscountObserver
 {
     public function creating(CustomerProductDiscount $customerProductDiscount)
     {
-        // 
+        //
     }
+
     /**
      * Handle the customer product additional "created" event.
      *

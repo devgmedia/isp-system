@@ -12,7 +12,9 @@ class CustomerEmailObserver
         do {
             $uuid = Uuid::uuid4();
         } while (CustomerEmail::where('uuid', $uuid)->exists());
-        if (!$customerEmail->uuid) $customerEmail->uuid = $uuid;
+        if (! $customerEmail->uuid) {
+            $customerEmail->uuid = $uuid;
+        }
     }
 
     /**

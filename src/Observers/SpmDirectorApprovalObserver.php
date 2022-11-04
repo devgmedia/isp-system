@@ -13,7 +13,9 @@ class SpmDirectorApprovalObserver
             $uuid = Uuid::uuid4();
         } while (SpmDirectorApproval::where('uuid', $uuid)->exists());
 
-        if (!$spmDirectorApproval->uuid) $spmDirectorApproval->uuid = $uuid;
+        if (! $spmDirectorApproval->uuid) {
+            $spmDirectorApproval->uuid = $uuid;
+        }
     }
 
     /**

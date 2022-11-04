@@ -12,7 +12,9 @@ class CustomerCategoryObserver
         do {
             $uuid = Uuid::uuid4();
         } while (CustomerCategory::where('uuid', $uuid)->exists());
-        if (!$customerCategory->uuid) $customerCategory->uuid = $uuid;
+        if (! $customerCategory->uuid) {
+            $customerCategory->uuid = $uuid;
+        }
     }
 
     /**
