@@ -9,10 +9,8 @@ class TelegramBot
 {
     public static function sendSentryMessage($error = [], $tags = [])
     {
-        if (! config('telegram.setry')) {
-            return false;
-        }
-
+        if (!config('telegram.setry')) return false;
+        
         $projectName = config('telegram.project_name');
         $chatId = config('telegram.sentry_chat_id');
 
@@ -24,9 +22,7 @@ class TelegramBot
 
         if ($tags) {
             $tag_text = PHP_EOL;
-            foreach ($tags as $tag) {
-                $tag_text = $tag.' '.$tag_text;
-            }
+            foreach ($tags as $tag) $tag_text = $tag.' '.$tag_text;
             $text = $tag_text.$text;
         }
 
@@ -43,9 +39,7 @@ class TelegramBot
 
         if ($tags) {
             $tag_text = PHP_EOL;
-            foreach ($tags as $tag) {
-                $tag_text = $tag.' '.$tag_text;
-            }
+            foreach ($tags as $tag) $tag_text = $tag.' '.$tag_text;
             $text = $tag_text.$text;
         }
 

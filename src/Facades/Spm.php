@@ -2,23 +2,23 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Gmedia\IspSystem\Facades\Mail as MailFac;
-use Gmedia\IspSystem\Mail\Spm\BranchManagerApprovalInformationMail;
-use Gmedia\IspSystem\Mail\Spm\BranchManagerApprovalMail;
-use Gmedia\IspSystem\Mail\Spm\DirectorApprovalInformationMail;
-use Gmedia\IspSystem\Mail\Spm\DirectorApprovalMail;
-use Gmedia\IspSystem\Mail\Spm\FinanceApprovalInformationMail;
-use Gmedia\IspSystem\Mail\Spm\FinanceApprovalMail;
-use Gmedia\IspSystem\Mail\Spm\GeneralManagerApprovalInformationMail;
-use Gmedia\IspSystem\Mail\Spm\GeneralManagerApprovalMail;
 use Gmedia\IspSystem\Models\ApInvoice;
 use Gmedia\IspSystem\Models\Spm as SpmModel;
 use Gmedia\IspSystem\Models\SpmBranchManagerApproval;
-use Gmedia\IspSystem\Models\SpmDirectorApproval;
 use Gmedia\IspSystem\Models\SpmFinanceApproval;
 use Gmedia\IspSystem\Models\SpmGeneralManagerApproval;
-use Illuminate\Support\Facades\Mail;
+use Gmedia\IspSystem\Models\SpmDirectorApproval;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Mail;
+use Gmedia\IspSystem\Mail\Spm\BranchManagerApprovalMail;
+use Gmedia\IspSystem\Mail\Spm\BranchManagerApprovalInformationMail;
+use Gmedia\IspSystem\Mail\Spm\FinanceApprovalMail;
+use Gmedia\IspSystem\Mail\Spm\FinanceApprovalInformationMail;
+use Gmedia\IspSystem\Mail\Spm\GeneralManagerApprovalMail;
+use Gmedia\IspSystem\Mail\Spm\GeneralManagerApprovalInformationMail;
+use Gmedia\IspSystem\Mail\Spm\DirectorApprovalMail;
+use Gmedia\IspSystem\Mail\Spm\DirectorApprovalInformationMail;
+use Gmedia\IspSystem\Facades\Mail as MailFac;
 
 class Spm
 {
@@ -32,7 +32,7 @@ class Spm
         do {
             $approval_id = Uuid::uuid4();
         } while (SpmModel::where('approval_id', $approval_id)->exists());
-
+        
         return $approval_id;
     }
 
@@ -66,9 +66,9 @@ class Spm
     {
         $log = applog('erp, spm__fac, set_invalid_to_approval_by_invoice');
         $log->save('debug');
-
+        
         $invoice->spms->each(function ($spm) {
-            static::setInvalidToApproval($spm);
+            static::setInvalidToApproval($spm); 
         });
     }
 
@@ -82,8 +82,9 @@ class Spm
 
         $spm_approval->spms->each(function ($spm) use (&$spm_on_views, &$paid_total) {
             $spm_paid_total = '-';
-
-            if ($spm->paid_total) {
+            
+            if ($spm->paid_total)
+            {
                 $paid_total += $spm->paid_total;
                 $spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
             }
@@ -124,9 +125,9 @@ class Spm
 
         $default_mail = Mail::getSwiftMailer();
         $spm_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $spm_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($spm_mail);
@@ -152,7 +153,8 @@ class Spm
             $rejected_spm_paid_total = '-';
 
             if ($spm->branch_manager_approved) {
-                if ($spm->paid_total) {
+                if ($spm->paid_total)
+                {
                     $paid_total += $spm->paid_total;
                     $spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
                 }
@@ -180,7 +182,8 @@ class Spm
                     'note' => $spm->note,
                 ]);
             } else {
-                if ($spm->paid_total) {
+                if ($spm->paid_total)
+                {
                     $rejected_paid_total += $spm->paid_total;
                     $rejected_spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
                 }
@@ -215,19 +218,11 @@ class Spm
 
         $branch = $spm_approval->branch;
         $regional = $branch->regional;
-
-        if ($branch->spm_is_active) {
-            array_push($cc, $branch->spm_pic_email);
-        }
-        if ($regional->spm_finance_is_active) {
-            array_push($cc, $regional->spm_finance_pic_email);
-        }
-        if ($regional->spm_general_manager_is_active) {
-            array_push($cc, $regional->spm_general_manager_pic_email);
-        }
-        if ($regional->spm_director_is_active) {
-            array_push($cc, $regional->spm_director_pic_email);
-        }
+        
+        if ($branch->spm_is_active) array_push($cc, $branch->spm_pic_email);
+        if ($regional->spm_finance_is_active) array_push($cc, $regional->spm_finance_pic_email);
+        if ($regional->spm_general_manager_is_active) array_push($cc, $regional->spm_general_manager_pic_email);
+        if ($regional->spm_director_is_active) array_push($cc, $regional->spm_director_pic_email);
 
         $params = [
             'spms' => $spm_on_views,
@@ -245,9 +240,9 @@ class Spm
 
         $default_mail = Mail::getSwiftMailer();
         $spm_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $spm_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($spm_mail);
@@ -267,8 +262,9 @@ class Spm
 
         $spm_approval->spms->each(function ($spm) use (&$spm_on_views, &$paid_total) {
             $spm_paid_total = '-';
-
-            if ($spm->paid_total) {
+            
+            if ($spm->paid_total)
+            {
                 $paid_total += $spm->paid_total;
                 $spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
             }
@@ -312,9 +308,9 @@ class Spm
 
         $default_mail = Mail::getSwiftMailer();
         $spm_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $spm_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($spm_mail);
@@ -340,7 +336,8 @@ class Spm
             $rejected_spm_paid_total = '-';
 
             if ($spm->finance_approved) {
-                if ($spm->paid_total) {
+                if ($spm->paid_total)
+                {
                     $paid_total += $spm->paid_total;
                     $spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
                 }
@@ -368,7 +365,8 @@ class Spm
                     'note' => $spm->note,
                 ]);
             } else {
-                if ($spm->paid_total) {
+                if ($spm->paid_total)
+                {
                     $rejected_paid_total += $spm->paid_total;
                     $rejected_spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
                 }
@@ -403,19 +401,11 @@ class Spm
 
         $branch = $spm_approval->branch;
         $regional = $branch->regional;
-
-        if ($branch->spm_is_active) {
-            array_push($cc, $branch->spm_pic_email);
-        }
-        if ($regional->spm_finance_is_active) {
-            array_push($cc, $regional->spm_finance_pic_email);
-        }
-        if ($regional->spm_general_manager_is_active) {
-            array_push($cc, $regional->spm_general_manager_pic_email);
-        }
-        if ($regional->spm_director_is_active) {
-            array_push($cc, $regional->spm_director_pic_email);
-        }
+        
+        if ($branch->spm_is_active) array_push($cc, $branch->spm_pic_email);
+        if ($regional->spm_finance_is_active) array_push($cc, $regional->spm_finance_pic_email);
+        if ($regional->spm_general_manager_is_active) array_push($cc, $regional->spm_general_manager_pic_email);
+        if ($regional->spm_director_is_active) array_push($cc, $regional->spm_director_pic_email);
 
         $params = [
             'spms' => $spm_on_views,
@@ -433,9 +423,9 @@ class Spm
 
         $default_mail = Mail::getSwiftMailer();
         $spm_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $spm_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($spm_mail);
@@ -455,8 +445,9 @@ class Spm
 
         $spm_approval->spms->each(function ($spm) use (&$spm_on_views, &$paid_total) {
             $spm_paid_total = '-';
-
-            if ($spm->paid_total) {
+            
+            if ($spm->paid_total)
+            {
                 $paid_total += $spm->paid_total;
                 $spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
             }
@@ -500,9 +491,9 @@ class Spm
 
         $default_mail = Mail::getSwiftMailer();
         $spm_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $spm_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($spm_mail);
@@ -528,7 +519,8 @@ class Spm
             $rejected_spm_paid_total = '-';
 
             if ($spm->general_manager_approved) {
-                if ($spm->paid_total) {
+                if ($spm->paid_total)
+                {
                     $paid_total += $spm->paid_total;
                     $spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
                 }
@@ -556,7 +548,8 @@ class Spm
                     'note' => $spm->note,
                 ]);
             } else {
-                if ($spm->paid_total) {
+                if ($spm->paid_total)
+                {
                     $rejected_paid_total += $spm->paid_total;
                     $rejected_spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
                 }
@@ -591,19 +584,11 @@ class Spm
 
         $branch = $spm_approval->branch;
         $regional = $branch->regional;
-
-        if ($branch->spm_is_active) {
-            array_push($cc, $branch->spm_pic_email);
-        }
-        if ($regional->spm_finance_is_active) {
-            array_push($cc, $regional->spm_finance_pic_email);
-        }
-        if ($regional->spm_general_manager_is_active) {
-            array_push($cc, $regional->spm_general_manager_pic_email);
-        }
-        if ($regional->spm_director_is_active) {
-            array_push($cc, $regional->spm_director_pic_email);
-        }
+        
+        if ($branch->spm_is_active) array_push($cc, $branch->spm_pic_email);
+        if ($regional->spm_finance_is_active) array_push($cc, $regional->spm_finance_pic_email);
+        if ($regional->spm_general_manager_is_active) array_push($cc, $regional->spm_general_manager_pic_email);
+        if ($regional->spm_director_is_active) array_push($cc, $regional->spm_director_pic_email);
 
         $params = [
             'spms' => $spm_on_views,
@@ -621,9 +606,9 @@ class Spm
 
         $default_mail = Mail::getSwiftMailer();
         $spm_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $spm_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($spm_mail);
@@ -643,8 +628,9 @@ class Spm
 
         $spm_approval->spms->each(function ($spm) use (&$spm_on_views, &$paid_total) {
             $spm_paid_total = '-';
-
-            if ($spm->paid_total) {
+            
+            if ($spm->paid_total)
+            {
                 $paid_total += $spm->paid_total;
                 $spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
             }
@@ -688,9 +674,9 @@ class Spm
 
         $default_mail = Mail::getSwiftMailer();
         $spm_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $spm_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($spm_mail);
@@ -716,7 +702,8 @@ class Spm
             $rejected_spm_paid_total = '-';
 
             if ($spm->director_approved) {
-                if ($spm->paid_total) {
+                if ($spm->paid_total)
+                {
                     $paid_total += $spm->paid_total;
                     $spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
                 }
@@ -744,7 +731,8 @@ class Spm
                     'note' => $spm->note,
                 ]);
             } else {
-                if ($spm->paid_total) {
+                if ($spm->paid_total)
+                {
                     $rejected_paid_total += $spm->paid_total;
                     $rejected_spm_paid_total = number_format($spm->paid_total, 0, ',', '.');
                 }
@@ -779,19 +767,11 @@ class Spm
 
         $branch = $spm_approval->branch;
         $regional = $branch->regional;
-
-        if ($branch->spm_is_active) {
-            array_push($cc, $branch->spm_pic_email);
-        }
-        if ($regional->spm_finance_is_active) {
-            array_push($cc, $regional->spm_finance_pic_email);
-        }
-        if ($regional->spm_general_manager_is_active) {
-            array_push($cc, $regional->spm_general_manager_pic_email);
-        }
-        if ($regional->spm_director_is_active) {
-            array_push($cc, $regional->spm_director_pic_email);
-        }
+        
+        if ($branch->spm_is_active) array_push($cc, $branch->spm_pic_email);
+        if ($regional->spm_finance_is_active) array_push($cc, $regional->spm_finance_pic_email);
+        if ($regional->spm_general_manager_is_active) array_push($cc, $regional->spm_general_manager_pic_email);
+        if ($regional->spm_director_is_active) array_push($cc, $regional->spm_director_pic_email);
 
         $params = [
             'spms' => $spm_on_views,
@@ -809,9 +789,9 @@ class Spm
 
         $default_mail = Mail::getSwiftMailer();
         $spm_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $spm_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($spm_mail);

@@ -3,6 +3,7 @@
 namespace Gmedia\IspSystem\Facades;
 
 use Illuminate\Support\Facades\Auth;
+use Spatie\Backtrace\Backtrace;
 
 class Log
 {
@@ -10,7 +11,9 @@ class Log
 
     private $guard = 'api';
 
-    private $properties = null;
+    private $properties = [];
+
+    private $trace = [];
 
     public function app($app = null)
     {
@@ -28,7 +31,27 @@ class Log
 
     public function properties($properties = null)
     {
-        $this->properties = $properties;
+        $this->properties = [
+            'properties' => $this->properties,
+            'trace' => $this->trace,
+        ];
+
+        return $this;
+    }
+
+    public function trace($frameLimit = 2) // as default counted from helper
+    {
+        $frame = Backtrace::create()->limit($frameLimit)->frames()[$frameLimit - 1];
+
+        $this->trace = [
+            'class' => $frame->class,
+            'method' => $frame->method,
+        ];
+        
+        $this->properties = [
+            'properties' => $this->properties,
+            'trace' => $this->trace,
+        ];
 
         return $this;
     }

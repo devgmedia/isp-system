@@ -2,10 +2,13 @@
 
 namespace Gmedia\IspSystem\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CustomerProductInstallationAssignee extends Model
 {
+    use HasFactory;
+
     protected $connection = 'isp_system';
 
     protected $table = 'customer_product_installation_assignee';

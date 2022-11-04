@@ -17,7 +17,7 @@ class ChartJs
         ];
 
         $index = 0;
-        $coloredDatasets = collect($datasets)->map(function ($dataset) use ($colors, &$index) {
+        $coloredDatasets = collect($datasets)->map(function ($dataset) use($colors, &$index) {
             $dataset['borderColor'] = $colors[$index];
             $index++;
 

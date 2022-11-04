@@ -9,9 +9,7 @@ class Resumable
 {
     public static function save(UploadedFile $file, $file_path, $disk = null)
     {
-        if (! $disk) {
-            $disk = config('filesystems.primary_disk');
-        }
+        if (!$disk) $disk = config('disk.primary');
 
         $file_name = static::md5FileName($file);
         $storage = Storage::disk($disk);

@@ -2,8 +2,7 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Carbon\Carbon;
-use Faker\Factory as Faker;
+use App;
 use Gmedia\IspSystem\Facades\Mail as MailFac;
 use Gmedia\IspSystem\Jobs\MoveFile;
 use Gmedia\IspSystem\Mail\Customer\VerificationMail;
@@ -17,7 +16,8 @@ use Gmedia\IspSystem\Models\CustomerProductAdditional;
 use Gmedia\IspSystem\Models\PreCustomer;
 use Gmedia\IspSystem\Models\PreCustomerProduct;
 use Gmedia\IspSystem\Models\PreCustomerProductAdditional;
-use Illuminate\Support\Facades\App as FacadesApp;
+use Carbon\Carbon;
+use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -54,15 +54,9 @@ class Customer
         $log->save('debug');
 
         $cid = null;
-        if ($pre_customer) {
-            $cid = $pre_customer->cid;
-        }
-        if ($customer) {
-            $cid = $customer->cid;
-        }
-        if (! $cid) {
-            return null;
-        }
+        if ($pre_customer) $cid = $pre_customer->cid;
+        if ($customer) $cid = $customer->cid;
+        if (!$cid) return null;
 
         $sid = null;
 
@@ -75,7 +69,7 @@ class Customer
             CustomerProduct::where('sid', $sid)->exists() or
             PreCustomerProduct::where('sid', $sid)->exists()
         );
-
+        
         return $sid;
     }
 
@@ -85,18 +79,12 @@ class Customer
         $log->save('debug');
 
         $sid_product = null;
-        if ($pre_customer_product) {
-            $sid_product = $pre_customer_product->sid;
-        }
-        if ($customer_product) {
-            $sid_product = $customer_product->sid;
-        }
-        if (! $sid_product) {
-            return null;
-        }
+        if ($pre_customer_product) $sid_product = $pre_customer_product->sid;
+        if ($customer_product) $sid_product = $customer_product->sid;
+        if (!$sid_product) return null;
 
         $sid = null;
-
+        
         $number = 0;
         do {
             $number++;
@@ -106,7 +94,7 @@ class Customer
             CustomerProductAdditional::where('sid', $sid)->exists() or
             PreCustomerProductAdditional::where('sid', $sid)->exists()
         );
-
+        
         return $sid;
     }
 
@@ -166,7 +154,7 @@ class Customer
             })->all());
 
         $pre_customer->pre_customer_products->each(function ($pre_customer_product) use ($customer) {
-            $customer_product = $customer->customer_products()->create([
+            $customer_product = $customer->customer_products()->create([                
                 'sid' => $pre_customer_product->sid,
                 'product_id' => $pre_customer_product->product_id,
 
@@ -185,8 +173,8 @@ class Customer
 
                 'radius_username' => $pre_customer_product->radius_username,
                 'radius_password' => $pre_customer_product->radius_password,
-
-                'pre_customer_product_id' => $pre_customer_product->pre_customer_product_id,
+                
+                'pre_customer_product_id' => $pre_customer_product->id,
             ]);
 
             $additionals = $pre_customer_product->pre_customer_product_additionals
@@ -205,20 +193,18 @@ class Customer
         if ($pre_customer->identity_card_file) {
             $log->save('move identity card file');
 
-            $from_disk = config('filesystems.primary_disk');
-            if (config('filesystems.temporary_disk')) {
-                $from_disk = config('filesystems.temporary_disk');
-            }
-            $from_path = 'pre_customer_identity_card/'.$pre_customer->identity_card_file;
+            $from_disk = config('disk.primary');
+            if (config('disk.temporary')) $from_disk = config('disk.temporary');
+            $from_path = 'pre_customer_identity_card/' . $pre_customer->identity_card_file;
 
             if (Storage::disk($from_disk)->exists($from_path)) {
-                $to_disk = config('filesystems.primary_disk');
-                $to_path = 'customer_identity_card/'.$pre_customer->identity_card_file;
+                $to_disk = config('disk.primary');
+                $to_path = 'customer_identity_card/' . $pre_customer->identity_card_file;
 
                 dispatch(new MoveFile($from_disk, $from_path, $to_disk, $to_path));
 
-                if (config('filesystems.temporary_disk')) {
-                    $to_disk = config('filesystems.temporary_disk');
+                if (config('disk.temporary')) {
+                    $to_disk = config('disk.temporary');
                     dispatch(new MoveFile($from_disk, $from_path, $to_disk, $to_path));
                 }
             }
@@ -228,20 +214,18 @@ class Customer
         if ($pre_customer->house_photo) {
             $log->save('move house photo');
 
-            $from_disk = config('filesystems.primary_disk');
-            if (config('filesystems.temporary_disk')) {
-                $from_disk = config('filesystems.temporary_disk');
-            }
-            $from_path = 'pre_customer_house_photo/'.$pre_customer->house_photo;
+            $from_disk = config('disk.primary');
+            if (config('disk.temporary')) $from_disk = config('disk.temporary');
+            $from_path = 'pre_customer_house_photo/' . $pre_customer->house_photo;
 
             if (Storage::disk($from_disk)->exists($from_path)) {
-                $to_disk = config('filesystems.primary_disk');
-                $to_path = 'customer_house_photo/'.$pre_customer->house_photo;
+                $to_disk = config('disk.primary');
+                $to_path = 'customer_house_photo/' . $pre_customer->house_photo;
 
                 dispatch(new MoveFile($from_disk, $from_path, $to_disk, $to_path));
 
-                if (config('filesystems.temporary_disk')) {
-                    $to_disk = config('filesystems.temporary_disk');
+                if (config('disk.temporary')) {
+                    $to_disk = config('disk.temporary');
                     dispatch(new MoveFile($from_disk, $from_path, $to_disk, $to_path));
                 }
             }
@@ -262,7 +246,7 @@ class Customer
             if ($customer_product_discount->product_discount->discount->name === 'Diskon 20% Dokter dan Tenaga Medis') {
                 $customer_product_discount->end_date = null;
             }
-
+    
             if ($customer_product_discount->product_discount->discount->name === 'Pay 75% HUT RI') {
                 $customer_product_discount->end_date = $customer_product_discount->start_date->addMonthsNoOverflow(12)->subDay();
             }
@@ -295,9 +279,7 @@ class Customer
                             if (
                                 Carbon::now()->gte($customer_product->service_start_date)
                                 && Carbon::now()->lte($customer_product->service_end_date)
-                            ) {
-                                $active = true;
-                            }
+                            ) $active = true;
                         } else {
                             if (Carbon::now()->gte($customer_product->service_start_date)) {
                                 $active = true;
@@ -310,18 +292,14 @@ class Customer
                             Str::contains($customer_product->product->name, '5 Bulan')
                             && Carbon::now()->gte($customer_product->service_date)
                             && Carbon::now()->lte($customer_product->service_date->addMonthsNoOverflow(4)->endOfMonth())
-                        ) {
-                            $active = true;
-                        }
-
+                        ) $active = true;
+    
                         if (
                             Str::contains($customer_product->product->name, '9 Bulan')
                             && Carbon::now()->gte($customer_product->service_date)
                             && Carbon::now()->lte($customer_product->service_date->addMonthsNoOverflow(8)->endOfMonth())
-                        ) {
-                            $active = true;
-                        }
-
+                        ) $active = true;
+    
                         if (Carbon::now()->eq($customer_product->service_date)) {
                             $active = true;
                         }
@@ -354,9 +332,7 @@ class Customer
                             if (
                                 Carbon::now()->gte($customer_product->billing_start_date)
                                 && Carbon::now()->lte($customer_product->billing_end_date)
-                            ) {
-                                $active = true;
-                            }
+                            ) $active = true;
                         } else {
                             if (Carbon::now()->gte($customer_product->billing_start_date)) {
                                 $active = true;
@@ -369,33 +345,27 @@ class Customer
                             Str::contains($customer_product->product->name, '5 Bulan')
                             && Carbon::now()->gte($customer_product->billing_date)
                             && Carbon::now()->lte($customer_product->billing_date->addMonthsNoOverflow(4)->endOfMonth())
-                        ) {
-                            $active = true;
-                        }
-
+                        ) $active = true;
+    
                         if (
                             Str::contains($customer_product->product->name, '9 Bulan')
                             && Carbon::now()->gte($customer_product->billing_date)
                             && Carbon::now()->lte($customer_product->billing_date->addMonthsNoOverflow(8)->endOfMonth())
-                        ) {
-                            $active = true;
-                        }
-
+                        ) $active = true;
+    
                         if (Carbon::now()->eq($customer_product->billing_date)) {
                             $active = true;
                         }
                     }
                 }
 
-                if ($active) {
-                    if ($customer_product->adjusted_price) {
-                        if (! ($customer_product->special_price > 0)) {
-                            $active = false;
-                        }
-                    } else {
-                        if (! ($customer_product->product->price > 0)) {
-                            $active = false;
-                        }
+                if ($active) if ($customer_product->adjusted_price) {
+                    if (!($customer_product->special_price > 0)) {
+                        $active = false;
+                    }
+                } else {
+                    if (!($customer_product->product->price > 0)) {
+                        $active = false;
                     }
                 }
             }
@@ -412,14 +382,12 @@ class Customer
 
         $customer->load([
             'customer_products',
-            'customer_products.product',
+            'customer_products.product',            
         ]);
 
         $subsidy = false;
         $customer->customer_products->each(function ($customer_product) use (&$subsidy) {
-            if (! $customer_product->product) {
-                return true;
-            }
+            if (!$customer_product->product) return true;
 
             if (Str::contains($customer_product->product->name, 'Subsidy')) {
                 $subsidy = true;
@@ -439,7 +407,7 @@ class Customer
         $log->save('debug');
 
         $customer->load([
-            'customer_products',
+            'customer_products',   
         ]);
 
         $public_facility = false;
@@ -459,7 +427,7 @@ class Customer
         $log->save('debug');
 
         $customer->load([
-            'customer_products',
+            'customer_products',   
         ]);
 
         $price_include_tax = false;
@@ -479,14 +447,12 @@ class Customer
         $log->save('debug');
 
         $customer->load([
-            'customer_products',
+            'customer_products',        
         ]);
 
         $active = false;
         $customer->customer_products->each(function ($customer_product) use (&$active) {
-            if ($customer_product->active) {
-                $active = true;
-            }
+            if ($customer_product->active) $active = true;
         });
 
         $customer->active = $active;
@@ -499,14 +465,12 @@ class Customer
         $log->save('debug');
 
         $customer->load([
-            'customer_products',
+            'customer_products',        
         ]);
 
         $tax = false;
         $customer->customer_products->each(function ($customer_product) use (&$tax) {
-            if ($customer_product->tax) {
-                $tax = true;
-            }
+            if ($customer_product->tax) $tax = true;
         });
 
         $customer->tax = $tax;
@@ -519,14 +483,12 @@ class Customer
         $log->save('debug');
 
         $customer->load([
-            'customer_products',
+            'customer_products',        
         ]);
 
         $billing_cycle = false;
         $customer->customer_products->each(function ($customer_product) use (&$billing_cycle) {
-            if ($customer_product->billing_cycle) {
-                $billing_cycle = true;
-            }
+            if ($customer_product->billing_cycle) $billing_cycle = true;
         });
 
         $customer->billing_cycle = $billing_cycle;
@@ -539,7 +501,7 @@ class Customer
         $log->save('debug');
 
         $customer->load([
-            'customer_products',
+            'customer_products',        
         ]);
 
         $products = [];
@@ -557,14 +519,12 @@ class Customer
         $log->save('debug');
 
         $customer->load([
-            'customer_products',
+            'customer_products',        
         ]);
 
         $product_tags = [];
         $customer->customer_products->each(function ($customer_product) use (&$product_tags) {
-            if (! $customer_product->product) {
-                return true;
-            }
+            if (!$customer_product->product) return true;
 
             $customer_product_tags = [];
             $customer_product->product->tags->each(function ($tag) use (&$customer_product_tags) {
@@ -586,7 +546,7 @@ class Customer
         $log->save('debug');
 
         $customer->load([
-            'customer_products',
+            'customer_products',        
         ]);
 
         $agents = [];
@@ -625,29 +585,21 @@ class Customer
         $log->save('debug');
 
         $invoice_customer = $invoice->invoice_customers->first();
-        if (! $invoice_customer) {
-            return;
-        }
+        if (!$invoice_customer) return;
 
         $invoice_customer_product_additional = $invoice_customer
             ->invoice_customer_product_additionals()
             ->where('customer_product_additional_name', 'Installation and Activation')
             ->first();
-        if (! $invoice_customer_product_additional) {
-            return;
-        }
+        if (!$invoice_customer_product_additional) return;
 
         $customer_product_additional = $invoice_customer_product_additional
             ->customer_product_additional;
-        if (! $customer_product_additional) {
-            return;
-        }
+        if (!$customer_product_additional) return;
 
         $customer_product = $customer_product_additional
             ->customer_product;
-        if (! $customer_product) {
-            return;
-        }
+        if (!$customer_product) return;
 
         $log->save('relation found');
         $customer_product->installation_invoice_email_at = $invoice->email_sent_at;
@@ -664,29 +616,21 @@ class Customer
         $log->save('debug');
 
         $invoice_customer = $invoice->invoice_customers->first();
-        if (! $invoice_customer) {
-            return;
-        }
+        if (!$invoice_customer) return;
 
         $invoice_customer_product_additional = $invoice_customer
             ->invoice_customer_product_additionals()
             ->where('customer_product_additional_name', 'Installation and Activation')
             ->first();
-        if (! $invoice_customer_product_additional) {
-            return;
-        }
+        if (!$invoice_customer_product_additional) return;
 
         $customer_product_additional = $invoice_customer_product_additional
             ->customer_product_additional;
-        if (! $customer_product_additional) {
-            return;
-        }
+        if (!$customer_product_additional) return;
 
         $customer_product = $customer_product_additional
             ->customer_product;
-        if (! $customer_product) {
-            return;
-        }
+        if (!$customer_product) return;
 
         $log->save('relation found');
         $customer_product->installation_invoice_whatsapp_at = $invoice->whatsapp_sent_at;
@@ -703,29 +647,21 @@ class Customer
         $log->save('debug');
 
         $invoice_customer = $invoice->invoice_customers->first();
-        if (! $invoice_customer) {
-            return;
-        }
+        if (!$invoice_customer) return;
 
         $invoice_customer_product_additional = $invoice_customer
             ->invoice_customer_product_additionals()
             ->where('customer_product_additional_name', 'Installation and Activation')
             ->first();
-        if (! $invoice_customer_product_additional) {
-            return;
-        }
+        if (!$invoice_customer_product_additional) return;
 
         $customer_product_additional = $invoice_customer_product_additional
             ->customer_product_additional;
-        if (! $customer_product_additional) {
-            return;
-        }
+        if (!$customer_product_additional) return;
 
         $customer_product = $customer_product_additional
             ->customer_product;
-        if (! $customer_product) {
-            return;
-        }
+        if (!$customer_product) return;
 
         $log->save('relation found');
         $customer_product->installation_invoice_due_date = $invoice->due_date;
@@ -742,29 +678,21 @@ class Customer
         $log->save('debug');
 
         $invoice_customer = $invoice->invoice_customers->first();
-        if (! $invoice_customer) {
-            return;
-        }
+        if (!$invoice_customer) return;
 
         $invoice_customer_product_additional = $invoice_customer
             ->invoice_customer_product_additionals()
             ->where('customer_product_additional_name', 'Installation and Activation')
             ->first();
-        if (! $invoice_customer_product_additional) {
-            return;
-        }
+        if (!$invoice_customer_product_additional) return;
 
         $customer_product_additional = $invoice_customer_product_additional
             ->customer_product_additional;
-        if (! $customer_product_additional) {
-            return;
-        }
+        if (!$customer_product_additional) return;
 
         $customer_product = $customer_product_additional
             ->customer_product;
-        if (! $customer_product) {
-            return;
-        }
+        if (!$customer_product) return;
 
         $log->save('relation found');
         $customer_product->installation_invoice_paid_at = $invoice->paid_at;
@@ -781,28 +709,26 @@ class Customer
         $log->save('debug');
 
         $invoice_customer = $invoice->invoice_customers->first();
-        if (! $invoice_customer) {
-            return;
-        }
+        if (!$invoice_customer) return;
 
         $customer_product = null;
 
-        if (! $customer_product) {
+        if (!$customer_product) {
             $invoice_customer_product = $invoice_customer
                 ->invoice_customer_products
                 ->first();
-
+    
             if ($invoice_customer_product) {
                 $customer_product = $invoice_customer_product
                     ->customer_product;
             }
         }
 
-        if (! $customer_product) {
+        if (!$customer_product) {
             $invoice_customer_product_additional = $invoice_customer
                 ->invoice_customer_product_additionals
                 ->first();
-
+            
             if ($invoice_customer_product_additional) {
                 $customer_product_additional = $invoice_customer_product_additional
                     ->customer_product_additional;
@@ -814,9 +740,7 @@ class Customer
             }
         }
 
-        if (! $customer_product) {
-            return;
-        }
+        if (!$customer_product) return;
 
         $log->save('relation found');
         static::updatePaymentActiveStatus($customer_product);
@@ -835,9 +759,11 @@ class Customer
 
         foreach ($customer_product->invoice_products()->cursor() as $invoice_product) {
             $invoice_customer = $invoice_product->invoice_customer;
-            if ($invoice_customer) {
+            if ($invoice_customer)
+            {
                 $invoice = $invoice_customer->invoice;
-                if ($invoice && ! $invoice->paid) {
+                if ($invoice && !$invoice->paid)
+                {
                     $payment_is_active = false;
                 }
             }
@@ -847,11 +773,14 @@ class Customer
         foreach ($customer_product->customer_product_additionals as $customer_product_additional) {
             foreach ($customer_product_additional->invoice_additionals()->cursor() as $invoice_additional) {
                 $invoice_customer_product = $invoice_additional->invoice_customer_product;
-                if ($invoice_customer_product) {
+                if ($invoice_customer_product)
+                {
                     $invoice_customer = $invoice_customer_product->invoice_customer;
-                    if ($invoice_customer) {
+                    if ($invoice_customer)
+                    {
                         $invoice = $invoice_customer->invoice;
-                        if ($invoice && ! $invoice->paid) {
+                        if ($invoice && !$invoice->paid)
+                        {
                             $payment_is_active = false;
                         }
                     }
@@ -872,58 +801,47 @@ class Customer
         );
         $log->save('debug');
 
-        if (! $customer_email->name) {
-            return;
-        }
-        if (! $customer_email->customer) {
-            return;
-        }
+        if (!$customer_email->name) return;
+        if (!$customer_email->customer) return;
 
-        if (! $customer_email->customer->brand) {
+        if (!$customer_email->customer->brand) {
             $log->save('invalid brand');
-
             return;
         }
-
+        
         $to = $customer_email->name;
         $cc = [];
 
         $log->new()->properties(['to' => $to, 'cc' => $cc])->save('email address');
 
-        try {
-            $default_mail = Mail::getSwiftMailer();
-            $verification_mail = MailFac::getSwiftMailer('default');
-            if (in_array(FacadesApp::environment(), ['development', 'testing'])) {
-                $to = config('app.dev_mail_address');
-                $cc = config('app.dev_cc_mail_address');
-                $verification_mail = MailFac::getSwiftMailer('dev');
-            }
-            Mail::setSwiftMailer($verification_mail);
-
-            Mail::to($to)->cc($cc)->send(new VerificationMail([
-                'brand_name' => $customer_email->customer->brand->name,
-                'customer_name' => $customer_email->customer->name,
-
-                'email' => $customer_email->name,
-                'email_uuid' => $customer_email->uuid,
-
-                'company_name' => $customer_email->customer->branch->regional->company->name,
-                'company_address' => $customer_email->customer->branch->regional->address,
-                'company_phone_number' => $customer_email->customer->branch->regional->phone_number,
-            ]));
-
-            Mail::setSwiftMailer($default_mail);
-
-            $customer_email->update([
-                'verification_email_sent_at' => Carbon::now()->toDateTimeString(),
-            ]);
-
-            return true;
-        } catch (\Exception $e) {
-            $log->new()->properties($e->getMessage())->save('error');
-
-            return false;
+        $default_mail = Mail::getSwiftMailer();
+        $verification_mail = MailFac::getSwiftMailer('default');
+        if (in_array(App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
+            $verification_mail = MailFac::getSwiftMailer('dev');
         }
+        Mail::setSwiftMailer($verification_mail);
+
+        Mail::to($to)->cc($cc)->send(new VerificationMail([
+            'brand_name' => $customer_email->customer->brand->name,
+            'customer_name' => $customer_email->customer->name,
+
+            'email' => $customer_email->name,
+            'email_uuid' => $customer_email->uuid,
+
+            'company_name' => $customer_email->customer->branch->regional->company->name,
+            'company_address' => $customer_email->customer->branch->regional->address,
+            'company_phone_number' => $customer_email->customer->branch->regional->phone_number,
+        ]));
+
+        Mail::setSwiftMailer($default_mail);
+
+        $customer_email->update([
+            'verification_email_sent_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        return true;
     }
 
     public static function sendPhoneNumberVerification(CustomerPhoneNumber $customer_phone_number)
@@ -937,10 +855,10 @@ class Customer
 
         $phone_numbers = [$customer_phone_number->number];
 
-        if (! FacadesApp::environment('production')) {
-            $dev_phone_numbers = config('app.dev_phone_numbers');
+        if (!App::environment('production')) {
+            $dev_phone_numbers = config('phone_number.dev_list');
 
-            if (FacadesApp::environment(['staging', 'development']) && $dev_phone_numbers) {
+            if (App::environment(['staging', 'testing', 'development']) && $dev_phone_numbers) {
                 $phone_numbers = $dev_phone_numbers;
             } else {
                 return response(['message' => 'Delivery failed'], 500);
@@ -949,7 +867,7 @@ class Customer
 
         $template_name = 'phone_number_verification';
 
-        $components = [
+        $components = [            
             [
                 'type' => 'body',
                 'parameters' => [],
@@ -959,7 +877,7 @@ class Customer
                 'index' => '0',
                 'sub_type' => 'url',
                 'parameters' => [
-                    [
+                    [                        
                         'type' => 'text',
                         'text' => $customer_phone_number->uuid,
                     ],
@@ -968,12 +886,12 @@ class Customer
         ];
 
         $success = Whatsapp::sendMultipleReceivers($template_name, null, $phone_numbers, true, $components);
-        if (! $success) {
+        if (!$success) {
             return false;
         }
 
         $customer_phone_number->update([
-            'whatsapp_verification_sent_at' => Carbon::now()->toDateTimeString(),
+            'whatsapp_verification_sent_at' => Carbon::now()->toDateTimeString(),            
         ]);
 
         return true;

@@ -2,9 +2,9 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Carbon\Carbon;
-use DivineOmega\SSHConnection\SSHConnection;
+use App;
 use Gmedia\IspSystem\Facades\Mail as MailFac;
+use Gmedia\IspSystem\Facades\Radius;
 use Gmedia\IspSystem\Mail\Service\AutoDisableMail;
 use Gmedia\IspSystem\Mail\Service\CollectedAutoDisableMail;
 use Gmedia\IspSystem\Mail\Service\CollectedNextDismantleMail;
@@ -13,19 +13,23 @@ use Gmedia\IspSystem\Models\ArInvoice;
 use Gmedia\IspSystem\Models\CustomerProduct;
 use Gmedia\IspSystem\Models\CustomerProductAdditional;
 use Gmedia\IspSystem\Models\CustomerProductLog;
+use Gmedia\IspSystem\Models\CustomerProductMaintenance;
 use Gmedia\IspSystem\Models\Employee;
 use Gmedia\IspSystem\Models\ProductRouter;
 use Gmedia\IspSystem\User;
+use Carbon\Carbon;
+use DivineOmega\SSHConnection\SSHConnection;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\App as FacadesApp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use phpseclib\Crypt\RSA;
 use phpseclib\Net\SSH2;
-use RouterOS\Client;
-use RouterOS\Query; // tudak bisa pakai alias
-use Symfony\Component\Process\Process; // tudak bisa pakai alias
+use Symfony\Component\Process\Process;
+use \RouterOS\Client; // tudak bisa pakai alias
+use \RouterOS\Query; // tudak bisa pakai alias
+use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use GuzzleHttp\Client as GuzzleClient;
 
 class Service
 {
@@ -181,7 +185,7 @@ class Service
                     end
                 ) as service_is_active"),
 
-                DB::raw('(
+                DB::raw("(
                     case when
                         (
                             case when
@@ -197,7 +201,7 @@ class Service
                     else
                         false
                     end
-                ) as price_is_valid'),
+                ) as price_is_valid"),
 
                 'customer_product.email_support_auto_disable_sent_at',
                 'ar_invoice_customer_product.invoice_id',
@@ -240,9 +244,9 @@ class Service
             $ar_invoice = ArInvoice::find($service->invoice_id);
 
             static::disableConnection($customer_product, $ar_invoice);
-
+            
             // // Fake disable connection
-            // $customer_product->update([
+            // $customer_product->update([ 
             //     'isolation' => true,
             //     'isolation_reference' => $ar_invoice->number,
             //     'isolation_invoice' => $ar_invoice->id,
@@ -263,7 +267,7 @@ class Service
             $isolation_reference = $invoice->number;
             $isolation_invoice = $invoice->id;
         }
-
+        
         $service->update([
             'radius_username' => null,
             'radius_password' => null,
@@ -320,25 +324,22 @@ class Service
 
         $log->new()->properties($service->product->routers)->save('checking on router list');
         $service->product->routers->each(function ($router) use (&$number_removed, $radius_username) {
-            if ($router->os) {
-                switch ($router->os->name) {
-                    case 'Mikrotik':
-                        if (static::removeMikrotikPppoe($router, $radius_username)) {
-                            $number_removed++;
-                        }
-                        break;
+            if ($router->os) switch ($router->os->name) {
+                case 'Mikrotik':
+                    // if (static::removeMikrotikPppoe($router, $radius_username)) $number_removed++;
+                    break;
 
-                    case 'VyOS':
-                        if (static::removeVyosPppoe($router, $radius_username)) {
-                            $number_removed++;
-                        }
-                        break;
-                }
-            }
+                case 'VyOS':
+                    // if (static::removeVyosPppoe($router, $radius_username)) $number_removed++;
+                    break;
+                
+                case 'NetElastic':
+                    if (static::removeNetElasticPppoe($router, $radius_username)) $number_removed++;
+                    break;
+            }            
         });
 
         $log->save('removing '.$number_removed.' PPPoE');
-
         return $number_removed;
     }
 
@@ -353,7 +354,7 @@ class Service
             'host' => $router->host,
             'user' => $router->user,
             'pass' => $router->pass,
-            'port' => (int) $router->port,
+            'port' => (int)$router->port,
         ]);
 
         $log->save('connected to the '.$router->host);
@@ -364,9 +365,7 @@ class Service
         $response = $client->qr($query);
         $pppoes = collect($response);
 
-        if ($pppoes->isEmpty()) {
-            return false;
-        }
+        if ($pppoes->isEmpty()) return false;
 
         $pppoe = $pppoes->first();
         $pppoe_id = $pppoe['.id'];
@@ -388,14 +387,10 @@ class Service
         $log->new()->properties($router->host)->save('host');
 
         $vyos_script = config('app.auto_disable_vyos_script');
-        if (! $vyos_script) {
-            return false;
-        }
+        if (!$vyos_script) return false;
 
-        $python_process = config('app.python_process');
-        if (! $python_process) {
-            return false;
-        }
+        $python_process = config('vyos.python_process');
+        if (!$python_process) return false;
 
         $process = new Process(
             $python_process.' '.
@@ -408,8 +403,8 @@ class Service
         );
 
         $process->run();
-
-        if (! $process->isSuccessful()) {
+        
+        if (!$process->isSuccessful()) {
             $log->save('failed to execute');
             $log->new()->properties($process->getErrorOutput())->save('error output');
 
@@ -417,7 +412,6 @@ class Service
         }
 
         $log->new()->properties($process->getOutput())->save('output');
-
         return true;
     }
 
@@ -436,15 +430,14 @@ class Service
             ->withPassword($router->pass)
             ->connect();
 
-        $command = $connection->run('reset pppoe-server username "'.$radius_username.'"');
-
+        $command = $connection->run('reset pppoe-server username "'.$radius_username.'"');        
+        
         $output = $command->getOutput();
         $log->new()->properties($output)->save('output');
-
+        
         $error = $command->getError();
-        if ($error) {
+        if ($error) {            
             $log->new()->properties($error)->save('error');
-
             return false;
         }
 
@@ -458,7 +451,7 @@ class Service
 
         $log->new()->properties($radius_username)->save('username');
         $log->new()->properties($router->host)->save('host');
-
+        
         // $key = new RSA();
         // $key->loadKey(file_get_contents(config('app.private_key')));
 
@@ -471,7 +464,7 @@ class Service
         $result = $ssh->login($router->user, [
             ['Password' => $router->pass],
         ]);
-        if (! $result) {
+        if (!$result) {
             $log->save('login failed');
         }
 
@@ -481,9 +474,100 @@ class Service
         return true;
     }
 
+    public static function removeNetElasticPppoe(ProductRouter $router, $radius_username)
+    {
+        $log = applog('erp, service__fac, remove_net_elastic_pppoe');
+        $log->save('debug');
+
+        $url = 'https://'.$router->host;
+        $status = false;
+        $token = false;
+
+        // login
+        $request = new GuzzleRequest('POST', $url.'/v1/user/login', [
+            'accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ], json_encode([
+            'password' => $router->pass,
+            'userName' => $router->user,
+        ]));
+
+        $response = (new GuzzleClient(['verify' => false]))->sendRequest($request);
+        $status = $response->getStatusCode();
+
+        if (!($status >= 200)) return false;
+
+        $response_header = $response->getHeaders();
+        $token = $response_header['Authorization'][0];
+
+        // get bngs        
+        $request = new GuzzleRequest('GET', $url.'/v1/bngs', [
+            'accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'Authorization' => $token,
+        ]);
+        $response = (new GuzzleClient(['verify' => false]))->sendRequest($request);
+        $status = $response->getStatusCode();
+        
+        if (!($status >= 200)) return false;
+        
+        $response_body = json_decode($response->getBody()->getContents());
+        $bngs = $response_body;
+
+        if ($bngs->count < 1) return false;
+        foreach ($bngs->result as $bng) {
+            $bng_status = false;
+
+            // get userinfo
+            $request = new GuzzleRequest('GET', $url.'/v1/userinfo'
+                .'?username='.$radius_username
+                .'&actualbngId='.$bng->id
+            , [
+                'accept' => 'application/json',
+                'Content-Type' => 'application/json',
+                'Authorization' => $token,
+            ]);
+            $response = (new GuzzleClient(['verify' => false]))->sendRequest($request);
+            $bng_status = $response->getStatusCode();
+
+            if (!($bng_status >= 200)) continue;
+
+            $response_body = json_decode($response->getBody()->getContents());
+            $userinfo = $response_body;
+
+            if ($userinfo->count < 1) continue;
+
+            foreach ($userinfo->result as $userinfo_item) {
+                $clearuser_status = false;
+
+                // clearuser
+                $request = new GuzzleRequest('POST', $url.'/v1/bng/clearuser'
+                    .'?username='.$radius_username
+                    .'&actualbngId='.$userinfo_item->actualbngId
+                    .'&type='.$userinfo_item->userType
+                    .'&macaddress='.$userinfo_item->macAddress
+                    .'&sessionid='.$userinfo_item->sessionId
+                , [
+                    'accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                    'Authorization' => $token,
+                ]);
+                
+                $response = (new GuzzleClient(['verify' => false]))->sendRequest($request);
+                $clearuser_status = $response->getStatusCode();
+                
+                if (!($clearuser_status >= 200)) continue;
+
+                $response_body = json_decode($response->getBody()->getContents());
+            }
+        }
+
+        return true;
+    }
+
     public static function updateIsolation(ArInvoice $ar_invoice)
     {
-        $log = applog('erp, service__fac, update_isolation');
+        $log = applog('erp, service__fac, update_isolation');        
         $log->save('debug');
 
         $log->new()->properties($ar_invoice->number)->save('invoice number');
@@ -506,17 +590,16 @@ class Service
 
         $ar_invoice->invoice_customers->each(function ($ar_invoice_customer) use (&$paid_all, &$customer_product, &$invoice_ref) {
             $ar_invoice_customer->invoice_customer_products->each(function ($ar_invoice_customer_product) use (&$paid_all, &$customer_product, &$invoice_ref) {
+                
                 $customer_product = $ar_invoice_customer_product->customer_product;
-                if (! $customer_product) {
-                    return true;
-                }
-
+                if (!$customer_product) return true;
+                
                 $customer_product->invoice_products->each(function ($invoice_product) use (&$paid_all, &$invoice_ref) {
                     if (
                         $invoice_product->invoice_customer &&
                         $invoice_product->invoice_customer->invoice &&
                         $invoice_product->invoice_customer->invoice->due_date->lt(Carbon::now()->startOfDay()) &&
-                        ! $invoice_product->invoice_customer->invoice->paid
+                        !$invoice_product->invoice_customer->invoice->paid
                     ) {
                         $paid_all = false;
                         $invoice_ref = $invoice_product->invoice_customer->invoice;
@@ -525,19 +608,18 @@ class Service
             });
 
             $ar_invoice_customer->invoice_customer_product_additionals->each(function ($ar_invoice_customer_product_additional) use (&$paid_all, &$customer_product, &$invoice_ref) {
+
                 $customer_product_additional = $ar_invoice_customer_product_additional->customer_product_additional;
-                if (! $customer_product_additional) {
-                    return true;
-                }
+                if (!$customer_product_additional) return true;
 
                 $customer_product = $customer_product_additional->customer_product;
-                $paid_all = true;
+                $paid_all = true;                
                 $customer_product_additional->invoice_additionals->each(function ($invoice_additional) use (&$paid_all, &$invoice_ref) {
                     if (
                         $invoice_additional->invoice_customer &&
                         $invoice_additional->invoice_customer->invoice &&
                         $invoice_additional->invoice_customer->invoice->due_date->lt(Carbon::now()->startOfDay()) &&
-                        ! $invoice_additional->invoice_customer->invoice->paid
+                        !$invoice_additional->invoice_customer->invoice->paid
                     ) {
                         $paid_all = false;
                         $invoice_ref = $invoice_additional->invoice_customer->invoice;
@@ -545,7 +627,7 @@ class Service
                 });
             });
         });
-
+        
         $log->save('is paid all: '.$paid_all);
 
         if ($customer_product) {
@@ -554,7 +636,7 @@ class Service
             } else {
                 static::disableConnection($customer_product, $invoice_ref);
             }
-        }
+        }        
     }
 
     public static function sendInstallationEmail(CustomerProductAdditional $customer_product_additional)
@@ -562,18 +644,18 @@ class Service
         $log = applog('erp, service__fac, send_installation_email');
         $log->save('debug');
 
-        $to = config('services.service.retail_installation_to_mail_address');
-        $cc = config('services.service.retail_installation_cc_mail_address');
+        $to = config('mail_address.retail_installation');
+        $cc = config('mail_address.retail_installation_cc');
 
         $default_mail = Mail::getSwiftMailer();
         $installation_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $installation_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($installation_mail);
-
+                    
         Mail::to($to)->cc($cc)->send(new InstallationMail([
             'service' => [
                 'sid' => $customer_product_additional->sid,
@@ -739,7 +821,7 @@ class Service
                     end
                 ) as service_is_active"),
 
-                DB::raw('(
+                DB::raw("(
                     case when
                         (
                             case when
@@ -755,7 +837,7 @@ class Service
                     else
                         false
                     end
-                ) as price_is_valid'),
+                ) as price_is_valid"),
 
                 'customer_product.email_support_auto_disable_sent_at',
                 'ar_invoice_customer_product.invoice_id',
@@ -844,21 +926,21 @@ class Service
         $log->save('debug');
 
         if (
-            ! $customer_product->email_support_auto_disable_sent_at or
-            ! $customer_product->email_support_auto_disable_sent_at->isCurrentMonth()
+            !$customer_product->email_support_auto_disable_sent_at OR
+            !$customer_product->email_support_auto_disable_sent_at->isCurrentMonth()
         ) {
-            $to = config('services.service.retail_auto_disable_to_mail_address');
-            $cc = config('services.service.retail_auto_disable_cc_mail_address');
+            $to = config('mail_address.retail_auto_disable');
+            $cc = config('mail_address.retail_auto_disable_cc');
 
             $default_mail = Mail::getSwiftMailer();
             $auto_disable_mail = $default_mail;
-            if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-                $to = config('app.dev_mail_address');
-                $cc = config('app.dev_cc_mail_address');
+            if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+                $to = config('mail_address.dev');
+                $cc = config('mail_address.dev_cc');
                 $auto_disable_mail = MailFac::getSwiftMailer('dev');
             }
             Mail::setSwiftMailer($auto_disable_mail);
-
+                
             Mail::to($to)->cc($cc)->send(new AutoDisableMail([
                 'service' => $service->toArray(),
             ]));
@@ -876,18 +958,18 @@ class Service
         $log = applog('erp, service__fac, send_collected_disable_connection_email');
         $log->save('debug');
 
-        $to = config('services.service.retail_auto_disable_to_mail_address');
-        $cc = config('services.service.retail_auto_disable_cc_mail_address');
+        $to = config('mail_address.retail_auto_disable');
+        $cc = config('mail_address.retail_auto_disable_cc');
 
         $default_mail = Mail::getSwiftMailer();
         $auto_disable_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $auto_disable_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($auto_disable_mail);
-
+                
         Mail::to($to)->cc($cc)->send(new CollectedAutoDisableMail([
             'services' => $services->toArray(),
         ]));
@@ -906,10 +988,10 @@ class Service
         });
         $phone_numbers = $phone_numbers->all();
 
-        if (! FacadesApp::environment('production')) {
-            $dev_phone_numbers = config('app.dev_phone_numbers');
+        if (!App::environment('production')) {
+            $dev_phone_numbers = config('phone_number.dev_list');
 
-            if (FacadesApp::environment(['staging', 'development']) && $dev_phone_numbers) {
+            if (App::environment(['staging', 'testing', 'development']) && $dev_phone_numbers) {
                 $phone_numbers = $dev_phone_numbers;
             } else {
                 return response(['message' => 'Delivery failed'], 500);
@@ -924,7 +1006,7 @@ class Service
             ],
             [
                 'type' => 'text',
-                'text' => config('app.client_domain').'/pay'.'/'.$invoice_uuid,
+                'text' => config('domain.retail_client').'/pay'.'/'.$invoice_uuid,
             ],
         ];
         $components = [
@@ -934,8 +1016,8 @@ class Service
                     [
                         'type' => 'document',
                         'document' => [
-                            'link' => config('app.retail_internet_payment_guide_file'),
-                            'filename' => config('app.retail_internet_payment_guide_filename'),
+                            'link' => config('file.retail_internet_payment_guide.link'),
+                            'filename' => config('file.retail_internet_payment_guide.filename'),
                         ],
                     ],
                 ],
@@ -951,7 +1033,7 @@ class Service
         if ($success) {
             $service->update([
                 'whatsapp_disable_connection_information_sent_at' => Carbon::now()->toDateTimeString(),
-
+    
                 'isolation_whatsapp_at' => Carbon::now()->toDateTimeString(),
                 'isolation_whatsapp_by' => Employee::where('user_id', Auth::guard('api')->id())->value('id'),
             ]);
@@ -965,18 +1047,18 @@ class Service
         $log = applog('erp, service__fac, send_collected_next_dismantle_email');
         $log->save('debug');
 
-        $to = config('services.service.retail_dismantle_to_mail_address');
-        $cc = config('services.service.retail_dismantle_cc_mail_address');
+        $to = config('mail_address.retail_dismantle');
+        $cc = config('mail_address.retail_dismantle_cc');
 
         $default_mail = Mail::getSwiftMailer();
         $dismantle_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
-            $cc = config('app.dev_cc_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
             $dismantle_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($dismantle_mail);
-
+                
         Mail::to($to)->cc($cc)->send(new CollectedNextDismantleMail([
             'services' => $services->toArray(),
         ]));
@@ -995,10 +1077,10 @@ class Service
         });
         $phone_numbers = $phone_numbers->all();
 
-        if (! FacadesApp::environment('production')) {
-            $dev_phone_numbers = config('app.dev_phone_numbers');
+        if (!App::environment('production')) {
+            $dev_phone_numbers = config('phone_number.dev_list');
 
-            if (FacadesApp::environment(['staging', 'development']) && $dev_phone_numbers) {
+            if (App::environment(['staging', 'testing', 'development']) && $dev_phone_numbers) {
                 $phone_numbers = $dev_phone_numbers;
             } else {
                 return false;
@@ -1039,7 +1121,7 @@ class Service
             $customer_product->update([
                 'whatsapp_activation_sent_at' => Carbon::now()->toDateTimeString(),
             ]);
-
+    
             // log
             $customer_product_log = CustomerProductLog::create([
                 'title' => 'send activation whatsapp',
@@ -1055,9 +1137,6 @@ class Service
     {
         $log = applog('erp, service__fac, to_active_billing');
         $log->save('debug');
-
-        $billing_start_date = Carbon::now()->toImmutable();
-        $billing_end_date = $billing_start_date;
 
         $regional_query = DB::table('regional')
             ->select(
@@ -1105,12 +1184,12 @@ class Service
                 'customer_product.uuid',
                 'customer_product.sid',
                 'product.name as service_name',
-
+                
                 'customer.id as customer_id',
                 'customer.uuid as customer_uuid',
                 'customer.cid',
                 'customer.name as customer_name',
-
+                                
                 DB::raw("(
                     case when
                         product.payment_scheme_name = 'Monthly'
@@ -1150,7 +1229,7 @@ class Service
                                         curdate() >= customer_product.billing_date and
                                         curdate() <= last_day(date_add(customer_product.billing_date, interval 8 month))
                                     )
-                                else
+                                else                                    
                                     (customer_product.billing_date = curdate())
                                 end
                             end
@@ -1158,12 +1237,12 @@ class Service
                             false
                         end
                     end
-                ) as billing_is_active"),
+                ) as billing_is_active"),   
 
                 'customer.branch_id',
                 'customer.regional_id',
                 'customer.company_id',
-                'customer.branch_name',
+                'customer.branch_name',    
             )
             ->leftJoinSub($customer_query, 'customer', function ($join) {
                 $join->on('customer.id', '=', 'customer_product.customer_id');
@@ -1178,5 +1257,106 @@ class Service
         foreach ($customer_products_query->cursor() as $service) {
             $callBack($service);
         }
+    }
+
+    public static function createMaintenance(
+        CustomerProduct $customer_product,
+        string $date,
+        string $start_time,
+        string $end_time,
+        int $downtime,        
+        $send_after_created = false
+    )
+    {
+        $log = applog('erp, service__fac, create maintenance');
+        $log->save('debug');
+
+        if ($customer_product
+            ->maintenances()
+            ->whereDay('created_at', Carbon::now()->day)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->exists()
+        ) return false;
+
+        $maintenance = $customer_product->maintenances()->create([
+            'date' => Carbon::createFromFormat('Y-m-d', $date),
+            'start_time' => Carbon::createFromFormat('H:i:s', $start_time),
+            'end_time' => Carbon::createFromFormat('H:i:s', $end_time),
+            'downtime' => $downtime,
+    
+            'sid' => $customer_product->sid,
+            'service_name' => $customer_product->product->name,
+            'cid' => $customer_product->customer->cid,
+            'customer_name' => $customer_product->customer->name,
+        ]);
+
+        $success = true;
+        if ($send_after_created) {
+            $success = self::sendMaintenance($maintenance);
+        }
+
+        return $success;
+    }
+
+    public static function sendMaintenance(CustomerProductMaintenance $maintenance)
+    {
+        $log = applog('erp, service__fac, send_maintenance');
+        $log->save('debug');
+
+        $customer_product = $maintenance->customer_product;
+
+        $phone_numbers = collect();
+        $customer_product->customer->phone_numbers->each(function ($phone_number) use (&$phone_numbers) {
+            $phone_numbers->push($phone_number->number);
+        });
+        $phone_numbers = $phone_numbers->all();
+
+        if (!App::environment('production')) {
+            $dev_phone_numbers = config('phone_number.dev_list');
+
+            if (App::environment(['staging', 'testing', 'development']) && $dev_phone_numbers) {
+                $phone_numbers = $dev_phone_numbers;
+            } else {
+                return response(['message' => 'Delivery failed'], 500);
+            }
+        }
+
+        $template_name = 'maintenance';
+
+        $date = $maintenance->date;
+        $start_time = $maintenance->start_time;
+        $end_time = $maintenance->end_time;
+        $downtime = $maintenance->downtime;
+
+        if ($downtime <= 60) {
+            $downtime = $downtime.' menit';
+        } else {
+            $downtime = number_format(($downtime/60), 1, ',', '.').' jam';
+        }
+
+        $parameters = [
+            [
+                'type' => 'text',
+                'text' => $date->translatedFormat('d F Y'),
+            ],
+            [
+                'type' => 'text',
+                'text' => $start_time->format('H:i').' - '.$end_time->format('H:i'),
+            ],
+            [
+                'type' => 'text',
+                'text' => $downtime,
+            ],
+        ];
+
+        $success = Whatsapp::sendMultipleReceivers($template_name, $parameters, $phone_numbers);
+        if ($success) {
+            $customer_product->update([
+                'whatsapp_maintenance_sent_at' => Carbon::now()->toDateTimeString(),
+            ]);
+        }
+
+        return $success;
     }
 }

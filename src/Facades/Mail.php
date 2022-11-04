@@ -2,14 +2,14 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Swift_Mailer;
 use Swift_SmtpTransport;
+use Swift_Mailer;
 
 class Mail
 {
     public static function getSwiftMailer($account_name)
     {
-        $mail = config('mail.accounts.'.$account_name);
+        $mail = config('mail_account.'.$account_name);
 
         $transport = (new Swift_SmtpTransport($mail['host'], $mail['port'], $mail['encryption']))
             ->setUsername($mail['username'])

@@ -63,7 +63,7 @@ class ArInvoiceSettlement
         $invoice->settlements
             ->each(function ($ar_invoice_settlement) use (
                 &$paid_total,
-
+    
                 &$settlement_invoice,
                 &$settlement_admin,
                 &$settlement_down_payment,
@@ -71,7 +71,7 @@ class ArInvoiceSettlement
                 &$settlement_pph_pasal_22,
                 &$settlement_pph_pasal_23,
                 &$settlement_ppn
-            ) {
+            ) {                   
                 $paid_total += $ar_invoice_settlement->total;
 
                 $settlement_invoice += $ar_invoice_settlement->invoice;
@@ -80,7 +80,7 @@ class ArInvoiceSettlement
                 $settlement_marketing_fee += $ar_invoice_settlement->marketing_fee;
                 $settlement_pph_pasal_22 += $ar_invoice_settlement->pph_pasal_22;
                 $settlement_pph_pasal_23 += $ar_invoice_settlement->pph_pasal_23;
-                $settlement_ppn += $ar_invoice_settlement->ppn;
+                $settlement_ppn += $ar_invoice_settlement->ppn;                           
             });
 
         if ($paid_total >= $invoice->total) {
@@ -90,7 +90,7 @@ class ArInvoiceSettlement
         $invoice->update([
             'paid' => $paid,
             'paid_total' => $paid_total,
-
+            
             'settlement_invoice' => $settlement_invoice,
             'settlement_admin' => $settlement_admin,
             'settlement_down_payment' => $settlement_down_payment,

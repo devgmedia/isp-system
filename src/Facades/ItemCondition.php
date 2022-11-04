@@ -2,9 +2,12 @@
 
 namespace Gmedia\IspSystem\Facades;
 
+use App;
 use Gmedia\IspSystem\Facades\Mail as MailFac;
 use Gmedia\IspSystem\Mail\Service\InstallationMail;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ItemCondition
 {
@@ -18,13 +21,13 @@ class ItemCondition
 
         $default_mail = Mail::getSwiftMailer();
         $installation_mail = $default_mail;
-        if (in_array(\FacadesApp::environment(), ['development', 'testing'])) {
-            $to = config('app.dev_mail_address');
+        if (in_array(\App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
             $cc = [];
             $installation_mail = MailFac::getSwiftMailer('dev');
         }
         Mail::setSwiftMailer($installation_mail);
-
+                    
         Mail::to($to)->cc($cc)->send(new InstallationMail([
             'service' => [
                 'sid' => $customer_product_additional->sid,
@@ -37,4 +40,4 @@ class ItemCondition
 
         Mail::setSwiftMailer($default_mail);
     }
-}
+} 

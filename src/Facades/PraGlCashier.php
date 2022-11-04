@@ -17,7 +17,7 @@ class PraGlCashier
             'date' => $cashier_in->date,
             'auto_created' => true,
             'cashier_in_id' => $cashier_in->id,
-
+            
             'branch_id' => $cashier_in->branch_id,
             'chart_of_account_title_id' => $cashier_in->chart_of_account_title_id,
 
@@ -59,7 +59,7 @@ class PraGlCashier
             'date' => $cashier_out->date,
             'auto_created' => true,
             'cashier_out_id' => $cashier_out->id,
-
+            
             'branch_id' => $cashier_out->branch_id,
             'chart_of_account_title_id' => $cashier_out->chart_of_account_title_id,
 
@@ -101,7 +101,7 @@ class PraGlCashier
                 'debit' => $cashier_out->total,
                 'credit' => 0,
             ]);
-        }
+        } 
     }
 
     public static function updateFromCashierIn(CashierIn $cashier_in)
@@ -113,7 +113,7 @@ class PraGlCashier
             'date' => $cashier_in->date,
             'auto_created' => true,
             'cashier_in_id' => $cashier_in->id,
-
+            
             'branch_id' => $cashier_in->branch_id,
             'chart_of_account_title_id' => $cashier_in->chart_of_account_title_id,
 
@@ -157,7 +157,7 @@ class PraGlCashier
             'date' => $cashier_out->date,
             'auto_created' => true,
             'cashier_out_id' => $cashier_out->id,
-
+            
             'branch_id' => $cashier_out->branch_id,
             'chart_of_account_title_id' => $cashier_out->chart_of_account_title_id,
 
@@ -203,19 +203,19 @@ class PraGlCashier
             ]);
         }
     }
-
+    
     public static function updateOrCreateFromCashierIn(CashierIn $cashier_in)
     {
         $log = applog('erp, pra_gl_cashier__fac, update_or_create_from_cashier_in');
         $log->save('debug');
-
+        
         if ($cashier_in->journal) {
             static::updateFromCashierIn($cashier_in);
         } else {
             static::createFromCashierIn($cashier_in);
         }
     }
-
+    
     public static function updateOrCreateFromCashierOut(CashierOut $cashier_out)
     {
         $log = applog('erp, pra_gl_cashier__fac, update_or_create_from_cashier_out');
@@ -233,9 +233,7 @@ class PraGlCashier
         $log = applog('erp, pra_gl_cashier__fac, delete_from_cashier_in');
         $log->save('debug');
 
-        if (! $cashier_in->journal) {
-            return;
-        }
+        if (!$cashier_in->journal) return;
 
         $cashier_in->journal->items()->delete();
 
@@ -243,7 +241,7 @@ class PraGlCashier
         $cashier_in->journal->journal_ap_invoices()->delete();
         $cashier_in->journal->journal_cashier_ins()->delete();
         $cashier_in->journal->journal_cashier_outs()->delete();
-
+        
         $cashier_in->journal->delete();
     }
 
@@ -252,9 +250,7 @@ class PraGlCashier
         $log = applog('erp, pra_gl_cashier__fac, delete_from_cashier_out');
         $log->save('debug');
 
-        if (! $cashier_out->journal) {
-            return;
-        }
+        if (!$cashier_out->journal) return;
 
         $cashier_out->journal->items()->delete();
 
@@ -262,7 +258,7 @@ class PraGlCashier
         $cashier_out->journal->journal_ap_invoices()->delete();
         $cashier_out->journal->journal_cashier_ins()->delete();
         $cashier_out->journal->journal_cashier_outs()->delete();
-
+        
         $cashier_out->journal->delete();
     }
 }

@@ -2,12 +2,12 @@
 
 namespace Gmedia\IspSystem\Facades;
 
-use Carbon\Carbon;
+use App;
+use Gmedia\IspSystem\Models\ArInvoice;
+use Illuminate\Support\Facades\Mail;
 use Gmedia\IspSystem\Facades\Mail as MailFac;
 use Gmedia\IspSystem\Mail\ArInvoiceEnterprise\ReminderMail;
-use Gmedia\IspSystem\Models\ArInvoice;
-use Illuminate\Support\Facades\App as FacadesApp;
-use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class ArInvoiceEnterprise
 {
@@ -19,11 +19,10 @@ class ArInvoiceEnterprise
             .'send_reminder_email'
         );
         $log->save('debug');
-
+        
         $payer = $invoice->payer_ref;
-        if (! $payer) {
+        if (!$payer) {
             $log->save('payer not found');
-
             return;
         }
 
@@ -39,7 +38,7 @@ class ArInvoiceEnterprise
                 &$invoices_total,
                 &$invoice_reminders,
                 &$invoice_objects
-            ) {
+            ) {                
                 $invoices_total += $invoice->total;
 
                 array_push($invoices, [
@@ -55,8 +54,10 @@ class ArInvoiceEnterprise
                 ]);
 
                 array_push($invoice_objects, $invoice);
-            });
 
+                $invoice->email_reminders()->create();
+            });
+        
         $invoices_total = number_format($invoices_total, 0, ',', '.');
 
         $to = null;
@@ -65,63 +66,49 @@ class ArInvoiceEnterprise
         $payer->emails->each(function ($email, $key) use (&$to, &$cc) {
             if ($key === 0) {
                 $to = $email->name;
-
                 return true;
             }
 
             $cc->push($email->name);
         });
 
-        if (! $to && ! in_array(FacadesApp::environment(), ['development', 'testing'])) {
-            return false;
-        }
+        if (!$to && !in_array(App::environment(), ['staging', 'testing', 'development'])) return false;
         $cc = $cc->all();
 
-        $log->new()->properties(['to' => $to, 'cc' => $cc])->save('email address');
-        $is_success = false;
+        $log->new()->properties(['to' => $to, 'cc' => $cc])->save('email address');        
 
-        try {
-            $default_mail = Mail::getSwiftMailer();
-            $invoice_reminder_mail = MailFac::getSwiftMailer('internet_enterprise_billing');
-            if (in_array(FacadesApp::environment(), ['development', 'testing'])) {
-                $to = config('app.dev_mail_address');
-                $cc = config('app.dev_cc_mail_address');
-                $invoice_reminder_mail = MailFac::getSwiftMailer('dev');
-            }
-            Mail::setSwiftMailer($invoice_reminder_mail);
+        $default_mail = Mail::getSwiftMailer();
+        $invoice_reminder_mail = MailFac::getSwiftMailer('internet_enterprise_billing');
+        if (in_array(App::environment(), ['staging', 'testing', 'development'])) {
+            $to = config('mail_address.dev');
+            $cc = config('mail_address.dev_cc');
+            $invoice_reminder_mail = MailFac::getSwiftMailer('dev');
+        }
+        Mail::setSwiftMailer($invoice_reminder_mail);
 
-            Mail::to($to)->cc($cc)->send(new ReminderMail([
-                'branch_name' => $invoice->branch->name,
-                'month_year_sent' => Carbon::now()->translatedFormat('F Y'),
-                'receiver_name' => $invoice->receiver_name,
+        Mail::to($to)->cc($cc)->send(new ReminderMail([
+            'branch_name' => $invoice->branch->name,
+            'month_year_sent' => Carbon::now()->translatedFormat('F Y'),
+            'receiver_name' => $invoice->receiver_name,
 
-                'billing_date' => Carbon::now()->translatedFormat('d F Y'),
-                'payment_due_date' => Carbon::now()->endOfMonth()->translatedFormat('d F Y'),
+            'billing_date' => Carbon::now()->translatedFormat('d F Y'),
+            'payment_due_date' => Carbon::now()->endOfMonth()->translatedFormat('d F Y'),
 
-                'invoices' => $invoices,
-                'invoices_total' => $invoices_total,
-            ]));
+            'invoices' => $invoices,
+            'invoices_total' => $invoices_total,
+        ]));
 
-            Mail::setSwiftMailer($default_mail);
+        Mail::setSwiftMailer($default_mail);
 
-            if (! empty($invoice_reminders)) {
-                $invoice->email_reminders()->createMany($invoice_reminders);
-            }
-
-            foreach ($invoice_objects as $key => $invoice) {
-                if (! ($invoice->reminder_email_count >= 0)) {
-                    $invoice->reminder_email_count = 0;
-                }
-
-                $invoice->reminder_email_count += 1;
-                $invoice->save();
+        foreach ($invoice_objects as $key => $invoice) {
+            if (!($invoice->reminder_email_count >= 0)) {
+                $invoice->reminder_email_count = 0;
             }
 
-            $is_success = true;
-        } catch (\Exception $e) {
-            $log->new()->properties($e->getMessage())->save('error');
+            $invoice->reminder_email_count += 1;
+            $invoice->save();
         }
 
-        return $is_success;
+        return true;
     }
 }
