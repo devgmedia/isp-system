@@ -913,40 +913,40 @@ class Erp1
                     break;
 
                 case 0:
-                // PT Media Sarana Data
-                if (Str::startsWith($customer->customer_id, '01.')) {
-                    $branch_name = 'Yogyakarta';
-                    $company_name = 'PT Media Sarana Data';
-                } elseif (Str::startsWith($customer->customer_id, '04.')) {
-                    $branch_name = 'Surakarta';
-                    $company_name = 'PT Media Sarana Data';
-                } elseif (Str::startsWith($customer->customer_id, '05.')) {
-                    $branch_name = 'Purwokerto';
-                    $company_name = 'PT Media Sarana Data';
-                }
-                // PT Media Sarana Akses
-                elseif (Str::startsWith($customer->customer_id, '001-')) {
-                    $branch_name = 'Yogyakarta';
-                    $company_name = 'PT Media Sarana Akses';
-                }
+                    // PT Media Sarana Data
+                    if (Str::startsWith($customer->customer_id, '01.')) {
+                        $branch_name = 'Yogyakarta';
+                        $company_name = 'PT Media Sarana Data';
+                    } elseif (Str::startsWith($customer->customer_id, '04.')) {
+                        $branch_name = 'Surakarta';
+                        $company_name = 'PT Media Sarana Data';
+                    } elseif (Str::startsWith($customer->customer_id, '05.')) {
+                        $branch_name = 'Purwokerto';
+                        $company_name = 'PT Media Sarana Data';
+                    }
+                    // PT Media Sarana Akses
+                    elseif (Str::startsWith($customer->customer_id, '001-')) {
+                        $branch_name = 'Yogyakarta';
+                        $company_name = 'PT Media Sarana Akses';
+                    }
 
-                // branch = 0
-                // and customer_id not like '01.%'
-                // and customer_id is not null
-                // and customer_id != ''
-                // and customer_id != '0'
-                // and customer_id not like '04.%'
-                // and customer_id not like '05.%'
-                // and customer_id not like '04.%'
-                // and customer_id not like '001-%'
+                    // branch = 0
+                    // and customer_id not like '01.%'
+                    // and customer_id is not null
+                    // and customer_id != ''
+                    // and customer_id != '0'
+                    // and customer_id not like '04.%'
+                    // and customer_id not like '05.%'
+                    // and customer_id not like '04.%'
+                    // and customer_id not like '001-%'
 
-                // not filtered:
-                // 001.IST-01
-                // 998877
-                // 226226226
-                // 001.0286.1213
-                // 01,0443,0715.MAX
-                break;
+                    // not filtered:
+                    // 001.IST-01
+                    // 998877
+                    // 226226226
+                    // 001.0286.1213
+                    // 01,0443,0715.MAX
+                    break;
             }
 
             if (! $branch_name) {
