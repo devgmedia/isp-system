@@ -455,6 +455,6 @@ class CustomerProduct extends Pivot
 
     public function vendor()
     {
-        return $this->belongsTo(Supplier::class, 'vendor_id');
+        return $this->belongsTo(TechnicalVendor::class, 'vendor_id');
     }
 }

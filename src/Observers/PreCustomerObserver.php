@@ -20,7 +20,7 @@ class PreCustomerObserver
         if (! $preCustomer->cid) {
             $preCustomer->cid = Customer::generateCid($preCustomer->branch);
         }
-        $uuid = null;
+        $uuid = $preCustomer->uuid;
 
         // uuid
         if (! $preCustomer->uuid) {
