@@ -357,7 +357,7 @@ class ArInvoice
             $invoice['billing_bank_account_number'] = $first_billing->bank_account_number;
             $invoice['billing_bank_account_on_behalf_of'] = $first_billing->bank_account_on_behalf_of;
             $invoice['billing_receiver'] = $first_billing->receiver;
-            $invoice['billing_receiver_name'] = $first_billing->receiver_ref->name;
+            $invoice['billing_receiver_name'] = $first_billing->receiver_ref ? $first_billing->receiver_ref->name : null;
             $invoice['available_via_midtrans'] = $first_product->available_via_midtrans;
         }
 
