@@ -29,7 +29,14 @@ class PreCustomerObserver
             } while (PreCustomerModel::where('uuid', $uuid)->exists());
             $preCustomer->uuid = $uuid;
         }
-
+        // uuid
+        if (! $preCustomer->code_verification) {
+            do {
+                $code_verification = strtoupper(uniqid());
+            } while (PreCustomerModel::where('code_verification', $code_verification)->exists());
+    
+            $preCustomer->code_verification = $code_verification;
+        }
         // user_id
         if (! $preCustomer->user_id) {
             $password = Faker::create()->regexify('[A-Za-z0-9]{8}');
