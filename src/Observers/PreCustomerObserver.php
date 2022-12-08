@@ -34,7 +34,7 @@ class PreCustomerObserver
             do {
                 $code_verification = strtoupper(uniqid());
             } while (PreCustomerModel::where('code_verification', $code_verification)->exists());
-    
+
             $preCustomer->code_verification = $code_verification;
         }
         // user_id
