@@ -29,6 +29,7 @@ class Customer extends Model
         'money',
 
         'address',
+        'installation_address',
         'latitude',
         'longitude',
         'npwp',
@@ -103,6 +104,7 @@ class Customer extends Model
         'money' => 'integer',
 
         'address' => 'string',
+        'installation_address' => 'string',
         'latitude' => 'double',
         'longitude' => 'double',
         'npwp' => 'string',
