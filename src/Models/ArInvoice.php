@@ -269,6 +269,8 @@ class ArInvoice extends Model
 
         'regional_id',
         'company_id',
+
+        'subscription_address',
     ];
 
     protected $hidden = [];
@@ -470,6 +472,8 @@ class ArInvoice extends Model
 
         'regional_id' => 'integer',
         'company_id' => 'integer',
+
+        'subscription_address' => 'string',
     ];
 
     public function scheme()
