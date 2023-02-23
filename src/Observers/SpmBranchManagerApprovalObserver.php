@@ -21,7 +21,6 @@ class SpmBranchManagerApprovalObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmBranchManagerApproval  $spmBranchManagerApproval
      * @return void
      */
     public function created(SpmBranchManagerApproval $spmBranchManagerApproval)
@@ -32,7 +31,6 @@ class SpmBranchManagerApprovalObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmBranchManagerApproval  $spmBranchManagerApproval
      * @return void
      */
     public function updated(SpmBranchManagerApproval $spmBranchManagerApproval)
@@ -43,7 +41,6 @@ class SpmBranchManagerApprovalObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmBranchManagerApproval  $spmBranchManagerApproval
      * @return void
      */
     public function deleted(SpmBranchManagerApproval $spmBranchManagerApproval)
@@ -54,7 +51,6 @@ class SpmBranchManagerApprovalObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmBranchManagerApproval  $spmBranchManagerApproval
      * @return void
      */
     public function restored(SpmBranchManagerApproval $spmBranchManagerApproval)
@@ -65,7 +61,6 @@ class SpmBranchManagerApprovalObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmBranchManagerApproval  $spmBranchManagerApproval
      * @return void
      */
     public function forceDeleted(SpmBranchManagerApproval $spmBranchManagerApproval)

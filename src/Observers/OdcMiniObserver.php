@@ -20,7 +20,6 @@ class OdcMiniObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\OdcMini  $odc_mini
      * @return void
      */
     public function created(OdcMini $odc_mini)
@@ -31,7 +30,6 @@ class OdcMiniObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\OdcMini  $odc_mini
      * @return void
      */
     public function updated(OdcMini $odc_mini)
@@ -42,7 +40,6 @@ class OdcMiniObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\OdcMini  $odc_mini
      * @return void
      */
     public function deleted(OdcMini $odc_mini)
@@ -53,7 +50,6 @@ class OdcMiniObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\OdcMini  $odc_mini
      * @return void
      */
     public function restored(OdcMini $odc_mini)
@@ -64,7 +60,6 @@ class OdcMiniObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\OdcMini  $odc_mini
      * @return void
      */
     public function forceDeleted(OdcMini $odc_mini)

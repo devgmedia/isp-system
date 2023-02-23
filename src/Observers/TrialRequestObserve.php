@@ -20,7 +20,6 @@ class TrialRequestObserve
     /**
      * Handle the TrialRequest "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TrialRequest  $trial_request
      * @return void
      */
     public function created(TrialRequest $trial_request)
@@ -31,7 +30,6 @@ class TrialRequestObserve
     /**
      * Handle the TrialRequest "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TrialRequest  $trial_request
      * @return void
      */
     public function updated(TrialRequest $trial_request)
@@ -42,7 +40,6 @@ class TrialRequestObserve
     /**
      * Handle the TrialRequest "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TrialRequest  $trial_request
      * @return void
      */
     public function deleted(TrialRequest $trial_request)
@@ -53,7 +50,6 @@ class TrialRequestObserve
     /**
      * Handle the TrialRequest "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TrialRequest  $trial_request
      * @return void
      */
     public function restored(TrialRequest $trial_request)
@@ -64,7 +60,6 @@ class TrialRequestObserve
     /**
      * Handle the TrialRequest "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TrialRequest  $trial_request
      * @return void
      */
     public function forceDeleted(TrialRequest $trial_request)

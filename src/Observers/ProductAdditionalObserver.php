@@ -20,7 +20,6 @@ class ProductAdditionalObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductAdditional  $productAdditional
      * @return void
      */
     public function created(ProductAdditional $productAdditional)
@@ -31,7 +30,6 @@ class ProductAdditionalObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductAdditional  $productAdditional
      * @return void
      */
     public function updated(ProductAdditional $productAdditional)
@@ -42,7 +40,6 @@ class ProductAdditionalObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductAdditional  $productAdditional
      * @return void
      */
     public function deleted(ProductAdditional $productAdditional)
@@ -53,7 +50,6 @@ class ProductAdditionalObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductAdditional  $productAdditional
      * @return void
      */
     public function restored(ProductAdditional $productAdditional)
@@ -64,7 +60,6 @@ class ProductAdditionalObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductAdditional  $productAdditional
      * @return void
      */
     public function forceDeleted(ProductAdditional $productAdditional)

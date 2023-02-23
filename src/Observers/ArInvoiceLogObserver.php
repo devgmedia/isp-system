@@ -32,7 +32,6 @@ class ArInvoiceLogObserver
     /**
      * Handle the customer product additional "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceLog  $arInvoiceLog
      * @return void
      */
     public function created(ArInvoiceLog $arInvoiceLog)
@@ -43,7 +42,6 @@ class ArInvoiceLogObserver
     /**
      * Handle the customer product additional "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceLog  $arInvoiceLog
      * @return void
      */
     public function updated(ArInvoiceLog $arInvoiceLog)
@@ -54,7 +52,6 @@ class ArInvoiceLogObserver
     /**
      * Handle the customer product additional "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceLog  $arInvoiceLog
      * @return void
      */
     public function deleted(ArInvoiceLog $arInvoiceLog)
@@ -65,7 +62,6 @@ class ArInvoiceLogObserver
     /**
      * Handle the customer product additional "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceLog  $arInvoiceLog
      * @return void
      */
     public function restored(ArInvoiceLog $arInvoiceLog)
@@ -76,7 +72,6 @@ class ArInvoiceLogObserver
     /**
      * Handle the customer product additional "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceLog  $arInvoiceLog
      * @return void
      */
     public function forceDeleted(ArInvoiceLog $arInvoiceLog)

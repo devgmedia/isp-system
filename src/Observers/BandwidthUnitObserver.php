@@ -20,7 +20,6 @@ class BandwidthUnitObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\BandwidthUnit  $bandwidth_type
      * @return void
      */
     public function created(BandwidthUnit $bandwidth_type)
@@ -31,7 +30,6 @@ class BandwidthUnitObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\BandwidthUnit  $bandwidth_type
      * @return void
      */
     public function updated(BandwidthUnit $bandwidth_type)
@@ -42,7 +40,6 @@ class BandwidthUnitObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\BandwidthUnit  $bandwidth_type
      * @return void
      */
     public function deleted(BandwidthUnit $bandwidth_type)
@@ -53,7 +50,6 @@ class BandwidthUnitObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\BandwidthUnit  $bandwidth_type
      * @return void
      */
     public function restored(BandwidthUnit $bandwidth_type)
@@ -64,7 +60,6 @@ class BandwidthUnitObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\BandwidthUnit  $bandwidth_type
      * @return void
      */
     public function forceDeleted(BandwidthUnit $bandwidth_type)

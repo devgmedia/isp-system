@@ -47,7 +47,6 @@ class PreCustomerRequestObserver
     /**
      * Handle the supplier "created" event.
      *
-     * @param  \Gmedia\IspSystem\models\PreCustomerRequest  $preCustomerRequest
      * @return void
      */
     public function created(PreCustomerRequest $preCustomerRequest)
@@ -58,7 +57,6 @@ class PreCustomerRequestObserver
     /**
      * Handle the supplier "updated" event.
      *
-     * @param  \Gmedia\IspSystem\models\PreCustomerRequest  $preCustomerRequest
      * @return void
      */
     public function updated(PreCustomerRequest $preCustomerRequest)
@@ -69,7 +67,6 @@ class PreCustomerRequestObserver
     /**
      * Handle the supplier "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\models\PreCustomerRequest  $preCustomerRequest
      * @return void
      */
     public function deleted(PreCustomerRequest $preCustomerRequest)
@@ -80,7 +77,6 @@ class PreCustomerRequestObserver
     /**
      * Handle the supplier "restored" event.
      *
-     * @param  \Gmedia\IspSystem\models\PreCustomerRequest  $preCustomerRequest
      * @return void
      */
     public function restored(PreCustomerRequest $preCustomerRequest)
@@ -91,7 +87,6 @@ class PreCustomerRequestObserver
     /**
      * Handle the supplier "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\models\PreCustomerRequest  $preCustomerRequest
      * @return void
      */
     public function forceDeleted(PreCustomerRequest $preCustomerRequest)

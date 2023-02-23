@@ -20,7 +20,6 @@ class IspObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Isp  $isp
      * @return void
      */
     public function created(Isp $isp)
@@ -31,7 +30,6 @@ class IspObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Isp  $isp
      * @return void
      */
     public function updated(Isp $isp)
@@ -42,7 +40,6 @@ class IspObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Isp  $isp
      * @return void
      */
     public function deleted(Isp $isp)
@@ -53,7 +50,6 @@ class IspObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Isp  $isp
      * @return void
      */
     public function restored(Isp $isp)
@@ -64,7 +60,6 @@ class IspObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Isp  $isp
      * @return void
      */
     public function forceDeleted(Isp $isp)

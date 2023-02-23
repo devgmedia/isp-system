@@ -56,7 +56,6 @@ class AgentObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Agent  $agent
      * @return void
      */
     public function created(Agent $agent)
@@ -67,7 +66,6 @@ class AgentObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Agent  $agent
      * @return void
      */
     public function updated(Agent $agent)
@@ -78,7 +76,6 @@ class AgentObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Agent  $agent
      * @return void
      */
     public function deleted(Agent $agent)
@@ -89,7 +86,6 @@ class AgentObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Agent  $agent
      * @return void
      */
     public function restored(Agent $agent)
@@ -100,7 +96,6 @@ class AgentObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Agent  $agent
      * @return void
      */
     public function forceDeleted(Agent $agent)

@@ -20,7 +20,6 @@ class DistrictObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\District  $district
      * @return void
      */
     public function created(District $district)
@@ -31,7 +30,6 @@ class DistrictObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\District  $district
      * @return void
      */
     public function updated(District $district)
@@ -42,7 +40,6 @@ class DistrictObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\District  $district
      * @return void
      */
     public function deleted(District $district)
@@ -53,7 +50,6 @@ class DistrictObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\District  $district
      * @return void
      */
     public function restored(District $district)
@@ -64,7 +60,6 @@ class DistrictObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\District  $district
      * @return void
      */
     public function forceDeleted(District $district)

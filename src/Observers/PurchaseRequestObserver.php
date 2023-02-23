@@ -47,7 +47,6 @@ class PurchaseRequestObserver
     /**
      * Handle the purchase request "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PurchaseRequest  $purchaseRequest
      * @return void
      */
     public function created(PurchaseRequest $purchaseRequest)
@@ -58,7 +57,6 @@ class PurchaseRequestObserver
     /**
      * Handle the purchase request "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PurchaseRequest  $purchaseRequest
      * @return void
      */
     public function updated(PurchaseRequest $purchaseRequest)
@@ -69,7 +67,6 @@ class PurchaseRequestObserver
     /**
      * Handle the purchase request "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PurchaseRequest  $purchaseRequest
      * @return void
      */
     public function deleted(PurchaseRequest $purchaseRequest)
@@ -80,7 +77,6 @@ class PurchaseRequestObserver
     /**
      * Handle the purchase request "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PurchaseRequest  $purchaseRequest
      * @return void
      */
     public function restored(PurchaseRequest $purchaseRequest)
@@ -91,7 +87,6 @@ class PurchaseRequestObserver
     /**
      * Handle the purchase request "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PurchaseRequest  $purchaseRequest
      * @return void
      */
     public function forceDeleted(PurchaseRequest $purchaseRequest)

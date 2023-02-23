@@ -20,7 +20,6 @@ class CashOpnameObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashOpname  $cashOpname
      * @return void
      */
     public function created(CashOpname $cashOpname)
@@ -31,7 +30,6 @@ class CashOpnameObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashOpname  $cashOpname
      * @return void
      */
     public function updated(CashOpname $cashOpname)
@@ -42,7 +40,6 @@ class CashOpnameObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashOpname  $cashOpname
      * @return void
      */
     public function deleted(CashOpname $cashOpname)
@@ -53,7 +50,6 @@ class CashOpnameObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashOpname  $cashOpname
      * @return void
      */
     public function restored(CashOpname $cashOpname)
@@ -64,7 +60,6 @@ class CashOpnameObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashOpname  $cashOpname
      * @return void
      */
     public function forceDeleted(CashOpname $cashOpname)

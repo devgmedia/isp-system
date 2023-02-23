@@ -20,7 +20,6 @@ class TechnicalVendorScheduleObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TechnicalVendorSchedule  $technical_vendor_schedule
      * @return void
      */
     public function created(TechnicalVendorSchedule $technical_vendor_schedule)
@@ -31,7 +30,6 @@ class TechnicalVendorScheduleObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TechnicalVendorSchedule  $technical_vendor_schedule
      * @return void
      */
     public function updated(TechnicalVendorSchedule $technical_vendor_schedule)
@@ -42,7 +40,6 @@ class TechnicalVendorScheduleObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TechnicalVendorSchedule  $technical_vendor_schedule
      * @return void
      */
     public function deleted(TechnicalVendorSchedule $technical_vendor_schedule)
@@ -53,7 +50,6 @@ class TechnicalVendorScheduleObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TechnicalVendorSchedule  $technical_vendor_schedule
      * @return void
      */
     public function restored(TechnicalVendorSchedule $technical_vendor_schedule)
@@ -64,7 +60,6 @@ class TechnicalVendorScheduleObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TechnicalVendorSchedule  $technical_vendor_schedule
      * @return void
      */
     public function forceDeleted(TechnicalVendorSchedule $technical_vendor_schedule)

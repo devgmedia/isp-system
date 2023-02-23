@@ -61,7 +61,6 @@ class SpmObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Spm  $spm
      * @return void
      */
     public function created(Spm $spm)
@@ -72,7 +71,6 @@ class SpmObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Spm  $spm
      * @return void
      */
     public function updated(Spm $spm)
@@ -83,7 +81,6 @@ class SpmObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Spm  $spm
      * @return void
      */
     public function deleted(Spm $spm)
@@ -94,7 +91,6 @@ class SpmObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Spm  $spm
      * @return void
      */
     public function restored(Spm $spm)
@@ -105,7 +101,6 @@ class SpmObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Spm  $spm
      * @return void
      */
     public function forceDeleted(Spm $spm)

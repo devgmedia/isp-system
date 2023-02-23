@@ -55,7 +55,6 @@ class CashierOutCategoryObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOutCategory  $cashierOutCategory
      * @return void
      */
     public function created(CashierOutCategory $cashierOutCategory)
@@ -66,7 +65,6 @@ class CashierOutCategoryObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOutCategory  $cashierOutCategory
      * @return void
      */
     public function updated(CashierOutCategory $cashierOutCategory)
@@ -77,7 +75,6 @@ class CashierOutCategoryObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOutCategory  $cashierOutCategory
      * @return void
      */
     public function deleted(CashierOutCategory $cashierOutCategory)
@@ -88,7 +85,6 @@ class CashierOutCategoryObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOutCategory  $cashierOutCategory
      * @return void
      */
     public function restored(CashierOutCategory $cashierOutCategory)
@@ -99,7 +95,6 @@ class CashierOutCategoryObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOutCategory  $cashierOutCategory
      * @return void
      */
     public function forceDeleted(CashierOutCategory $cashierOutCategory)

@@ -21,7 +21,6 @@ class SpmGeneralManagerApprovalObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmGeneralManagerApproval  $spmGeneralManagerApproval
      * @return void
      */
     public function created(SpmGeneralManagerApproval $spmGeneralManagerApproval)
@@ -32,7 +31,6 @@ class SpmGeneralManagerApprovalObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmGeneralManagerApproval  $spmGeneralManagerApproval
      * @return void
      */
     public function updated(SpmGeneralManagerApproval $spmGeneralManagerApproval)
@@ -43,7 +41,6 @@ class SpmGeneralManagerApprovalObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmGeneralManagerApproval  $spmGeneralManagerApproval
      * @return void
      */
     public function deleted(SpmGeneralManagerApproval $spmGeneralManagerApproval)
@@ -54,7 +51,6 @@ class SpmGeneralManagerApprovalObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmGeneralManagerApproval  $spmGeneralManagerApproval
      * @return void
      */
     public function restored(SpmGeneralManagerApproval $spmGeneralManagerApproval)
@@ -65,7 +61,6 @@ class SpmGeneralManagerApprovalObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmGeneralManagerApproval  $spmGeneralManagerApproval
      * @return void
      */
     public function forceDeleted(SpmGeneralManagerApproval $spmGeneralManagerApproval)

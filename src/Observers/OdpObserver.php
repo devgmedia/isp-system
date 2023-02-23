@@ -20,7 +20,6 @@ class OdpObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Odp  $odp
      * @return void
      */
     public function created(Odp $odp)
@@ -31,7 +30,6 @@ class OdpObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Odp  $odp
      * @return void
      */
     public function updated(Odp $odp)
@@ -42,7 +40,6 @@ class OdpObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Odp  $odp
      * @return void
      */
     public function deleted(Odp $odp)
@@ -53,7 +50,6 @@ class OdpObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Odp  $odp
      * @return void
      */
     public function restored(Odp $odp)
@@ -64,7 +60,6 @@ class OdpObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Odp  $odp
      * @return void
      */
     public function forceDeleted(Odp $odp)

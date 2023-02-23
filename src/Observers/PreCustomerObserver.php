@@ -63,7 +63,6 @@ class PreCustomerObserver
     /**
      * Handle the Precustomer "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomer  $preCustomer
      * @return void
      */
     public function created(PreCustomerModel $preCustomer)
@@ -74,7 +73,6 @@ class PreCustomerObserver
     /**
      * Handle the Precustomer "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomer  $preCustomer
      * @return void
      */
     public function updated(PreCustomerModel $preCustomer)
@@ -85,7 +83,6 @@ class PreCustomerObserver
     /**
      * Handle the Precustomer "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomer  $preCustomer
      * @return void
      */
     public function deleted(PreCustomerModel $preCustomer)
@@ -96,7 +93,6 @@ class PreCustomerObserver
     /**
      * Handle the Precustomer "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomer  $preCustomer
      * @return void
      */
     public function restored(PreCustomerModel $preCustomer)
@@ -107,7 +103,6 @@ class PreCustomerObserver
     /**
      * Handle the Precustomer "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomer  $preCustomer
      * @return void
      */
     public function forceDeleted(PreCustomerModel $preCustomer)

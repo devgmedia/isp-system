@@ -20,7 +20,6 @@ class ProductObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Product  $product
      * @return void
      */
     public function created(Product $product)
@@ -31,7 +30,6 @@ class ProductObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Product  $product
      * @return void
      */
     public function updated(Product $product)
@@ -42,7 +40,6 @@ class ProductObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Product  $product
      * @return void
      */
     public function deleted(Product $product)
@@ -53,7 +50,6 @@ class ProductObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Product  $product
      * @return void
      */
     public function restored(Product $product)
@@ -64,7 +60,6 @@ class ProductObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Product  $product
      * @return void
      */
     public function forceDeleted(Product $product)

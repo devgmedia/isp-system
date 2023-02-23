@@ -33,7 +33,6 @@ class ArInvoiceEmailReminderObserver
     /**
      * Handle the customer product additional "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceEmailReminder  $arInvoiceEmailReminder
      * @return void
      */
     public function updated(ArInvoiceEmailReminder $arInvoiceEmailReminder)
@@ -44,7 +43,6 @@ class ArInvoiceEmailReminderObserver
     /**
      * Handle the customer product additional "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceEmailReminder  $arInvoiceEmailReminder
      * @return void
      */
     public function deleted(ArInvoiceEmailReminder $arInvoiceEmailReminder)
@@ -55,7 +53,6 @@ class ArInvoiceEmailReminderObserver
     /**
      * Handle the customer product additional "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceEmailReminder  $arInvoiceEmailReminder
      * @return void
      */
     public function restored(ArInvoiceEmailReminder $arInvoiceEmailReminder)
@@ -66,7 +63,6 @@ class ArInvoiceEmailReminderObserver
     /**
      * Handle the customer product additional "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceEmailReminder  $arInvoiceEmailReminder
      * @return void
      */
     public function forceDeleted(ArInvoiceEmailReminder $arInvoiceEmailReminder)

@@ -30,7 +30,6 @@ class SupplierObserver
     /**
      * Handle the supplier "created" event.
      *
-     * @param  \Gmedia\IspSystem\models\Supplier  $supplier
      * @return void
      */
     public function created(Supplier $supplier)
@@ -41,7 +40,6 @@ class SupplierObserver
     /**
      * Handle the supplier "updated" event.
      *
-     * @param  \Gmedia\IspSystem\models\Supplier  $supplier
      * @return void
      */
     public function updated(Supplier $supplier)
@@ -52,7 +50,6 @@ class SupplierObserver
     /**
      * Handle the supplier "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\models\Supplier  $supplier
      * @return void
      */
     public function deleted(Supplier $supplier)
@@ -63,7 +60,6 @@ class SupplierObserver
     /**
      * Handle the supplier "restored" event.
      *
-     * @param  \Gmedia\IspSystem\models\Supplier  $supplier
      * @return void
      */
     public function restored(Supplier $supplier)
@@ -74,7 +70,6 @@ class SupplierObserver
     /**
      * Handle the supplier "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\models\Supplier  $supplier
      * @return void
      */
     public function forceDeleted(Supplier $supplier)

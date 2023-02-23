@@ -53,7 +53,6 @@ class TaxInObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxIn  $taxIn
      * @return void
      */
     public function created(TaxIn $taxIn)
@@ -64,7 +63,6 @@ class TaxInObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxIn  $taxIn
      * @return void
      */
     public function updated(TaxIn $taxIn)
@@ -75,7 +73,6 @@ class TaxInObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxIn  $taxIn
      * @return void
      */
     public function deleted(TaxIn $taxIn)
@@ -86,7 +83,6 @@ class TaxInObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxIn  $taxIn
      * @return void
      */
     public function restored(TaxIn $taxIn)
@@ -97,7 +93,6 @@ class TaxInObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxIn  $taxIn
      * @return void
      */
     public function forceDeleted(TaxIn $taxIn)

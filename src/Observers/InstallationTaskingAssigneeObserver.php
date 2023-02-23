@@ -19,7 +19,6 @@ class InstallationTaskingAssigneeObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTaskingAssignee  $installationTaskingAssignee
      * @return void
      */
     public function created(InstallationTaskingAssignee $installationTaskingAssignee)
@@ -30,7 +29,6 @@ class InstallationTaskingAssigneeObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTaskingAssignee  $installationTaskingAssignee
      * @return void
      */
     public function updated(InstallationTaskingAssignee $installationTaskingAssignee)
@@ -41,7 +39,6 @@ class InstallationTaskingAssigneeObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTaskingAssignee  $installationTaskingAssignee
      * @return void
      */
     public function deleted(InstallationTaskingAssignee $installationTaskingAssignee)
@@ -52,7 +49,6 @@ class InstallationTaskingAssigneeObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTaskingAssignee  $installationTaskingAssignee
      * @return void
      */
     public function restored(InstallationTaskingAssignee $installationTaskingAssignee)
@@ -63,7 +59,6 @@ class InstallationTaskingAssigneeObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTaskingAssignee  $installationTaskingAssignee
      * @return void
      */
     public function forceDeleted(InstallationTaskingAssignee $installationTaskingAssignee)

@@ -20,7 +20,6 @@ class CashierOutObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOut  $cashierOut
      * @return void
      */
     public function created(CashierOut $cashierOut)
@@ -31,7 +30,6 @@ class CashierOutObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOut  $cashierOut
      * @return void
      */
     public function updated(CashierOut $cashierOut)
@@ -42,7 +40,6 @@ class CashierOutObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOut  $cashierOut
      * @return void
      */
     public function deleted(CashierOut $cashierOut)
@@ -53,7 +50,6 @@ class CashierOutObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOut  $cashierOut
      * @return void
      */
     public function restored(CashierOut $cashierOut)
@@ -64,7 +60,6 @@ class CashierOutObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CashierOut  $cashierOut
      * @return void
      */
     public function forceDeleted(CashierOut $cashierOut)

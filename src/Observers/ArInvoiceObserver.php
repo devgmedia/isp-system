@@ -20,7 +20,6 @@ class ArInvoiceObserver
     /**
      * Handle the ar invoice "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoice  $arInvoice
      * @return void
      */
     public function created(ArInvoice $arInvoice)
@@ -31,7 +30,6 @@ class ArInvoiceObserver
     /**
      * Handle the ar invoice "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoice  $arInvoice
      * @return void
      */
     public function updated(ArInvoice $arInvoice)
@@ -42,7 +40,6 @@ class ArInvoiceObserver
     /**
      * Handle the ar invoice "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoice  $arInvoice
      * @return void
      */
     public function deleted(ArInvoice $arInvoice)
@@ -53,7 +50,6 @@ class ArInvoiceObserver
     /**
      * Handle the ar invoice "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoice  $arInvoice
      * @return void
      */
     public function restored(ArInvoice $arInvoice)
@@ -64,7 +60,6 @@ class ArInvoiceObserver
     /**
      * Handle the ar invoice "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoice  $arInvoice
      * @return void
      */
     public function forceDeleted(ArInvoice $arInvoice)

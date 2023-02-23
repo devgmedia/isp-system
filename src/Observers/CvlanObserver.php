@@ -20,7 +20,6 @@ class CvlanObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Cvlan  $svlan
      * @return void
      */
     public function created(Cvlan $svlan)
@@ -31,7 +30,6 @@ class CvlanObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Cvlan  $svlan
      * @return void
      */
     public function updated(Cvlan $svlan)
@@ -42,7 +40,6 @@ class CvlanObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Cvlan  $svlan
      * @return void
      */
     public function deleted(Cvlan $svlan)
@@ -53,7 +50,6 @@ class CvlanObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Cvlan  $svlan
      * @return void
      */
     public function restored(Cvlan $svlan)
@@ -64,7 +60,6 @@ class CvlanObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Cvlan  $svlan
      * @return void
      */
     public function forceDeleted(Cvlan $svlan)

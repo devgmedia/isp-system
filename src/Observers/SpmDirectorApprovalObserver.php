@@ -21,7 +21,6 @@ class SpmDirectorApprovalObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmDirectorApproval  $spmDirectorApproval
      * @return void
      */
     public function created(SpmDirectorApproval $spmDirectorApproval)
@@ -32,7 +31,6 @@ class SpmDirectorApprovalObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmDirectorApproval  $spmDirectorApproval
      * @return void
      */
     public function updated(SpmDirectorApproval $spmDirectorApproval)
@@ -43,7 +41,6 @@ class SpmDirectorApprovalObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmDirectorApproval  $spmDirectorApproval
      * @return void
      */
     public function deleted(SpmDirectorApproval $spmDirectorApproval)
@@ -54,7 +51,6 @@ class SpmDirectorApprovalObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmDirectorApproval  $spmDirectorApproval
      * @return void
      */
     public function restored(SpmDirectorApproval $spmDirectorApproval)
@@ -65,7 +61,6 @@ class SpmDirectorApprovalObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmDirectorApproval  $spmDirectorApproval
      * @return void
      */
     public function forceDeleted(SpmDirectorApproval $spmDirectorApproval)

@@ -49,7 +49,6 @@ class CustomerProductObserver
     /**
      * Handle the customer product "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProduct  $customerProduct
      * @return void
      */
     public function created(CustomerProduct $customerProduct)
@@ -60,7 +59,6 @@ class CustomerProductObserver
     /**
      * Handle the customer product "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProduct  $customerProduct
      * @return void
      */
     public function updated(CustomerProduct $customerProduct)
@@ -71,7 +69,6 @@ class CustomerProductObserver
     /**
      * Handle the customer product "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProduct  $customerProduct
      * @return void
      */
     public function deleted(CustomerProduct $customerProduct)
@@ -82,7 +79,6 @@ class CustomerProductObserver
     /**
      * Handle the customer product "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProduct  $customerProduct
      * @return void
      */
     public function restored(CustomerProduct $customerProduct)
@@ -93,7 +89,6 @@ class CustomerProductObserver
     /**
      * Handle the customer product "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProduct  $customerProduct
      * @return void
      */
     public function forceDeleted(CustomerProduct $customerProduct)

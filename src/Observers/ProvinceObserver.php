@@ -20,7 +20,6 @@ class ProvinceObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Province  $province
      * @return void
      */
     public function created(Province $province)
@@ -31,7 +30,6 @@ class ProvinceObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Province  $province
      * @return void
      */
     public function updated(Province $province)
@@ -42,7 +40,6 @@ class ProvinceObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Province  $province
      * @return void
      */
     public function deleted(Province $province)
@@ -53,7 +50,6 @@ class ProvinceObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Province  $province
      * @return void
      */
     public function restored(Province $province)
@@ -64,7 +60,6 @@ class ProvinceObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Province  $province
      * @return void
      */
     public function forceDeleted(Province $province)

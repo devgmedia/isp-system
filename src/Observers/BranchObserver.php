@@ -20,7 +20,6 @@ class BranchObserver
     /**
      * Handle the branch "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Branch  $branch
      * @return void
      */
     public function created(Branch $branch)
@@ -31,7 +30,6 @@ class BranchObserver
     /**
      * Handle the branch "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Branch  $branch
      * @return void
      */
     public function updated(Branch $branch)
@@ -42,7 +40,6 @@ class BranchObserver
     /**
      * Handle the branch "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Branch  $branch
      * @return void
      */
     public function deleted(Branch $branch)
@@ -53,7 +50,6 @@ class BranchObserver
     /**
      * Handle the branch "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Branch  $branch
      * @return void
      */
     public function restored(Branch $branch)
@@ -64,7 +60,6 @@ class BranchObserver
     /**
      * Handle the branch "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Branch  $branch
      * @return void
      */
     public function forceDeleted(Branch $branch)

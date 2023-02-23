@@ -20,7 +20,6 @@ class HoldAmountObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\HoldAmount  $holdAmount
      * @return void
      */
     public function created(HoldAmount $holdAmount)
@@ -31,7 +30,6 @@ class HoldAmountObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\HoldAmount  $holdAmount
      * @return void
      */
     public function updated(HoldAmount $holdAmount)
@@ -42,7 +40,6 @@ class HoldAmountObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\HoldAmount  $holdAmount
      * @return void
      */
     public function deleted(HoldAmount $holdAmount)
@@ -53,7 +50,6 @@ class HoldAmountObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\HoldAmount  $holdAmount
      * @return void
      */
     public function restored(HoldAmount $holdAmount)
@@ -64,7 +60,6 @@ class HoldAmountObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\HoldAmount  $holdAmount
      * @return void
      */
     public function forceDeleted(HoldAmount $holdAmount)

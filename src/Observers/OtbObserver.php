@@ -20,7 +20,6 @@ class OtbObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Otb  $otb
      * @return void
      */
     public function created(Otb $otb)
@@ -31,7 +30,6 @@ class OtbObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Otb  $otb
      * @return void
      */
     public function updated(Otb $otb)
@@ -42,7 +40,6 @@ class OtbObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Otb  $otb
      * @return void
      */
     public function deleted(Otb $otb)
@@ -53,7 +50,6 @@ class OtbObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Otb  $otb
      * @return void
      */
     public function restored(Otb $otb)
@@ -64,7 +60,6 @@ class OtbObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Otb  $otb
      * @return void
      */
     public function forceDeleted(Otb $otb)

@@ -64,7 +64,6 @@ class CustomerObserver
     /**
      * Handle the customer "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Customer  $customer
      * @return void
      */
     public function created(CustomerModel $customer)
@@ -75,7 +74,6 @@ class CustomerObserver
     /**
      * Handle the customer "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Customer  $customer
      * @return void
      */
     public function updated(CustomerModel $customer)
@@ -86,7 +84,6 @@ class CustomerObserver
     /**
      * Handle the customer "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Customer  $customer
      * @return void
      */
     public function deleted(CustomerModel $customer)
@@ -97,7 +94,6 @@ class CustomerObserver
     /**
      * Handle the customer "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Customer  $customer
      * @return void
      */
     public function restored(CustomerModel $customer)
@@ -108,7 +104,6 @@ class CustomerObserver
     /**
      * Handle the customer "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Customer  $customer
      * @return void
      */
     public function forceDeleted(CustomerModel $customer)

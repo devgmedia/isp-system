@@ -33,7 +33,6 @@ class ArInvoiceConfirmObserver
     /**
      * Handle the customer product additional "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceConfirm  $arInvoiceConfirm
      * @return void
      */
     public function updated(ArInvoiceConfirm $arInvoiceConfirm)
@@ -44,7 +43,6 @@ class ArInvoiceConfirmObserver
     /**
      * Handle the customer product additional "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceConfirm  $arInvoiceConfirm
      * @return void
      */
     public function deleted(ArInvoiceConfirm $arInvoiceConfirm)
@@ -55,7 +53,6 @@ class ArInvoiceConfirmObserver
     /**
      * Handle the customer product additional "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceConfirm  $arInvoiceConfirm
      * @return void
      */
     public function restored(ArInvoiceConfirm $arInvoiceConfirm)
@@ -66,7 +63,6 @@ class ArInvoiceConfirmObserver
     /**
      * Handle the customer product additional "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceConfirm  $arInvoiceConfirm
      * @return void
      */
     public function forceDeleted(ArInvoiceConfirm $arInvoiceConfirm)

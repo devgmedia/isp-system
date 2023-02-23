@@ -20,7 +20,6 @@ class SubDistrictObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SubDistrict  $sub_district
      * @return void
      */
     public function created(SubDistrict $sub_district)
@@ -31,7 +30,6 @@ class SubDistrictObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SubDistrict  $sub_district
      * @return void
      */
     public function updated(SubDistrict $sub_district)
@@ -42,7 +40,6 @@ class SubDistrictObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SubDistrict  $sub_district
      * @return void
      */
     public function deleted(SubDistrict $sub_district)
@@ -53,7 +50,6 @@ class SubDistrictObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SubDistrict  $sub_district
      * @return void
      */
     public function restored(SubDistrict $sub_district)
@@ -64,7 +60,6 @@ class SubDistrictObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SubDistrict  $sub_district
      * @return void
      */
     public function forceDeleted(SubDistrict $sub_district)

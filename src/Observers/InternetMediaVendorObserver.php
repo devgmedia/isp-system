@@ -20,7 +20,6 @@ class InternetMediaVendorObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMediaVendor  $internet_media_vendor
      * @return void
      */
     public function created(InternetMediaVendor $internet_media_vendor)
@@ -31,7 +30,6 @@ class InternetMediaVendorObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMediaVendor  $internet_media_vendor
      * @return void
      */
     public function updated(InternetMediaVendor $internet_media_vendor)
@@ -42,7 +40,6 @@ class InternetMediaVendorObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMediaVendor  $internet_media_vendor
      * @return void
      */
     public function deleted(InternetMediaVendor $internet_media_vendor)
@@ -53,7 +50,6 @@ class InternetMediaVendorObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMediaVendor  $internet_media_vendor
      * @return void
      */
     public function restored(InternetMediaVendor $internet_media_vendor)
@@ -64,7 +60,6 @@ class InternetMediaVendorObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMediaVendor  $internet_media_vendor
      * @return void
      */
     public function forceDeleted(InternetMediaVendor $internet_media_vendor)

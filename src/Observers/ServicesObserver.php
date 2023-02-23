@@ -20,7 +20,6 @@ class ServicesObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Service  $services
      * @return void
      */
     public function created(Service $services)
@@ -31,7 +30,6 @@ class ServicesObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Service  $services
      * @return void
      */
     public function updated(Service $services)
@@ -42,7 +40,6 @@ class ServicesObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Service  $services
      * @return void
      */
     public function deleted(Service $services)
@@ -53,7 +50,6 @@ class ServicesObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Service  $services
      * @return void
      */
     public function restored(Service $services)
@@ -64,7 +60,6 @@ class ServicesObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Service  $services
      * @return void
      */
     public function forceDeleted(Service $services)

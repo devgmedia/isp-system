@@ -20,7 +20,6 @@ class ArInvoiceFakturObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceFaktur  $arInvoiceFaktur
      * @return void
      */
     public function created(ArInvoiceFaktur $arInvoiceFaktur)
@@ -31,7 +30,6 @@ class ArInvoiceFakturObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceFaktur  $arInvoiceFaktur
      * @return void
      */
     public function updated(ArInvoiceFaktur $arInvoiceFaktur)
@@ -42,7 +40,6 @@ class ArInvoiceFakturObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceFaktur  $arInvoiceFaktur
      * @return void
      */
     public function deleted(ArInvoiceFaktur $arInvoiceFaktur)
@@ -53,7 +50,6 @@ class ArInvoiceFakturObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceFaktur  $arInvoiceFaktur
      * @return void
      */
     public function restored(ArInvoiceFaktur $arInvoiceFaktur)
@@ -64,7 +60,6 @@ class ArInvoiceFakturObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceFaktur  $arInvoiceFaktur
      * @return void
      */
     public function forceDeleted(ArInvoiceFaktur $arInvoiceFaktur)

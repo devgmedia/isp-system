@@ -53,7 +53,6 @@ class TaxOutObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxOut  $taxOut
      * @return void
      */
     public function created(TaxOut $taxOut)
@@ -64,7 +63,6 @@ class TaxOutObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxOut  $taxOut
      * @return void
      */
     public function updated(TaxOut $taxOut)
@@ -75,7 +73,6 @@ class TaxOutObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxOut  $taxOut
      * @return void
      */
     public function deleted(TaxOut $taxOut)
@@ -86,7 +83,6 @@ class TaxOutObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxOut  $taxOut
      * @return void
      */
     public function restored(TaxOut $taxOut)
@@ -97,7 +93,6 @@ class TaxOutObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\TaxOut  $taxOut
      * @return void
      */
     public function forceDeleted(TaxOut $taxOut)

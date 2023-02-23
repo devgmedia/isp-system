@@ -30,7 +30,6 @@ class CustomerVisitLogObserver
     /**
      * Handle the customer product additional "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisitLog  $customerVisitLog
      * @return void
      */
     public function created(CustomerVisitLog $customerVisitLog)
@@ -41,7 +40,6 @@ class CustomerVisitLogObserver
     /**
      * Handle the customer product additional "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisitLog  $customerVisitLog
      * @return void
      */
     public function updated(CustomerVisitLog $customerVisitLog)
@@ -52,7 +50,6 @@ class CustomerVisitLogObserver
     /**
      * Handle the customer product additional "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisitLog  $customerVisitLog
      * @return void
      */
     public function deleted(CustomerVisitLog $customerVisitLog)
@@ -63,7 +60,6 @@ class CustomerVisitLogObserver
     /**
      * Handle the customer product additional "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisitLog  $customerVisitLog
      * @return void
      */
     public function restored(CustomerVisitLog $customerVisitLog)
@@ -74,7 +70,6 @@ class CustomerVisitLogObserver
     /**
      * Handle the customer product additional "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisitLog  $customerVisitLog
      * @return void
      */
     public function forceDeleted(CustomerVisitLog $customerVisitLog)

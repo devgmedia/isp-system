@@ -20,7 +20,6 @@ class InternetMediaObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMedia  $internet_media
      * @return void
      */
     public function created(InternetMedia $internet_media)
@@ -31,7 +30,6 @@ class InternetMediaObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMedia  $internet_media
      * @return void
      */
     public function updated(InternetMedia $internet_media)
@@ -42,7 +40,6 @@ class InternetMediaObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMedia  $internet_media
      * @return void
      */
     public function deleted(InternetMedia $internet_media)
@@ -53,7 +50,6 @@ class InternetMediaObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMedia  $internet_media
      * @return void
      */
     public function restored(InternetMedia $internet_media)
@@ -64,7 +60,6 @@ class InternetMediaObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InternetMedia  $internet_media
      * @return void
      */
     public function forceDeleted(InternetMedia $internet_media)

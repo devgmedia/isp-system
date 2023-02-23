@@ -20,7 +20,6 @@ class KasbonObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Kasbon  $kasbon
      * @return void
      */
     public function created(Kasbon $kasbon)
@@ -31,7 +30,6 @@ class KasbonObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Kasbon  $kasbon
      * @return void
      */
     public function updated(Kasbon $kasbon)
@@ -42,7 +40,6 @@ class KasbonObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Kasbon  $kasbon
      * @return void
      */
     public function deleted(Kasbon $kasbon)
@@ -53,7 +50,6 @@ class KasbonObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Kasbon  $kasbon
      * @return void
      */
     public function restored(Kasbon $kasbon)
@@ -64,7 +60,6 @@ class KasbonObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Kasbon  $kasbon
      * @return void
      */
     public function forceDeleted(Kasbon $kasbon)

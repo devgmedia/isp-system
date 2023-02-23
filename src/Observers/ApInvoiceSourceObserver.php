@@ -20,7 +20,6 @@ class ApInvoiceSourceObserver
     /**
      * Handle the ar invoice "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoiceSource  $apInvoiceSource
      * @return void
      */
     public function created(ApInvoiceSource $apInvoiceSource)
@@ -31,7 +30,6 @@ class ApInvoiceSourceObserver
     /**
      * Handle the ar invoice "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoiceSource  $apInvoiceSource
      * @return void
      */
     public function updated(ApInvoiceSource $apInvoiceSource)
@@ -42,7 +40,6 @@ class ApInvoiceSourceObserver
     /**
      * Handle the ar invoice "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoiceSource  $apInvoiceSource
      * @return void
      */
     public function deleted(ApInvoiceSource $apInvoiceSource)
@@ -53,7 +50,6 @@ class ApInvoiceSourceObserver
     /**
      * Handle the ar invoice "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoiceSource  $apInvoiceSource
      * @return void
      */
     public function restored(ApInvoiceSource $apInvoiceSource)
@@ -64,7 +60,6 @@ class ApInvoiceSourceObserver
     /**
      * Handle the ar invoice "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoiceSource  $apInvoiceSource
      * @return void
      */
     public function forceDeleted(ApInvoiceSource $apInvoiceSource)

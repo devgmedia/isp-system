@@ -20,7 +20,6 @@ class AgentCashWithdrawalObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AgentCashWithdrawal  $agentCashWithdrawal
      * @return void
      */
     public function created(AgentCashWithdrawal $agentCashWithdrawal)
@@ -31,7 +30,6 @@ class AgentCashWithdrawalObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AgentCashWithdrawal  $agentCashWithdrawal
      * @return void
      */
     public function updated(AgentCashWithdrawal $agentCashWithdrawal)
@@ -42,7 +40,6 @@ class AgentCashWithdrawalObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AgentCashWithdrawal  $agentCashWithdrawal
      * @return void
      */
     public function deleted(AgentCashWithdrawal $agentCashWithdrawal)
@@ -53,7 +50,6 @@ class AgentCashWithdrawalObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AgentCashWithdrawal  $agentCashWithdrawal
      * @return void
      */
     public function restored(AgentCashWithdrawal $agentCashWithdrawal)
@@ -64,7 +60,6 @@ class AgentCashWithdrawalObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AgentCashWithdrawal  $agentCashWithdrawal
      * @return void
      */
     public function forceDeleted(AgentCashWithdrawal $agentCashWithdrawal)

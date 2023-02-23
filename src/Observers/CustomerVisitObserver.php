@@ -20,7 +20,6 @@ class CustomerVisitObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisit  $customerVisit
      * @return void
      */
     public function created(CustomerVisit $customerVisit)
@@ -31,7 +30,6 @@ class CustomerVisitObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisit  $customerVisit
      * @return void
      */
     public function updated(CustomerVisit $customerVisit)
@@ -42,7 +40,6 @@ class CustomerVisitObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisit  $customerVisit
      * @return void
      */
     public function deleted(CustomerVisit $customerVisit)
@@ -53,7 +50,6 @@ class CustomerVisitObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisit  $customerVisit
      * @return void
      */
     public function restored(CustomerVisit $customerVisit)
@@ -64,7 +60,6 @@ class CustomerVisitObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerVisit  $customerVisit
      * @return void
      */
     public function forceDeleted(CustomerVisit $customerVisit)

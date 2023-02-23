@@ -20,7 +20,6 @@ class JournalObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Journal  $journal
      * @return void
      */
     public function created(Journal $journal)
@@ -31,7 +30,6 @@ class JournalObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Journal  $journal
      * @return void
      */
     public function updated(Journal $journal)
@@ -42,7 +40,6 @@ class JournalObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Journal  $journal
      * @return void
      */
     public function deleted(Journal $journal)
@@ -53,7 +50,6 @@ class JournalObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Journal  $journal
      * @return void
      */
     public function restored(Journal $journal)
@@ -64,7 +60,6 @@ class JournalObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Journal  $journal
      * @return void
      */
     public function forceDeleted(Journal $journal)

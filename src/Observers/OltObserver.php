@@ -20,7 +20,6 @@ class OltObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Olt  $olt
      * @return void
      */
     public function created(Olt $olt)
@@ -31,7 +30,6 @@ class OltObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Olt  $olt
      * @return void
      */
     public function updated(Olt $olt)
@@ -42,7 +40,6 @@ class OltObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Olt  $olt
      * @return void
      */
     public function deleted(Olt $olt)
@@ -53,7 +50,6 @@ class OltObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Olt  $olt
      * @return void
      */
     public function restored(Olt $olt)
@@ -64,7 +60,6 @@ class OltObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Olt  $olt
      * @return void
      */
     public function forceDeleted(Olt $olt)

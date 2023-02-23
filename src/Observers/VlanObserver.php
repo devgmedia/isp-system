@@ -20,7 +20,6 @@ class VlanObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Vlan  $vlan
      * @return void
      */
     public function created(Vlan $vlan)
@@ -31,7 +30,6 @@ class VlanObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Vlan  $vlan
      * @return void
      */
     public function updated(Vlan $vlan)
@@ -42,7 +40,6 @@ class VlanObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Vlan  $vlan
      * @return void
      */
     public function deleted(Vlan $vlan)
@@ -53,7 +50,6 @@ class VlanObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Vlan  $vlan
      * @return void
      */
     public function restored(Vlan $vlan)
@@ -64,7 +60,6 @@ class VlanObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Vlan  $vlan
      * @return void
      */
     public function forceDeleted(Vlan $vlan)

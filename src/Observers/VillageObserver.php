@@ -20,7 +20,6 @@ class VillageObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Village  $village
      * @return void
      */
     public function created(Village $village)
@@ -31,7 +30,6 @@ class VillageObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Village  $village
      * @return void
      */
     public function updated(Village $village)
@@ -42,7 +40,6 @@ class VillageObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Village  $village
      * @return void
      */
     public function deleted(Village $village)
@@ -53,7 +50,6 @@ class VillageObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Village  $village
      * @return void
      */
     public function restored(Village $village)
@@ -64,7 +60,6 @@ class VillageObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Village  $village
      * @return void
      */
     public function forceDeleted(Village $village)

@@ -20,7 +20,6 @@ class OnuObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Onu  $onu
      * @return void
      */
     public function created(Onu $onu)
@@ -31,7 +30,6 @@ class OnuObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Onu  $onu
      * @return void
      */
     public function updated(Onu $onu)
@@ -42,7 +40,6 @@ class OnuObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Onu  $onu
      * @return void
      */
     public function deleted(Onu $onu)
@@ -53,7 +50,6 @@ class OnuObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Onu  $onu
      * @return void
      */
     public function restored(Onu $onu)
@@ -64,7 +60,6 @@ class OnuObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Onu  $onu
      * @return void
      */
     public function forceDeleted(Onu $onu)

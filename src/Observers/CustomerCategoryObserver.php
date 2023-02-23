@@ -20,7 +20,6 @@ class CustomerCategoryObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerCategory  $customerCategory
      * @return void
      */
     public function created(CustomerCategory $customerCategory)
@@ -31,7 +30,6 @@ class CustomerCategoryObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerCategory  $customerCategory
      * @return void
      */
     public function updated(CustomerCategory $customerCategory)
@@ -42,7 +40,6 @@ class CustomerCategoryObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerCategory  $customerCategory
      * @return void
      */
     public function deleted(CustomerCategory $customerCategory)
@@ -53,7 +50,6 @@ class CustomerCategoryObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerCategory  $customerCategory
      * @return void
      */
     public function restored(CustomerCategory $customerCategory)
@@ -64,7 +60,6 @@ class CustomerCategoryObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerCategory  $customerCategory
      * @return void
      */
     public function forceDeleted(CustomerCategory $customerCategory)

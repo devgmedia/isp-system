@@ -20,7 +20,6 @@ class PonObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Pon  $pon
      * @return void
      */
     public function created(Pon $pon)
@@ -31,7 +30,6 @@ class PonObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Pon  $pon
      * @return void
      */
     public function updated(Pon $pon)
@@ -42,7 +40,6 @@ class PonObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Pon  $pon
      * @return void
      */
     public function deleted(Pon $pon)
@@ -53,7 +50,6 @@ class PonObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Pon  $pon
      * @return void
      */
     public function restored(Pon $pon)
@@ -64,7 +60,6 @@ class PonObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Pon  $pon
      * @return void
      */
     public function forceDeleted(Pon $pon)

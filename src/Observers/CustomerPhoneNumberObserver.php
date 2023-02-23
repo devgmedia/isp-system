@@ -20,7 +20,6 @@ class CustomerPhoneNumberObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerPhoneNumber  $customerPhoneNumber
      * @return void
      */
     public function created(CustomerPhoneNumber $customerPhoneNumber)
@@ -31,7 +30,6 @@ class CustomerPhoneNumberObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerPhoneNumber  $customerPhoneNumber
      * @return void
      */
     public function updated(CustomerPhoneNumber $customerPhoneNumber)
@@ -42,7 +40,6 @@ class CustomerPhoneNumberObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerPhoneNumber  $customerPhoneNumber
      * @return void
      */
     public function deleted(CustomerPhoneNumber $customerPhoneNumber)
@@ -53,7 +50,6 @@ class CustomerPhoneNumberObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerPhoneNumber  $customerPhoneNumber
      * @return void
      */
     public function restored(CustomerPhoneNumber $customerPhoneNumber)
@@ -64,7 +60,6 @@ class CustomerPhoneNumberObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerPhoneNumber  $customerPhoneNumber
      * @return void
      */
     public function forceDeleted(CustomerPhoneNumber $customerPhoneNumber)

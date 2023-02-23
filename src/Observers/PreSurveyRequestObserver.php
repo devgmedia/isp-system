@@ -32,7 +32,6 @@ class PreSurveyRequestObserver
     /**
      * Handle the PreSurveyRequest "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreSurveyRequest  $pre_survey_request
      * @return void
      */
     public function created(PreSurveyRequest $pre_survey_request)
@@ -43,7 +42,6 @@ class PreSurveyRequestObserver
     /**
      * Handle the Precustomer "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreSurveyRequest  $pre_survey_request
      * @return void
      */
     public function updated(PreSurveyRequest $pre_survey_request)
@@ -54,7 +52,6 @@ class PreSurveyRequestObserver
     /**
      * Handle the Precustomer "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreSurveyRequest  $pre_survey_request
      * @return void
      */
     public function deleted(PreSurveyRequest $pre_survey_request)
@@ -65,7 +62,6 @@ class PreSurveyRequestObserver
     /**
      * Handle the Precustomer "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreSurveyRequest  $pre_survey_request
      * @return void
      */
     public function restored(PreSurveyRequest $pre_survey_request)
@@ -76,7 +72,6 @@ class PreSurveyRequestObserver
     /**
      * Handle the Precustomer "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreSurveyRequest  $pre_survey_request
      * @return void
      */
     public function forceDeleted(PreSurveyRequest $pre_survey_request)

@@ -20,7 +20,6 @@ class CustomerEmailObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerEmail  $customerEmail
      * @return void
      */
     public function created(CustomerEmail $customerEmail)
@@ -31,7 +30,6 @@ class CustomerEmailObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerEmail  $customerEmail
      * @return void
      */
     public function updated(CustomerEmail $customerEmail)
@@ -42,7 +40,6 @@ class CustomerEmailObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerEmail  $customerEmail
      * @return void
      */
     public function deleted(CustomerEmail $customerEmail)
@@ -53,7 +50,6 @@ class CustomerEmailObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerEmail  $customerEmail
      * @return void
      */
     public function restored(CustomerEmail $customerEmail)
@@ -64,7 +60,6 @@ class CustomerEmailObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerEmail  $customerEmail
      * @return void
      */
     public function forceDeleted(CustomerEmail $customerEmail)

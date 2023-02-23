@@ -15,7 +15,6 @@ class PreCustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerProductAdditional  $preCustomerProductAdditional
      * @return void
      */
     public function created(PreCustomerProductAdditional $preCustomerProductAdditional)
@@ -26,7 +25,6 @@ class PreCustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerProductAdditional  $preCustomerProductAdditional
      * @return void
      */
     public function updated(PreCustomerProductAdditional $preCustomerProductAdditional)
@@ -37,7 +35,6 @@ class PreCustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerProductAdditional  $preCustomerProductAdditional
      * @return void
      */
     public function deleted(PreCustomerProductAdditional $preCustomerProductAdditional)
@@ -48,7 +45,6 @@ class PreCustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerProductAdditional  $preCustomerProductAdditional
      * @return void
      */
     public function restored(PreCustomerProductAdditional $preCustomerProductAdditional)
@@ -59,7 +55,6 @@ class PreCustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerProductAdditional  $preCustomerProductAdditional
      * @return void
      */
     public function forceDeleted(PreCustomerProductAdditional $preCustomerProductAdditional)

@@ -15,7 +15,6 @@ class CustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProductAdditional  $customerProductAdditional
      * @return void
      */
     public function created(CustomerProductAdditional $customerProductAdditional)
@@ -26,7 +25,6 @@ class CustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProductAdditional  $customerProductAdditional
      * @return void
      */
     public function updated(CustomerProductAdditional $customerProductAdditional)
@@ -37,7 +35,6 @@ class CustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProductAdditional  $customerProductAdditional
      * @return void
      */
     public function deleted(CustomerProductAdditional $customerProductAdditional)
@@ -48,7 +45,6 @@ class CustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProductAdditional  $customerProductAdditional
      * @return void
      */
     public function restored(CustomerProductAdditional $customerProductAdditional)
@@ -59,7 +55,6 @@ class CustomerProductAdditionalObserver
     /**
      * Handle the customer product additional "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProductAdditional  $customerProductAdditional
      * @return void
      */
     public function forceDeleted(CustomerProductAdditional $customerProductAdditional)

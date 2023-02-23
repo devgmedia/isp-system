@@ -43,7 +43,6 @@ class CustomerProductLogObserver
     /**
      * Handle the customer product additional "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProductLog  $customerProductLog
      * @return void
      */
     public function updated(CustomerProductLog $customerProductLog)
@@ -54,7 +53,6 @@ class CustomerProductLogObserver
     /**
      * Handle the customer product additional "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProductLog  $customerProductLog
      * @return void
      */
     public function deleted(CustomerProductLog $customerProductLog)
@@ -65,7 +63,6 @@ class CustomerProductLogObserver
     /**
      * Handle the customer product additional "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProductLog  $customerProductLog
      * @return void
      */
     public function restored(CustomerProductLog $customerProductLog)
@@ -76,7 +73,6 @@ class CustomerProductLogObserver
     /**
      * Handle the customer product additional "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\CustomerProductLog  $customerProductLog
      * @return void
      */
     public function forceDeleted(CustomerProductLog $customerProductLog)

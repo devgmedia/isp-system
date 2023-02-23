@@ -21,7 +21,6 @@ class SpmFinanceApprovalObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmFinanceApproval  $spmFinanceApproval
      * @return void
      */
     public function created(SpmFinanceApproval $spmFinanceApproval)
@@ -32,7 +31,6 @@ class SpmFinanceApprovalObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmFinanceApproval  $spmFinanceApproval
      * @return void
      */
     public function updated(SpmFinanceApproval $spmFinanceApproval)
@@ -43,7 +41,6 @@ class SpmFinanceApprovalObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmFinanceApproval  $spmFinanceApproval
      * @return void
      */
     public function deleted(SpmFinanceApproval $spmFinanceApproval)
@@ -54,7 +51,6 @@ class SpmFinanceApprovalObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmFinanceApproval  $spmFinanceApproval
      * @return void
      */
     public function restored(SpmFinanceApproval $spmFinanceApproval)
@@ -65,7 +61,6 @@ class SpmFinanceApprovalObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SpmFinanceApproval  $spmFinanceApproval
      * @return void
      */
     public function forceDeleted(SpmFinanceApproval $spmFinanceApproval)

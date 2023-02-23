@@ -37,7 +37,6 @@ class InstallationTaskingObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTasking  $InstallationTasking
      * @return void
      */
     public function created(InstallationTasking $InstallationTasking)
@@ -48,7 +47,6 @@ class InstallationTaskingObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTasking  $InstallationTasking
      * @return void
      */
     public function updated(InstallationTasking $InstallationTasking)
@@ -59,7 +57,6 @@ class InstallationTaskingObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTasking  $InstallationTasking
      * @return void
      */
     public function deleted(InstallationTasking $InstallationTasking)
@@ -70,7 +67,6 @@ class InstallationTaskingObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTasking  $InstallationTasking
      * @return void
      */
     public function restored(InstallationTasking $InstallationTasking)
@@ -81,7 +77,6 @@ class InstallationTaskingObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\InstallationTasking  $InstallationTasking
      * @return void
      */
     public function forceDeleted(InstallationTasking $InstallationTasking)

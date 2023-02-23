@@ -21,7 +21,6 @@ class SurveyTaskingObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SurveyTasking  $surveyTasking
      * @return void
      */
     public function created(SurveyTasking $surveyTasking)
@@ -32,7 +31,6 @@ class SurveyTaskingObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SurveyTasking  $surveyTasking
      * @return void
      */
     public function updated(SurveyTasking $surveyTasking)
@@ -43,7 +41,6 @@ class SurveyTaskingObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SurveyTasking  $surveyTasking
      * @return void
      */
     public function deleted(SurveyTasking $surveyTasking)
@@ -54,7 +51,6 @@ class SurveyTaskingObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SurveyTasking  $surveyTasking
      * @return void
      */
     public function restored(SurveyTasking $surveyTasking)
@@ -65,7 +61,6 @@ class SurveyTaskingObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\SurveyTasking  $surveyTasking
      * @return void
      */
     public function forceDeleted(SurveyTasking $surveyTasking)

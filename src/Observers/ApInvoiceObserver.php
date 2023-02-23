@@ -53,7 +53,6 @@ class ApInvoiceObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoice  $apInvoice
      * @return void
      */
     public function created(ApInvoice $apInvoice)
@@ -64,7 +63,6 @@ class ApInvoiceObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoice  $apInvoice
      * @return void
      */
     public function updated(ApInvoice $apInvoice)
@@ -75,7 +73,6 @@ class ApInvoiceObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoice  $apInvoice
      * @return void
      */
     public function deleted(ApInvoice $apInvoice)
@@ -86,7 +83,6 @@ class ApInvoiceObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoice  $apInvoice
      * @return void
      */
     public function restored(ApInvoice $apInvoice)
@@ -97,7 +93,6 @@ class ApInvoiceObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ApInvoice  $apInvoice
      * @return void
      */
     public function forceDeleted(ApInvoice $apInvoice)

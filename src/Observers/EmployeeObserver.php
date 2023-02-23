@@ -20,7 +20,6 @@ class EmployeeObserver
     /**
      * Handle the employee "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Employee  $employee
      * @return void
      */
     public function created(Employee $employee)
@@ -31,7 +30,6 @@ class EmployeeObserver
     /**
      * Handle the employee "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Employee  $employee
      * @return void
      */
     public function updated(Employee $employee)
@@ -42,7 +40,6 @@ class EmployeeObserver
     /**
      * Handle the employee "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Employee  $employee
      * @return void
      */
     public function deleted(Employee $employee)
@@ -53,7 +50,6 @@ class EmployeeObserver
     /**
      * Handle the employee "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Employee  $employee
      * @return void
      */
     public function restored(Employee $employee)
@@ -64,7 +60,6 @@ class EmployeeObserver
     /**
      * Handle the employee "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Employee  $employee
      * @return void
      */
     public function forceDeleted(Employee $employee)

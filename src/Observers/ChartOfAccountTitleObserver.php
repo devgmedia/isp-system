@@ -20,7 +20,6 @@ class ChartOfAccountTitleObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ChartOfAccountTitle  $chartOfAccountTitle
      * @return void
      */
     public function created(ChartOfAccountTitle $chartOfAccountTitle)
@@ -31,7 +30,6 @@ class ChartOfAccountTitleObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ChartOfAccountTitle  $chartOfAccountTitle
      * @return void
      */
     public function updated(ChartOfAccountTitle $chartOfAccountTitle)
@@ -42,7 +40,6 @@ class ChartOfAccountTitleObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ChartOfAccountTitle  $chartOfAccountTitle
      * @return void
      */
     public function deleted(ChartOfAccountTitle $chartOfAccountTitle)
@@ -53,7 +50,6 @@ class ChartOfAccountTitleObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ChartOfAccountTitle  $chartOfAccountTitle
      * @return void
      */
     public function restored(ChartOfAccountTitle $chartOfAccountTitle)
@@ -64,7 +60,6 @@ class ChartOfAccountTitleObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ChartOfAccountTitle  $chartOfAccountTitle
      * @return void
      */
     public function forceDeleted(ChartOfAccountTitle $chartOfAccountTitle)

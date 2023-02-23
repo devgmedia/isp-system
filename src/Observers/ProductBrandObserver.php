@@ -20,7 +20,6 @@ class ProductBrandObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductBrand  $productBrand
      * @return void
      */
     public function created(ProductBrand $productBrand)
@@ -31,7 +30,6 @@ class ProductBrandObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductBrand  $productBrand
      * @return void
      */
     public function updated(ProductBrand $productBrand)
@@ -42,7 +40,6 @@ class ProductBrandObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductBrand  $productBrand
      * @return void
      */
     public function deleted(ProductBrand $productBrand)
@@ -53,7 +50,6 @@ class ProductBrandObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductBrand  $productBrand
      * @return void
      */
     public function restored(ProductBrand $productBrand)
@@ -64,7 +60,6 @@ class ProductBrandObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ProductBrand  $productBrand
      * @return void
      */
     public function forceDeleted(ProductBrand $productBrand)

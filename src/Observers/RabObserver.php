@@ -38,7 +38,6 @@ class RabObserver
     /**
      * Handle the rab "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Rab  $rab
      * @return void
      */
     public function created(Rab $rab)
@@ -49,7 +48,6 @@ class RabObserver
     /**
      * Handle the rab "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Rab  $rab
      * @return void
      */
     public function updated(Rab $rab)
@@ -60,7 +58,6 @@ class RabObserver
     /**
      * Handle the rab "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Rab  $rab
      * @return void
      */
     public function deleted(Rab $rab)
@@ -71,7 +68,6 @@ class RabObserver
     /**
      * Handle the rab "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Rab  $rab
      * @return void
      */
     public function restored(Rab $rab)
@@ -82,7 +78,6 @@ class RabObserver
     /**
      * Handle the rab "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Rab  $rab
      * @return void
      */
     public function forceDeleted(Rab $rab)

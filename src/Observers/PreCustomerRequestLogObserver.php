@@ -30,7 +30,6 @@ class PreCustomerRequestLogObserver
     /**
      * Handle the customer product additional "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerRequestLog  $preCustomerRequestLog
      * @return void
      */
     public function created(PreCustomerRequestLog $preCustomerRequestLog)
@@ -41,7 +40,6 @@ class PreCustomerRequestLogObserver
     /**
      * Handle the customer product additional "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerRequestLog  $preCustomerRequestLog
      * @return void
      */
     public function updated(PreCustomerRequestLog $preCustomerRequestLog)
@@ -52,7 +50,6 @@ class PreCustomerRequestLogObserver
     /**
      * Handle the customer product additional "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerRequestLog  $preCustomerRequestLog
      * @return void
      */
     public function deleted(PreCustomerRequestLog $preCustomerRequestLog)
@@ -63,7 +60,6 @@ class PreCustomerRequestLogObserver
     /**
      * Handle the customer product additional "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerRequestLog  $preCustomerRequestLog
      * @return void
      */
     public function restored(PreCustomerRequestLog $preCustomerRequestLog)
@@ -74,7 +70,6 @@ class PreCustomerRequestLogObserver
     /**
      * Handle the customer product additional "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\PreCustomerRequestLog  $preCustomerRequestLog
      * @return void
      */
     public function forceDeleted(PreCustomerRequestLog $preCustomerRequestLog)

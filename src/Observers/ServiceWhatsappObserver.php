@@ -20,7 +20,6 @@ class ServiceWhatsappObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ServiceWhatsapp  $serviceWhatsapp
      * @return void
      */
     public function created(ServiceWhatsapp $serviceWhatsapp)
@@ -31,7 +30,6 @@ class ServiceWhatsappObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ServiceWhatsapp  $serviceWhatsapp
      * @return void
      */
     public function updated(ServiceWhatsapp $serviceWhatsapp)
@@ -42,7 +40,6 @@ class ServiceWhatsappObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ServiceWhatsapp  $serviceWhatsapp
      * @return void
      */
     public function deleted(ServiceWhatsapp $serviceWhatsapp)
@@ -53,7 +50,6 @@ class ServiceWhatsappObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ServiceWhatsapp  $serviceWhatsapp
      * @return void
      */
     public function restored(ServiceWhatsapp $serviceWhatsapp)
@@ -64,7 +60,6 @@ class ServiceWhatsappObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ServiceWhatsapp  $serviceWhatsapp
      * @return void
      */
     public function forceDeleted(ServiceWhatsapp $serviceWhatsapp)

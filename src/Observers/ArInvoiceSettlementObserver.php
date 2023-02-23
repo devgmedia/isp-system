@@ -53,7 +53,6 @@ class ArInvoiceSettlementObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceSettlement  $arInvoiceSettlement
      * @return void
      */
     public function created(ArInvoiceSettlement $arInvoiceSettlement)
@@ -64,7 +63,6 @@ class ArInvoiceSettlementObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceSettlement  $arInvoiceSettlement
      * @return void
      */
     public function updated(ArInvoiceSettlement $arInvoiceSettlement)
@@ -75,7 +73,6 @@ class ArInvoiceSettlementObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceSettlement  $arInvoiceSettlement
      * @return void
      */
     public function deleted(ArInvoiceSettlement $arInvoiceSettlement)
@@ -86,7 +83,6 @@ class ArInvoiceSettlementObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceSettlement  $arInvoiceSettlement
      * @return void
      */
     public function restored(ArInvoiceSettlement $arInvoiceSettlement)
@@ -97,7 +93,6 @@ class ArInvoiceSettlementObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\ArInvoiceSettlement  $arInvoiceSettlement
      * @return void
      */
     public function forceDeleted(ArInvoiceSettlement $arInvoiceSettlement)

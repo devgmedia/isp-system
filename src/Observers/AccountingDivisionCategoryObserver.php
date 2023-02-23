@@ -20,7 +20,6 @@ class AccountingDivisionCategoryObserver
     /**
      * Handle the agent "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AccountingDivisionCategory  $accountingDivisionCategory
      * @return void
      */
     public function created(AccountingDivisionCategory $accountingDivisionCategory)
@@ -31,7 +30,6 @@ class AccountingDivisionCategoryObserver
     /**
      * Handle the agent "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AccountingDivisionCategory  $accountingDivisionCategory
      * @return void
      */
     public function updated(AccountingDivisionCategory $accountingDivisionCategory)
@@ -42,7 +40,6 @@ class AccountingDivisionCategoryObserver
     /**
      * Handle the agent "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AccountingDivisionCategory  $accountingDivisionCategory
      * @return void
      */
     public function deleted(AccountingDivisionCategory $accountingDivisionCategory)
@@ -53,7 +50,6 @@ class AccountingDivisionCategoryObserver
     /**
      * Handle the agent "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AccountingDivisionCategory  $accountingDivisionCategory
      * @return void
      */
     public function restored(AccountingDivisionCategory $accountingDivisionCategory)
@@ -64,7 +60,6 @@ class AccountingDivisionCategoryObserver
     /**
      * Handle the agent "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\AccountingDivisionCategory  $accountingDivisionCategory
      * @return void
      */
     public function forceDeleted(AccountingDivisionCategory $accountingDivisionCategory)

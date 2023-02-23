@@ -38,7 +38,6 @@ class BoqObserver
     /**
      * Handle the boq "created" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Boq  $boq
      * @return void
      */
     public function created(Boq $boq)
@@ -49,7 +48,6 @@ class BoqObserver
     /**
      * Handle the boq "updated" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Boq  $boq
      * @return void
      */
     public function updated(Boq $boq)
@@ -60,7 +58,6 @@ class BoqObserver
     /**
      * Handle the boq "deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Boq  $boq
      * @return void
      */
     public function deleted(Boq $boq)
@@ -71,7 +68,6 @@ class BoqObserver
     /**
      * Handle the boq "restored" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Boq  $boq
      * @return void
      */
     public function restored(Boq $boq)
@@ -82,7 +78,6 @@ class BoqObserver
     /**
      * Handle the boq "force deleted" event.
      *
-     * @param  \Gmedia\IspSystem\Models\Boq  $boq
      * @return void
      */
     public function forceDeleted(Boq $boq)
